@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/ontology/reasoner/integration-delivery" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">OWL 规则与推理集成交付记录 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="OWL 规则与推理集成交付记录 | Chein 文档中心"><meta data-rh="true" name="description" content="OWL 规则与推理集成交付记录 · Chein 技术文档"><meta data-rh="true" property="og:description" content="OWL 规则与推理集成交付记录 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"业务本体","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/业务本体"},{"@type":"ListItem","position":2,"name":"OWL 推理服务","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/owl-推理服务"},{"@type":"ListItem","position":3,"name":"OWL 规则与推理集成交付记录","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/reasoner/integration-delivery"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="折叠侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/README/"><span class="linkLabel_gJOC">企业业务本体</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/bkn-interchange/"><span class="linkLabel_gJOC">BKN 文件互操作支持范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/delivery/"><span class="linkLabel_gJOC">本体交付记录</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/design/"><span class="linkLabel_gJOC">Chein 原生本体设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/inference-traceability-design/"><span class="linkLabel_gJOC">本体规则、状态与可溯源推导设计（Logic Pack）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/neo4j-design/"><span class="linkLabel_gJOC">Neo4j 与 Legacy 双 Provider</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/openbkn-alignment/"><span class="linkLabel_gJOC">OpenBKN 核心本体能力对齐：审查与实施设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/owl-builder/"><span class="linkLabel_gJOC">OWL 画布构建器</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" tabindex="0" href="/chein-doc-site/reference/category/owl-推理服务/"><span class="categoryLinkLabel_adV2">OWL 推理服务</span></a><button aria-label="折叠侧边栏分类 &#x27;OWL 推理服务&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/architecture/"><span class="linkLabel_gJOC">HermiT 计算服务设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/deployment/"><span class="linkLabel_gJOC">部署与回滚设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/"><span class="linkLabel_gJOC">OWL 规则与推理集成交付记录</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/integration/"><span class="linkLabel_gJOC">OWL 规则、Agent 与计算任务集成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/security-and-api/"><span class="linkLabel_gJOC">安全与 API 契约</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/reasoner/technology/"><span class="linkLabel_gJOC">技术选择与依赖</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/semantic-workspaces-delivery/"><span class="linkLabel_gJOC">双本体工作区与十一阶段交付</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/setup/"><span class="linkLabel_gJOC">OWL / Logic Pack / Agent 启用操作单</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/业务本体/"><span>业务本体</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/owl-推理服务/"><span>OWL 推理服务</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">OWL 规则与推理集成交付记录</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>OWL 规则与推理集成交付记录</h1></header>
+<p>本地交付，不代表生产上线或 ADR 签署。现状调研、复用清单、架构图、状态机、权限与快照设计见<a class="" href="/chein-doc-site/reference/development/ontology/reasoner/integration/">集成设计</a>；基础计算部署见<a class="" href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">架构</a>。ADR-0015 保持 Proposed。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="行为变化">行为变化<a href="#行为变化" class="hash-link" aria-label="行为变化的直接链接" title="行为变化的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">规则保存在既有 Version.definition 的 <code>owl_rules</code>，包含 code/name/description/Turtle。规则与本体共用编辑、双人审核、发布、停用及恢复，不新建规则系统。空规则不进入历史摘要；规则变化按破坏性变更处理。JSON 往返、合并、Neo4j 投影及正式 RDF 导出保留规则。</li>
+<li class="">受控声明和规则经既有隔离 RDF Worker 确定性组装，保留十进制 lexical form、分离空白节点、拒绝 Imports/未知命名引用。OWLAPI 检查 OWL2DL 全局限制及未解析三元组；HermiT 检查一致性和不可满足类。草稿检查不接受 ABox。发布每一步必须绑定本人、当前完整输入与正文/映射摘要对应的成功任务；改稿、换版本、过期、撤权或他人任务不能复用。</li>
+<li class="">Neo4j 继续保存授权发布投影；PG 是正文、审核和 ACL 权威源，ERP 拥有实时实例。n10s 保留基础语义与预览能力；有复杂规则的版本禁止用基础类别推理冒充完整 OWL 结论，显式 query/traverse 维持原路径。没有写入共享 GraphConfig/Namespaces/Shapes，也没有自动物化。</li>
+<li class="">用户确认首批 ERP 采购、销售、库存。ERP 的 <code>ontology.data / reasoning-snapshot-v1</code> 复用固定映射、owner/部门/仓库权限及 Tenant UoW；数据行来自独立只读 REPEATABLE READ 事务，当前授权使用 READ COMMITTED 复验。有界根选择器为对象 code、记录 UUID、1–3 跳；50 节点/200 边/30 次数据查询，沿用 SQL/总时间限制。任何截断或缺权限均不计算。</li>
+<li class="">稳定 IRI 使用可信 tenant + 数据所有者 binding + UUID。数据属性要求 Property.type 与单一 XSD range 匹配，decimal 不经浮点数，整数与布尔严格区分，dateTime 必须有时区。可空值不生成断言，更不生成闭世界否定。</li>
+<li class=""><code>ReasonerSource.data</code> 绑定 dataSnapshotId、scopeDigest、asOf 和选择器。快照哈希覆盖排序行/边及权限范围；完整 OWL 原子保存在既有私有 journal。读取/结果/导出/取消及历史证据均重验当前授权与数据哈希；变化后拒绝旧结果。<code>completeWithinScope=true</code> 仅描述本次授权映射/跳数内未截断，<code>wholeOntologyComplete=false</code>，局部一致不能证明全库一致。</li>
+<li class="">新增两个 ModuleDefinition/MCP 工具：<code>ontology_reason_v1</code> 与 <code>ontology_reasoning_result_v1</code>。默认已发布 TBox；显式 abox 才读取授权 ERP 快照。支持实例分类、对象属性及固定蕴含，types/property-values 可由服务端确定根 IRI。模型不能上传公理、SQL、URL 或身份，不能修改发布规则或替代 ERP 事务校验。</li>
+<li class="">DeepAgents 原生 middleware 在失败、不一致、未完成或不完整结果后停止依赖推理的模型决策。单轮最多两次推理调用；确定的 IRI 参数错误只允许一次受控修正，并须再次实际调用工具。依赖推理的操作不能与推理在同批并行执行。模型和历史恢复前重验证据；新工具不自动取得 Memory 来源权限。</li>
+<li class="">Neo4j Studio 增加 OWL 规则及本人任务页签。原生表单生成继承、等价、互斥、逆属性、传递和有序链，高级模式保留 Turtle；合法性以服务端检查为准。任务页支持状态、本体/规则版本、时间和输入类型筛选，服务端另提供 operation 筛选。assistant-ui 复用现有模块渲染器，按真实 job 状态轮询，显示快照/哈希/时间/参数/引擎/Trace、分页结果及取消，不伪造内部阶段。</li>
+<li class="">原有 ECS/OTLP 记录 job、操作、状态、错误、耗时、输入哈希与 Trace 引用；OWL、Token、业务事实及系统提示不写 ES。RunEvent/ToolMessage 关联 ToolCall 与 jobId。观测故障不改变计算成功状态；任务持久化故障拒绝接收。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="api数据及兼容部署">API、数据及兼容部署<a href="#api数据及兼容部署" class="hash-link" aria-label="API、数据及兼容部署的直接链接" title="API、数据及兼容部署的直接链接" translate="no">​</a></h2>
+<p>公开增量：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>接口</th><th>契约</th></tr></thead><tbody><tr><td>POST <code>/api/v1/ontology/reasoner/rules-validation</code></td><td>保存版本 + expected_revision + Idempotency-Key；真实独立检查</td></tr><tr><td>GET <code>/api/v1/ontology/reasoner/jobs</code></td><td>本人 keyset、status、network_id/version、operation、kind、created_from/to</td></tr><tr><td>原 POST <code>/reasoner/jobs</code></td><td>可选 <code>abox={object,id,depth}</code>；不能与上传混用</td></tr><tr><td>原版本 transitions</td><td>可选 validation_job_id；有规则的 validate/submit/approve/publish 强制绑定</td></tr><tr><td>原 job/read/results/export/cancel</td><td>当前版本/权限及 ERP 快照复验，不输出过期证据</td></tr></tbody></table>
+<p>筛选和 ACL 作用于本人游标页，页可能为空但仍有 next；客户端必须保留游标继续读取。不会为填满页而无界扫描私有任务。本人身份不来自筛选参数。旧 TBox Source 省略 data，旧 journal 缺少新增参数 metadata 时返回 null；不重算历史输入。内部 Source.data 与 validate-rules、Job metadata 见 <code>services/chein-reasoner/openapi.yaml</code>。</p>
+<p>没有 PG 模型、索引或迁移变更，Version.definition 仍是 JSONB，Audit 沿用原事务与摘要，RLS 不变。每次输入、结果及状态使用既有单实例私有 journal；默认 24 小时/1000 任务，不是永久审计库。生产须确认保留策略与卷备份。ES ILM 见<a class="" href="/chein-doc-site/reference/operations/monitoring/">统一监控</a>。</p>
+<p>部署顺序：<strong>先兼容 Backend，再 Java，再 suite 前端及既有 MCP 审核发布</strong>。Backend 新字段需能读旧 journal；新能力在 Java 就绪前保持关闭。旧 Backend 对新增字段采用严格校验，不能先让新 Java 响应破坏旧读取。旧服务不认识新操作必须拒绝，不回退基础推理。未自动修改正常 Nacos、MCP 注册或共享图配置。启用新规则后，旧进程不认识正文扩展；N-1 降级必须先演练，关闭计算不等于转换或删除已有规则。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="实际验证">实际验证<a href="#实际验证" class="hash-link" aria-label="实际验证的直接链接" title="实际验证的直接链接" translate="no">​</a></h2>
+<p>DB 测试由现有脚本新建、迁移和清理一次性数据库，串行执行；没有对开发/共享业务库运行清理 fixture。迁移管理员仅作测试准备，app_runtime 负向验证使用独立连接。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验证</th><th>本轮实际结果</th></tr></thead><tbody><tr><td>Java21 离线 Maven verify</td><td>26 项：25 通过，外部 Nacos 1 跳过；真实 OWL/Profile/基数/属性链/实例、取消、超时、幂等、重启与 tenant/owner 隔离</td></tr><tr><td>后端纯测试</td><td>77 通过、9 个既有库警告；真实隔离 RDF 解析、摘要、数据类型、命名引用、导出、Provider 与签名/撤权保护</td></tr><tr><td>完整外部回归</td><td>31 通过、67 个库/迁移配置警告，621.95 秒；包含真实 HermiT 发布门禁、ERP 属性链和更新失效、RR 并发快照、owner/tenant/仓库边界、Neo4j/n10s 往返、BFF、MCP/模块边界/Manifest、真实模型与 ES</td></tr><tr><td>补充部门/BFF 门禁</td><td>独立一次性数据库 2 通过、8 个库警告，146.75 秒；同部门读取成功、成员调离后根访问 404、仓库撤权改变 scope 摘要，任务筛选与倒置时间范围 422、当前权限撤销后 BFF 403</td></tr><tr><td>Agent</td><td>33 通过、1 个 Nacos 库警告；失败门禁、一次修正、历史证据、执行偏好与会话恢复；ruff 通过</td></tr><tr><td>前端</td><td>typecheck 通过；4 个相关测试文件 36 项通过，新增组件 biome lint 通过</td></tr><tr><td>Edition</td><td>base、items、suite 均实际成功构建；任务筛选后再次完成 suite 构建及类型检查</td></tr><tr><td>实际图服务</td><td>只读函数确认 Neo4j/APOC 2026.10.1、n10s 2025.06.1；真实 RDF/投影测试通过，不据此推断完整供应商兼容矩阵</td></tr><tr><td>最终镜像</td><td>实际构建并验证 arm64、UID/GID10001、1CPU/2GiB、pids96、只读 rootfs/drop ALL、health、管理指标权限及四组真实 OWL；临时容器/卷已清理</td></tr></tbody></table>
+<p>主要执行命令：</p>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token builtin class-name">cd</span><span class="token plain"> backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run ruff check app tests</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run pytest tests/modules/ontology/test_owl_rules.py tests/modules/ontology/test_providers.py tests/modules/ontology/test_reasoner_guards.py tests/modules/ontology/test_semantics.py </span><span class="token parameter variable" style="color:#36acaa">-q</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--tb</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">short</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token assign-left variable" style="color:#36acaa">CHEIN_REASONER_JAVA_HOME</span><span class="token operator" style="color:#393A34">=</span><span class="token variable" style="color:#36acaa">$(</span><span class="token variable" style="color:#36acaa">/usr/libexec/java_home </span><span class="token variable parameter variable" style="color:#36acaa">-v</span><span class="token variable" style="color:#36acaa"> </span><span class="token variable number" style="color:#36acaa">21</span><span class="token variable" style="color:#36acaa">)</span><span class="token plain"> uv run python scripts/verify_ontology_workflow.py </span><span class="token parameter variable" style="color:#36acaa">--live</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--reasoning</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--es</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--models</span><span class="token plain"> tests/modules/ontology/test_reasoner_abox.py tests/modules/ontology/test_reasoner_live.py tests/modules/ontology/test_reasoning_model_live.py tests/modules/ontology/test_semantic_workspace.py tests/modules/test_agent_tools.py tests/modules/test_module_boundaries.py tests/modules/test_manifest.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token assign-left variable" style="color:#36acaa">CHEIN_REASONER_JAVA_HOME</span><span class="token operator" style="color:#393A34">=</span><span class="token variable" style="color:#36acaa">$(</span><span class="token variable" style="color:#36acaa">/usr/libexec/java_home </span><span class="token variable parameter variable" style="color:#36acaa">-v</span><span class="token variable" style="color:#36acaa"> </span><span class="token variable number" style="color:#36acaa">21</span><span class="token variable" style="color:#36acaa">)</span><span class="token plain"> uv run python scripts/test_creation_isolated.py tests/modules/ontology/test_reasoner_abox.py::test_repeatable_read_snapshot_and_current_owner_warehouse_authorization tests/modules/ontology/test_reasoner_live.py::test_existing_session_bff_and_revoked_permission </span><span class="token parameter variable" style="color:#36acaa">-q</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--tb</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">short</span><br></div></code></pre></div></div>
+<p>Java 验证在 <code>services/chein-reasoner</code> 执行 <code>JAVA_HOME=$(/usr/libexec/java_home -v 21) mvn -o -B verify</code>。前端按仓库命令生成契约并执行 typecheck、Vitest 和 Edition 构建；没有手改 API/Manifest 生成文件。</p>
+<p>ES 初测曾因 bootstrap 配置禁用日志、迁移 fileConfig 禁用已有 logger 而失败，未记为通过。最终扩展既有验证脚本，从正常 runtime 仅复制图/观测/日志白名单，测试维护进程恢复 logger；真实 ECS 日志按可信 tenant + job_id 查询成功，校验 inputDigest 且不含规则正文。生产 API 不执行迁移，不增加日志旁路。</p>
+<p>真实模型三个场景均使用当前真实 Provider、私有 MCP/app_runtime、真实 Java，无脚本化模型：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th style="text-align:right">实际输入/输出/总 Token</th><th style="text-align:right">全链耗时 ms</th><th>结果</th></tr></thead><tbody><tr><td>TBox 层级</td><td style="text-align:right">6779/368/7147</td><td style="text-align:right">27556.90</td><td>真实工具及 reader；区分显式父类与推导，usable=true</td></tr><tr><td>ERP 采购实例分类</td><td style="text-align:right">7590/522/8112</td><td style="text-align:right">63558.97</td><td>真实授权快照及 reader；识别 Parent 为推导类型，明确局部范围和 dataSnapshotId，usable=true</td></tr><tr><td>服务不可用</td><td style="text-align:right">2883/128/3011</td><td style="text-align:right">8663.77</td><td>usable=false，无 job，固定说明并停止后续决策</td></tr></tbody></table>
+<p>成功场景实际收到 <code>ontology.reason</code>、<code>mcp.dispatch</code>、<code>model.chat</code> Langfuse observations。不可用场景实际收到模型观测，没有虚构成功计算 span。报告在项目外 <code>/tmp/chein-formal-reasoning-model.json</code>；Token/耗时为单次端到端样本，不是生产性能承诺。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="性能和资源">性能和资源<a href="#性能和资源" class="hash-link" aria-label="性能和资源的直接链接" title="性能和资源的直接链接" translate="no">​</a></h2>
+<p>复用已有 benchmark/verify_container。宿主样本同时存在构建和测试负载；CPU 为 ps 采样，ActiveProcessorCount=1 不等于 OS 配额。最终容器使用真实 cgroup 限额，累计 memory.peak 包含控制 JVM 与页缓存。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>合成本体</th><th style="text-align:right">公理/个体</th><th style="text-align:right">宿主解析+推理 / 墙钟 ms</th><th style="text-align:right">宿主峰值 RSS MiB / CPU%</th><th style="text-align:right">最终 1CPU 容器推理 / HTTP 墙钟 ms</th></tr></thead><tbody><tr><td>small</td><td style="text-align:right">39/10</td><td style="text-align:right">705/2327</td><td style="text-align:right">210.8/159.2</td><td style="text-align:right">899/2391</td></tr><tr><td>medium</td><td style="text-align:right">2199/1000</td><td style="text-align:right">999/1857</td><td style="text-align:right">215.6/190.3</td><td style="text-align:right">1977/3487</td></tr><tr><td>dl</td><td style="text-align:right">283/100</td><td style="text-align:right">685/1632</td><td style="text-align:right">213.6/187.2</td><td style="text-align:right">982/2408</td></tr><tr><td>abox</td><td style="text-align:right">8099/4000</td><td style="text-align:right">1309/2088</td><td style="text-align:right">219.5/199.9</td><td style="text-align:right">1605/2696</td></tr></tbody></table>
+<p>最终容器整批累计峰值 <strong>361463808 bytes（344.7 MiB）</strong>。合成 ABox 资源测试与上述真实 ERP 接入测试是不同证据；不将 4000 个私有合成个体冒充 4000 条实时 ERP 记录。原始报告在项目外 <code>/tmp/chein-reasoner-benchmark-20261027.json</code> 和 <code>/tmp/chein-reasoner-container-final.json</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="剩余门禁与限制">剩余门禁与限制<a href="#剩余门禁与限制" class="hash-link" aria-label="剩余门禁与限制的直接链接" title="剩余门禁与限制的直接链接" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>组织/全库 ABox 关闭。</strong> 本轮按用户确认只接采购、销售、库存的授权有界映射。全库完整性、隐藏事实一致性、组织关系必须由对应数据所有者另立契约，不能外推本轮局部结果。无自动 Neo4j 物化、撤销或业务写入。</li>
+<li class=""><strong>跨用户/部门任务正文审计未启用。</strong> 当前本人任务与当前可见来源是安全边界；现有“读取本体”权限没有授予读取他人 ERP 快照的含义。需要独立审计权限、可见数据范围、保留与访问审计设计后实施。独立“触发来源”筛选也尚无持久化契约；当前 kind 是输入类型，不伪装成 Agent/人工来源。</li>
+<li class="">无形式证明/justification 模块；LLM 解释不等于 HermiT 形式证明。不完整结果、未蕴含、局部一致不能用于全局否定或生产事务授权。</li>
+<li class="">登录后的真实浏览器 E2E/响应式截图未完成。正常页面到达登录/ALTCHA 后停止并关闭临时页，没有绕过认证或提交验证码；36 项组件测试不替代该门禁。没有截图写入源码目录。</li>
+<li class="">目标 Ubuntu、认证 Nacos/Higress/TLS、生产 n10s 兼容矩阵、跨实例/持久卷恢复、长期并发失败率、队列等待和缓存命中率尚未验证。ERP 模型样本耗时约 63.6 秒，当前逐次重验会增加查询开销，上线前须压测，不能据单次样本承诺 SLO。</li>
+<li class="">远端 CI、漏洞扫描/签名、LGPL 法务、生产备份/审计保留、N-1 演练与团队 ADR 签署未执行。没有创建分支、暂存、提交、推送或修改远端注册状态。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="关键文件">关键文件<a href="#关键文件" class="hash-link" aria-label="关键文件的直接链接" title="关键文件的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围</th><th>用途</th></tr></thead><tbody><tr><td>Ontology DTO/服务/语义/导出</td><td>规则版本、发布证据、授权、确定性 OWL、类型与快照验证</td></tr><tr><td>ERP application/ontology.py</td><td>在原数据所有者内增加只读 RR 快照和内容/权限摘要</td></tr><tr><td>Java Contract/HermitEngine/JobStore/Controller/Worker</td><td>正式门禁、任务参数、Source.data、分页、Trace 与受控计算</td></tr><tr><td>Agent middleware/harness/threads/evaluator</td><td>失败保护、证据重验、工具选择、真实模型评测</td></tr><tr><td>ReasoningPanel/ReasoningTask/Studio 与原模块渲染器</td><td>规则编辑、审核绑定、任务筛选、快照说明及真实状态</td></tr><tr><td>测试、观测、生成客户端、规范与文档</td><td>安全/集成证据、统一阶段、契约生成和维护边界</td></tr></tbody></table>
+<p>完整文件清单见下。生成客户端的公共类型变化由仓库生成命令产生，不新增独立业务实现。</p>
+<details class="details_M1Uy alert alert--info details_n3pQ" data-collapsed="true"><summary>本轮修改与新增文件（72 个）</summary><div><div class="collapsibleContent_pnaq">
+<!-- -->
+<ul>
+<li class=""><a class="" href="/chein-doc-site/reference/development/standards/agents/">AGENTS.md</a>：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/scripts/evaluate_ontology.py" target="_blank" rel="noopener noreferrer" class="">agent/scripts/evaluate_ontology.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/src/chein_agent/execution_options.py" target="_blank" rel="noopener noreferrer" class="">agent/src/chein_agent/execution_options.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/src/chein_agent/harness.py" target="_blank" rel="noopener noreferrer" class="">agent/src/chein_agent/harness.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/src/chein_agent/ontology.py" target="_blank" rel="noopener noreferrer" class="">agent/src/chein_agent/ontology.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/src/chein_agent/reasoning_middleware.py" target="_blank" rel="noopener noreferrer" class="">agent/src/chein_agent/reasoning_middleware.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/src/chein_agent/threads.py" target="_blank" rel="noopener noreferrer" class="">agent/src/chein_agent/threads.py</a>：原 Agent 运行时内的推理策略、失败保护、历史重验与真实模型评测。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/agent/tests/test_reasoning_middleware.py" target="_blank" rel="noopener noreferrer" class="">agent/tests/test_reasoning_middleware.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/erp/application/ontology.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/erp/application/ontology.py</a>：数据所有者的授权只读 RR 快照及摘要。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/agent_tools.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/agent_tools.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/abox.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/abox.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/agent_reasoning.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/agent_reasoning.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/context.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/context.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/interchange.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/interchange.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/reasoner.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/reasoner.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/runtime.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/runtime.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/schema.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/schema.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/semantics.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/semantics.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/application/service.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/application/service.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/infrastructure/neo4j.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/infrastructure/neo4j.py</a>：无损图投影或既有隔离语义 Worker 适配。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/infrastructure/semantic_worker.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/infrastructure/semantic_worker.py</a>：无损图投影或既有隔离语义 Worker 适配。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/public_api/dto.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/public_api/dto.py</a>：规则、快照、任务及筛选的严格公共契约。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/public_api/reasoner.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/public_api/reasoner.py</a>：规则、快照、任务及筛选的严格公共契约。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/reasoner_routes.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/reasoner_routes.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/ontology/routes.py" target="_blank" rel="noopener noreferrer" class="">backend/app/modules/ontology/routes.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/platform/agent_ui_router.py" target="_blank" rel="noopener noreferrer" class="">backend/app/platform/agent_ui_router.py</a>：原应用服务、HTTP/MCP 适配内的规则、发布、授权与快照实现。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/scripts/verify_ontology_workflow.py" target="_blank" rel="noopener noreferrer" class="">backend/scripts/verify_ontology_workflow.py</a>：既有一次性数据库验证器增加推理/模型/ES 门禁。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/ontology/test_owl_rules.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/ontology/test_owl_rules.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/ontology/test_providers.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/ontology/test_providers.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/ontology/test_reasoner_abox.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/ontology/test_reasoner_abox.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/ontology/test_reasoner_live.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/ontology/test_reasoner_live.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/ontology/test_reasoning_model_live.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/ontology/test_reasoning_model_live.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/test_agent_tools.py" target="_blank" rel="noopener noreferrer" class="">backend/tests/modules/test_agent_tools.py</a>：契约、安全、真实引擎或组件回归。</li>
+<li class="">docs/README.md（未发布资料）：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a class="" href="/chein-doc-site/reference/development/ontology/README/">docs/ontology/README.md</a>：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a class="" href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">docs/ontology/reasoner/architecture.md</a>：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a class="" href="/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/">docs/ontology/reasoner/integration-delivery.md</a>：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a class="" href="/chein-doc-site/reference/development/ontology/reasoner/integration/">docs/ontology/reasoner/integration.md</a>：架构、设计、交付证据、规范或导航。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/analytics/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/analytics/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/analytics/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/analytics/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/creation/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/creation/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/creation/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/creation/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/erp/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/erp/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/erp/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/erp/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/items/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/items/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/items/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/items/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/knowledge/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/knowledge/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/knowledge/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/knowledge/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/ReasoningTask.tsx" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/ReasoningTask.tsx</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/api/generated/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/api/generated/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/api/generated/sdk.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/api/generated/sdk.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/api/generated/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/api/generated/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/locales/en-US.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/locales/en-US.ts</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/modules/ontology/locales/zh-CN.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/modules/ontology/locales/zh-CN.ts</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><code>frontend/apps/web-pro/src/modules/ontology/pages/Neo4jStudio.tsx</code>（历史路径；入口已退役，当前页面见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 构建器</a>）：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><code>frontend/apps/web-pro/src/modules/ontology/pages/ReasoningPanel.test.tsx</code>（历史路径；入口已退役，当前页面见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 构建器</a>）：契约、安全、真实引擎或组件回归。</li>
+<li class=""><code>frontend/apps/web-pro/src/modules/ontology/pages/ReasoningPanel.tsx</code>（历史路径；入口已退役，当前页面见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 构建器</a>）：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/pages/agent/execution-options.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/pages/agent/execution-options.ts</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/pages/agent/index.tsx" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/pages/agent/index.tsx</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/runtime/agent-tool-renderers.tsx" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/runtime/agent-tool-renderers.tsx</a>：原模块/Agent 界面内的规则、任务、快照与执行偏好。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/runtime/build-manifest.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/runtime/build-manifest.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/services/generated/platform/index.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/services/generated/platform/index.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/services/generated/platform/types.gen.ts" target="_blank" rel="noopener noreferrer" class="">frontend/apps/web-pro/src/services/generated/platform/types.gen.ts</a>：仓库命令生成的 API/SDK/Manifest。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/observability/src/chein_observability/stages.py" target="_blank" rel="noopener noreferrer" class="">observability/src/chein_observability/stages.py</a>：原 OTLP 阶段白名单。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/openapi.yaml" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/openapi.yaml</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/main/java/dev/chein/reasoner/Contract.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/main/java/dev/chein/reasoner/Contract.java</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/main/java/dev/chein/reasoner/HermitEngine.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/main/java/dev/chein/reasoner/HermitEngine.java</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/main/java/dev/chein/reasoner/JobStore.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/main/java/dev/chein/reasoner/JobStore.java</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/main/java/dev/chein/reasoner/ReasonerController.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/main/java/dev/chein/reasoner/ReasonerController.java</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/main/java/dev/chein/reasoner/WorkerMain.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/main/java/dev/chein/reasoner/WorkerMain.java</a>：原 Java 边界内的正式门禁、任务、输入契约与错误处理。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/test/java/dev/chein/reasoner/HermitEngineTest.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/test/java/dev/chein/reasoner/HermitEngineTest.java</a>：契约、安全、真实引擎或组件回归。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/services/chein-reasoner/src/test/java/dev/chein/reasoner/JobStoreTest.java" target="_blank" rel="noopener noreferrer" class="">services/chein-reasoner/src/test/java/dev/chein/reasoner/JobStoreTest.java</a>：契约、安全、真实引擎或组件回归。</li>
+</ul>
+</div></div></details>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2026-10-27-审查后修复">2026-10-27 审查后修复<a href="#2026-10-27-审查后修复" class="hash-link" aria-label="2026-10-27 审查后修复的直接链接" title="2026-10-27 审查后修复的直接链接" translate="no">​</a></h2>
+<p>本节是上述交付后的补充修复。此前的真实模型、容器、Neo4j/ES 样本属于历史本地证据，本次没有把它们算作重新执行的验证。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>问题</th><th>当前处理与证据</th></tr></thead><tbody><tr><td>参数修正可夹带业务工具，撤权后清空证据继续调用模型</td><td><code>agent/src/chein_agent/reasoning_middleware.py</code> 同时拦截模型与工具；修正仅允许同名推理工具一次单独调用，去除修正时的未验证解释；证据复验失败返回确定性说明。空错误对象、异常字段类型和非文本内容块也返回可读失败，不触发二次解析异常。原生 DeepAgents 图回归确认业务处理函数没有执行。重复相同任务只复验一次，单次最多 10 个不同任务，超出预算停止并提示。</td></tr><tr><td>usable 与业务许可混淆，未蕴含被当作通过</td><td><code>application/agent_reasoning.py</code> 返回 ALLOW/DENY/INDETERMINATE/ERROR、原因、查询公理和输入/定义/数据摘要；<code>authorizes_action=false</code>。ALLOW 仅表示逻辑查询正常完成；蕴含查询缺失布尔结果也拒绝。无 justification 时明确 <code>proof_available=false</code>，不生成伪证明链。</td></tr><tr><td>Action 没有确定的服务器推理关卡</td><td><code>public_api/dto.py</code> 增加可选 <code>Action.precondition={class_uri,depth}</code>。<code>application/reasoner.py</code> 从已发布条件派生根分类查询，将完整 ActionQuery 的规范化 SHA256 写入已有任务标签；<code>runtime.action</code> 执行前后复验本人成功任务、相同参数、版本、根、scope/数据快照及正向蕴含。只有原固定只读执行器，不增加 ERP 写工具。</td></tr><tr><td>声明约束没有进入实际 ABox 检查</td><td>required/range/precision 原已由 <code>runtime.property_value</code> 检查；unique/关系基数原有目录发布门禁。本次 <code>application/semantics.py</code> 补充授权快照内唯一性、关系上界及真实 ABox SHACL 检查，复用原禁网隔离 Worker。OWA 存在量词不能替代字段完整性；授权范围外的事实不视为否定。</td></tr><tr><td>分页被误当作计算截断</td><td><code>reasoner.evidence</code> 在 1000 条预算内每页最多 100 条收齐，校验相同结果 metadata、总量和重复项，并在读取前后重验当前来源。不完整/预算溢出仍拒绝；UI 区分正常翻页与不完整结果。</td></tr><tr><td>重复拼装与轮询开销</td><td>内部 <code>read_pending</code> 只读本人状态，最终输出前后仍完整复验。纯 TBox 序列化使用完整正文键控的 <code>lru_cache(maxsize=16)</code>；不缓存权限或 ERP 实例，不改变独立可终止 JVM。</td></tr><tr><td>ERP 业务口径与实体身份未定义</td><td>数据所有者 catalog/describe 返回 <code>reasoning_facts</code>。年度汇总沿现有租户时区、当年截至今日、审核入/出库减退货；订单指标独立保留原口径。现有模型没有信用额度、合同、客户年度采购聚合映射，tax_no 可空且不唯一；明确不支持，不自动 sameAs，不把退货赊欠结算当授信。</td></tr><tr><td>编辑/执行缺少对应入口</td><td>SchemaEditor 配置已声明前置类；InstanceExplorer 先创建校验任务，再由用户显式执行，改参/切换上下文清除证明并忽略迟到请求。含 OWL/SHACL 而没有条件时显示配置提示并停用执行按钮。后端仍是强制安全边界。</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="兼容与启用">兼容与启用<a href="#兼容与启用" class="hash-link" aria-label="兼容与启用的直接链接" title="兼容与启用的直接链接" translate="no">​</a></h3>
+<p>无需新的数据库迁移或运行时依赖。省略 precondition 时不改变旧定义序列化/摘要；新增 ReasonerInput.action 和 ActionQuery.reasoning_job_id 不要求改 Java journal 格式。含 OWL/SHACL 的旧 Action <strong>停止执行</strong>，应新建草稿，选定真实业务条件、完成双人审核后发布；不能自动把根类选作前置条件冒充业务规则。没有规则且没有条件的原只读 Action 沿用原授权执行链。任意 query/traverse 仍是显式事实读取，不授予动作权限，也不声称已经通过所有业务规则。</p>
+<p>发布 Backend、Agent 与 suite 前端后，需按现有流程重新审核发布 MCP 工具契约；本次未修改 Nacos 配置、MCP 注册和远端状态。回滚到不认识 precondition 的旧 Backend 前必须停用新定义并演练 N-1；不可直接运行旧进程解释新发布正文。全量对话最终裁判、信用/合同管理、跨资源法人主数据和形式证明引擎均未新增；这些需要真实业务数据契约，不能用提示词或模型猜测替代。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="本次本地验证">本次本地验证<a href="#本次本地验证" class="hash-link" aria-label="本次本地验证的直接链接" title="本次本地验证的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">Java21 <code>mvn -q verify</code>：27 项，26 通过，外部 Nacos 1 跳过。新增十进制大于 1,000,000、等于阈值不满足、有效合同组合、连续分类和信用事实缺失保持未蕴含的真实 HermiT 回归；这是合成语义验证，不代表 ERP 已有合同/授信字段。</li>
+<li class="">Backend 纯回归 98 通过；追加执行后撤权/数据变更阻断回归后，安全用例单独 20 通过。模块边界/Manifest 16 通过，1 项需要 DB 的用例未在该纯测试命令执行。另对旧 Schema/运行时撤权与图查询预算执行 20 项回归，通过；该纯测试使用显式 mock Neo4j 启用配置，没有连接共享图。Backend 与 Agent 全量 Ruff 均通过。</li>
+<li class="">Agent 定向回归 45 通过、1 个既有 opt-in 用例跳过。覆盖原生图、真实临时 MCP HTTP、参数错误、超时、撤权与工具错误说明；并行构建时曾因临时 HTTP 服务未在测试的启动预算内就绪而失败，停止构建负载后原配置复验通过，没有放宽生产授权或超时。</li>
+<li class="">前端 TypeScript 通过，3 个相关组件文件 33 项通过，3 个实现文件 biome lint 通过；base/items/suite 均完成实际构建，最终保留 suite 的生成产物。生成文件全部来自仓库命令。</li>
+<li class="">真实隔离语义 Worker 的 815 bytes TBox 本地样本：首次序列化 261.803 ms，缓存命中 20 次的中位数 0.049 ms；完整正文变更失效由回归校验。只度量序列化，不包含授权、ERP 查询、排队、JVM 或模型时间，不据此承诺端到端 SLO。</li>
+<li class="">普通浏览器入口在 suite 生成恢复后到达正常登录页/ALTCHA。没有已授权登录会话，因此登录后浏览器 E2E 尚未执行；临时页面已关闭，没有绕过认证或生成源码截图。</li>
+</ul>
+<p>数据库专项回归最终在固定 Backend/Java 源码的新进程完成 <strong>40 通过、9 个既有库/迁移配置警告，651.40 秒</strong>：真实 HermiT 发布/Action、当前参数/根绑定、跨用户、未知条件、ERP 数据变化、RR 快照、部门/仓库/app_runtime 隔离及语义回归。先将既有 <code>CHEIN_REASONER_JAVA_HOME</code> 环境变量指向已验证的本机 Java21 安装目录，再执行 <code>pnpm backend:test:creation tests/modules/ontology/test_reasoner_live.py tests/modules/ontology/test_reasoner_abox.py tests/modules/ontology/test_reasoner_safety.py tests/modules/ontology/test_owl_rules.py -q --tb=short</code>。此前进程曾在模块预加载后新增代码，导致新纯测试读取旧模块；不计为通过，固定源码后整组重跑。一次性数据库由 launcher 的 finally 删除，JVM/私有任务目录由 fixture 清理，最终退出码为 0；诊断日志与序列化样本保留在系统临时目录，源码无测试产物。远端 CI、目标部署压测、镜像扫描/签名、生产恢复与 N-1 演练、ADR 团队签署仍未执行。本次保留既有未提交修改，不创建分支、提交或推送。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/ontology/reasoner/integration-delivery.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 画布构建器</a></li><li><a href="/chein-doc-site/reference/development/ontology/README/">企业业务本体</a></li><li><a href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">HermiT 计算服务设计</a></li><li><a href="/chein-doc-site/reference/development/ontology/reasoner/integration/">OWL 规则、Agent 与计算任务集成</a></li><li><a href="/chein-doc-site/reference/development/standards/agents/">Fast Vben Admin Agent Development Standard</a></li><li><a href="/chein-doc-site/reference/operations/monitoring/">监控与告警</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/product/features/ontology/">本体与业务结合</a></li><li><a href="/chein-doc-site/reference/development/ontology/README/">企业业务本体</a></li><li><a href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">HermiT 计算服务设计</a></li><li><a href="/chein-doc-site/reference/development/ontology/reasoner/integration/">OWL 规则、Agent 与计算任务集成</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fontology%2Freasoner%2Fintegration-delivery%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/ontology/reasoner/deployment/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">部署与回滚设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/ontology/reasoner/integration/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">OWL 规则、Agent 与计算任务集成</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#行为变化" class="table-of-contents__link toc-highlight">行为变化</a></li><li><a href="#api数据及兼容部署" class="table-of-contents__link toc-highlight">API、数据及兼容部署</a></li><li><a href="#实际验证" class="table-of-contents__link toc-highlight">实际验证</a></li><li><a href="#性能和资源" class="table-of-contents__link toc-highlight">性能和资源</a></li><li><a href="#剩余门禁与限制" class="table-of-contents__link toc-highlight">剩余门禁与限制</a></li><li><a href="#关键文件" class="table-of-contents__link toc-highlight">关键文件</a></li><li><a href="#2026-10-27-审查后修复" class="table-of-contents__link toc-highlight">2026-10-27 审查后修复</a><ul><li><a href="#兼容与启用" class="table-of-contents__link toc-highlight">兼容与启用</a></li><li><a href="#本次本地验证" class="table-of-contents__link toc-highlight">本次本地验证</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

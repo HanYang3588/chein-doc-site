@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-designs/agent/sql-analytics-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Agent SQL 分析与图表收藏设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/sql-analytics-design/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Agent SQL 分析与图表收藏设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Agent SQL 分析与图表收藏设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Agent SQL 分析与图表收藏设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/sql-analytics-design/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/sql-analytics-design/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/sql-analytics-design/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Agent 系统","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/agent-系统-2"},{"@type":"ListItem","position":2,"name":"Agent SQL 分析与图表收藏设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/sql-analytics-design"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="折叠侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/abuse-and-execution-security/"><span class="linkLabel_gJOC">Agent 滥用防护与执行安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/caching/"><span class="linkLabel_gJOC">Agent 对话与工具结果缓存设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/data-architecture/"><span class="linkLabel_gJOC">Agent 数据与业务契约设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/human-in-loop/"><span class="linkLabel_gJOC">人工介入与审批设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/integrations/"><span class="linkLabel_gJOC">Agent 技术栈与外部集成设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/langsmith-observability/"><span class="linkLabel_gJOC">Agent LangSmith 观测接入设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/reliability/"><span class="linkLabel_gJOC">Agent 可靠性与终端恢复设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/security/"><span class="linkLabel_gJOC">Agent 安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/designs/agent/sql-analytics-design/"><span class="linkLabel_gJOC">Agent SQL 分析与图表收藏设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/system-architecture/"><span class="linkLabel_gJOC">Agent 总体系统架构</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/tool-governance/"><span class="linkLabel_gJOC">Tool、MCP 与 Skill 治理设计</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="展开侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/agent-系统-2/"><span>Agent 系统</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Agent SQL 分析与图表收藏设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Agent SQL 分析与图表收藏设计</h1></header>
+<blockquote>
+<p>状态：已获用户确认；B/C/D/E 首期切片已开发，本地验证与部署步骤见 <a class="" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">交付说明</a>。</p>
+<blockquote>
+<p>本文保留设计及后续范围；实际实现和未执行门禁以交付说明为准，F/G 尚未实施。
+2026-10-10 用户追加要求：分析接口改由现有 MCP 发布；Agent 保留图表/快照处理，旧 HTTP 配置仅供迁移兼容。
+架构约束：<a class="" href="/chein-doc-site/reference/architecture/agent/runtime/">Agent 架构</a>、<a class="" href="/chein-doc-site/reference/architecture/platform/implementation/">模块化实施基线</a>、<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。</p>
+</blockquote>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-推荐方案与确认范围">1. 推荐方案与确认范围<a href="#1-推荐方案与确认范围" class="hash-link" aria-label="1. 推荐方案与确认范围的直接链接" title="1. 推荐方案与确认范围的直接链接" translate="no">​</a></h2>
+<p>复用 DeepAgents、LangGraph、现有模型客户端、签名委托、ERP 权限与 assistant-ui。在现有后端内增加受控分析能力，在业务模块内保存图表收藏；不增加 Agent 框架、独立 MCP 服务或 BI 平台。</p>
+<p>推荐先实现 <strong>结构化分析计划 QuerySpec → 受控 SQL 编译 → AST 校验 → ERP 授权执行 → ChartSpec</strong>。首期覆盖采购、销售的金额与单据数量、时间趋势、排名及已发布分类。自由模型 SQL 会显著扩大验证范围，单靠 SELECT 或 SQLGlot 解析不能保证安全。因此将模型生成候选 SQL 作为后续受限模式，复用同一执行入口，默认关闭。它只能表达已授权指标、维度及关联，不能成为直接执行 SQL 的工具。</p>
+<p>用户确认本设计后依次实施安全查询、决策辅助、聊天图表和图表收藏。查询权限必须与安全执行一起交付，不能先开放查询、再补部门权限。首期不开放敏感明细、跨模块 SQL、自动后台分析或定时刷新。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-调研证据与当前差距">2. 调研证据与当前差距<a href="#2-调研证据与当前差距" class="hash-link" aria-label="2. 调研证据与当前差距的直接链接" title="2. 调研证据与当前差距的直接链接" translate="no">​</a></h2>
+<p>本次检查的是当前工作区，包含已有未提交变更。文档中的历史部署记录与本轮检查分开标注。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围</th><th>已核对实现</th><th>复用与缺口</th></tr></thead><tbody><tr><td>Agent 初始化</td><td><code>agent/src/chein_agent/harness.py</code> 的 <code>create_deep_agent</code>；文件工具禁用；Native middleware、checkpointer、HITL</td><td>增加原生分析工具及必要中间件，不改规划循环</td></tr><tr><td>工具</td><td><code>tools.py</code> 的日期、ERP 统计、知识目录、知识检索、ask_user；可装配已授权 MCP 工具</td><td>无 SQL 分析工具；ERP 统计只接收受限查询参数</td></tr><tr><td>数据授权</td><td><code>backend/app/modules/erp/agent_tools.py</code> 与 <code>agent_data_routes.py</code></td><td>逐次 <code>delegated_principal</code>、成员/权限、模块权益检查，进入 ERP UoW；直接复用</td></tr><tr><td>ERP 统计口径</td><td><code>statistics_routes.py</code> 的 <code>_document_scope</code>、<code>_amounts_for_range</code></td><td>已审批采购入库减采购退货、销售出库减销售退货；业务日期按租户时区；不能称为订单金额</td></tr><tr><td>数据范围</td><td><code>core/data_permissions.py</code>、<code>platform/web_api.py</code></td><td>all/self/department/department_and_children/custom；多角色并集；默认自身；超级管理员由授权层处理</td></tr><tr><td>仓库权限</td><td><code>erp/stock_routes.py</code> 的 <code>warehouse_document_scope_filter</code></td><td>非超级管理员要求单据涉及的每个仓库均获授权，不能仅过滤已授权明细后求和</td></tr><tr><td>PostgreSQL</td><td><code>core/database.py</code> 的 SQLAlchemy engine；ERP UoW；ERP migrations 中的 FORCE RLS</td><td>现有 RLS 主要保证租户，不等于 owner、部门或仓库权限；无新分析专用视图与账号的实现证据</td></tr><tr><td>运行账号</td><td><code>platform/provision_db_roles.py</code></td><td>app_runtime 无超级/建库/建角色/BYPASSRLS，但获业务表读写；不能充当独立只读分析账号</td></tr><tr><td>持久化</td><td><code>agent/checkpoints.py</code>、<code>runs.py</code>、<code>threads.py</code></td><td>PostgreSQL checkpoint、Run、事件、工具结果及有序历史；没有已交付的分析 Snapshot/收藏链路</td></tr><tr><td>SSE</td><td><code>agent/api.py</code>、前端 <code>pages/agent/events.ts</code></td><td>文本、工具、决策、引用、审批；工具内部或 nostream 模型输出不会混入回答流</td></tr><tr><td>前端</td><td>React 19、Umi Max 4、Ant Design 6、assistant-ui；现有 Runtime + Shared Thread</td><td>聊天页、浮窗共用消息与工具组件；不能重建聊天状态层</td></tr><tr><td>图表</td><td><code>pages/agent/chart.tsx</code>、<code>agent/contracts.py</code></td><td>已有 ChartSpecV1、Ant Design Plots 的 line/bar/pie/radar、前端验证；AgentChart 未接主线程，未注册 render_chart；后端/前端校验强度与空数据规则不同</td></tr><tr><td>缓存</td><td><code>backend/app/core/cache.py</code>，RBAC namespace bump 调用</td><td>Redis 封装已存在；不能将全局 namespace 版本当作完整数据范围版本</td></tr><tr><td>日志</td><td>shared logging、Agent MetadataLogCallback</td><td>已有 ES 配置和脱敏调用元数据；LangSmith 文档是目标态，不证明部署已启用</td></tr><tr><td>Edition</td><td><code>editions/base.yaml</code>、<code>items.yaml</code>、<code>suite.yaml</code></td><td>Suite 有 ERP/Knowledge，无 Analytics；新增收藏模块要经契约、Edition、Manifest 与迁移装配</td></tr><tr><td>网关</td><td>model_provider、decision、Nacos 配置模板</td><td>Chat Completions 与 System One 分别配置；Higress 已有迁移设计，透传尚无本轮验收证据</td></tr></tbody></table>
+<p>源码路径均相对于仓库根目录。开发时还须审计目标环境 PostgreSQL 版本、真实角色、授权、视图 owner、RLS 与索引；当前 Compose 使用外部数据库，未固定其版本。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-需求与交付边界">3. 需求与交付边界<a href="#3-需求与交付边界" class="hash-link" aria-label="3. 需求与交付边界的直接链接" title="3. 需求与交付边界的直接链接" translate="no">​</a></h2>
+<p>首期完整业务切片包括自然语言分析、授权目录、受控聚合、图表与表格、明确口径、历史恢复、个人收藏、名称/描述/分类管理、删除、手动刷新、打开时刷新、相对日期和继续分析。打开时刷新默认关闭，用户显式开启后执行一次，避免进入页面就连续查询。</p>
+<p>金额、计数、日期、空值及同比环比均有确定性规则。缺少口径、时间或有多个指标含义时沿用 ask_user。空集显示“所选范围没有数据”；查询失败显示失败；禁止把权限拒绝、空值或失败改成零。</p>
+<p>后续支持受限模型 SQL、复杂关联、多指标散点、面积图、异常统计、看板编排与自动报告。自动化分析须另行设计服务主体、权限复验、配额和调度；本次只保存可复用的查询定义与版本，不创建空接口或定时任务。</p>
+<p>非功能要求：拒绝优先；每次执行和取数据都验证当前权限；连接复用不残留身份；每个数字可追溯来源与口径；有界查询、输出和模型调用；取消能终止数据库查询；新能力关闭后旧聊天/知识检索可继续使用。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-所有权与调用链">4. 所有权与调用链<a href="#4-所有权与调用链" class="hash-link" aria-label="4. 所有权与调用链的直接链接" title="4. 所有权与调用链的直接链接" translate="no">​</a></h2>
+<!-- -->
+<ul>
+<li class=""><code>agent/</code> 拥有计划生成、决策辅助、原生工具、Snapshot/产物引用、模型预算、状态与事件。</li>
+<li class="">Platform 拥有可信身份、当前 RBAC、组织和数据范围解析。抽取现有 owner 规则为窄公开 Scope DTO，原 ORM 过滤器也使用同一解析结果，避免两套角色语义。</li>
+<li class="">ERP 拥有数据集、指标口径、分析视图、仓库授权、SQL 编译与最终业务执行。它不引入 DeepAgents/LangChain，不直接调决策模型。</li>
+<li class="">新 <code>backend/app/modules/analytics</code> / <code>frontend/apps/web-pro/src/modules/analytics</code> 拥有个人收藏和管理界面。它依赖 Platform 和可选分析数据能力，不导入 ERP 私有 ORM、路由或服务。</li>
+<li class="">使用现有 ModuleDefinition 的 capability / composition root 绑定 ERP Provider。现有 registry 只解析 Provider 元数据，调用绑定仍需补充；仅增加当前切片需要的目录和执行 DTO，不建通用插件引擎。</li>
+<li class="">SQL 安全共用代码放在后端稳定的纯技术辅助层，接受 AST 与明确白名单，不持有业务模型。ERP 决定许可的指标与关系；SQL 查询不会由 Analytics 模块绕过 ERP 私自访问业务表。</li>
+</ul>
+<p>新业务能力在所属模块 <code>ModuleDefinition.agent_tools</code> 声明，避免在中央写第二份业务工具目录。Analytics 复用现有 <code>/mcp</code> 入口及签名委托，ERP MCP 与 Knowledge HTTP 接入保留。Agent 对获准的分析 MCP 工具处理图表和快照，模型仅看到 <code>get_analysis_catalog</code>、<code>analyze_data</code>。配置 MCP 后不回退分析 HTTP；部署顺序与兼容窗口见交付说明。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-decision-model-的真实能力与配置">5. Decision Model 的真实能力与配置<a href="#5-decision-model-的真实能力与配置" class="hash-link" aria-label="5. Decision Model 的真实能力与配置的直接链接" title="5. Decision Model 的真实能力与配置的直接链接" translate="no">​</a></h2>
+<p><a href="https://help.aliyun.com/zh/model-studio/decision-model-api" target="_blank" rel="noopener noreferrer" class="">阿里云 System One API</a> 的模型 ID 为 <code>decision-model-preview</code>，协议是 <code>POST /compatible-mode/v1/systemone</code>。请求含 <code>model/state/questions</code>，返回 typed answers。它不是 Chat Completions，也不生成自由文本说明。</p>
+<p>当前 <code>agent/decision.py</code> 已有 <code>async decide(state, questions)</code> 与 <code>classify</code>，使用 httpx，校验 Choice/Noul、候选集合、概率、响应大小及模型名。使用这两个入口，不新增 SDK。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>能力</th><th>代码或官方证据</th><th>本设计使用方式</th></tr></thead><tbody><tr><td>Choice / Noul</td><td>当前客户端与测试已有校验</td><td>选意图、有限风险类别、是否需澄清</td></tr><tr><td>Score</td><td>官方支持；当前客户端未实现 Score 专用校验</td><td>首期不使用，风险分级用 Choice；不把官方支持写成项目已验证</td></tr><tr><td>多问题一次判断</td><td>questions 对象、现有入口路由</td><td>同一 state 合并风险与语义判断；不是多条独立 state 的批量 API</td></tr><tr><td>置信度</td><td>Choice 有 confidence；Noul 是 P(yes)</td><td>不把 Noul 概率称为额外独立置信度</td></tr><tr><td>自由 JSON / reasons 数组</td><td>非当前协议输出</td><td>不要求模型写自由理由；返回 issue code 的 Noul 问题，程序映射固定说明</td></tr><tr><td>异步</td><td>当前 httpx AsyncClient</td><td>保留；不是供应商异步任务/回调协议</td></tr><tr><td>超时/重试</td><td>默认 1 秒；无应用重试；失败进程内冷却 30 秒</td><td>低风险可选判断失败回原路径；必需审查失败关闭</td></tr><tr><td>输入预算</td><td>默认 16,000 字符；入口请求额外限制 4,000 字符</td><td>仅传授权摘要，不传原始敏感行或完整全库 schema</td></tr><tr><td>网关</td><td>base/path/key/model 分离，HTTPS，禁重定向/环境代理</td><td>Higress 后仍按独立 System One 路由验收，不能仅修改聊天地址</td></tr><tr><td>延迟/费用</td><td>已有专题记录历史 3 次约 285–319ms；当前无 SQL 样本统计</td><td>历史小样本不作 SLO；单价、TokenPlan 额度、p95 都待当前账号验证</td></tr></tbody></table>
+<p>本轮宿主 Shell 的 Settings 只读探针显示 shadow、官方 Token Plan host、<code>/systemone</code>、1 秒，但没有可用模型 Key、聊天模型或 checkpoint 连接。因此未发真实模型请求；该进程配置不能代表正在运行的服务。本轮 51 项 Agent 现有测试验证客户端、Harness 和工具；SQL 风险/语义/图表准确率尚未验证。历史官方实联记录见<a class="" href="/chein-doc-site/reference/development/agent/jev-integration/">决策集成</a>，不据此声称本方案已经实联。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-决策矩阵调用预算与降级">6. 决策矩阵、调用预算与降级<a href="#6-决策矩阵调用预算与降级" class="hash-link" aria-label="6. 决策矩阵、调用预算与降级的直接链接" title="6. 决策矩阵、调用预算与降级的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>Decision Model</th><th>确定性规则</th><th>最终执行者</th></tr></thead><tbody><tr><td>工具路由</td><td>复用现有 off/shadow/active，复杂或模糊场景可参与</td><td>已授权工具与能力目录</td><td>原 DeepAgents / Middleware</td></tr><tr><td>指标与意图</td><td>可从授权候选中选择</td><td>Dataset/Metric ID、字段、时间、口径</td><td>Agent 计划 + ERP 校验</td></tr><tr><td>SQL 语义</td><td>复杂受限 SQL 可检查遗漏/不一致</td><td>QuerySpec 时间与指标核对</td><td>ERP 执行入口</td></tr><tr><td>SQL AST 安全</td><td>无最终许可权</td><td>结构、关系、列、函数白名单必须通过</td><td>SQL Validator</td></tr><tr><td>用户与模块权益</td><td>不能授权</td><td>当前成员、角色、模块权限</td><td>Platform + 数据所有者</td></tr><tr><td>部门/owner/仓库</td><td>不能授权</td><td>可信 Scope + 受控视图，所有仓库规则</td><td>ERP / PostgreSQL</td></tr><tr><td>只读与租户</td><td>不能授权</td><td>独立角色、只读事务、RLS</td><td>PostgreSQL</td></tr><tr><td>查询成本</td><td>仅辅助</td><td>超时、计划、行数、字节、并发与预算</td><td>Query Executor</td></tr><tr><td>图表类型</td><td>复杂场景可选</td><td>列类型、时间、基数、负值、整体关系</td><td>ChartSpec Builder</td></tr><tr><td>结果解释</td><td>可提示证据不足</td><td>数值、单位、来源、完整性校验</td><td>Agent + Result Validator</td></tr></tbody></table>
+<p>明确聚合请求直接走规则，不新增决策调用。入口已经调用过的意图判断不重复；续问和恢复保持现有上下文跳过策略，不强行再次入口分类。复杂查询可增加 <strong>一次</strong> SQL AST 摘要的 Choice/Noul 判断，合并风险、语义与澄清项。每轮新增分析判断最多 1 次，加上已有入口最多 2 次；一个问题的并列数据查询共用决策预算。</p>
+<p>仅在真实 SQL 分析评测通过后将风险/语义建议从 shadow 改为执行约束。首期高风险敏感明细不开放；中风险能力若发布时声明 required_review，低置信度、超时、错误/拒答或不可用都返回 <code>ANALYSIS_REVIEW_UNAVAILABLE</code>，不执行、不改用聊天模型批准。off/shadow 不能解释为绕过必需审查的许可。用户确认只澄清口径或接受合法成本，不提升权限。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>等级</th><th>确定性触发示例</th><th>处理</th></tr></thead><tbody><tr><td>LOW</td><td>单数据集、授权普通聚合、界限明确</td><td>全部硬校验后执行；模型判断可省略</td></tr><tr><td>MEDIUM</td><td>已发布关联、复杂但允许的对比</td><td>后续开启时必须通过结构/成本限制；按能力策略做必需审查</td></tr><tr><td>HIGH</td><td>敏感明细、过宽范围或未发布指标</td><td>首期拒绝或要求缩小范围；不自动申请权限</td></tr><tr><td>CRITICAL</td><td>跨租户、危险语句、未知关系/函数、权限绕过</td><td>立即拒绝；不自动修复</td></tr></tbody></table>
+<p>硬拒绝永远先于模型请求。模型低风险结论不能降低规则等级，错误拒绝也不能永久撤销用户权限。审计保存硬拒绝与模型建议两项，区分误拒绝的可用性影响。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-授权-schema-registry-与指标">7. 授权 Schema Registry 与指标<a href="#7-授权-schema-registry-与指标" class="hash-link" aria-label="7. 授权 Schema Registry 与指标的直接链接" title="7. 授权 Schema Registry 与指标的直接链接" translate="no">​</a></h2>
+<p>数据集是代码审核、业务所有者发布的版本化 DTO。模型只能看到当前调用者获准的目录；不扫描 information_schema、pg_catalog 或全库表名。每个条目包含 datasetId/version/schemaHash、物理受控视图映射、字段类型、敏感级别、指标/维度、允许聚合/过滤/粒度、单位、关系基数、所需权限、必需审查策略和资源上限。物理映射只给可信执行层；模型使用逻辑标识。</p>
+<p>首期 ERP 发布已审批采购/销售事实，区分订单与入出库，不把用户的“票据数量”默认为销售出库数量。数量按单据唯一 ID 去重；金额使用已存单据快照，遵循退货扣减及每张单据全仓库权限，防止与明细关联造成重复求和。新增指标逐一对照现有统计结果验收。</p>
+<p>不建可任意填 SQL 的管理表。Schema/metric 由模块代码与迁移定义；描述是待理解的数据，不是提示词指令。字段注释限长、无密钥、不给模型数据库凭据。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-queryspecsql-生成与修复">8. QuerySpec、SQL 生成与修复<a href="#8-queryspecsql-生成与修复" class="hash-link" aria-label="8. QuerySpec、SQL 生成与修复的直接链接" title="8. QuerySpec、SQL 生成与修复的直接链接" translate="no">​</a></h2>
+<p>QuerySpecV1 使用逻辑 datasetId、version、metrics、dimensions、typed filters、timeRange、granularity、sort、limit 和分析类型。权限字段、角色、owner 列表、tenantId、DSN 及任意地址不能由模型输入。</p>
+<p>示例是目标 DTO，不代表当前 API 已支持：</p>
+<div class="language-json codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-json codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;datasetId&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;erp.sales_posting&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;datasetVersion&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;metrics&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;net_sales_amount&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;dimensions&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;business_date&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;timeRange&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;relative&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;unit&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;day&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;count&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">30</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;includeToday&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;granularity&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;day&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;filters&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;limit&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">500</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;analysisType&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;trend&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>“最近 30 天”在 ERP 租户时区解析成含今天的 30 个日历日，并显示解析后的范围；滚动 720 小时作为不同口径，需明确指定。SQL 使用 UTC 半开区间，日期分组用同一租户时区，不直接 DATE(UTC timestamp)。刷新时重新求绝对范围，模型不决定服务器当前日期。</p>
+<p>首期模型从授权候选形成 QuerySpec，受控编译器生成绑定参数的 SQL；合法输入只映射已发布聚合与维度。数值解释仍由现有聊天模型完成。后续受限模式由同一 Qwen Provider 生成候选 SQL，内部调用加 nostream，结果不能直接执行。候选必须与 QuerySpec 的表、列、指标表达式、时间谓词、粒度和过滤一致；不能用模型复核代替这些检查。</p>
+<p>内部最多一次生成与一次修复。只有语法/类型、已授权字段引用等非安全错误可修复；安全/权限/函数/资源拒绝不修复。给模型稳定错误码和已授权候选，隐藏完整数据库错误与 SQL 执行细节。修复后重新授权、验证全部 AST、语义与预算。超时不自动重跑，避免成本翻倍。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-sql-ast-安全边界">9. SQL AST 安全边界<a href="#9-sql-ast-安全边界" class="hash-link" aria-label="9. SQL AST 安全边界的直接链接" title="9. SQL AST 安全边界的直接链接" translate="no">​</a></h2>
+<p>采用 SQLGlot 的 PostgreSQL 方言解析全部语句，要求恰好一个非空只读查询。<strong>解析成功不等于安全或可执行</strong>；SQLGlot 官方也明确它是解析/转译器而不是数据库校验器。<a href="https://sqlglot.com/sqlglot.html" target="_blank" rel="noopener noreferrer" class="">SQLGlot 文档</a></p>
+<p>首期受控编译仅产生普通聚合 SELECT。Validator 必须检测 CTE、JOIN、子查询与 UNION 的存在并明确拒绝尚未发布的结构，不能在外层看见 SELECT 就放行。后续逐项开放时增加对应 scope/lineage、关系与基数测试。</p>
+<p>校验流程：</p>
+<ol>
+<li class="">SQL 长度与 token/AST 节点预算 → PostgreSQL 解析 → 单语句与支持的节点集合。</li>
+<li class="">禁止所有写入/DDL/权限/导出/过程执行：包括写 CTE、SELECT INTO、COPY、CALL、DO、MERGE、锁定 SELECT、EXPLAIN ANALYZE 等。</li>
+<li class="">逐作用域解析关系、别名、CTE 遮蔽、列来源；未限定/歧义列拒绝。允许对象必须精确匹配 Registry，拒绝系统目录、临时表、外部表函数、任意 search_path 解析。</li>
+<li class="">列、函数、运算符、cast 类型及参数白名单；只允许已验证的内置聚合/日期/数值表达式。拒绝 UDF、函数重载绕过、隐式危险转换、pg_sleep、set_config、current_setting、文件/网络/dblink/大对象函数、序列操作和 advisory lock。</li>
+<li class="">拒绝未知语法、解析器降级节点、SQL 注释与 hint；通过 parser/token 信息判断，不用正则拆分 SQL。字符串内的 <code>--</code> 或分号不是语句分隔符。</li>
+<li class="">核对指标表达式、时间范围、过滤、粒度、输出列与查询预算。<code>COUNT(*)</code> 是已发布聚合的明确例外；拒绝投影 <code>SELECT *</code>。</li>
+<li class="">对校验后的 AST 输出规范 PostgreSQL SQL，再校验最终 AST；执行规范输出与绑定参数，不执行模型原始文本。任何后续 SQL 改写也须通过完整复核。</li>
+</ol>
+<p>关联只能使用发布的键与关系基数；禁止笛卡尔积和任意自连接。统计头表金额不能因为一对多 JOIN 重复求和。复杂结构未证明安全时返回 <code>ANALYSIS_SQL_UNSUPPORTED</code>，不会自动回退自由 SQL。</p>
+<p>SQLGlot 是拟新增依赖：标准库和当前 SQLAlchemy 无法可靠解析不可信 PostgreSQL 文本、追踪 SQL scope。批准开发后锁定实测版本、更新 backend lockfile/镜像并跑攻击语料；本轮不安装。SQLGlot 支持解析的语法范围大于产品允许范围，默认白名单保持较小。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-postgresql-角色分析视图与数据范围">10. PostgreSQL 角色、分析视图与数据范围<a href="#10-postgresql-角色分析视图与数据范围" class="hash-link" aria-label="10. PostgreSQL 角色、分析视图与数据范围的直接链接" title="10. PostgreSQL 角色、分析视图与数据范围的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="101-角色分工">10.1 角色分工<a href="#101-角色分工" class="hash-link" aria-label="10.1 角色分工的直接链接" title="10.1 角色分工的直接链接" translate="no">​</a></h3>
+<p>专用登录角色暂命名 <code>chein_analytics</code>，不是用户角色，也不替代 app_runtime。只给固定数据库 CONNECT、分析 Schema USAGE、逐个已发布视图 SELECT，以及确有需要的内置函数执行权。没有超级、建库、建角色、BYPASSRLS、角色提权、表写入、对象创建或无关表访问。管理员凭据只进入现有受控 bootstrap 流程，Agent/模型不持有连接凭据。</p>
+<p>保留 app_runtime 处理收藏、审计与业务元数据写入。现有 <code>provision_db_roles.py</code> 的“所有表读写”授权函数不得复用于分析角色。扩展独立、幂等的分析授权步骤，迁移与权限配置均可预览；不在请求或启动中临时 CREATE ROLE。</p>
+<p>还要审计继承角色、PUBLIC 默认授权、临时对象、扩展、函数和 operator/cast 的可执行面。角色默认只读是兜底，不是授权依据：可信基础设施每次事务显式设只读，不接受候选 SQL 修改事务设置。视图即使可更新，也不给任何写入权限。实际角色属性与拒绝路径必须实测。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="102-视图所有权与权限模型">10.2 视图所有权与权限模型<a href="#102-视图所有权与权限模型" class="hash-link" aria-label="10.2 视图所有权与权限模型的直接链接" title="10.2 视图所有权与权限模型的直接链接" translate="no">​</a></h3>
+<p>ERP 迁移拥有 <code>erp_analytics</code> 分析 Schema 与版本化视图，收藏模块拥有 <code>analytics</code> Schema。模块 migration metadata/权限装配需要显式声明 ERP 的附加 Schema，不能创建一个无人负责的共享分析表集合。分析视图是内部数据库对象，模型通过逻辑 Dataset 使用它，不开放公共数据库访问。</p>
+<p>推荐视图由专用 <strong>NOLOGIN、非超级、非 BYPASSRLS、非基础表 owner</strong> 的受限 owner 持有，仅它有最小基础表 SELECT。<code>chein_analytics</code> 无该角色成员资格，也无基础表 SELECT。视图开启 security_barrier，显式执行 owner/仓库范围；基础表已有 FORCE RLS 继续约束租户。视图 owner 的底层 RLS、函数和权限逐项验收，不能由迁移超级账号持有后直接开放。</p>
+<p>不盲目开启 <code>security_invoker=true</code>：它要求调用者同时具备基础表权限，与“分析登录角色只读视图”的推荐边界不同。当前推荐使用受限 view owner，并证明其 RLS 不绕过。数据库版本和对象 owner 未核对前，分析能力保持关闭。<a href="https://www.postgresql.org/docs/17/sql-createview.html" target="_blank" rel="noopener noreferrer" class="">PostgreSQL 视图权限</a>、<a href="https://www.postgresql.org/docs/17/ddl-rowsecurity.html" target="_blank" rel="noopener noreferrer" class="">RLS 规则</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="103-复用现有数据范围">10.3 复用现有数据范围<a href="#103-复用现有数据范围" class="hash-link" aria-label="10.3 复用现有数据范围的直接链接" title="10.3 复用现有数据范围的直接链接" translate="no">​</a></h3>
+<p>Platform 公开接口从当前成员、有效角色、自定义部门与部门后代解析 OwnerScope DTO。规则保持与现有 owner filter 相同：多角色范围合并；all 只在当前租户内；普通用户自身范围与获准部门用户范围合并；超级管理员标志来自当前授权层，不来自旧委托或模型。ERP 再读取自己的仓库授权及模块/指标权限。</p>
+<p>DTO 含 userId、tenantId、scopeKind、授权 owner IDs/全租户标志、scopeFingerprint，不暴露 ORM/Session。部门归属从当前 TenantMembership 解析，不能用全局 User 的部门代替租户部门。首期同步重查，不缓存授权结论；owner 数量超出执行预算时明确拒绝，不截断范围。将解析能力放在 Platform，ERP 不在视图中 JOIN Platform 私有组织表。</p>
+<p>可信执行器用参数设置 <code>SET LOCAL</code> / <code>set_config(..., true)</code> 的租户、principal、Scope 和仓库上下文。候选 SQL 不可访问或修改这些 setting，且不能提供其值。view 缺失任何必需上下文时返回无行或拒绝；不能将缺失 scope 解释为 all。没有接入 owner/仓库条件的关系不发布到 Registry。</p>
+<p>权限过滤发生在聚合前。对入出库单据，视图验证全部关联仓库均有授权；只显示授权明细的局部金额会改变现有语义，禁止这种替代。每个 JOIN 来源都须已授权，管理员仍不能跨租户；跨租户控制面操作不属于此能力。</p>
+<p>这些 GUC 是可信应用执行边界，不声称能抵御已控制执行器或窃取数据库凭据的攻击者。AST 白名单、角色限制、受控视图、租户 RLS 和凭据隔离共同成立后才能开放。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-安全执行预算与取消">11. 安全执行、预算与取消<a href="#11-安全执行预算与取消" class="hash-link" aria-label="11. 安全执行、预算与取消的直接链接" title="11. 安全执行、预算与取消的直接链接" translate="no">​</a></h2>
+<p>每次请求执行以下顺序：验证可信身份/当前成员/模块/指标 → 解析当前 Scope → 验证 QuerySpec/AST → 必要语义审查 → 再核对授权与版本 → 获取限额 → 只读事务设置上下文 → 查询 → 限量序列化 → 权限/版本复核 → 保存 Snapshot。队列等待、模型修复或恢复后不能继续使用先前授权结果。</p>
+<p>专用池只属于可信 ERP 执行器，优先复用已安装 psycopg/SQLAlchemy。不同数据集按 Provider 授权，不复用管理账号池。每次事务结束 rollback/commit 使 LOCAL setting 失效；失败、取消和 timeout 也清理；异常连接销毁。禁止把 scope 留在 session-level setting，禁止池按“最后一个用户”复用授权。</p>
+<p>以下为<strong>建议首期默认值，需压测调整</strong>，不是现有性能承诺：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>限制</th><th>建议</th><th>执行方式</th></tr></thead><tbody><tr><td>时间范围</td><td>366 天</td><td>同现有 ERP 范围；规则先拒绝</td></tr><tr><td>结果行数</td><td>500</td><td>cursor 读取最多 501 行检测超限，不把截断聚合当完整结果</td></tr><tr><td>输出字节</td><td>512 KiB</td><td>流式增量计数，先限制单元格长度；不先 fetchall 再检查</td></tr><tr><td>维度 / 指标</td><td>2 / 4</td><td>Registry 与 QuerySpec 双重约束</td></tr><tr><td>SQL 长度 / AST</td><td>16 KiB / 500 节点</td><td>解析前后校验；首期复杂结构不开放</td></tr><tr><td>statement / lock timeout</td><td>5 秒 / 500ms</td><td>每个只读事务 SET LOCAL，值来自可信配置</td></tr><tr><td>事务总时限</td><td>8 秒</td><td>应用 deadline 覆盖排队、设置、EXPLAIN、执行和序列化；不只依赖 statement_timeout</td></tr><tr><td>work_mem / 临时文件</td><td>8 MiB / 64 MiB</td><td>角色配置；临时文件限制不能误称总内存限制</td></tr><tr><td>并发</td><td>每用户 1、每租户 4、部署总 8</td><td>共享租约/令牌；池上限和角色 connection limit 二次约束</td></tr><tr><td>频率</td><td>每用户每分钟 10 次</td><td>现有 Redis 安全操作封装，执行与刷新共用</td></tr><tr><td>每轮查询</td><td>最多 3 次含刷新/修复执行尝试</td><td>按 Run 计费，不把 graph steps 当 SQL 次数；人工明确新请求另开 Run</td></tr></tbody></table>
+<p>Redis 不可用时，缓存可直接跳过；承担全局频率/并发限制的安全操作失败关闭，返回 <code>ANALYSIS_CAPACITY_UNAVAILABLE</code>。不降级为各进程无限额。共享 lease 有 TTL、续租、原子获取/释放和连接池硬上限；不能假定 TTL 过期等于旧查询停止。</p>
+<p>复杂结构开放后仅对已经通过安全校验的规范 SQL 执行 <code>EXPLAIN (FORMAT JSON)</code>，禁止 ANALYZE；限制计划时间并与实际超时共用总 deadline。计划成本阈值需真实数据校准，不能套一个通用数字。LIMIT 不控制扫描或聚合成本，EXPLAIN 估算也不代替真实资源限制。<a href="https://www.postgresql.org/docs/17/runtime-config-client.html" target="_blank" rel="noopener noreferrer" class="">PostgreSQL 超时配置</a>、<a href="https://www.postgresql.org/docs/17/runtime-config-resource.html" target="_blank" rel="noopener noreferrer" class="">资源配置</a></p>
+<p>取消沿用当前 Run API，在 native Analytics Tool 的等待范围内监测已授权 Run 的取消状态，并通过内部 queryId 请求可信执行器取消其对应连接；不修改 LangGraph 核心循环。连接取消使用私有 connection handle，queryId 绑定 tenant/user/run/toolCall，不能接受用户提供 backend PID。已取消查询不得晚到覆盖新结果。断线、lease 丢失或 deadline 到期同样取消/关闭查询；验证数据库内活动确实结束，目标取消响应不超过 1 秒。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-native-sql-analytics-tool-契约">12. Native SQL Analytics Tool 契约<a href="#12-native-sql-analytics-tool-契约" class="hash-link" aria-label="12. Native SQL Analytics Tool 契约的直接链接" title="12. Native SQL Analytics Tool 契约的直接链接" translate="no">​</a></h2>
+<p>只增加两个模型入口：授权目录 <code>get_analysis_catalog</code> 和 <code>analyze_data</code>。目录按所需数据集读取，不一次输出全库。<code>analyze_data</code> 输入问题、QuerySpec 和可选 chart preference；后续受限模式才接受 candidateSql。没有裸 <code>execute_sql(sql)</code>，校验、权限、限制和结果验证不能成为模型可跳过的分散工具。</p>
+<p>普通趋势可以一次原生调用完成编译、执行与图表准备；复杂请求需要先目录/ask_user。入口 Decision 的 business capability 必须识别新原生工具名；active 模式的工具筛选不能误删它，也不能凭判定注册未授权工具。工具注册基于 Analytics 及数据所有者权限交集，缺少 Provider 返回明确不可用，保留原 ERP 统计与知识路径。</p>
+<p>结果为版本化结构，包含 status、queryId、artifactId/snapshotId、dataset/version、metric metadata、resolved timeRange、授权范围标签、sourceAsOf、rowCount、quality/warnings、合法图表描述及有界模型用数据。模型用摘要与页面 Dataset 分开；敏感值首期不进入模型。错误仅返回稳定 code 和可行动说明。</p>
+<p>页面沿用工具开始、结果、错误事件与公开过程说明；内部 SQL 生成/修复打 nostream。复用已有 Tool UI 接收结果，避免为实时和历史建立两种来源不一致的 custom 事件。若后续确需分阶段进度，增加小型有界版本化事件，绝不向用户展示凭据、原始 SQL、供应商响应或内部推理。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="13-datasetchartspec-与图表规则">13. Dataset、ChartSpec 与图表规则<a href="#13-datasetchartspec-与图表规则" class="hash-link" aria-label="13. Dataset、ChartSpec 与图表规则的直接链接" title="13. Dataset、ChartSpec 与图表规则的直接链接" translate="no">​</a></h2>
+<p>新增 Dataset DTO 必须表达每列的 type、nullable、unit、precision 与逻辑角色。金额以 Decimal 计算，JSON 保留十进制字符串；大整数也不直接转换为 JS 浮点。图表数值转换检查 finite、精度与范围，无法准确绘制时展示原始数据表及提示。null 表示缺失，0 表示真实零；不能沿用 AgentChart 的 numeric 无效值转 0 的行为。</p>
+<p>保留现有 ChartSpecV1 解析和历史兼容，为本方案发布 ChartSpecV2。由后端 Pydantic/生成 JSON Schema 维护契约，前端生成类型并做运行时验证，不分别手工维护宽松接口。保留安全上限，V2 支持空数据并输出明确状态。</p>
+<div class="language-json codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-json codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;title&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;最近30天销售净额趋势&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;line&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;snapshotId&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;opaque-snapshot-id&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;columns&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;field&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;business_date&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;date&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;nullable&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">false</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;field&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;net_sales_amount&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;decimal&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;unit&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;CNY&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;nullable&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">false</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;encoding&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;x&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;business_date&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;y&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;net_sales_amount&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;metadata&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;datasetId&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;erp.sales_posting&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;datasetVersion&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;metricIds&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;net_sales_amount&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;granularity&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;day&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;timezone&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Asia/Shanghai&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;dataRangeLabel&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;由服务器填写绝对日期范围&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>持久化 ChartSpec 引用 Snapshot，不复制完整 Dataset；授权数据 API 返回该次渲染所需 rows。示例中的 metadata 由可信程序填充，模型建议不能覆盖。拒绝任意 JavaScript、HTML、formatter、插件、地址或无限配置；前端根据 enum 构建固定图表 props。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>形状</th><th>默认展示</th><th>校验与边界</th></tr></thead><tbody><tr><td>有序时间 + 数值</td><td>line，可选 area</td><td>排序、统一单位；缺失时间点只在确认无业务数据时补 0</td></tr><tr><td>分类 + 数值</td><td>column / bar</td><td>明确柱状与条形方向；排名顺序由数据固定</td></tr><tr><td>整体与部分</td><td>pie</td><td>单指标、非负、非重复分类；建议不超过 8 类；总和为 0 不画占比</td></tr><tr><td>两个适合比较的数值</td><td>scatter，后续</td><td>检查类型、单位、点数及隐私；不能强行将分类/日期当连续数值</td></tr><tr><td>空集或不适合图形</td><td>table</td><td>显示口径、空状态和限制；不把表格降级标为查询失败</td></tr></tbody></table>
+<p>首期交付 line、column、bar、pie、table；area/scatter 后续逐项验收。既有 V1 radar 保持兼容。规则足够时不调用模型推荐；用户明确图表不合法则给兼容类型提示。需模型建议的场景从当前兼容集合 Choice 选择并再次校验，不强行增加第三个决策请求；预算不足直接规则/表格。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="14-assistant-ui历史与权限撤销">14. assistant-ui、历史与权限撤销<a href="#14-assistant-ui历史与权限撤销" class="hash-link" aria-label="14. assistant-ui、历史与权限撤销的直接链接" title="14. assistant-ui、历史与权限撤销的直接链接" translate="no">​</a></h2>
+<p>复用现有 <code>AgentToolFallback</code> 注册受控分析结果 UI，共享 ChartRenderer，保留原工具折叠、回答顺序、思考提示、引用、ask_user 和取消。首期复用已安装 <code>@ant-design/plots</code>，不新增图表库。用 Ant Design Card/Table/表单承载图表操作，不用自建配置编辑器。</p>
+<p><code>ToolMessage</code> 结果保存受控 artifact/snapshot 引用、口径与小型模型摘要。历史沿用现有 checkpoint → ordered parts → tool-result → 同一个 renderer。获取 rows、刷新、查看数据、收藏、继续分析均经同源鉴权 API，前端不能自由拼接外部 URL。图表失败与过期保留占位和可行动说明，不吞掉整条回答。</p>
+<p><strong>历史可恢复不意味着旧权限永久有效。</strong> 历史投影和新一轮模型输入都识别 analytics tool-result 的 source/scope/version，重查当前访问。Scope、模块、字段或 Schema 变化时拒绝读取旧 Snapshot，隐藏对应分析结果及含旧数据的回答片段，要求重新分析；不能只把“刷新”按钮禁用。采用 native middleware 在模型调用前屏蔽失效分析上下文，不改执行循环，也不把恢复 checkpoint 当授权。</p>
+<p>Scope 未变化的 Snapshot 可按保留期展示，并标注“历史数据，采集于…”。已有用户看到或复制的数据无法通过权限撤销收回；本方案控制后续服务端读取与模型再使用，不宣称能撤销已经到达客户端的文本。若无法证明整段分析正文和工具结果都受撤销控制，首期历史分析功能不得开放。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="15-图表收藏刷新与继续分析">15. 图表收藏、刷新与继续分析<a href="#15-图表收藏刷新与继续分析" class="hash-link" aria-label="15. 图表收藏、刷新与继续分析的直接链接" title="15. 图表收藏、刷新与继续分析的直接链接" translate="no">​</a></h2>
+<p>收藏保存 QuerySpec、Dataset/Metric 版本、图表定义、相对日期策略、名称、描述、分类、owner、原始 thread/turn/artifact 引用和定义版本。SQL 仅为受限诊断信息，不作为永久执行凭证；V1 图表缺少可刷新 QuerySpec 时明确只读，不伪造刷新定义。</p>
+<p>个人收藏首期仅创建用户本人读写；租户管理员不因此自动读取所有个人结果。共享、跨部门管理或公共看板另行设计。复制收藏不复制执行许可。创建收藏根据服务端 artifact 读取定义，不信任浏览器回传 SQL/Dataset/owner。</p>
+<p>刷新：当前身份/成员/RBAC/模块/范围 → 校验定义/版本 → 重新解析相对日期 → 同一安全查询入口 → 新 Snapshot → 校验 ChartSpec → compare-and-swap 更新最新引用。定义更改与两个刷新竞态用 definitionVersion/refreshGeneration 防止晚到结果覆盖。刷新失败保留可读旧 Snapshot 并标注失败；权限撤销时隐藏旧 rows，绝不能“失败回退旧数据”。</p>
+<p>打开时刷新仅执行一次，明确显示查询中，避免组件重挂载或 tab 切换反复请求。取消、删除收藏或改定义后，旧刷新结果不再写回。刷新/收藏操作有当前用户范围及 IDOR 测试。</p>
+<p>继续分析只传 favoriteId 和新问题。服务器重查收藏归属与来源授权，注入经校验的 QuerySpec/口径；需要数据时重新查询或使用当前 Scope 匹配的 Snapshot。前端传来的标题、历史结果或 SQL 都只是非可信描述。沿用原新消息/Run/HITL，不创建另一套 Agent。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="16-表结构与迁移所有权">16. 表结构与迁移所有权<a href="#16-表结构与迁移所有权" class="hash-link" aria-label="16. 表结构与迁移所有权的直接链接" title="16. 表结构与迁移所有权的直接链接" translate="no">​</a></h2>
+<p>以下均为目标表；开发时新增 revision 接正确 namespace head，不改历史 revision。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>所有者</th><th>主要字段与约束</th></tr></thead><tbody><tr><td><code>erp_analytics.*_v1</code> 视图</td><td>ERP migration namespace</td><td>已审批事实、指标、scope 与仓库过滤；发布版本不静默改变口径</td></tr><tr><td><code>erp.analytics_query_audit</code></td><td>ERP</td><td>id、tenant/user/run/toolCall、dataset/version、query fingerprint、scope hash、规则/模型状态、耗时/行数/字节、error code、createdAt；不存原始敏感 rows</td></tr><tr><td><code>agent.analysis_snapshot</code></td><td>Agent migrations</td><td>id、tenant/user/run/toolCall、querySpec、dataset/schema/metric versions、scope fingerprint、sourceAsOf、rowCount、checksum、chartSpec、bounded rows、expiresAt；不可变</td></tr><tr><td><code>analytics.chart_favorite</code></td><td>Analytics migrations</td><td>id、tenantId、ownerId、name、description、category、querySpec、chart definition、dataset versions、source thread/turn refs、latestSnapshotId、definitionVersion、refreshGeneration、refreshOnOpen、timestamps</td></tr></tbody></table>
+<p>首期 bounded rows 放 Snapshot JSONB，避免为小结果新增对象存储依赖；强制行数/字节/保留期，默认 Snapshot 7 天、审计 30 天作为待确认运维值。Agent 维护清理命令与受控保留策略；收藏定义不随 Snapshot 清理丢失。不能无限保存全部聊天数据副本。</p>
+<p>索引围绕 <code>(tenant_id, owner_id, updated_at, id)</code> 收藏列表、<code>(tenant_id, user_id, run_id)</code> 审计和过期清理。query/toolCall 唯一约束支持同一 Run 重试定位；SQL 再执行仍重查权限。跨 owner Schema/进程的 ID 用不透明引用，不新增跨模块 ORM 外键，不共享表 ownership。</p>
+<p>所有新 tenant-owned 表开启 RLS。后端表在所属 TenantUnitOfWork 内访问，收藏表还要求当前 owner 条件。Agent 新表复用已验证上下文与现有按 tenant/user 显式限定的数据库通道及迁移授权，不把管理后端 UoW 搬入 Agent，不用管理库连接。bootstrap、upgrade、downgrade、权限授予与 runtime 测试一并交付。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="17-api权限与配置">17. API、权限与配置<a href="#17-api权限与配置" class="hash-link" aria-label="17. API、权限与配置的直接链接" title="17. API、权限与配置的直接链接" translate="no">​</a></h2>
+<p>目标 Analytics API 走 <code>/api/v1/analytics</code>：catalog、query/内部执行、query cancel、snapshot data、favorites list/create/detail/update/delete/refresh/continue-context。查询执行绑定服务器签发的 run/query 关联；普通用户不能凭任意 runId 成为该 Run 的执行者。Snapshot 数据经数据所有者当前权限校验，再由其所有者接口读取。</p>
+<p>收藏权限暂定 <code>analytics:chart:read/create/update/delete/refresh</code>，分析执行暂定 <code>analytics:query</code>；还必须通过源模块权限，如 <code>erp:statistics:query</code>。权限与导航在 Analytics ModuleDefinition 声明；菜单使用现有 access，后端为最终边界。新 Dataset 要求的新权限不能被既有统计权限隐式覆盖。</p>
+<p>新模块先加入 Suite 的 Edition YAML，生成 Manifest、路由映射和 API 客户端；Base/Items 不装配 Analytics，也不引入 ERP 静态依赖。页面无可用数据 Provider 时说明不可用，不从菜单存在性推断可查询。</p>
+<p>拟新增配置放对应 Nacos runtime/bootstrap Data ID，默认关闭分析执行：</p>
+<ul>
+<li class="">Backend：只读连接 Secret、连接池/资源限制、分析功能开关；bootstrap 私有 Data ID 保存角色配置与迁移管理员凭据。</li>
+<li class="">Agent：固定 Analytics Facade URL、超时、查询/模型预算、受限模型 SQL 开关。URL 来自受控配置，禁用任意模型提供的地址与重定向。</li>
+<li class="">现有 <code>AGENT_DECISION_*</code>、<code>QWEN_*</code> 继续分开；新增分析审查模式明确区分 optional/required，不滥用入口路由开关。</li>
+</ul>
+<p>本轮不修改 Nacos 或生产数据库。开发时根据实现命名配置，不先放置未使用的环境变量。Higress 后迁移只改变模型网关配置，不移动 ERP 数据权限；聊天/System One 均需各自验证 method/body/response、超时、usage 和错误。不得对授权敏感的分析工具开启无用户隔离的网关响应缓存。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="18-redis权限一致性与缓存">18. Redis、权限一致性与缓存<a href="#18-redis权限一致性与缓存" class="hash-link" aria-label="18. Redis、权限一致性与缓存的直接链接" title="18. Redis、权限一致性与缓存的直接链接" translate="no">​</a></h2>
+<p>首期只复用元数据缓存及共享频率/并发控制，不开启查询结果或“allow”决策缓存。当前 RBAC namespace bump 是全局失效工具，不足以表达用户部门、仓库、模块权益和字段版本的全部变化。</p>
+<p>后续启用结果缓存时，执行和读取前都重查权限；key 包含 tenant/user、完整 scope fingerprint（owner/仓库/权限/权益）、dataset/schema/metric versions、规范 QuerySpec、解析后的绝对时间、时区、source version。缓存 TTL 默认短，不能把“最近 30 天”的字符串当作每日相同范围。</p>
+<p>默认不跨用户复用结果。只缓存精确范围的完整合法 Dataset，敏感明细无缓存。Redis 故障走重新安全查询，不用陈旧权限；频率控制故障仍拒绝。权限撤销后的历史 Snapshot 不是另一种可绕过缓存。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="19-日志审计与成本">19. 日志、审计与成本<a href="#19-日志审计与成本" class="hash-link" aria-label="19. 日志、审计与成本的直接链接" title="19. 日志、审计与成本的直接链接" translate="no">​</a></h2>
+<p>复用现有 structured logging / ES 适配器与 MetadataLogCallback。日志记录 trace/run/toolCall/queryId、tenant/user、dataset/schema/metric、scope hash、SQL fingerprint、规则版本、审查模型/问题 hash、status、latency、rowCount、bytes、chart status、refreshGeneration。</p>
+<p>不记录 DSN、Key、原始用户消息、原始结果、完整敏感 SQL 或供应商响应。页面只显示用途、进度、范围、来源、耗时和固定错误说明；入口决策仍沿用既有折叠卡，不额外将风险日志全部输出到聊天。</p>
+<p>System One 调用通过现有客户端取 request_id、usage.input_tokens、latency_ms 等有限元数据，单独计量，不假定 LangChain Callback 会覆盖 httpx 请求。缺失 usage 标为 unknown，不能记为免费或零 Token。TokenPlan 实际单价/扣费/额度留给当前账号计费页与脱敏调用记录核对。</p>
+<p>新增工作不默认启用 LangSmith，也不为了审计部署新日志平台。审计服务写入失败时不得把完整失败查询结果发送用户；成功 Snapshot 与引用就绪后才能宣称完成。审计中断留下可追溯错误，不伪造成功状态。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="20-自动化测试与验收门禁">20. 自动化测试与验收门禁<a href="#20-自动化测试与验收门禁" class="hash-link" aria-label="20. 自动化测试与验收门禁的直接链接" title="20. 自动化测试与验收门禁的直接链接" translate="no">​</a></h2>
+<p>开发阶段必须使用独立真实 PostgreSQL，以 <code>chein_analytics</code> 和 app_runtime 两种受限账号执行，禁止并行运行共享数据库测试。假模型/Mock 用于确定性协议与故障测试，不能代替数据库安全证据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围</th><th>必须证明</th></tr></thead><tbody><tr><td>AST</td><td>多语句、写 CTE、SELECT INTO、COPY/DO/CALL、未知函数、表函数、系统目录、注释、引号、CTE 别名遮蔽、子查询/UNION/JOIN、危险 cast/operator 均按明确规则处理；未知 AST 拒绝</td></tr><tr><td>SQL 质量</td><td>少时间条件、错指标/粒度、重复 JOIN 金额、订单与出库混淆、UTC/租户时区边界、退货扣减、null/零/空集、同比基期为零</td></tr><tr><td>角色/视图</td><td>只读事务、无写权限、无基础表 SELECT、无提权、视图 owner 非绕过 RLS、缺 scope 无数据、PUBLIC/函数权限检查</td></tr><tr><td>业务范围</td><td>self、部门/子部门/custom、多角色 all、超级管理员、跨部门/租户、无角色/无模块权益、全部仓库与混合仓库单据；与现有 ERP 统计逐项一致</td></tr><tr><td>并发</td><td>不同租户/用户复用连接、事务异常/timeout/cancel 后归还、scope 不残留、限额竞争、lease 到期旧查询仍被限制</td></tr><tr><td>生命周期</td><td>排队/模型修复/审批/恢复期间撤销权限；取消 SQL 活动确实终止；晚到结果不可覆盖新 Run/收藏</td></tr><tr><td>Decision</td><td>错误允许不能绕过硬拒绝；误拒绝可观察；低置信度、畸形 JSON、Score 未支持、超时/429、冷却、恶意描述/结果、必需审查不可用</td></tr><tr><td>图表</td><td>各开放图形、空集、Decimal/大整数、NaN/Infinity、错 encoding、超量、负值占比、不支持版本、任意代码配置、历史与浮窗恢复</td></tr><tr><td>收藏</td><td>tenant/owner IDOR、重命名/删除/刷新、相对日期、打开刷新一次、两个刷新及改定义竞态、Schema 失效、权限变更、继续分析及旧 Snapshot 隐藏</td></tr><tr><td>Edition/边界</td><td>Provider 缺失、Base/Items 无引用、ModuleDefinition 与生成器、迁移/head、公开 DTO 无 ORM/框架对象</td></tr></tbody></table>
+<p>验收命令沿用仓库：<code>cd backend &amp;&amp; uv run ruff check app tests</code>、受影响 pytest、模块迁移测试及 <code>uv run alembic check</code>、Agent 测试、<code>pnpm frontend:typecheck</code>、前端受影响测试与 <code>pnpm frontend:build</code>、base/items/suite 的 <code>pnpm build:edition -- --edition ...</code>。OpenAPI/Manifest 仅由仓库生成器生成。</p>
+<p>Playwright 验证完整聊天与浮窗、1080p 和手机、亮/暗主题、查询/等待/结果/取消、刷新与撤销，不只检查 TypeScript。必要真实 Qwen 联调使用脱敏静态/测试业务数据，不打印 Key 或用户内容。远端 CI、依赖/镜像扫描、签名、生产网络和恢复演练单独列证据。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="21-性能与模型能力评测">21. 性能与模型能力评测<a href="#21-性能与模型能力评测" class="hash-link" aria-label="21. 性能与模型能力评测的直接链接" title="21. 性能与模型能力评测的直接链接" translate="no">​</a></h2>
+<p>本轮没有 SQL 实现，不能给出实测吞吐、准确率、单价或延迟收益。首个性能基线记录数据库版本、CPU/内存、行数、索引、统计信息、账号、连接数及冷/热缓存。</p>
+<p>比较关闭/影子/生效三种分析审查策略：相同脱敏问题、真实授权范围与人工标注。覆盖趋势、排名、混合知识、缺条件、恶意 SQL、遗漏时间和错误指标。至少分开记录 intent/semantic 分类质量、误拒绝、拒绝失效、p50/p95、fallback 比例、模型次数/Token、SQL/总耗时及数据库资源。不能用一次几百毫秒的接口结果证明所有场景收益。</p>
+<p>建议首轮最低评测集 100 条，至少含 30 条攻击/越权、20 条语义错误与 20 条合法低风险；剩余覆盖多轮/刷新/故障。数量是验收计划，不是准确率保证。任何硬拒绝绕过为零容忍；合法误拒绝、语义收益与性能达标阈值由评测后共同确认，未达标保持影子或禁用。</p>
+<p>确定性结构化低风险路径新增 Decision 调用目标为 0；复杂路径最多 1。数据库 deadline 是强限制，模型整体等待按实际超时显示过程说明，不承诺未知网络下的全链路 p95。用 <code>T总 = 规划 + 可选决策 + 排队 + SQL + 产物 + 表达</code> 分别分析；普通趋势不再串行调用意图、风险、图表、结果四个模型。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="22-主要失败场景与处理">22. 主要失败场景与处理<a href="#22-主要失败场景与处理" class="hash-link" aria-label="22. 主要失败场景与处理的直接链接" title="22. 主要失败场景与处理的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>处理</th></tr></thead><tbody><tr><td>SQL 只读但调用副作用函数</td><td>AST/function/type/operator 白名单 + DB 权限；SELECT 不当作安全证明</td></tr><tr><td>普通 view 由超级 owner 持有</td><td>发布失败；先改受限 owner 并验 RLS，不能仅加 security_barrier</td></tr><tr><td>RLS 仅隔租户、漏部门/仓库</td><td>Dataset 不发布；与现有 Scope 和单据全仓库规则对照</td></tr><tr><td>Schema 漂移或口径变更</td><td>精确版本/hash 不符拒绝；不静默执行收藏旧 SQL</td></tr><tr><td>模型误允许/输入注入</td><td>硬校验保持；模型输入与授权隔离，单轮预算限制</td></tr><tr><td>必需审查超时/Score 未支持</td><td>拒绝或澄清，不能故障时转“自动允许”</td></tr><tr><td>小群体聚合/差分推断</td><td>首期仅已有允许的业务指标，不含敏感人口/个人维度；以后开放先加 k 阈值与互补查询策略，单次 cell 抑制不构成充分防护</td></tr><tr><td>数据太多/计划过贵</td><td>返回稳定超限错误并建议缩小范围；不展示误导性的截断总计</td></tr><tr><td>权限变化后读旧图表</td><td>取数据与历史/模型上下文复验，隐藏失效内容；权限不可回退</td></tr><tr><td>刷新失败或晚到</td><td>当前定义/权限符合才保留可读旧历史；CAS 丢弃旧 generation</td></tr><tr><td>Redis 安全限流故障</td><td>拒绝新查询；非安全元数据缓存可以绕过</td></tr><tr><td>Cancel / 进程崩溃</td><td>queryId 绑定连接取消、deadline、事务清理；不声称外部查询因页面断流已自动停止</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="23-分阶段实施计划">23. 分阶段实施计划<a href="#23-分阶段实施计划" class="hash-link" aria-label="23. 分阶段实施计划的直接链接" title="23. 分阶段实施计划的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>阶段</th><th>实施内容</th><th>退出条件</th></tr></thead><tbody><tr><td>A 设计确认</td><td>确认 QuerySpec 优先、首批指标、个人收藏、受限 SQL 后置、默认预算</td><td>本文确认；不自行把 ADR 标 Accepted</td></tr><tr><td>B 安全查询与权限</td><td>Platform Scope 复用、ERP Registry/视图、独立角色、受控编译/AST、超时/取消/共享限额、审计</td><td>真实受限 PostgreSQL 的权限/攻击/并发测试全通过；此时仍不开放 UI</td></tr><tr><td>C 原生分析切片</td><td>模块声明、HTTP/native 适配、授权工具目录、预算、错误、Snapshot</td><td>日期/ERP/RAG/入口决策/HITL 回归无破坏，金额和数量与业务口径一致</td></tr><tr><td>D 图表与历史</td><td>V2 契约、复用 Renderer/Plots、Tool UI、同源数据读取、历史/恢复撤权</td><td>全图形及亮/暗/手机验收；失效历史和模型上下文无旧数据访问</td></tr><tr><td>E 收藏模块</td><td>ModuleDefinition/Edition、收藏 API/表/RLS、个人页面、CAS 刷新、相对日期、继续分析</td><td>IDOR/撤权/刷新竞态全通过；Base/Items 隔离通过</td></tr><tr><td>F 决策评测与优化</td><td>复用 decide，合并语义/风险问题；影子评测；可选结果缓存</td><td>达到明确质量/成本门槛才启用约束；缓存隔离证明完整</td></tr><tr><td>G 受限 SQL 与后续图形</td><td>受限 Qwen SQL、已发布 JOIN/CTE 等、area/scatter、EXPLAIN</td><td>每个开放结构独立安全/语义/真实数据库测试；功能默认关闭直至验收</td></tr></tbody></table>
+<p>不按“先账号、后权限、先 SQL、后测试”的方式对用户逐步暴露危险能力。B/C/D 形成最小安全切片，E 形成收藏闭环；F/G 不阻塞规则型分析。SQLGlot、共享限额、取消与授权复验属于必做安全能力；缓存、多个决策服务类、通用看板引擎和微服务属于可省成本项。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="24-回滚兼容与评审结论">24. 回滚、兼容与评审结论<a href="#24-回滚兼容与评审结论" class="hash-link" aria-label="24. 回滚、兼容与评审结论的直接链接" title="24. 回滚、兼容与评审结论的直接链接" translate="no">​</a></h2>
+<p>关闭分析功能并撤销 native tool 注册即可回到旧 ERP/RAG/聊天路径；保留 V1 图表解析、原 AG-UI 工具事件、已有 checkpoint。入口决策仍可独立配置 off。停止新刷新、取消活跃查询、禁用分析角色登录/连接权限时须由受控运维执行，不让模型发 SQL 操作账号。</p>
+<p>先回滚应用并保留新表/视图与个人收藏，避免回退过程中删除数据。数据库 downgrade 只在依赖调用清理、备份与版本兼容验证后执行；保留有意义审计和收藏定义。旧版本不理解 V2 时显示“不支持的图表版本”与安全占位，不能猜测字段。变更 ModuleDefinition/公开 DTO 时同步架构规范与版本策略，不改 Accepted ADR 历史。</p>
+<p>安全自检：执行权留在数据所有者；模型不能授权；租户、owner、仓库、字段与资源都由规则控制；数据库只读与视图 owner 同时检查；收藏/历史/缓存均不构成新授权。</p>
+<p>性能自检：单数据集规则编译、复用安装依赖、低风险零新增决策、有限查询和小型 Snapshot；不承诺未测吞吐，不默认建结果缓存。</p>
+<p>维护成本自检：两个原生工具、一个现有进程内的 ERP Provider、一个 Analytics 收藏模块和共享 Renderer；不增加通用 Agent/BI/MCP 服务、不复制权限规则或 SDK。</p>
+<p>确认后需落实的业务/运维输入：首批“订单/入库/销售”的明确指标口径；目标数据库版本及受控角色部署窗口；资源默认值与 Snapshot/审计保留期。建议先采用本文普通聚合、个人收藏和预算默认值，以上输入缺失的数据集不开放。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="25-设计阶段验证与未验证项">25. 设计阶段验证与未验证项<a href="#25-设计阶段验证与未验证项" class="hash-link" aria-label="25. 设计阶段验证与未验证项的直接链接" title="25. 设计阶段验证与未验证项的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">已核对规范、Agent 初始化/工具/SSE/历史、Decision 客户端/配置、身份/数据范围/仓库授权、数据库与角色授权流程、图表、缓存、日志、Edition、现有测试及官方资料。</li>
+<li class="">本地 Agent <code>uv run pytest tests/test_decision.py tests/test_harness.py tests/test_tools.py -q</code>：51 项通过，存在 Nacos 依赖弃用警告。它验证现有能力，不证明新 SQL 分析安全。</li>
+<li class="">本地前端 <code>vitest run src/pages/agent/agent.test.ts --maxWorkers=1</code>：11 项通过，覆盖现有事件/ChartSpec 校验，不证明图表已经接入主线程。</li>
+<li class="">Settings 探针只输出模式、公开模型 ID/host/path、超时和是否配置，无凭据或数据库 URL；未发真实决策请求，未改远端配置。</li>
+<li class="">新设计及两个导航文件的相对链接、代码围栏和需求覆盖索引检查通过，<code>git diff --check</code> 通过。业务功能、迁移、PostgreSQL 角色创建、真实 SQL/模型评测、Higress、浏览器新增分析流程及远端 CI 均未执行。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="26-需求覆盖索引">26. 需求覆盖索引<a href="#26-需求覆盖索引" class="hash-link" aria-label="26. 需求覆盖索引的直接链接" title="26. 需求覆盖索引的直接链接" translate="no">​</a></h2>
+<p>任务要求 1–4 的现状/复用/需求/架构对应 §1–4；5–9 的决策接入、验证、场景、策略和风险对应 §5–6；10–13 的 Tool、Registry、生成修复和 SQLGlot 对应 §7–9、§12；14–17 的账号、RLS、权限和资源对应 §10–11；18–21 的 ChartSpec、推荐、assistant-ui、Ant Design Charts 对应 §13–14；22–25 的收藏、表结构、缓存、审计对应 §15–19；26–30 的测试、成本、风险、分期和回滚对应 §20–24。§25 单列本轮证据，避免把设计写成已完成实现。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent/sql-analytics-design.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/development/agent/jev-integration/">Chein 阿里云 Decision Model 接入与能力路由</a></li><li><a href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析与图表收藏交付</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/agent/index/">Agent 设计文档</a></li><li><a href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析与图表收藏交付</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdesigns%2Fagent%2Fsql-analytics-design%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/designs/agent/security/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Agent 安全设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/designs/agent/system-architecture/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Agent 总体系统架构</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-推荐方案与确认范围" class="table-of-contents__link toc-highlight">1. 推荐方案与确认范围</a></li><li><a href="#2-调研证据与当前差距" class="table-of-contents__link toc-highlight">2. 调研证据与当前差距</a></li><li><a href="#3-需求与交付边界" class="table-of-contents__link toc-highlight">3. 需求与交付边界</a></li><li><a href="#4-所有权与调用链" class="table-of-contents__link toc-highlight">4. 所有权与调用链</a></li><li><a href="#5-decision-model-的真实能力与配置" class="table-of-contents__link toc-highlight">5. Decision Model 的真实能力与配置</a></li><li><a href="#6-决策矩阵调用预算与降级" class="table-of-contents__link toc-highlight">6. 决策矩阵、调用预算与降级</a></li><li><a href="#7-授权-schema-registry-与指标" class="table-of-contents__link toc-highlight">7. 授权 Schema Registry 与指标</a></li><li><a href="#8-queryspecsql-生成与修复" class="table-of-contents__link toc-highlight">8. QuerySpec、SQL 生成与修复</a></li><li><a href="#9-sql-ast-安全边界" class="table-of-contents__link toc-highlight">9. SQL AST 安全边界</a></li><li><a href="#10-postgresql-角色分析视图与数据范围" class="table-of-contents__link toc-highlight">10. PostgreSQL 角色、分析视图与数据范围</a><ul><li><a href="#101-角色分工" class="table-of-contents__link toc-highlight">10.1 角色分工</a></li><li><a href="#102-视图所有权与权限模型" class="table-of-contents__link toc-highlight">10.2 视图所有权与权限模型</a></li><li><a href="#103-复用现有数据范围" class="table-of-contents__link toc-highlight">10.3 复用现有数据范围</a></li></ul></li><li><a href="#11-安全执行预算与取消" class="table-of-contents__link toc-highlight">11. 安全执行、预算与取消</a></li><li><a href="#12-native-sql-analytics-tool-契约" class="table-of-contents__link toc-highlight">12. Native SQL Analytics Tool 契约</a></li><li><a href="#13-datasetchartspec-与图表规则" class="table-of-contents__link toc-highlight">13. Dataset、ChartSpec 与图表规则</a></li><li><a href="#14-assistant-ui历史与权限撤销" class="table-of-contents__link toc-highlight">14. assistant-ui、历史与权限撤销</a></li><li><a href="#15-图表收藏刷新与继续分析" class="table-of-contents__link toc-highlight">15. 图表收藏、刷新与继续分析</a></li><li><a href="#16-表结构与迁移所有权" class="table-of-contents__link toc-highlight">16. 表结构与迁移所有权</a></li><li><a href="#17-api权限与配置" class="table-of-contents__link toc-highlight">17. API、权限与配置</a></li><li><a href="#18-redis权限一致性与缓存" class="table-of-contents__link toc-highlight">18. Redis、权限一致性与缓存</a></li><li><a href="#19-日志审计与成本" class="table-of-contents__link toc-highlight">19. 日志、审计与成本</a></li><li><a href="#20-自动化测试与验收门禁" class="table-of-contents__link toc-highlight">20. 自动化测试与验收门禁</a></li><li><a href="#21-性能与模型能力评测" class="table-of-contents__link toc-highlight">21. 性能与模型能力评测</a></li><li><a href="#22-主要失败场景与处理" class="table-of-contents__link toc-highlight">22. 主要失败场景与处理</a></li><li><a href="#23-分阶段实施计划" class="table-of-contents__link toc-highlight">23. 分阶段实施计划</a></li><li><a href="#24-回滚兼容与评审结论" class="table-of-contents__link toc-highlight">24. 回滚、兼容与评审结论</a></li><li><a href="#25-设计阶段验证与未验证项" class="table-of-contents__link toc-highlight">25. 设计阶段验证与未验证项</a></li><li><a href="#26-需求覆盖索引" class="table-of-contents__link toc-highlight">26. 需求覆盖索引</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

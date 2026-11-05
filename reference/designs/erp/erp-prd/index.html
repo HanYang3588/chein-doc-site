@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-designs/erp/erp-prd" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Fast Vben Admin 轻量进销存 ERP 产品需求文档 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/designs/erp/erp-prd/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Fast Vben Admin 轻量进销存 ERP 产品需求文档 | Chein 文档中心"><meta data-rh="true" name="description" content="Fast Vben Admin 轻量进销存 ERP 产品需求文档 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Fast Vben Admin 轻量进销存 ERP 产品需求文档 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/erp/erp-prd/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/erp/erp-prd/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/erp/erp-prd/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ERP","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/erp-1"},{"@type":"ListItem","position":2,"name":"Fast Vben Admin 轻量进销存 ERP 产品需求文档","item":"https://hanyang3588.github.io/chein-doc-site/reference/designs/erp/erp-prd"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="折叠侧边栏分类 &#x27;ERP&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/erp/README/"><span class="linkLabel_gJOC">ERP 文档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/designs/erp/erp-prd/"><span class="linkLabel_gJOC">Fast Vben Admin 轻量进销存 ERP 产品需求文档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/erp/erp-trd/"><span class="linkLabel_gJOC">Fast Vben Admin 轻量进销存 ERP 技术需求文档</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="展开侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/erp-1/"><span>ERP</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Fast Vben Admin 轻量进销存 ERP 产品需求文档</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Fast Vben Admin 轻量进销存 ERP 产品需求文档</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-文档信息">1. 文档信息<a href="#1-文档信息" class="hash-link" aria-label="1. 文档信息的直接链接" title="1. 文档信息的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>文档名称</td><td>Fast Vben Admin 轻量进销存 ERP PRD</td></tr><tr><td>文档状态</td><td>Draft，目标态规划，不代表当前已经实现</td></tr><tr><td>文档版本</td><td>v0.1</td></tr><tr><td>更新日期</td><td>2026-09-20（前端选型同步；业务目标不变）</td></tr><tr><td>目标版本</td><td>ERP v1.0</td></tr><tr><td>产品形态</td><td>Fast Vben Admin 的可选业务模块与独立 Edition</td></tr><tr><td>目标用户</td><td>中小型贸易、批发、零售和内部物资管理团队</td></tr><tr><td>关联文档</td><td><a class="" href="/chein-doc-site/reference/designs/erp/erp-trd/">ERP TRD</a>、<a class="" href="/chein-doc-site/reference/designs/platform/PRD/">总 PRD</a>、<a class="" href="/chein-doc-site/reference/designs/platform/modular-product/">模块化产品架构</a>、<a class="" href="/chein-doc-site/reference/architecture/platform/implementation/">模块化实施基线</a>、<a class="" href="/chein-doc-site/reference/development/backend/module-guide/">模块开发指南</a></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="11-参考基线">1.1 参考基线<a href="#11-参考基线" class="hash-link" aria-label="1.1 参考基线的直接链接" title="1.1 参考基线的直接链接" translate="no">​</a></h3>
+<p>本 PRD 参考以下代码事实，而不是仅参考演示页面或产品宣传：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th>核对版本</th><th>参考内容</th></tr></thead><tbody><tr><td>当前仓库</td><td><code>2da3c929883b35cd296b49da970072c3cb6fdfa7</code></td><td>模块契约、Edition、Tenant UoW、RLS、RBAC、前端装配和 <code>items</code> 样板</td></tr><tr><td><a href="https://github.com/SpringSunYY/LZ-litchi" target="_blank" rel="noopener noreferrer" class=""><code>SpringSunYY/LZ-litchi</code></a></td><td><code>ddd08a82a1c1d077ef0ec7a4ec71550ca9a470c5</code></td><td>ERP 数据对象、服务规则、接口、权限、菜单和错误码</td></tr><tr><td><a href="https://github.com/SpringSunYY/LZ-litchi-ui-admin-vben" target="_blank" rel="noopener noreferrer" class=""><code>SpringSunYY/LZ-litchi-ui-admin-vben</code></a></td><td><code>712bd5277f614e44524b66540a4686f257374c09</code></td><td>ERP 页面、表单、列表、选择器、统计首页和中文文案</td></tr></tbody></table>
+<p>两个参考仓库采用 MIT License。本项目参考其产品范围和交互闭环，但必须使用当前仓库的 FastAPI、SQLModel、PostgreSQL、React / Umi Max / Ant Design Pro、模块契约和多租户安全体系重新实现，不直接复制 Java/MyBatis 的技术结构。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-产品结论">2. 产品结论<a href="#2-产品结论" class="hash-link" aria-label="2. 产品结论的直接链接" title="2. 产品结论的直接链接" translate="no">​</a></h2>
+<p>本产品首版应定位为“轻量进销存 ERP”，核心是商品、采购、销售、库存和收付款的一体化闭环，而不是覆盖总账、生产制造、人力资源和复杂税务的综合集团 ERP。</p>
+<p>ERP v1.0 包含：</p>
+<ul>
+<li class="">商品分类、单位、商品、供应商、客户、仓库和结算账户等主数据。</li>
+<li class="">采购订单、采购入库、采购退货和付款核销。</li>
+<li class="">销售订单、销售出库、销售退货和收款核销。</li>
+<li class="">其他入库、其他出库、库存调拨、库存盘点、库存余额和库存流水。</li>
+<li class="">销售与采购经营看板、列表查询、详情、导出和审计追踪。</li>
+<li class="">租户隔离、模块权益、RBAC、数据权限、RLS、操作审计和并发一致性。</li>
+</ul>
+<p>ERP 必须作为独立 <code>erp</code> 业务模块交付，不进入 Platform，不扩大中央业务模型，不通过菜单或环境变量临时启用。模块组合由 Edition YAML 显式决定；<code>erp</code> 提供独立组合，<code>suite</code> 同时包含 Items 与 ERP。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-背景与机会">3. 背景与机会<a href="#3-背景与机会" class="hash-link" aria-label="3. 背景与机会的直接链接" title="3. 背景与机会的直接链接" translate="no">​</a></h2>
+<p>当前系统已经具备账号、组织、权限、租户、文件、字典、日志、通知、模块装配和 PostgreSQL 数据隔离能力，但缺少可直接用于真实经营活动的业务套件。参考 Litchi 的 ERP 已形成基础进销存闭环，适合作为功能蓝本。</p>
+<p>直接逐页照搬仍存在四个问题：</p>
+<ol>
+<li class="">参考系统的两态审批较轻，必须补充并发、幂等、审计和反审核约束。</li>
+<li class="">参考系统以 Java 单体内部调用组织业务，不能套用到本仓库的模块公开 API 和 Tenant UoW。</li>
+<li class="">ERP 数据天然属于租户，不能依赖应用层条件拼接作为唯一隔离手段。</li>
+<li class="">“ERP”容易被误解为完整财务或制造系统，需要在产品边界上明确首版是进销存与资金核销。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="31-参考功能映射">3.1 参考功能映射<a href="#31-参考功能映射" class="hash-link" aria-label="3.1 参考功能映射的直接链接" title="3.1 参考功能映射的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Litchi 参考能力</th><th>本项目目标</th><th>适配结论</th></tr></thead><tbody><tr><td>ERP 首页销售/采购统计</td><td>保留汇总卡片与时间趋势</td><td>增加租户时区和数据权限口径</td></tr><tr><td>商品、分类、单位</td><td>完整保留</td><td>进入 ERP 私有主数据，不放入 Platform</td></tr><tr><td>供应商、采购订单、采购入库、采购退货</td><td>完整保留</td><td>增加 Tenant UoW、RLS、幂等和并发约束</td></tr><tr><td>客户、销售订单、销售出库、销售退货</td><td>完整保留</td><td>增加最低售价、数据范围和原子扣库校验</td></tr><tr><td>仓库、库存、流水、其他出入库、调拨、盘点</td><td>完整保留</td><td>流水设为不可变，反审核使用冲销记录</td></tr><tr><td>结算账户、付款单、收款单</td><td>完整保留</td><td>明确仅做源单核销，不宣称具备总账能力</td></tr><tr><td>未审核/已审核与反审核</td><td>保留首版两态流程</td><td>审核与反审核拆分权限，并增加版本并发控制</td></tr><tr><td>Redis 日序号</td><td>保留前缀和日期序号体验</td><td>PostgreSQL 唯一约束作为最终一致性边界</td></tr><tr><td>Java 内部 Service/Mapper 调用</td><td>不复制</td><td>按本仓库模块契约、公开端口和 Repository 实现</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-产品目标与成功指标">4. 产品目标与成功指标<a href="#4-产品目标与成功指标" class="hash-link" aria-label="4. 产品目标与成功指标的直接链接" title="4. 产品目标与成功指标的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-产品目标">4.1 产品目标<a href="#41-产品目标" class="hash-link" aria-label="4.1 产品目标的直接链接" title="4.1 产品目标的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>目标</th><th>验收口径</th></tr></thead><tbody><tr><td>G1</td><td>打通采购闭环</td><td>采购订单可分批入库、退货和付款，累计数量与金额始终受控</td></tr><tr><td>G2</td><td>打通销售闭环</td><td>销售订单可分批出库、退货和收款，库存与未收金额实时更新</td></tr><tr><td>G3</td><td>建立可信库存</td><td>每次库存变化都可追溯到业务单据和不可变流水，余额与流水可对账</td></tr><tr><td>G4</td><td>建立租户级权限边界</td><td>未安装、无权益、停用、无权限、跨租户访问均失败关闭</td></tr><tr><td>G5</td><td>支持日常高频操作</td><td>用户可在列表中快速筛选、建单、选单、审核、导出和追踪异常</td></tr><tr><td>G6</td><td>提供经营概览</td><td>管理者能查看今日、昨日、本月、本年销售额与采购额及时间趋势</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-业务成功指标">4.2 业务成功指标<a href="#42-业务成功指标" class="hash-link" aria-label="4.2 业务成功指标的直接链接" title="4.2 业务成功指标的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>指标</th><th>ERP v1.0 目标</th></tr></thead><tbody><tr><td>核心单据闭环率</td><td>采购、销售、库存、收付款 P0 流程全部可在系统内完成</td></tr><tr><td>库存可追溯率</td><td>100% 库存增减存在来源单据、来源行和库存流水</td></tr><tr><td>跨租户数据泄露</td><td>0</td></tr><tr><td>超量入库、出库、退货或核销</td><td>0 笔可成功提交</td></tr><tr><td>负库存</td><td>默认策略下 0 笔可成功产生</td></tr><tr><td>重复审核副作用</td><td>0 笔重复库存流水或重复核销</td></tr><tr><td>关键页面响应</td><td>常规租户 10 万单据规模下，分页列表 P95 小于 2 秒</td></tr><tr><td>对账差异</td><td>库存余额与有效流水聚合差异为 0</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-用户与角色">5. 用户与角色<a href="#5-用户与角色" class="hash-link" aria-label="5. 用户与角色的直接链接" title="5. 用户与角色的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>角色</th><th>核心职责</th><th>默认数据范围建议</th></tr></thead><tbody><tr><td>ERP 管理员</td><td>模块配置、全域主数据和异常处理</td><td>当前租户全部 ERP 数据</td></tr><tr><td>商品管理员</td><td>分类、单位、商品维护</td><td>当前租户全部商品主数据</td></tr><tr><td>采购员</td><td>供应商、采购订单、采购退货申请</td><td>本人、本部门及下级部门</td></tr><tr><td>仓库员</td><td>入库、出库、调拨、盘点和库存查询</td><td>被授权仓库及组织范围</td></tr><tr><td>销售员</td><td>客户、销售订单和销售退货申请</td><td>本人、本部门及下级部门</td></tr><tr><td>财务人员</td><td>结算账户、付款、收款和核销</td><td>当前租户授权组织范围</td></tr><tr><td>审核员</td><td>审核及反审核业务单据</td><td>当前租户授权组织范围</td></tr><tr><td>经营管理者</td><td>查看经营首页、报表和全部业务详情</td><td>当前租户全部或指定组织</td></tr><tr><td>只读审计员</td><td>查询、导出、审计追踪</td><td>当前租户全部，禁止写操作</td></tr></tbody></table>
+<p>角色是推荐模板，不是硬编码身份。实际访问结果必须由模块权益、租户偏好、用户 RBAC 和数据权限共同决定。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-产品范围">6. 产品范围<a href="#6-产品范围" class="hash-link" aria-label="6. 产品范围的直接链接" title="6. 产品范围的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="61-erp-v10-范围">6.1 ERP v1.0 范围<a href="#61-erp-v10-范围" class="hash-link" aria-label="6.1 ERP v1.0 范围的直接链接" title="6.1 ERP v1.0 范围的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>业务域</th><th>页面/能力</th><th>优先级</th></tr></thead><tbody><tr><td>ERP 首页</td><td>销售与采购汇总卡片、时间趋势</td><td>P1</td></tr><tr><td>商品</td><td>商品分类、商品单位、商品资料</td><td>P0</td></tr><tr><td>采购</td><td>供应商、采购订单、采购入库、采购退货</td><td>P0</td></tr><tr><td>销售</td><td>客户、销售订单、销售出库、销售退货</td><td>P0</td></tr><tr><td>库存</td><td>仓库、库存余额、库存流水、其他入库、其他出库、调拨、盘点</td><td>P0</td></tr><tr><td>财务</td><td>结算账户、付款单、收款单、源单核销</td><td>P0</td></tr><tr><td>通用能力</td><td>权限、数据范围、附件、导出、审计、稳定错误码</td><td>P0</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="62-明确不进入-erp-v10">6.2 明确不进入 ERP v1.0<a href="#62-明确不进入-erp-v10" class="hash-link" aria-label="6.2 明确不进入 ERP v1.0的直接链接" title="6.2 明确不进入 ERP v1.0的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">总账、会计科目、凭证、资产负债表、利润表和现金流量表。</li>
+<li class="">应收应付账龄、信用额度、账期、催收和坏账管理。</li>
+<li class="">报价、询价、采购申请、销售报价、合同和发票全生命周期。</li>
+<li class="">生产计划、BOM、MRP、工单、委外、质检和设备管理。</li>
+<li class="">商品多规格 SKU、批次、序列号、保质期预警和先进先出成本。</li>
+<li class="">多币种、汇率、含税价切换、电子发票和税控系统集成。</li>
+<li class="">POS、商城、物流轨迹、电子面单和第三方支付自动对账。</li>
+<li class="">BPM 多级审批。v1.0 采用受权限保护的单级审核/反审核，后续通过 capability 接入工作流 Provider。</li>
+<li class="">移动端原生应用和离线作业。</li>
+</ul>
+<p>以上能力不得用空页面或占位接口伪装完成。出现真实客户需求后单独立项。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-信息架构与导航">7. 信息架构与导航<a href="#7-信息架构与导航" class="hash-link" aria-label="7. 信息架构与导航的直接链接" title="7. 信息架构与导航的直接链接" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">ERP 系统</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── ERP 首页</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── 商品管理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 商品资料</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 商品分类</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   └── 商品单位</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── 采购管理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 供应商</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 采购订单</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 采购入库</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   └── 采购退货</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── 销售管理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 客户</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 销售订单</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 销售出库</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   └── 销售退货</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── 库存管理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 仓库</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 库存余额</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 库存流水</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 其他入库</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 其他出库</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   ├── 库存调拨</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   └── 库存盘点</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── 财务管理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ├── 结算账户</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ├── 付款单</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    └── 收款单</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="71-页面通用要求">7.1 页面通用要求<a href="#71-页面通用要求" class="hash-link" aria-label="7.1 页面通用要求的直接链接" title="7.1 页面通用要求的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">列表默认分页，保留筛选条件，支持刷新、列显隐、密度和适用时的导出。</li>
+<li class="">单据列表至少支持单号、商品、往来单位、业务日期、制单人、审核状态和备注筛选。</li>
+<li class="">主数据表单使用抽屉；包含多行明细的业务单据使用大尺寸抽屉或独立编辑页。</li>
+<li class="">单据明细编辑必须支持选商品、批量增行、删除行、即时计算和键盘连续录入。</li>
+<li class="">“审核”“反审核”“删除”等危险操作必须二次确认，并展示直接业务影响。</li>
+<li class="">后端返回 401、403、404、409、422、503 时，前端使用现有错误体系显示可行动提示。</li>
+<li class="">小屏设备可查询和查看详情；复杂多行单据允许横向滚动，但主操作不能被遮挡。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-通用业务规则">8. 通用业务规则<a href="#8-通用业务规则" class="hash-link" aria-label="8. 通用业务规则的直接链接" title="8. 通用业务规则的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="81-租户与数据归属">8.1 租户与数据归属<a href="#81-租户与数据归属" class="hash-link" aria-label="8.1 租户与数据归属的直接链接" title="8.1 租户与数据归属的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">所有 ERP 实体均为 tenant-owned，<code>tenant_id</code> 只能来自已验证 JWT 对应的当前 Tenant UoW。</li>
+<li class="">API 请求体、query 或普通 header 不接受可覆盖数据归属的 <code>tenant_id</code>。</li>
+<li class="">ERP 使用独立 schema、迁移 namespace 和版本表；所有租户表启用对应 RLS policy。</li>
+<li class="">商品、客户、供应商、仓库、账户和业务单据的关联必须属于同一租户。</li>
+<li class="">列表、详情、更新、删除、审核、反审核和导出应用完全一致的数据权限范围。</li>
+<li class="">Platform 用户、部门等主数据只能通过 Platform 公开端口访问，ERP 不导入 Platform ORM。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="82-主数据状态">8.2 主数据状态<a href="#82-主数据状态" class="hash-link" aria-label="8.2 主数据状态的直接链接" title="8.2 主数据状态的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">主数据状态为 <code>ENABLED</code> 或 <code>DISABLED</code>。</li>
+<li class="">禁用数据保留历史引用和详情展示，但不可用于新建或修改业务单据。</li>
+<li class="">已被单据引用的主数据默认禁止物理删除；允许停用。</li>
+<li class="">商品分类为树结构，存在下级分类或商品时禁止删除。</li>
+<li class="">同一租户最多一个默认仓库、一个默认结算账户；切换默认项必须原子完成。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="83-单据状态">8.3 单据状态<a href="#83-单据状态" class="hash-link" aria-label="8.3 单据状态的直接链接" title="8.3 单据状态的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>当前状态</th><th>操作</th><th>目标状态</th><th>允许条件</th><th>业务副作用</th></tr></thead><tbody><tr><td><code>DRAFT</code></td><td>修改</td><td><code>DRAFT</code></td><td>有更新权限</td><td>重算表头汇总，不产生库存或核销</td></tr><tr><td><code>DRAFT</code></td><td>删除</td><td>已删除</td><td>无下游记录</td><td>删除表头和明细，保留操作审计</td></tr><tr><td><code>DRAFT</code></td><td>审核</td><td><code>APPROVED</code></td><td>有审核权限且校验全部通过</td><td>同事务产生库存、累计数量或核销副作用</td></tr><tr><td><code>APPROVED</code></td><td>反审核</td><td><code>DRAFT</code></td><td>有反审核权限且不存在阻断下游</td><td>以反向流水/反向核销抵消，不删除历史流水</td></tr><tr><td><code>APPROVED</code></td><td>修改/删除</td><td>不允许</td><td>无</td><td>返回稳定冲突错误</td></tr></tbody></table>
+<p>审核和反审核必须带版本条件或等价并发控制。重复提交、并发审核或网络重试只能有一个请求成功产生业务副作用。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="84-单号规则">8.4 单号规则<a href="#84-单号规则" class="hash-link" aria-label="8.4 单号规则的直接链接" title="8.4 单号规则的直接链接" translate="no">​</a></h3>
+<p>系统生成单号，不允许客户端自行指定。目标格式为 <code>{业务前缀}{yyyyMMdd}{6位日序号}</code>，并在租户内唯一。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>单据</th><th>前缀</th><th>示例</th></tr></thead><tbody><tr><td>其他入库</td><td><code>QTRK</code></td><td><code>QTRK20260720000001</code></td></tr><tr><td>其他出库</td><td><code>QTCK</code></td><td><code>QTCK20260720000001</code></td></tr><tr><td>库存调拨</td><td><code>KCDB</code></td><td><code>KCDB20260720000001</code></td></tr><tr><td>库存盘点</td><td><code>KCPD</code></td><td><code>KCPD20260720000001</code></td></tr><tr><td>采购订单/入库/退货</td><td><code>CGDD</code> / <code>CGRK</code> / <code>CGTH</code></td><td><code>CGDD20260720000001</code></td></tr><tr><td>销售订单/出库/退货</td><td><code>XSDD</code> / <code>XSCK</code> / <code>XSTH</code></td><td><code>XSDD20260720000001</code></td></tr><tr><td>付款/收款</td><td><code>FKD</code> / <code>SKD</code></td><td><code>FKD20260720000001</code></td></tr></tbody></table>
+<p>实现不能依赖 Redis 才能保证唯一性。PostgreSQL 唯一约束是最终边界；序号生成器在冲突时有限重试，失败时整个事务回滚。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="85-数量与金额">8.5 数量与金额<a href="#85-数量与金额" class="hash-link" aria-label="8.5 数量与金额的直接链接" title="8.5 数量与金额的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">数量使用十进制定点数，目标精度 <code>numeric(20, 6)</code>；必须大于 0，盘点差异除外。</li>
+<li class="">单价、金额使用十进制定点数，目标精度 <code>numeric(20, 4)</code>；页面金额默认展示 2 位。</li>
+<li class="">百分比范围为 0 至 100，使用十进制定点数。</li>
+<li class="">行商品金额 = 数量 x 单价；行税额 = 行商品金额 x 税率；行价税合计 = 行商品金额 + 行税额。</li>
+<li class="">表头商品金额、税额和总数量由后端根据有效明细重算，不信任客户端汇总字段。</li>
+<li class="">订单结算金额 = 商品金额 + 税额 - 优惠金额。</li>
+<li class="">入库/退货结算金额 = 商品金额 + 税额 - 优惠金额 + 其他费用。</li>
+<li class="">销售出库/销售退货结算金额 = 商品金额 + 税额 - 优惠金额 - 其他扣减。</li>
+<li class="">舍入方式、精度和计算顺序必须全局固定；同一公式用于创建、更新、详情、导出和统计。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="86-库存记账">8.6 库存记账<a href="#86-库存记账" class="hash-link" aria-label="8.6 库存记账的直接链接" title="8.6 库存记账的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">库存余额以 <code>(tenant_id, product_id, warehouse_id)</code> 唯一。</li>
+<li class="">所有库存变化必须通过库存记账服务执行，不允许业务 Repository 直接改余额。</li>
+<li class="">审核库存类单据时，在同一数据库事务内完成状态变更、余额原子增减和库存流水写入。</li>
+<li class="">默认不允许负库存。销售出库、其他出库、采购退货、调拨出库和盘亏导致余额小于 0 时失败。</li>
+<li class="">库存流水不可修改、不可删除；反审核写入具有相反数量的冲销流水，并关联原单据及原单据行。</li>
+<li class="">流水保存变动数量、变动后余额、业务类型、业务单 ID、业务行 ID、业务单号、操作人和时间。</li>
+<li class="">调拨审核必须同时写调出负流水与调入正流水，任一失败则全部回滚。</li>
+<li class="">库存余额和流水聚合必须提供内部对账检查；发现差异时模块健康状态进入 degraded，禁止继续产生不可信库存。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-商品管理需求">9. 商品管理需求<a href="#9-商品管理需求" class="hash-link" aria-label="9. 商品管理需求的直接链接" title="9. 商品管理需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="91-商品单位-erp-prod-unit">9.1 商品单位 <code>ERP-PROD-UNIT</code><a href="#91-商品单位-erp-prod-unit" class="hash-link" aria-label="91-商品单位-erp-prod-unit的直接链接" title="91-商品单位-erp-prod-unit的直接链接" translate="no">​</a></h3>
+<p>字段：单位名称、状态、创建人、创建时间、更新时间。</p>
+<p>功能与验收：</p>
+<ul>
+<li class="">支持列表、创建、编辑、停用、删除和导出。</li>
+<li class="">同一租户单位名称唯一，空白和首尾空格归一化后仍需唯一。</li>
+<li class="">已被商品引用时禁止删除；停用后历史单据仍展示单位快照。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="92-商品分类-erp-prod-category">9.2 商品分类 <code>ERP-PROD-CATEGORY</code><a href="#92-商品分类-erp-prod-category" class="hash-link" aria-label="92-商品分类-erp-prod-category的直接链接" title="92-商品分类-erp-prod-category的直接链接" translate="no">​</a></h3>
+<p>字段：上级分类、分类名称、分类编码、排序、状态。</p>
+<p>功能与验收：</p>
+<ul>
+<li class="">支持树形查询、创建、编辑、移动、停用、删除和导出。</li>
+<li class="">同一租户分类编码唯一；禁止将节点移动到自身或其后代。</li>
+<li class="">存在子分类或商品时禁止删除。</li>
+<li class="">停用父分类后，该分类及其后代不可用于新商品选择。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="93-商品资料-erp-prod-product">9.3 商品资料 <code>ERP-PROD-PRODUCT</code><a href="#93-商品资料-erp-prod-product" class="hash-link" aria-label="93-商品资料-erp-prod-product的直接链接" title="93-商品资料-erp-prod-product的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>字段</th><th>必填</th><th>规则</th></tr></thead><tbody><tr><td>商品名称</td><td>是</td><td>租户内按产品策略校验重名，去除首尾空格</td></tr><tr><td>条码</td><td>否</td><td>租户内非空唯一</td></tr><tr><td>分类</td><td>是</td><td>必须为当前租户启用的末级或允许挂载商品的分类</td></tr><tr><td>单位</td><td>是</td><td>必须启用</td></tr><tr><td>规格</td><td>否</td><td>文本描述，v1.0 不拆多 SKU</td></tr><tr><td>采购参考价</td><td>否</td><td>大于等于 0</td></tr><tr><td>销售参考价</td><td>否</td><td>大于等于 0</td></tr><tr><td>最低销售价</td><td>否</td><td>大于等于 0，默认不得高于销售参考价</td></tr><tr><td>重量</td><td>否</td><td>大于等于 0</td></tr><tr><td>保质天数</td><td>否</td><td>大于等于 0；v1.0 只记录，不做批次预警</td></tr><tr><td>状态</td><td>是</td><td>启用/停用</td></tr><tr><td>备注</td><td>否</td><td>长度受限并防止脚本注入</td></tr></tbody></table>
+<p>商品列表支持名称、条码、分类、状态筛选和导出。停用商品不可加入新单据。商品被业务单据引用后禁止物理删除。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-往来单位需求">10. 往来单位需求<a href="#10-往来单位需求" class="hash-link" aria-label="10. 往来单位需求的直接链接" title="10. 往来单位需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="101-供应商-erp-pur-supplier">10.1 供应商 <code>ERP-PUR-SUPPLIER</code><a href="#101-供应商-erp-pur-supplier" class="hash-link" aria-label="101-供应商-erp-pur-supplier的直接链接" title="101-供应商-erp-pur-supplier的直接链接" translate="no">​</a></h3>
+<p>字段：名称、联系人、手机、电话、邮箱、传真、税号、默认税率、开户行、银行账号、开户地址、排序、状态、备注。</p>
+<p>验收要求：</p>
+<ul>
+<li class="">名称在租户内唯一；邮箱、手机号和税率格式合法。</li>
+<li class="">禁用供应商不可用于新采购订单、其他入库或付款单。</li>
+<li class="">已存在采购或付款数据时禁止删除。</li>
+<li class="">银行账号在列表默认脱敏，只有具备敏感财务信息权限的用户可查看完整值。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="102-客户-erp-sale-customer">10.2 客户 <code>ERP-SALE-CUSTOMER</code><a href="#102-客户-erp-sale-customer" class="hash-link" aria-label="102-客户-erp-sale-customer的直接链接" title="102-客户-erp-sale-customer的直接链接" translate="no">​</a></h3>
+<p>字段与供应商一致，语义用于销售和收款。</p>
+<p>验收要求：</p>
+<ul>
+<li class="">禁用客户不可用于新销售订单、其他出库或收款单。</li>
+<li class="">已存在销售或收款数据时禁止删除。</li>
+<li class="">银行账号、联系方式按权限和导出策略脱敏。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-采购管理需求">11. 采购管理需求<a href="#11-采购管理需求" class="hash-link" aria-label="11. 采购管理需求的直接链接" title="11. 采购管理需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="111-采购订单-erp-pur-order">11.1 采购订单 <code>ERP-PUR-ORDER</code><a href="#111-采购订单-erp-pur-order" class="hash-link" aria-label="111-采购订单-erp-pur-order的直接链接" title="111-采购订单-erp-pur-order的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、供应商、订单时间、结算账户、优惠率、优惠金额、订金、附件、备注、审核状态、总数量、商品金额、税额、结算金额、累计入库数量、累计退货数量、制单人和审计时间。</p>
+<p>明细字段：商品、单位、数量、采购单价、商品金额、税率、税额、价税合计、累计入库数量、累计退货数量和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">新建时至少一行明细，同一商品允许多行但必须有明确业务需要；默认提示合并。</li>
+<li class="">供应商、商品、单位必须启用，价格和税率由商品/供应商默认值带出但可在权限允许时修改。</li>
+<li class="">审核后订单可被采购入库和采购退货选单使用。</li>
+<li class="">单行累计入库数量不得超过订单数量。</li>
+<li class="">单行累计退货数量不得超过已入库数量；未发生入库不得从订单直接退货。</li>
+<li class="">已存在有效入库或退货记录时禁止反审核订单。</li>
+<li class="">入库状态和退货状态按无、部分、全部实时派生，不由客户端写入。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="112-采购入库-erp-pur-in">11.2 采购入库 <code>ERP-PUR-IN</code><a href="#112-采购入库-erp-pur-in" class="hash-link" aria-label="112-采购入库-erp-pur-in的直接链接" title="112-采购入库-erp-pur-in的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、来源采购订单、供应商快照、入库时间、结算账户、优惠率、其他费用、附件、备注、审核状态、总数量、商品金额、税额、结算金额、已付款和未付款金额。</p>
+<p>明细字段：来源订单行、仓库、商品、单位、数量、单价、税率、金额和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">只能选择已审核且仍有可入库数量的采购订单。</li>
+<li class="">明细商品和单位继承来源订单；入库数量不得超过订单行剩余可入库数量。</li>
+<li class="">审核后增加对应仓库库存，写采购入库流水，并更新订单累计入库数量。</li>
+<li class="">反审核时减少库存并写冲销流水；若库存不足以冲销，反审核失败。</li>
+<li class="">已存在有效付款核销时禁止反审核。</li>
+<li class="">付款状态按未付款、部分付款、已付清派生。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="113-采购退货-erp-pur-return">11.3 采购退货 <code>ERP-PUR-RETURN</code><a href="#113-采购退货-erp-pur-return" class="hash-link" aria-label="113-采购退货-erp-pur-return的直接链接" title="113-采购退货-erp-pur-return的直接链接" translate="no">​</a></h3>
+<p>表头字段与采购入库类似，业务时间为退货时间，金额字段包含已冲减和未冲减金额。为兼容参考产品，界面可使用“已退款/未退款”文案，但其 v1.0 业务含义是对供应商应付款进行负向冲减。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">只能选择已审核且存在可退数量的采购订单及其已入库商品。</li>
+<li class="">退货仓库必须拥有足够库存；退货数量不得超过订单行累计已入库减累计已退数量。</li>
+<li class="">审核后扣减库存、写采购退货流水并更新订单累计退货数量。</li>
+<li class="">反审核后恢复库存并写冲销流水；已存在有效付款净额冲减时禁止反审核。</li>
+<li class="">冲减状态按未冲减、部分冲减、已冲减派生。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-销售管理需求">12. 销售管理需求<a href="#12-销售管理需求" class="hash-link" aria-label="12. 销售管理需求的直接链接" title="12. 销售管理需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="121-销售订单-erp-sale-order">12.1 销售订单 <code>ERP-SALE-ORDER</code><a href="#121-销售订单-erp-sale-order" class="hash-link" aria-label="121-销售订单-erp-sale-order的直接链接" title="121-销售订单-erp-sale-order的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、客户、销售员、订单时间、结算账户、优惠率、优惠金额、订金、附件、备注、审核状态、总数量、商品金额、税额、结算金额、累计出库数量、累计退货数量和审计字段。</p>
+<p>明细字段：商品、单位、数量、销售单价、商品金额、税率、税额、价税合计、累计出库、累计退货和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">客户、销售员、商品和单位必须有效；低于商品最低销售价时默认拒绝，后续可增加独立越权审批能力。</li>
+<li class="">审核后才可创建销售出库和销售退货。</li>
+<li class="">单行累计出库不得超过订单数量。</li>
+<li class="">单行累计退货不得超过累计已出库数量。</li>
+<li class="">已存在有效出库或退货记录时禁止反审核。</li>
+<li class="">出库和退货状态按无、部分、全部派生。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="122-销售出库-erp-sale-out">12.2 销售出库 <code>ERP-SALE-OUT</code><a href="#122-销售出库-erp-sale-out" class="hash-link" aria-label="122-销售出库-erp-sale-out的直接链接" title="122-销售出库-erp-sale-out的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、来源销售订单、客户快照、销售员、出库时间、结算账户、优惠率、其他扣减、附件、备注、审核状态、总数量、结算金额、已收款和未收款金额。</p>
+<p>明细字段：来源订单行、仓库、商品、单位、可用库存、数量、单价、税率、金额和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">只能选择已审核且仍有可出库数量的销售订单。</li>
+<li class="">审核时逐行校验库存；任何一行不足则整单失败，不允许部分写入。</li>
+<li class="">审核后扣减库存、写销售出库流水并更新订单累计出库数量。</li>
+<li class="">反审核后恢复库存并写冲销流水；已存在有效收款核销时禁止反审核。</li>
+<li class="">收款状态按未收款、部分收款、已收清派生。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="123-销售退货-erp-sale-return">12.3 销售退货 <code>ERP-SALE-RETURN</code><a href="#123-销售退货-erp-sale-return" class="hash-link" aria-label="123-销售退货-erp-sale-return的直接链接" title="123-销售退货-erp-sale-return的直接链接" translate="no">​</a></h3>
+<p>表头和明细结构与销售出库对应，业务时间为退货时间，金额字段包含已冲减和未冲减金额。为兼容参考产品，界面可使用“已退款/未退款”文案，但其 v1.0 业务含义是对客户应收款进行负向冲减。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">只能退已审核销售订单中已经出库且尚未退回的数量。</li>
+<li class="">审核后增加退回仓库库存、写销售退货流水并更新订单累计退货数量。</li>
+<li class="">反审核时扣减库存；库存不足时失败。</li>
+<li class="">已存在有效收款净额冲减时禁止反审核。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="13-库存管理需求">13. 库存管理需求<a href="#13-库存管理需求" class="hash-link" aria-label="13. 库存管理需求的直接链接" title="13. 库存管理需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="131-仓库-erp-stock-warehouse">13.1 仓库 <code>ERP-STOCK-WAREHOUSE</code><a href="#131-仓库-erp-stock-warehouse" class="hash-link" aria-label="131-仓库-erp-stock-warehouse的直接链接" title="131-仓库-erp-stock-warehouse的直接链接" translate="no">​</a></h3>
+<p>字段：名称、地址、负责人、仓储费用参考值、运输费用参考值、排序、状态、是否默认、备注。</p>
+<p>要求：名称租户内唯一；只能有一个默认仓库；停用仓库不可参与新库存单据；存在非零库存或历史单据时禁止删除。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="132-库存余额-erp-stock-balance">13.2 库存余额 <code>ERP-STOCK-BALANCE</code><a href="#132-库存余额-erp-stock-balance" class="hash-link" aria-label="132-库存余额-erp-stock-balance的直接链接" title="132-库存余额-erp-stock-balance的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">只读列表，按商品、分类、仓库筛选和导出。</li>
+<li class="">展示商品、分类、单位、仓库、当前数量和更新时间。</li>
+<li class="">不提供直接编辑数量入口；修正库存必须使用其他入库、其他出库或盘点单。</li>
+<li class="">具备详情跳转，可查看当前商品/仓库对应库存流水。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="133-库存流水-erp-stock-ledger">13.3 库存流水 <code>ERP-STOCK-LEDGER</code><a href="#133-库存流水-erp-stock-ledger" class="hash-link" aria-label="133-库存流水-erp-stock-ledger的直接链接" title="133-库存流水-erp-stock-ledger的直接链接" translate="no">​</a></h3>
+<p>业务类型包括：其他入库/冲销、其他出库/冲销、调拨入库/出库及冲销、盘盈/盘亏及冲销、采购入库/冲销、采购退货/冲销、销售出库/冲销、销售退货/冲销。</p>
+<p>列表支持商品、仓库、业务类型、业务单号和时间范围筛选，展示变动数量、变动后余额、来源单号、来源行、操作人和时间。用户可以跳转到有权访问的来源单据；无来源权限时不泄露详情。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="134-其他入库与其他出库-erp-stock-other">13.4 其他入库与其他出库 <code>ERP-STOCK-OTHER</code><a href="#134-其他入库与其他出库-erp-stock-other" class="hash-link" aria-label="134-其他入库与其他出库-erp-stock-other的直接链接" title="134-其他入库与其他出库-erp-stock-other的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、业务时间、可选供应商/客户、附件、备注、状态、总数量和总金额。</p>
+<p>明细字段：仓库、商品、单位、当前库存、数量、参考单价、金额和备注。</p>
+<p>审核其他入库增加库存；审核其他出库减少库存。反审核写反向流水。已审核单据不可编辑或删除。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="135-库存调拨-erp-stock-move">13.5 库存调拨 <code>ERP-STOCK-MOVE</code><a href="#135-库存调拨-erp-stock-move" class="hash-link" aria-label="135-库存调拨-erp-stock-move的直接链接" title="135-库存调拨-erp-stock-move的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、调拨时间、附件、备注、状态、总数量和总金额。</p>
+<p>明细字段：调出仓库、调入仓库、商品、单位、调出可用库存、数量、参考单价、金额和备注。</p>
+<p>要求：调出和调入仓库不得相同；调出库存必须充足；审核后同事务完成两端记账；反审核时调入仓库库存必须足够扣回。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="136-库存盘点-erp-stock-check">13.6 库存盘点 <code>ERP-STOCK-CHECK</code><a href="#136-库存盘点-erp-stock-check" class="hash-link" aria-label="136-库存盘点-erp-stock-check的直接链接" title="136-库存盘点-erp-stock-check的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、盘点时间、附件、备注、状态、差异总数量和差异总金额。</p>
+<p>明细字段：仓库、商品、单位、账面数量、实盘数量、差异数量、参考单价、差异金额和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">创建时读取账面数量并保存快照；实盘数量必须大于等于 0。</li>
+<li class="">差异数量 = 实盘数量 - 账面快照，零差异行允许保留但审核时不记流水。</li>
+<li class="">审核前再次检查当前账面数量是否仍等于快照；发生并发库存变化时返回冲突并要求刷新重盘。</li>
+<li class="">正差异写盘盈入库，负差异写盘亏出库；反审核写对应冲销流水。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="14-财务管理需求">14. 财务管理需求<a href="#14-财务管理需求" class="hash-link" aria-label="14. 财务管理需求的直接链接" title="14. 财务管理需求的直接链接" translate="no">​</a></h2>
+<p>ERP v1.0 的财务能力只负责结算账户与业务源单核销，不形成会计凭证或总账。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="141-结算账户-erp-fin-account">14.1 结算账户 <code>ERP-FIN-ACCOUNT</code><a href="#141-结算账户-erp-fin-account" class="hash-link" aria-label="141-结算账户-erp-fin-account的直接链接" title="141-结算账户-erp-fin-account的直接链接" translate="no">​</a></h3>
+<p>字段：账户名称、账号/内部编号、排序、状态、是否默认、备注。</p>
+<p>要求：名称和非空编号租户内唯一；只能有一个默认账户；禁用账户不可用于新单据；有核销历史时禁止删除。完整账号按财务敏感权限控制展示和导出。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="142-付款单-erp-fin-payment">14.2 付款单 <code>ERP-FIN-PAYMENT</code><a href="#142-付款单-erp-fin-payment" class="hash-link" aria-label="142-付款单-erp-fin-payment的直接链接" title="142-付款单-erp-fin-payment的直接链接" translate="no">​</a></h3>
+<p>表头字段：单号、付款时间、财务人员、供应商、结算账户、源单总额、优惠金额、实付金额、备注和审核状态。</p>
+<p>核销明细：业务类型、来源采购入库/采购退货、源单号、有符号源单金额、历史已核销、当前有符号核销金额和备注。</p>
+<p>业务规则：</p>
+<ul>
+<li class="">同一付款单的核销明细必须属于同一供应商和当前租户。</li>
+<li class="">仅可选择已审核且仍有未结金额的源单。采购入库是正向应付，采购退货是负向应付冲减；符号由后端根据业务类型确定，客户端不能覆盖。</li>
+<li class="">采购入库行的当前付款金额大于 0 且不得超过剩余应付；采购退货行的冲减绝对值不得超过剩余可冲减金额。</li>
+<li class="">单据实付金额 = 正向付款合计 - 退货冲减合计 - 优惠金额，结果不得小于 0。结果为 0 时属于非现金净额结算，必须在页面明确标识。</li>
+<li class="">审核付款单后更新源单累计付款/冲减金额；反审核以反向核销恢复剩余金额。</li>
+<li class="">已审核付款单不可修改或删除；并发核销同一源单时只能一个事务占用剩余额度。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="143-收款单-erp-fin-receipt">14.3 收款单 <code>ERP-FIN-RECEIPT</code><a href="#143-收款单-erp-fin-receipt" class="hash-link" aria-label="143-收款单-erp-fin-receipt的直接链接" title="143-收款单-erp-fin-receipt的直接链接" translate="no">​</a></h3>
+<p>表头字段与付款单对应，往来单位为客户，核销来源为销售出库/销售退货。销售出库是正向应收，销售退货是负向应收冲减，符号由后端确定。</p>
+<p>业务规则与付款单对称：正向收款不得超过剩余应收，退货冲减绝对值不得超过剩余可冲减金额，单据实收净额不得小于 0，审核和反审核原子更新源单累计金额。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="144-结算口径">14.4 结算口径<a href="#144-结算口径" class="hash-link" aria-label="14.4 结算口径的直接链接" title="14.4 结算口径的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">采购入库形成应付，采购退货形成供应商信用额，在付款单内抵减同一供应商应付。</li>
+<li class="">销售出库形成应收，销售退货形成客户信用额，在收款单内抵减同一客户应收。</li>
+<li class="">ERP v1.0 使用用户明确选择的源单级净额核销，不自动跨单匹配。</li>
+<li class="">当供应商信用额大于可抵应付、或客户信用额大于可抵应收时，剩余信用额继续保持未核销。独立供应商退款入账和客户现金退款不在当前两类单据中隐式处理。</li>
+<li class="">订金在 v1.0 只作为订单业务字段；是否自动转核销必须在开发前由产品负责人确认，未确认时不得自动影响收付款余额。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="15-erp-首页与统计">15. ERP 首页与统计<a href="#15-erp-首页与统计" class="hash-link" aria-label="15. ERP 首页与统计的直接链接" title="15. ERP 首页与统计的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="151-汇总卡片">15.1 汇总卡片<a href="#151-汇总卡片" class="hash-link" aria-label="15.1 汇总卡片的直接链接" title="15.1 汇总卡片的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">今日销售额、昨日销售额、本月销售额、今年销售额。</li>
+<li class="">今日采购额、昨日采购额、本月采购额、今年采购额。</li>
+<li class="">销售额 = 已审核销售出库金额 - 已审核销售退货金额。</li>
+<li class="">采购额 = 已审核采购入库金额 - 已审核采购退货金额。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="152-时间趋势">15.2 时间趋势<a href="#152-时间趋势" class="hash-link" aria-label="15.2 时间趋势的直接链接" title="15.2 时间趋势的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">默认展示近期时间序列的销售额与采购额，粒度根据范围切换为日/月。</li>
+<li class="">所有统计使用租户时区划分自然日，金额使用与单据相同的舍入口径。</li>
+<li class="">反审核后统计应随有效单据状态更新，不重复累计冲销流水。</li>
+<li class="">首页数据权限与单据查询一致；无全租户数据权限时明确标注“我的数据范围”。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="16-权限设计">16. 权限设计<a href="#16-权限设计" class="hash-link" aria-label="16. 权限设计的直接链接" title="16. 权限设计的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="161-权限命名">16.1 权限命名<a href="#161-权限命名" class="hash-link" aria-label="16.1 权限命名的直接链接" title="16.1 权限命名的直接链接" translate="no">​</a></h3>
+<p>业务入口统一使用 <code>require_module_access(&quot;erp&quot;, &quot;&lt;permission&gt;&quot;)</code>。权限码格式为 <code>erp:&lt;resource&gt;:&lt;action&gt;</code>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>资源组</th><th>示例权限</th></tr></thead><tbody><tr><td>首页</td><td><code>erp:statistics:query</code></td></tr><tr><td>商品</td><td><code>erp:product:list/create/update/delete/export</code></td></tr><tr><td>分类/单位</td><td><code>erp:product-category:*</code>、<code>erp:product-unit:*</code></td></tr><tr><td>供应商/客户</td><td><code>erp:supplier:*</code>、<code>erp:customer:*</code></td></tr><tr><td>采购单据</td><td><code>erp:purchase-order:*</code>、<code>erp:purchase-in:*</code>、<code>erp:purchase-return:*</code></td></tr><tr><td>销售单据</td><td><code>erp:sale-order:*</code>、<code>erp:sale-out:*</code>、<code>erp:sale-return:*</code></td></tr><tr><td>库存</td><td><code>erp:warehouse:*</code>、<code>erp:stock:list/export</code>、<code>erp:stock-record:list/export</code></td></tr><tr><td>库存单据</td><td><code>erp:stock-in:*</code>、<code>erp:stock-out:*</code>、<code>erp:stock-move:*</code>、<code>erp:stock-check:*</code></td></tr><tr><td>财务</td><td><code>erp:account:*</code>、<code>erp:finance-payment:*</code>、<code>erp:finance-receipt:*</code></td></tr></tbody></table>
+<p>单据 <code>*</code> 至少拆分为 <code>list</code>、<code>create</code>、<code>update</code>、<code>delete</code>、<code>approve</code>、<code>reverse</code>、<code>export</code>。审核与反审核必须是独立权限，不能沿用普通更新权限。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="162-权限验收">16.2 权限验收<a href="#162-权限验收" class="hash-link" aria-label="16.2 权限验收的直接链接" title="16.2 权限验收的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">前端菜单和按钮显隐与后端权限码一致，但后端始终是最终安全边界。</li>
+<li class="">无列表权限的用户不能通过详情 ID、导出、选单弹窗或统计接口旁路读取数据。</li>
+<li class="">无财务敏感权限时，银行账号、结算账号等字段在详情和导出中一致脱敏。</li>
+<li class="">超级管理员绕过只发生在 Platform 授权层；ERP Repository 不自行判断超级管理员。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="17-数据模型边界">17. 数据模型边界<a href="#17-数据模型边界" class="hash-link" aria-label="17. 数据模型边界的直接链接" title="17. 数据模型边界的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="171-erp-拥有的数据">17.1 ERP 拥有的数据<a href="#171-erp-拥有的数据" class="hash-link" aria-label="17.1 ERP 拥有的数据的直接链接" title="17.1 ERP 拥有的数据的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类别</th><th>目标实体</th></tr></thead><tbody><tr><td>商品</td><td><code>ProductCategory</code>、<code>ProductUnit</code>、<code>Product</code></td></tr><tr><td>往来单位</td><td><code>Supplier</code>、<code>Customer</code></td></tr><tr><td>库存</td><td><code>Warehouse</code>、<code>StockBalance</code>、<code>StockLedger</code></td></tr><tr><td>采购</td><td><code>PurchaseOrder</code> 与 <code>PurchaseOrderItem</code>、<code>PurchaseIn</code> 与 <code>PurchaseInItem</code>、<code>PurchaseReturn</code> 与 <code>PurchaseReturnItem</code></td></tr><tr><td>销售</td><td><code>SaleOrder</code> 与 <code>SaleOrderItem</code>、<code>SaleOut</code> 与 <code>SaleOutItem</code>、<code>SaleReturn</code> 与 <code>SaleReturnItem</code></td></tr><tr><td>库存单据</td><td><code>StockIn</code> 与 <code>StockInItem</code>、<code>StockOut</code> 与 <code>StockOutItem</code>、<code>StockMove</code> 与 <code>StockMoveItem</code>、<code>StockCheck</code> 与 <code>StockCheckItem</code></td></tr><tr><td>财务</td><td><code>SettlementAccount</code>、<code>FinancePayment</code> 与 <code>FinancePaymentItem</code>、<code>FinanceReceipt</code> 与 <code>FinanceReceiptItem</code></td></tr></tbody></table>
+<p>所有实体表名、约束、索引、RLS policy、授权和 downgrade 行为必须由 ERP 自己的 Alembic namespace 管理。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="172-跨模块引用">17.2 跨模块引用<a href="#172-跨模块引用" class="hash-link" aria-label="17.2 跨模块引用的直接链接" title="17.2 跨模块引用的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">ERP 可以保存 Platform 用户、部门等稳定 ID，但不建立跨模块数据库外键。</li>
+<li class="">用户显示名等易变化字段在查询时通过 Platform 公开查询端口批量解析；关键历史单据可保存必要快照。</li>
+<li class="">Platform 删除用户、租户或其他主数据前，通过 ERP <code>ReferenceGuardSpec</code> 检查引用。</li>
+<li class="">未来 CRM、BPM 或其他模块只能通过 ERP <code>public_api</code> DTO、命令、查询和版本化事件协作，不得查询 ERP ORM。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="173-目标事件">17.3 目标事件<a href="#173-目标事件" class="hash-link" aria-label="17.3 目标事件的直接链接" title="17.3 目标事件的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>事件</th><th>版本</th><th>触发时机</th><th>关键数据</th></tr></thead><tbody><tr><td><code>erp.purchase_order.approved</code></td><td>v1</td><td>采购订单首次审核成功</td><td>tenant、order_id、no、supplier_id、total_price</td></tr><tr><td><code>erp.purchase_in.approved</code></td><td>v1</td><td>采购入库审核成功</td><td>tenant、document_id、order_id、stock effects</td></tr><tr><td><code>erp.sale_order.approved</code></td><td>v1</td><td>销售订单首次审核成功</td><td>tenant、order_id、no、customer_id、total_price</td></tr><tr><td><code>erp.sale_out.approved</code></td><td>v1</td><td>销售出库审核成功</td><td>tenant、document_id、order_id、stock effects</td></tr><tr><td><code>erp.stock.changed</code></td><td>v1</td><td>库存事务提交</td><td>tenant、product_id、warehouse_id、delta、balance、source</td></tr><tr><td><code>erp.payment.approved</code></td><td>v1</td><td>付款审核成功</td><td>tenant、payment_id、supplier_id、amount</td></tr><tr><td><code>erp.receipt.approved</code></td><td>v1</td><td>收款审核成功</td><td>tenant、receipt_id、customer_id、amount</td></tr></tbody></table>
+<p>反审核使用对应明确事件或事件动作字段，不能把“审核事件金额取负”作为未声明约定。事件和业务状态使用事务 Outbox 同时提交，消费者按 event ID 幂等处理。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="18-api-与错误契约要求">18. API 与错误契约要求<a href="#18-api-与错误契约要求" class="hash-link" aria-label="18. API 与错误契约要求的直接链接" title="18. API 与错误契约要求的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">API 前缀目标为 <code>/api/v1/erp</code>，按资源分组；OpenAPI 是前端类型的唯一来源。</li>
+<li class="">创建接口支持 <code>Idempotency-Key</code> 或等价幂等键；审核、反审核和导入类命令必须防重复提交。</li>
+<li class="">分页统一使用当前项目规范；筛选时间使用带时区时间，服务端按租户时区解释自然日。</li>
+<li class="">错误返回稳定 <code>code</code> 与安全 <code>message</code>，至少区分不存在、已停用、状态冲突、库存不足、超量、超额核销、跨租户、无权限和模块不可用。</li>
+<li class="">409 用于并发版本、重复审核、下游依赖阻断、库存不足和额度被并发占用等业务冲突。</li>
+<li class="">422 用于字段格式、必填、数值范围和明细结构错误。</li>
+<li class="">不能向客户端返回 SQL、堆栈、内部表名、租户数据或第三方 SDK 对象。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="19-导入导出附件与审计">19. 导入、导出、附件与审计<a href="#19-导入导出附件与审计" class="hash-link" aria-label="19. 导入、导出、附件与审计的直接链接" title="19. 导入、导出、附件与审计的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="191-导入导出">19.1 导入导出<a href="#191-导入导出" class="hash-link" aria-label="19.1 导入导出的直接链接" title="19.1 导入导出的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">v1.0 P0 必须支持各列表导出；导出应用当前筛选、数据权限和字段脱敏。</li>
+<li class="">大数据导出应采用受控后台任务或流式响应，不能一次加载全部记录。</li>
+<li class="">商品、客户、供应商批量导入列为 P1；提供版本化模板、逐行校验结果和部分成功策略说明。</li>
+<li class="">业务单据批量导入不进入 v1.0，避免绕过选单、库存和审核规则。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="192-附件">19.2 附件<a href="#192-附件" class="hash-link" aria-label="19.2 附件的直接链接" title="19.2 附件的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">单据附件复用 Platform 文件公开能力，ERP 只保存稳定文件引用，不导入存储实现。</li>
+<li class="">上传、预览、下载和删除均校验租户、单据数据范围和文件权限。</li>
+<li class="">已审核单据附件默认不可替换；如允许补充附件，必须记录独立审计事件。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="193-审计">19.3 审计<a href="#193-审计" class="hash-link" aria-label="19.3 审计的直接链接" title="19.3 审计的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">创建、修改、删除、审核、反审核、导出和查看敏感财务字段均记录操作日志。</li>
+<li class="">审核日志至少记录操作人、时间、来源 IP、原状态、目标状态、单据版本和失败原因。</li>
+<li class="">业务单据保留创建人、更新人、审核人、审核时间和版本号。</li>
+<li class="">密码、token、完整银行账号及文件签名 URL 不进入日志明文。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="20-非功能需求">20. 非功能需求<a href="#20-非功能需求" class="hash-link" aria-label="20. 非功能需求的直接链接" title="20. 非功能需求的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="201-安全与隔离">20.1 安全与隔离<a href="#201-安全与隔离" class="hash-link" aria-label="20.1 安全与隔离的直接链接" title="20.1 安全与隔离的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">ERP 所有 tenant-owned 表在 <code>app_runtime</code> 角色下验证 RLS 读写、bulk DML、无 scope 和跨租户负向场景。</li>
+<li class=""><code>app_runtime</code> 无超级用户、建库、建角色或 <code>BYPASSRLS</code> 权限。</li>
+<li class="">金额、数量和权限校验全部在服务端重复执行，不能信任前端只读字段。</li>
+<li class="">导出、选择器、统计和健康检查不得形成越权旁路。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="202-一致性与恢复">20.2 一致性与恢复<a href="#202-一致性与恢复" class="hash-link" aria-label="20.2 一致性与恢复的直接链接" title="20.2 一致性与恢复的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">单据状态、明细、库存余额、库存流水、订单累计量、核销累计额和 Outbox 必须按业务原子性放在同一事务。</li>
+<li class="">任何事务失败都不得留下半张单据、半边调拨或只变余额未写流水的状态。</li>
+<li class="">数据库唯一约束、检查约束和并发更新条件共同保护关键不变量。</li>
+<li class="">提供库存余额与流水、源单金额与核销明细的对账命令；只报告差异，不自动无审计修复。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="203-性能">20.3 性能<a href="#203-性能" class="hash-link" aria-label="20.3 性能的直接链接" title="20.3 性能的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">所有列表强制分页，默认每页 20，最大页大小遵循平台限制。</li>
+<li class="">高频筛选字段建立租户前缀复合索引，包括单号、业务日期、状态、往来单位、商品和仓库。</li>
+<li class="">选单查询只返回仍有可操作余量的已审核单据，并支持服务端搜索。</li>
+<li class="">首页统计允许短时缓存，但缓存键必须包含租户和数据范围；审核/反审核后按一致策略失效。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="204-可用性与可观测性">20.4 可用性与可观测性<a href="#204-可用性与可观测性" class="hash-link" aria-label="20.4 可用性与可观测性的直接链接" title="20.4 可用性与可观测性的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">ERP 模块未安装、迁移落后、依赖不可用或对账异常时，健康状态必须可区分。</li>
+<li class="">关键指标至少包括审核成功/失败数、库存不足冲突数、单据处理耗时、Outbox backlog 和对账差异数。</li>
+<li class="">错误日志包含 trace ID、租户安全标识和业务单号，但不包含敏感正文。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="21-edition-与模块装配目标">21. Edition 与模块装配目标<a href="#21-edition-与模块装配目标" class="hash-link" aria-label="21. Edition 与模块装配目标的直接链接" title="21. Edition 与模块装配目标的直接链接" translate="no">​</a></h2>
+<p>Edition 组合如下，具体模块集合以 <code>editions/&lt;edition&gt;.yaml</code> 为唯一事实源：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Edition</th><th>目标模块</th></tr></thead><tbody><tr><td><code>base</code></td><td><code>platform</code></td></tr><tr><td><code>items</code></td><td><code>platform</code>、<code>items</code></td></tr><tr><td><code>erp</code></td><td><code>platform</code>、<code>erp</code></td></tr><tr><td><code>suite</code></td><td><code>platform</code>、<code>items</code>、<code>erp</code></td></tr></tbody></table>
+<p>ERP <code>ModuleDefinition</code> 负责声明 Router、权限、菜单、迁移、事件、引用保护和生命周期组件。新前端能力进入 <code>frontend/apps/web-pro/src/modules/erp</code>，按生成的 Build Manifest 装配组件和客户端。当前迁移页面仍位于 <code>web-pro/src/pages/erp</code>，静态注册生成和模块归位尚未全部完成；现状与目标区分见<a class="" href="/chein-doc-site/reference/designs/erp/erp-trd/">ERP TRD</a>及<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。Base/Items 构建不得包含或预加载 ERP 运行入口。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="22-交付阶段">22. 交付阶段<a href="#22-交付阶段" class="hash-link" aria-label="22. 交付阶段的直接链接" title="22. 交付阶段的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="221-phase-a模块基础与库存底座">22.1 Phase A：模块基础与库存底座<a href="#221-phase-a模块基础与库存底座" class="hash-link" aria-label="22.1 Phase A：模块基础与库存底座的直接链接" title="22.1 Phase A：模块基础与库存底座的直接链接" translate="no">​</a></h3>
+<p>范围：ERP ModuleDefinition、Edition、独立 schema/migration、商品分类/单位/商品、仓库、库存余额/流水、其他入库/出库、调拨、盘点、权限、RLS 和审计。</p>
+<p>退出标准：所有库存入口均通过统一记账服务；审核、反审核、并发、负库存和跨租户测试通过；余额与流水可对账。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="222-phase-b采购与销售闭环">22.2 Phase B：采购与销售闭环<a href="#222-phase-b采购与销售闭环" class="hash-link" aria-label="22.2 Phase B：采购与销售闭环的直接链接" title="22.2 Phase B：采购与销售闭环的直接链接" translate="no">​</a></h3>
+<p>范围：供应商、客户、采购订单/入库/退货、销售订单/出库/退货、选单组件、累计数量和状态派生。</p>
+<p>退出标准：支持分批入库/出库/退货；超量、未审核源单、禁用主数据、下游阻断反审核等负向场景通过。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="223-phase-c财务核销与经营首页">22.3 Phase C：财务核销与经营首页<a href="#223-phase-c财务核销与经营首页" class="hash-link" aria-label="22.3 Phase C：财务核销与经营首页的直接链接" title="22.3 Phase C：财务核销与经营首页的直接链接" translate="no">​</a></h3>
+<p>范围：结算账户、付款单、收款单、核销、销售/采购汇总与趋势、导出和完整前端体验。</p>
+<p>退出标准：并发核销不超额，反审核正确恢复余额；统计口径与已审核单据明细对账一致；ERP v1.0 Edition 完整构建。</p>
+<p>各 Phase 可以独立合并技术增量，但租户权益默认关闭；没有完成 P0 闭环和数据迁移验证前，不对外宣称 ERP 可交付。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="23-验收场景">23. 验收场景<a href="#23-验收场景" class="hash-link" aria-label="23. 验收场景的直接链接" title="23. 验收场景的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="231-采购到付款">23.1 采购到付款<a href="#231-采购到付款" class="hash-link" aria-label="23.1 采购到付款的直接链接" title="23.1 采购到付款的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">创建并审核 100 件商品的采购订单。</li>
+<li class="">分两次入库 40 件和 60 件，库存累计增加 100，订单显示全部入库。</li>
+<li class="">再尝试入库 1 件，系统返回超量冲突且库存不变。</li>
+<li class="">创建采购退货 10 件并审核，库存减少 10，订单累计退货为 10。</li>
+<li class="">对两张采购入库分别部分付款，已付与未付金额准确。</li>
+<li class="">对已核销入库单执行反审核，系统拒绝并说明存在付款记录。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="232-销售到收款">23.2 销售到收款<a href="#232-销售到收款" class="hash-link" aria-label="23.2 销售到收款的直接链接" title="23.2 销售到收款的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">在库存 90 件时创建并审核销售订单 80 件。</li>
+<li class="">分批出库 30 件和 50 件，库存降至 10，订单显示全部出库。</li>
+<li class="">尝试额外出库或其他出库 11 件，整单失败且无部分流水。</li>
+<li class="">销售退货 5 件，库存恢复至 15。</li>
+<li class="">创建部分收款和尾款，源单从未收转为部分收款再转为已收清。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="233-库存一致性">23.3 库存一致性<a href="#233-库存一致性" class="hash-link" aria-label="23.3 库存一致性的直接链接" title="23.3 库存一致性的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">调拨 5 件时同时产生调出、调入两条流水，两仓总库存不变。</li>
+<li class="">盘点创建后发生其他出库，再审核原盘点单，系统提示账面快照过期。</li>
+<li class="">两个用户并发审核同一出库单，只能产生一次库存扣减。</li>
+<li class="">反审核库存单据后保留原流水，并新增相反数量的冲销流水。</li>
+<li class="">对账命令聚合流水后与库存余额完全一致。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="234-权限与租户">23.4 权限与租户<a href="#234-权限与租户" class="hash-link" aria-label="23.4 权限与租户的直接链接" title="23.4 权限与租户的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">未启用 ERP 权益的租户访问任意 ERP API 返回模块访问错误。</li>
+<li class="">有菜单但无审核权限的用户无法通过直接请求审核单据。</li>
+<li class="">用户无法通过替换 ID 查看、导出或选择其他租户的数据。</li>
+<li class="">无租户 scope 的 <code>app_runtime</code> 查询不到 ERP tenant-owned 数据且不能写入。</li>
+<li class="">本部门销售员无法在详情、统计或导出中旁路读取其他部门订单。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="24-最低验证矩阵">24. 最低验证矩阵<a href="#24-最低验证矩阵" class="hash-link" aria-label="24. 最低验证矩阵的直接链接" title="24. 最低验证矩阵的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变更面</th><th>最低验证</th></tr></thead><tbody><tr><td>Python</td><td><code>cd backend &amp;&amp; uv run ruff check app tests</code>，ERP 单元与 API 测试</td></tr><tr><td>模型/迁移</td><td>ERP upgrade/downgrade、migration tests、<code>uv run alembic check</code></td></tr><tr><td>Tenant/RLS</td><td>管理员连接回归 + <code>app_runtime</code> 读写、bulk DML、无 scope、跨租户负向测试</td></tr><tr><td>单据状态</td><td>创建、更新、删除、审核、重复审核、反审核、下游阻断、并发冲突</td></tr><tr><td>库存</td><td>全业务类型增减、负库存、调拨原子性、冲销、余额流水对账</td></tr><tr><td>财务</td><td>部分/全部核销、超额、并发、反审核、来源状态与租户校验</td></tr><tr><td>API/DTO</td><td>路由测试并重新生成 ERP OpenAPI 客户端，检查 drift</td></tr><tr><td>前端</td><td><code>pnpm frontend:typecheck</code>、ERP 受影响构建和关键 Playwright E2E</td></tr><tr><td>Edition</td><td>Base、Items、ERP、Suite 构建与 Manifest/边界/迁移测试</td></tr><tr><td>部署</td><td><code>docker compose config</code>、ERP Edition 迁移与启动健康验证</td></tr></tbody></table>
+<p>共享数据库测试必须串行执行。远端 CI、镜像扫描、签名、N-1 升级/回退演练和团队签署必须以真实外部结果验收，不能用本地测试替代。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="25-风险与应对">25. 风险与应对<a href="#25-风险与应对" class="hash-link" aria-label="25. 风险与应对的直接链接" title="25. 风险与应对的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>风险</th><th>影响</th><th>应对</th></tr></thead><tbody><tr><td>将轻量进销存误称完整 ERP</td><td>需求持续膨胀</td><td>固定 v1.0 非目标范围，新增域单独立项</td></tr><tr><td>并发审核导致重复记账</td><td>库存和资金失真</td><td>条件更新、幂等键、唯一约束和事务测试</td></tr><tr><td>余额字段与明细漂移</td><td>订单状态和核销错误</td><td>派生字段统一服务更新并提供对账检查</td></tr><tr><td>反审核删除历史流水</td><td>审计链断裂</td><td>强制使用冲销流水，不允许修改或删除流水</td></tr><tr><td>数据权限只保护列表</td><td>详情或导出越权</td><td>所有入口复用同一 scope builder 并做负向测试</td></tr><tr><td>ERP 静态依赖 Platform ORM</td><td>模块边界失效</td><td>只依赖 Platform 公开端口和稳定 DTO</td></tr><tr><td>一次性交付范围过大</td><td>长期不可用</td><td>按库存底座、进销闭环、财务统计三阶段交付</td></tr><tr><td>金额口径含糊</td><td>对账争议</td><td>开发前签署税额、优惠、其他费用和订金口径</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="26-开发前待确认事项">26. 开发前待确认事项<a href="#26-开发前待确认事项" class="hash-link" aria-label="26. 开发前待确认事项的直接链接" title="26. 开发前待确认事项的直接链接" translate="no">​</a></h2>
+<p>以下事项不影响本 PRD 确立总体范围，但必须在对应 Phase 开发前由产品负责人确认：</p>
+<ol>
+<li class="">商品名称是否允许租户内重名，还是只要求条码唯一。</li>
+<li class="">商品分类是否只允许末级分类挂商品。</li>
+<li class="">销售价低于最低销售价是直接禁止，还是增加独立越权权限。</li>
+<li class="">采购/销售订单的订金是否在 v1.0 自动进入核销。</li>
+<li class="">“其他费用”在销售出库和销售退货中的业务名称及正负方向。</li>
+<li class="">采购退货是否必须严格来源于采购订单，还是允许来源于已审核采购入库单。</li>
+<li class="">业务日期是否允许回填历史日期，以及跨结账期是否需要限制。</li>
+<li class="">导出文件是否需要 Excel，还是首版允许 CSV。</li>
+<li class="">Phase C 上线前是否需要商品、客户和供应商批量导入。</li>
+<li class="">是否在 v1.0 增加独立的供应商退款收款与客户退款付款流程；若不增加，则只支持退货信用额抵减同一往来单位的未结款。</li>
+</ol>
+<p>未确认项必须采用失败关闭或本 PRD 给出的保守默认，不得在实现中静默形成不可逆业务规则。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="27-erp-v10-完成定义">27. ERP v1.0 完成定义<a href="#27-erp-v10-完成定义" class="hash-link" aria-label="27. ERP v1.0 完成定义的直接链接" title="27. ERP v1.0 完成定义的直接链接" translate="no">​</a></h2>
+<p>只有同时满足以下条件，才能宣称 ERP v1.0 完成：</p>
+<ul>
+<li class="">第 6.1 节所有 P0 能力形成可操作闭环，不存在占位页面或旁路写入。</li>
+<li class="">ERP Edition、ModuleDefinition、独立迁移、Manifest 和前端注册均可重现。</li>
+<li class="">所有 tenant-owned 表完成 Tenant UoW、自动过滤、写入校验、RLS 和跨租户负向验证。</li>
+<li class="">审核、反审核、库存记账、累计数量、核销金额和 Outbox 事务一致。</li>
+<li class="">库存余额与流水、源单金额与核销明细对账为零差异。</li>
+<li class="">权限、数据范围、敏感字段、附件和导出无已知越权路径。</li>
+<li class="">后端 lint/测试、迁移检查、前端 typecheck、ERP E2E 和受影响 Edition 构建实际通过。</li>
+<li class="">兼容、迁移、升级、回退、监控和运维文档与实现一致。</li>
+<li class="">未执行的远端 CI、镜像扫描、签名、N-1 演练或团队签署被明确列出，不冒充已完成。</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/erp/erp-prd.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/designs/erp/erp-trd/">Fast Vben Admin 轻量进销存 ERP 技术需求文档</a></li><li><a href="/chein-doc-site/reference/designs/platform/modular-product/">模块化产品架构规划</a></li><li><a href="/chein-doc-site/reference/designs/platform/PRD/">Fast Vben Admin 产品需求文档 PRD</a></li><li><a href="/chein-doc-site/reference/development/backend/module-guide/">新增业务模块指南</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/product/features/erp/index/">ERP 业务知识库（面向 AI / RAG）</a></li><li><a href="/chein-doc-site/reference/designs/erp/erp-trd/">Fast Vben Admin 轻量进销存 ERP 技术需求文档</a></li><li><a href="/chein-doc-site/reference/designs/erp/README/">ERP 文档</a></li><li><a href="/chein-doc-site/reference/designs/platform/PRD/">Fast Vben Admin 产品需求文档 PRD</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdesigns%2Ferp%2Ferp-prd%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/designs/erp/README/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">ERP 文档</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/designs/erp/erp-trd/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Fast Vben Admin 轻量进销存 ERP 技术需求文档</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-文档信息" class="table-of-contents__link toc-highlight">1. 文档信息</a><ul><li><a href="#11-参考基线" class="table-of-contents__link toc-highlight">1.1 参考基线</a></li></ul></li><li><a href="#2-产品结论" class="table-of-contents__link toc-highlight">2. 产品结论</a></li><li><a href="#3-背景与机会" class="table-of-contents__link toc-highlight">3. 背景与机会</a><ul><li><a href="#31-参考功能映射" class="table-of-contents__link toc-highlight">3.1 参考功能映射</a></li></ul></li><li><a href="#4-产品目标与成功指标" class="table-of-contents__link toc-highlight">4. 产品目标与成功指标</a><ul><li><a href="#41-产品目标" class="table-of-contents__link toc-highlight">4.1 产品目标</a></li><li><a href="#42-业务成功指标" class="table-of-contents__link toc-highlight">4.2 业务成功指标</a></li></ul></li><li><a href="#5-用户与角色" class="table-of-contents__link toc-highlight">5. 用户与角色</a></li><li><a href="#6-产品范围" class="table-of-contents__link toc-highlight">6. 产品范围</a><ul><li><a href="#61-erp-v10-范围" class="table-of-contents__link toc-highlight">6.1 ERP v1.0 范围</a></li><li><a href="#62-明确不进入-erp-v10" class="table-of-contents__link toc-highlight">6.2 明确不进入 ERP v1.0</a></li></ul></li><li><a href="#7-信息架构与导航" class="table-of-contents__link toc-highlight">7. 信息架构与导航</a><ul><li><a href="#71-页面通用要求" class="table-of-contents__link toc-highlight">7.1 页面通用要求</a></li></ul></li><li><a href="#8-通用业务规则" class="table-of-contents__link toc-highlight">8. 通用业务规则</a><ul><li><a href="#81-租户与数据归属" class="table-of-contents__link toc-highlight">8.1 租户与数据归属</a></li><li><a href="#82-主数据状态" class="table-of-contents__link toc-highlight">8.2 主数据状态</a></li><li><a href="#83-单据状态" class="table-of-contents__link toc-highlight">8.3 单据状态</a></li><li><a href="#84-单号规则" class="table-of-contents__link toc-highlight">8.4 单号规则</a></li><li><a href="#85-数量与金额" class="table-of-contents__link toc-highlight">8.5 数量与金额</a></li><li><a href="#86-库存记账" class="table-of-contents__link toc-highlight">8.6 库存记账</a></li></ul></li><li><a href="#9-商品管理需求" class="table-of-contents__link toc-highlight">9. 商品管理需求</a><ul><li><a href="#91-商品单位-erp-prod-unit" class="table-of-contents__link toc-highlight">9.1 商品单位 <code>ERP-PROD-UNIT</code></a></li><li><a href="#92-商品分类-erp-prod-category" class="table-of-contents__link toc-highlight">9.2 商品分类 <code>ERP-PROD-CATEGORY</code></a></li><li><a href="#93-商品资料-erp-prod-product" class="table-of-contents__link toc-highlight">9.3 商品资料 <code>ERP-PROD-PRODUCT</code></a></li></ul></li><li><a href="#10-往来单位需求" class="table-of-contents__link toc-highlight">10. 往来单位需求</a><ul><li><a href="#101-供应商-erp-pur-supplier" class="table-of-contents__link toc-highlight">10.1 供应商 <code>ERP-PUR-SUPPLIER</code></a></li><li><a href="#102-客户-erp-sale-customer" class="table-of-contents__link toc-highlight">10.2 客户 <code>ERP-SALE-CUSTOMER</code></a></li></ul></li><li><a href="#11-采购管理需求" class="table-of-contents__link toc-highlight">11. 采购管理需求</a><ul><li><a href="#111-采购订单-erp-pur-order" class="table-of-contents__link toc-highlight">11.1 采购订单 <code>ERP-PUR-ORDER</code></a></li><li><a href="#112-采购入库-erp-pur-in" class="table-of-contents__link toc-highlight">11.2 采购入库 <code>ERP-PUR-IN</code></a></li><li><a href="#113-采购退货-erp-pur-return" class="table-of-contents__link toc-highlight">11.3 采购退货 <code>ERP-PUR-RETURN</code></a></li></ul></li><li><a href="#12-销售管理需求" class="table-of-contents__link toc-highlight">12. 销售管理需求</a><ul><li><a href="#121-销售订单-erp-sale-order" class="table-of-contents__link toc-highlight">12.1 销售订单 <code>ERP-SALE-ORDER</code></a></li><li><a href="#122-销售出库-erp-sale-out" class="table-of-contents__link toc-highlight">12.2 销售出库 <code>ERP-SALE-OUT</code></a></li><li><a href="#123-销售退货-erp-sale-return" class="table-of-contents__link toc-highlight">12.3 销售退货 <code>ERP-SALE-RETURN</code></a></li></ul></li><li><a href="#13-库存管理需求" class="table-of-contents__link toc-highlight">13. 库存管理需求</a><ul><li><a href="#131-仓库-erp-stock-warehouse" class="table-of-contents__link toc-highlight">13.1 仓库 <code>ERP-STOCK-WAREHOUSE</code></a></li><li><a href="#132-库存余额-erp-stock-balance" class="table-of-contents__link toc-highlight">13.2 库存余额 <code>ERP-STOCK-BALANCE</code></a></li><li><a href="#133-库存流水-erp-stock-ledger" class="table-of-contents__link toc-highlight">13.3 库存流水 <code>ERP-STOCK-LEDGER</code></a></li><li><a href="#134-其他入库与其他出库-erp-stock-other" class="table-of-contents__link toc-highlight">13.4 其他入库与其他出库 <code>ERP-STOCK-OTHER</code></a></li><li><a href="#135-库存调拨-erp-stock-move" class="table-of-contents__link toc-highlight">13.5 库存调拨 <code>ERP-STOCK-MOVE</code></a></li><li><a href="#136-库存盘点-erp-stock-check" class="table-of-contents__link toc-highlight">13.6 库存盘点 <code>ERP-STOCK-CHECK</code></a></li></ul></li><li><a href="#14-财务管理需求" class="table-of-contents__link toc-highlight">14. 财务管理需求</a><ul><li><a href="#141-结算账户-erp-fin-account" class="table-of-contents__link toc-highlight">14.1 结算账户 <code>ERP-FIN-ACCOUNT</code></a></li><li><a href="#142-付款单-erp-fin-payment" class="table-of-contents__link toc-highlight">14.2 付款单 <code>ERP-FIN-PAYMENT</code></a></li><li><a href="#143-收款单-erp-fin-receipt" class="table-of-contents__link toc-highlight">14.3 收款单 <code>ERP-FIN-RECEIPT</code></a></li><li><a href="#144-结算口径" class="table-of-contents__link toc-highlight">14.4 结算口径</a></li></ul></li><li><a href="#15-erp-首页与统计" class="table-of-contents__link toc-highlight">15. ERP 首页与统计</a><ul><li><a href="#151-汇总卡片" class="table-of-contents__link toc-highlight">15.1 汇总卡片</a></li><li><a href="#152-时间趋势" class="table-of-contents__link toc-highlight">15.2 时间趋势</a></li></ul></li><li><a href="#16-权限设计" class="table-of-contents__link toc-highlight">16. 权限设计</a><ul><li><a href="#161-权限命名" class="table-of-contents__link toc-highlight">16.1 权限命名</a></li><li><a href="#162-权限验收" class="table-of-contents__link toc-highlight">16.2 权限验收</a></li></ul></li><li><a href="#17-数据模型边界" class="table-of-contents__link toc-highlight">17. 数据模型边界</a><ul><li><a href="#171-erp-拥有的数据" class="table-of-contents__link toc-highlight">17.1 ERP 拥有的数据</a></li><li><a href="#172-跨模块引用" class="table-of-contents__link toc-highlight">17.2 跨模块引用</a></li><li><a href="#173-目标事件" class="table-of-contents__link toc-highlight">17.3 目标事件</a></li></ul></li><li><a href="#18-api-与错误契约要求" class="table-of-contents__link toc-highlight">18. API 与错误契约要求</a></li><li><a href="#19-导入导出附件与审计" class="table-of-contents__link toc-highlight">19. 导入、导出、附件与审计</a><ul><li><a href="#191-导入导出" class="table-of-contents__link toc-highlight">19.1 导入导出</a></li><li><a href="#192-附件" class="table-of-contents__link toc-highlight">19.2 附件</a></li><li><a href="#193-审计" class="table-of-contents__link toc-highlight">19.3 审计</a></li></ul></li><li><a href="#20-非功能需求" class="table-of-contents__link toc-highlight">20. 非功能需求</a><ul><li><a href="#201-安全与隔离" class="table-of-contents__link toc-highlight">20.1 安全与隔离</a></li><li><a href="#202-一致性与恢复" class="table-of-contents__link toc-highlight">20.2 一致性与恢复</a></li><li><a href="#203-性能" class="table-of-contents__link toc-highlight">20.3 性能</a></li><li><a href="#204-可用性与可观测性" class="table-of-contents__link toc-highlight">20.4 可用性与可观测性</a></li></ul></li><li><a href="#21-edition-与模块装配目标" class="table-of-contents__link toc-highlight">21. Edition 与模块装配目标</a></li><li><a href="#22-交付阶段" class="table-of-contents__link toc-highlight">22. 交付阶段</a><ul><li><a href="#221-phase-a模块基础与库存底座" class="table-of-contents__link toc-highlight">22.1 Phase A：模块基础与库存底座</a></li><li><a href="#222-phase-b采购与销售闭环" class="table-of-contents__link toc-highlight">22.2 Phase B：采购与销售闭环</a></li><li><a href="#223-phase-c财务核销与经营首页" class="table-of-contents__link toc-highlight">22.3 Phase C：财务核销与经营首页</a></li></ul></li><li><a href="#23-验收场景" class="table-of-contents__link toc-highlight">23. 验收场景</a><ul><li><a href="#231-采购到付款" class="table-of-contents__link toc-highlight">23.1 采购到付款</a></li><li><a href="#232-销售到收款" class="table-of-contents__link toc-highlight">23.2 销售到收款</a></li><li><a href="#233-库存一致性" class="table-of-contents__link toc-highlight">23.3 库存一致性</a></li><li><a href="#234-权限与租户" class="table-of-contents__link toc-highlight">23.4 权限与租户</a></li></ul></li><li><a href="#24-最低验证矩阵" class="table-of-contents__link toc-highlight">24. 最低验证矩阵</a></li><li><a href="#25-风险与应对" class="table-of-contents__link toc-highlight">25. 风险与应对</a></li><li><a href="#26-开发前待确认事项" class="table-of-contents__link toc-highlight">26. 开发前待确认事项</a></li><li><a href="#27-erp-v10-完成定义" class="table-of-contents__link toc-highlight">27. ERP v1.0 完成定义</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/datasource/datasource-api" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">数据源 API 与数据库 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-api/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="数据源 API 与数据库 | Chein 文档中心"><meta data-rh="true" name="description" content="数据源 API 与数据库 · Chein 技术文档"><meta data-rh="true" property="og:description" content="数据源 API 与数据库 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-api/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-api/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-api/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"数据源","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/数据源"},{"@type":"ListItem","position":2,"name":"数据源 API 与数据库","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-api"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="折叠侧边栏分类 &#x27;数据源&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-api/"><span class="linkLabel_gJOC">数据源 API 与数据库</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-delivery/"><span class="linkLabel_gJOC">数据源与数据表管理交付说明</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-design/"><span class="linkLabel_gJOC">数据源与数据表管理：DataVines 提炼与 Chein 适配</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/数据源/"><span>数据源</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">数据源 API 与数据库</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>数据源 API 与数据库</h1></header>
+<p>本地实现入口为 <code>backend/app/modules/datasource/routes.py</code>，类型源为同模块 <code>public_api/dto.py</code>；完整契约以 Suite OpenAPI 为准，通过 <code>pnpm generate:api -- --edition suite</code> 生成前端客户端。设计来源和 DataVines 原接口见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-design/">设计提炼</a>，部署及验证见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">交付说明</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="公共规则">公共规则<a href="#公共规则" class="hash-link" aria-label="公共规则的直接链接" title="公共规则的直接链接" translate="no">​</a></h2>
+<p>基址 <code>/api/v1/datasource</code>；沿用登录 JWT、可信 tenant 和 <code>require_module_access</code>，请求不能指定 tenant/owner。以下权限均省略 <code>datasource:</code> 前缀。分页 <code>{items,total,page,page_size}</code>，默认 50，上限 100。资源 ID 为 UUID；配置更新使用 <code>expected_revision</code>，冲突返回 409。成功为 DTO，错误由现有全局处理器返回 <code>code/detail</code>，错误码以 <code>DATASOURCE_</code> 开头。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法、相对路径</th><th>输入</th><th>输出</th><th>权限</th></tr></thead><tbody><tr><td>GET <code>/types</code></td><td>无</td><td>代码注册的15种类型字符串数组，清单及验证范围见交付说明</td><td>read</td></tr><tr><td>GET <code>/config/{kind}</code></td><td>kind</td><td>type,label,fields,notice；字段含 name,label,kind,required,default,options</td><td>read</td></tr><tr><td>GET 空路径</td><td>search,type,page,page_size</td><td>ConnectionPublic 分页</td><td>read</td></tr><tr><td>POST 空路径</td><td>name,type?,connection,password</td><td>ConnectionPublic；自动提交首次目录采集</td><td>create</td></tr><tr><td>GET <code>/{id}</code></td><td>id</td><td>ConnectionPublic</td><td>read</td></tr><tr><td>PATCH <code>/{id}</code></td><td>name,connection,password?,expected_revision</td><td>ConnectionPublic；revision 加一，旧测试结果失效</td><td>update</td></tr><tr><td>DELETE <code>/{id}</code></td><td>expected_revision（query）</td><td><code>{deleted:true}</code>；有 IRI 引用或活跃任务则 409</td><td>delete</td></tr><tr><td>POST <code>/test</code></td><td>type?,id?,connection,password?</td><td>success,reason_code,message,tested_at,tested_revision</td><td>test；存量源额外检查 update</td></tr><tr><td>GET <code>/catalog/databases</code></td><td>datasource_id,page,page_size</td><td>EntityPublic 分页</td><td>read</td></tr><tr><td>GET <code>/catalog/tables</code></td><td>parent_id,search?,keyword?,prefix?,enabled?,tag?,page,page_size</td><td>EntityPublic 分页；筛选在服务端完成</td><td>read</td></tr><tr><td>GET <code>/catalog/tables/{id}</code></td><td>id</td><td>EntityPublic，properties 含完整主键/索引等源信息</td><td>read</td></tr><tr><td>GET <code>/catalog/tables/{id}/columns</code></td><td>page,page_size,search?</td><td>EntityPublic 分页，按源 ordinal 排序</td><td>read</td></tr><tr><td>GET <code>/catalog/tables/{id}/foreign-keys</code></td><td>page,page_size</td><td>外键分页，含 ordered_column_pairs、目标 ID/库表名和 target_enabled</td><td>read</td></tr><tr><td>POST <code>/catalog/tables/{id}/preview</code></td><td>limit?（默认20，1–100）</td><td>columns,rows,returned_count,truncated,synced_revision；no-store</td><td>preview</td></tr><tr><td>POST <code>/catalog/refresh</code></td><td>datasource_id,table_id?</td><td>TaskPublic；同作用域活跃任务复用，不同作用域冲突</td><td>sync</td></tr><tr><td>GET <code>/catalog/tasks</code></td><td>datasource_id,page,page_size</td><td>TaskPublic 分页，最近优先；供页面恢复轮询</td><td>read</td></tr><tr><td>GET <code>/catalog/tasks/{id}</code></td><td>id</td><td>TaskPublic</td><td>read</td></tr><tr><td>GET <code>/catalog/changes</code></td><td>datasource_id,entity_id?,task_id?,page,page_size</td><td>change_type,before,after,entity_id,task_id,created_at 等分页；表筛选同时包含其字段</td><td>read</td></tr><tr><td>PATCH <code>/catalog/entities/{id}/config</code></td><td>expected_revision、dependency_revisions? 及下述配置字段</td><td>EntityPublic</td><td>configure</td></tr><tr><td>POST <code>/catalog/tables/batch-config</code></td><td>ids,expected_revisions,enabled?,tags?,tag_mode?</td><td>EntityPublic 数组；同源、最多100张，整批事务提交</td><td>configure</td></tr><tr><td>POST <code>/catalog/tables/dependencies</code></td><td>ids（1–100）</td><td>missing,unresolved,edges；missing 是有界传递依赖集合，可交给 batch-config 一并启用</td><td>read</td></tr></tbody></table>
+<p>注册类型为 <code>mysql,postgresql,clickhouse,doris,starrocks,databend,mongodb,oracle,sqlserver,dm,hive,impala,presto,trino,maxcompute</code>。注册不代表已完成厂商实联验收；部署前置条件和验证状态见<a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">交付说明</a>。MySQL <code>connection</code> 为 <code>{host,port:3306,database,username,charset:&quot;utf8mb4&quot;,tls:true}</code>，PostgreSQL 使用 <code>{host,port:5432,database,schema_names:[&quot;public&quot;,&quot;agent&quot;],username,tls:true}</code>；其他类型采用 <code>/config/{kind}</code> 返回的字段与默认值，不复制 MySQL 端口。Oracle 的 database 为 Service Name，Presto/Trino 为 Catalog，MaxCompute 为 Project，MongoDB 的 database 同时作为认证库。拒绝未知字段；主机不能填写 URL；不接受 JDBC URL、驱动类、JAR 路径、任意 SQL 或自由驱动参数。<code>password</code>（MaxCompute 为 AK Secret）仅写入；编辑省略表示保留，空串/星号掩码不可作为替换密码。ConnectionPublic 返回 name,type,connection,has_password,revision,last_test_status/code/at,last_synced_at,created_by,creator,created_at，不返回密码或密文。</p>
+<p>PostgreSQL 测试可提交 <code>connection.schema_names: []</code> 发现 Schema；成功的 TestResult 新增 <code>schemas: string[]</code>（其他类型为空）。返回有 USAGE 权限的非系统 Schema，不返回密码。创建/修改 PostgreSQL 连接的 schema_names 最多100个且不能为空；未提供新字段时兼容原 schema_name 单值。<code>GET /catalog/tables</code> 新增可选 <code>schema_name</code> 查询参数；表列表 properties 保留 schema，数据库根 properties.schemas 为最近成功发布的选择范围。客户端树按该范围分组，各组沿用50项分页；完整身份包括数据库、Schema、表名，EntityPublic.id 仍是操作入口。</p>
+<p>测试连接返回明确类别：<code>success</code>、<code>network</code>、<code>timeout</code>、<code>authentication</code>、<code>database_missing</code>、<code>schema_required</code>（保存空选择时422）、<code>schema_missing</code>、<code>schema_changed</code>、<code>permission</code>、<code>tls</code>、<code>unsupported</code>、<code>driver_unavailable</code>、<code>timeout_unavailable</code>、<code>budget</code>、<code>unknown</code>，message 为安全提示。主机与端口由页面指定，不设应用级网络/端口白名单。新草稿的测试结果不伪装成已保存版本的健康状态；只有存量源参数一致且复用原密码时记录 tested_revision；PostgreSQL Schema 发现请求若复用同一连接参数与原密码，且确认保存范围仍全部可访问，也记录该保存版本的连接测试状态。</p>
+<p>EntityPublic 含 id,connection_id,parent_id,kind,physical_name,catalog_name,source_comment,presence,revision,properties,last_synced_at,config,recommended。列表不重复携带全表字段与外键，详情按需读取。字段 properties 包括 type,length,precision,scale,ordinal,nullable,default,primary_key,comment,generated。</p>
+<p>单表配置启用时可提交 <code>dependency_revisions:{目标UUID:配置版本}</code>，必须与当前缺失依赖集合一致，所有目标与主表原子启用。</p>
+<p>config 共同字段：business_name（200）、description（2000）、tags（最多20个，每个50字符）、revision；表独有 enabled、ontology_class_iri；字段独有 exposed、mask_policy（none/redact/last4）、ontology_property_iri。保留的 IRI 字段只存引用标识，不调用本体模块。批量 tags 默认替换，<code>tag_mode:&quot;add&quot;</code> 合并。表缺失或配置版本不匹配不能修改。</p>
+<p>TaskPublic 不暴露连接参数或 staging：id,connection_id,status,error_code,summary,created_at,finished_at；状态 pending/running/succeeded/failed/expired。summary 在处理中提供 completed/total，成功时给 tables/missing。完整快照成功后原子发布，失败保留旧目录；missing_or_inaccessible 不能被解释为已证明物理删除，删除后同名重建生成新目录身份。</p>
+<p>预览只查询启用表的 exposed 字段；默认隐藏 password/secret/token/phone/mobile/id_card 等名称命中项，可由有权用户配置。最多200列，单元格最多1000字符并按行列规模收紧，结果另有1MiB检查。值通过 CAST 转为字符串以避免大整数精度丢失，NULL 保持 null；二进制/大文本按相同字符预算截断，不能用于原样导出。无排序保证；结构变化、禁用表、权限撤销时拒绝返回样本。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="数据库所有权">数据库所有权<a href="#数据库所有权" class="hash-link" aria-label="数据库所有权的直接链接" title="数据库所有权的直接链接" translate="no">​</a></h2>
+<p>PostgreSQL schema <code>datasource</code>，独立 Alembic 版本表 <code>public.alembic_version_datasource</code>，初始 revision <code>datasource_baseline_v1</code>。后续 <code>datasource_enabled_defaults_v2</code> 一次性启用未修改过的旧默认表（active table、enabled=false、config revision=1）；已保存的配置和字段暴露状态不变。完整建表、索引、字段注释和 RLS SQL 见 迁移生成的 DDL（未发布资料）。部署必须运行迁移编排，不能把该 SQL 当作绕过迁移的启动脚本。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>表</th><th>所有者及用途</th><th>关键约束/索引</th></tr></thead><tbody><tr><td>connection</td><td>数据源、类型化非敏感参数、加密密码、版本和最近测试状态</td><td>tenant+name 唯一；tenant+type+created_at 索引</td></tr><tr><td>catalog_entity</td><td>database/table/column 统一目录，源 properties、父目录、结构版本、存在状态</td><td>tenant+connection 复合外键；parent 同源同租户；active 路径哈希唯一；父目录分页索引</td></tr><tr><td>entity_config</td><td>人工业务名、描述、标签、启用、暴露、脱敏及 IRI 扩展</td><td>tenant+entity 唯一；实体复合外键；配置 revision</td></tr><tr><td>entity_relation</td><td>一等外键关系，目标实体可空、原库表名、有序字段对和规则</td><td>source/target 同租户同源外键；source+constraint 唯一</td></tr><tr><td>sync_task</td><td>可恢复采集任务、租约、attempt fencing、staging、配置版本与摘要</td><td>同源最多一个 pending/running 的部分唯一索引；状态索引</td></tr><tr><td>schema_change</td><td>每次完整采集后的 added/changed/missing_or_inaccessible，before/after</td><td>同源外键；source+created_at 索引；不保存预览行</td></tr></tbody></table>
+<p>六张业务表全部 FORCE RLS；无 tenant scope 时没有可读行，跨租户写入被策略和复合外键阻止。ORM 同时要求 DatasourceUow，禁止 bulk DML 与修改 tenant_id。runtime 授权通过现有 Platform 幂等角色脚本完成，API/Worker 不持有迁移管理员凭据。降级删除整个模块目录和配置，属于数据丢失操作，必须先备份。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/datasource-api.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-design/">数据源与数据表管理：DataVines 提炼与 Chein 适配</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-design/">数据源与数据表管理：DataVines 提炼与 Chein 适配</a></li><li><a href="/chein-doc-site/reference/development/start/">开发入口</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fdatasource%2Fdatasource-api%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/category/数据源/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">数据源</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/datasource/datasource-delivery/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">数据源与数据表管理交付说明</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#公共规则" class="table-of-contents__link toc-highlight">公共规则</a></li><li><a href="#数据库所有权" class="table-of-contents__link toc-highlight">数据库所有权</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

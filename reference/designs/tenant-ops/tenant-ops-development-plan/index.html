@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-designs/tenant-ops/tenant-ops-development-plan" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">租户运营能力增强开发计划 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="租户运营能力增强开发计划 | Chein 文档中心"><meta data-rh="true" name="description" content="租户运营能力增强开发计划 · Chein 技术文档"><meta data-rh="true" property="og:description" content="租户运营能力增强开发计划 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"租户运营","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/租户运营"},{"@type":"ListItem","position":2,"name":"租户运营能力增强开发计划","item":"https://hanyang3588.github.io/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="折叠侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/tenant-ops/README/"><span class="linkLabel_gJOC">租户运营文档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/designs/tenant-ops/tenant-ops-development-plan/"><span class="linkLabel_gJOC">租户运营能力增强开发计划</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/tenant-ops/tenant-ops-prd/"><span class="linkLabel_gJOC">租户运营能力增强 PRD</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/租户运营/"><span>租户运营</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">租户运营能力增强开发计划</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>租户运营能力增强开发计划</h1></header>
+<blockquote>
+<p>当前前端实现位置已更新为 React <code>web-pro</code>；第 16.3 节保留旧 Vue 阶段的历史验证记录，不代表 React 已通过同等真实环境验收。技术栈和命令见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-文档信息">1. 文档信息<a href="#1-文档信息" class="hash-link" aria-label="1. 文档信息的直接链接" title="1. 文档信息的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>文档名称</td><td>租户运营能力增强开发计划</td></tr><tr><td>关联 PRD</td><td><a class="" href="/chein-doc-site/reference/designs/tenant-ops/tenant-ops-prd/">tenant-ops-prd</a></td></tr><tr><td>关联文档</td><td><a class="" href="/chein-doc-site/reference/designs/platform/TRD/">TRD</a>、<a class="" href="/chein-doc-site/reference/designs/platform/DEVELOPMENT_PLAN/">DEVELOPMENT_PLAN</a>、<a class="" href="/chein-doc-site/reference/development/platform/rbac/">RBAC</a></td></tr><tr><td>参考项目</td><td><code>参考项目/LZ-litchi</code>、<code>参考项目/LZ-litchi-ui-admin-vben</code>、当前仓库实现</td></tr><tr><td>文档版本</td><td>v0.1</td></tr><tr><td>更新日期</td><td>2026-09-20（React 前端接入说明同步）</td></tr><tr><td>目标版本</td><td>租户运营能力增强一期</td></tr><tr><td>适用对象</td><td>后端、前端、测试、项目维护者</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-开发目标">2. 开发目标<a href="#2-开发目标" class="hash-link" aria-label="2. 开发目标的直接链接" title="2. 开发目标的直接链接" translate="no">​</a></h2>
+<p>本计划用于指导“系统管理 &gt; 租户管理 / 套餐管理 / 初始化模板”专题增强落地。目标不是推翻当前多租户设计，而是在现有架构上补齐产品化能力：</p>
+<ul>
+<li class="">租户管理更运营化。</li>
+<li class="">租户管理具备生命周期与负责人闭环。</li>
+<li class="">套餐管理从纯配额升级到“配额 + 菜单授权”。</li>
+<li class="">初始化模板职责更清晰。</li>
+<li class="">套餐与租户之间新增菜单同步链路。</li>
+<li class="">一期以租户生命周期快照形成运营闭环，同时为后续独立订阅层保留边界。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-实施原则">3. 实施原则<a href="#3-实施原则" class="hash-link" aria-label="3. 实施原则的直接链接" title="3. 实施原则的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="31-保留现有架构分层">3.1 保留现有架构分层<a href="#31-保留现有架构分层" class="hash-link" aria-label="3.1 保留现有架构分层的直接链接" title="3.1 保留现有架构分层的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><code>Tenant</code> 继续负责租户主实体与生命周期。</li>
+<li class=""><code>TenantPlan</code> 继续负责配额主实体。</li>
+<li class=""><code>TenantInitializationTemplate</code> 继续负责初始化模板。</li>
+<li class="">扩展信息优先落在 <code>TenantProfile</code>、<code>TenantPlanProfile</code>、<code>TenantPlanMenu</code>。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="32-复用现有权限与菜单体系">3.2 复用现有权限与菜单体系<a href="#32-复用现有权限与菜单体系" class="hash-link" aria-label="3.2 复用现有权限与菜单体系的直接链接" title="3.2 复用现有权限与菜单体系的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">套餐菜单授权复用现有 <code>Menu</code> 表与菜单树接口思路。</li>
+<li class="">不创建第二套功能权限源。</li>
+<li class="">用户最终权限仍通过 <code>RoleMenu</code> 生效。</li>
+<li class="">一期的套餐同步落点是租户内置角色菜单基线，不直接覆盖自定义角色。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="33-分阶段打通不一次性做大而全">3.3 分阶段打通，不一次性做大而全<a href="#33-分阶段打通不一次性做大而全" class="hash-link" aria-label="3.3 分阶段打通，不一次性做大而全的直接链接" title="3.3 分阶段打通，不一次性做大而全的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">先打通数据与接口。</li>
+<li class="">再补齐前端页面和交互。</li>
+<li class="">最后做联动同步、测试、文档收口。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="34-兼容存量数据">3.4 兼容存量数据<a href="#34-兼容存量数据" class="hash-link" aria-label="3.4 兼容存量数据的直接链接" title="3.4 兼容存量数据的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">历史租户、套餐、模板数据必须平滑兼容。</li>
+<li class="">扩展字段允许为空。</li>
+<li class="">默认套餐、默认模板、系统保底菜单保持保护逻辑。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="35-参考项目分层映射">3.5 参考项目分层映射<a href="#35-参考项目分层映射" class="hash-link" aria-label="3.5 参考项目分层映射的直接链接" title="3.5 参考项目分层映射的直接链接" translate="no">​</a></h3>
+<p>参考项目实际采用“租户资料 + 套餐权限 + 套餐订阅 + 角色菜单”的协作方式。当前项目一期不直接复制完整订阅交易模块，但按以下边界实施：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>当前对象</th><th>一期职责</th><th>不应承载的内容</th></tr></thead><tbody><tr><td><code>Tenant</code> / <code>TenantProfile</code></td><td>租户资料、负责人、来源、当前生命周期状态与时间快照</td><td>多次续费历史、订单、支付流水</td></tr><tr><td><code>TenantPlan</code> / <code>TenantPlanProfile</code></td><td>配额、套餐画像、价格展示、发布状态</td><td>单租户实际支付事实</td></tr><tr><td><code>TenantPlanMenu</code></td><td>套餐菜单基线</td><td>用户最终权限</td></tr><tr><td><code>RoleMenu</code></td><td>用户最终功能权限</td><td>套餐商业信息</td></tr><tr><td><code>TenantInitializationTemplate</code></td><td>开通时初始化策略</td><td>长期授权与续费状态</td></tr></tbody></table>
+<p>当出现多次续费、套餐升降级预约生效、支付/退款、账单或对账需求时，新增 <code>TenantSubscription</code>，不继续扩展租户资料表。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-当前基线">4. 当前基线<a href="#4-当前基线" class="hash-link" aria-label="4. 当前基线的直接链接" title="4. 当前基线的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-已具备的实现基础">4.1 已具备的实现基础<a href="#41-已具备的实现基础" class="hash-link" aria-label="4.1 已具备的实现基础的直接链接" title="4.1 已具备的实现基础的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>基线项</th><th>当前状态</th><th>说明</th></tr></thead><tbody><tr><td>租户 API</td><td>已具备</td><td><code>backend/app/api/routes/tenants.py</code> 已覆盖租户、套餐、模板 CRUD</td></tr><tr><td>租户前端页面</td><td>已具备</td><td>已有 <code>tenants</code>、<code>tenant-plans</code>、<code>tenant-templates</code> 页面</td></tr><tr><td>租户扩展模型</td><td>已具备</td><td><code>TenantProfile</code> 已覆盖联系人、行业、地址等字段</td></tr><tr><td>套餐扩展模型</td><td>已具备</td><td><code>TenantPlanProfile</code> 已覆盖价格、logo、发布状态等字段</td></tr><tr><td>套餐菜单关系</td><td>已具备</td><td><code>TenantPlanMenu</code> 已存在</td></tr><tr><td>种子与初始化基础</td><td>已具备</td><td>已有默认租户、默认套餐、默认模板初始化逻辑</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-当前缺口">4.2 当前缺口<a href="#42-当前缺口" class="hash-link" aria-label="4.2 当前缺口的直接链接" title="4.2 当前缺口的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>缺口</th><th>现象</th></tr></thead><tbody><tr><td>租户扩展字段未完整打通</td><td>模型有字段，页面/API 未全面体现</td></tr><tr><td>缺少生命周期运营字段</td><td>试用、到期、冻结、续期、负责人等缺少统一表达</td></tr><tr><td>缺少运营筛选能力</td><td>无法快速找出即将到期或冻结租户</td></tr><tr><td>套餐画像字段未完整打通</td><td>当前页面仍以配额字段为主</td></tr><tr><td>套餐菜单授权缺少接口和页面</td><td><code>TenantPlanMenu</code> 未形成产品能力</td></tr><tr><td>菜单同步缺少管理动作</td><td>套餐变更不会主动作用到租户菜单</td></tr><tr><td>模板文案与定位不够清楚</td><td>容易与套餐职责混淆</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-里程碑规划">5. 里程碑规划<a href="#5-里程碑规划" class="hash-link" aria-label="5. 里程碑规划的直接链接" title="5. 里程碑规划的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>里程碑</th><th>目标</th><th>建议周期</th><th>主要产出</th></tr></thead><tbody><tr><td>M0</td><td>方案收口与字段梳理</td><td>0.5-1 天</td><td>生命周期字段表、状态机、接口清单、权限清单、订阅层边界</td></tr><tr><td>M1</td><td>后端数据与 API 打通</td><td>2-3 天</td><td>生命周期 schema、服务逻辑、菜单授权接口、同步接口</td></tr><tr><td>M2</td><td>前端页面与交互打通</td><td>2-3 天</td><td>租户运营页增强、套餐授权抽屉、同步动作</td></tr><tr><td>M3</td><td>联调、测试与数据兼容</td><td>1-2 天</td><td>API 测试、E2E/冒烟、迁移兼容检查</td></tr><tr><td>M4</td><td>文档与发布收口</td><td>0.5 天</td><td>使用说明、变更说明、验收清单</td></tr></tbody></table>
+<p>整体建议周期：6-9 个工作日。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-m0-方案收口与字段梳理">6. M0 方案收口与字段梳理<a href="#6-m0-方案收口与字段梳理" class="hash-link" aria-label="6. M0 方案收口与字段梳理的直接链接" title="6. M0 方案收口与字段梳理的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="61-目标">6.1 目标<a href="#61-目标" class="hash-link" aria-label="6.1 目标的直接链接" title="6.1 目标的直接链接" translate="no">​</a></h3>
+<p>确认一期具体做哪些字段、接口和页面动作，避免边开发边摇摆。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="62-任务清单">6.2 任务清单<a href="#62-任务清单" class="hash-link" aria-label="6.2 任务清单的直接链接" title="6.2 任务清单的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>任务</th><th>涉及范围</th><th>输出物</th></tr></thead><tbody><tr><td>M0-01</td><td>盘点租户扩展字段</td><td><code>TenantPublic</code>、<code>TenantCreate</code>、<code>TenantUpdate</code>、<code>TenantProfile</code></td><td>字段打通矩阵</td></tr><tr><td>M0-02</td><td>锁定生命周期字段</td><td>状态、到期时间、试用时间、负责人、来源、备注</td><td>运营字段口径表</td></tr><tr><td>M0-03</td><td>定义运营动作</td><td>试用、转正式、续期、冻结、解冻、归档</td><td>状态流转说明</td></tr><tr><td>M0-04</td><td>盘点套餐扩展字段</td><td><code>TenantPlanProfile</code>、前端套餐页</td><td>套餐画像字段矩阵</td></tr><tr><td>M0-05</td><td>盘点套餐菜单授权基础</td><td><code>TenantPlanMenu</code>、<code>Menu</code>、角色授权实现</td><td>接口设计草案</td></tr><tr><td>M0-06</td><td>明确同步落点</td><td>套餐菜单如何作用到租户内置角色</td><td>权限落点说明</td></tr><tr><td>M0-07</td><td>梳理权限码</td><td>后端路由、前端按钮权限</td><td>权限码清单</td></tr><tr><td>M0-08</td><td>确认一期与订阅层边界</td><td>生命周期快照、续期记录、财务字段</td><td>数据归属与升级触发条件</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="63-退出标准">6.3 退出标准<a href="#63-退出标准" class="hash-link" aria-label="6.3 退出标准的直接链接" title="6.3 退出标准的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">一期字段清单锁定。</li>
+<li class="">一期 API 清单锁定。</li>
+<li class="">一期页面动作锁定。</li>
+<li class="">明确一期不产生订单/支付事实，续期仅调整当前周期快照并写操作日志。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-m1-后端数据与-api-打通">7. M1 后端数据与 API 打通<a href="#7-m1-后端数据与-api-打通" class="hash-link" aria-label="7. M1 后端数据与 API 打通的直接链接" title="7. M1 后端数据与 API 打通的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="71-目标">7.1 目标<a href="#71-目标" class="hash-link" aria-label="7.1 目标的直接链接" title="7.1 目标的直接链接" translate="no">​</a></h3>
+<p>在不破坏当前租户主流程的前提下，补齐后端数据读写链路。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="72-后端任务">7.2 后端任务<a href="#72-后端任务" class="hash-link" aria-label="7.2 后端任务的直接链接" title="7.2 后端任务的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>任务</th><th>涉及文件</th><th>实施要点</th><th>验收标准</th></tr></thead><tbody><tr><td>M1-BE-01</td><td>梳理租户扩展字段读写</td><td><code>backend/app/api/routes/tenants.py</code>、<code>backend/app/models.py</code>、<code>backend/app/core/db.py</code></td><td>创建、更新、查询时统一读写 <code>TenantProfile</code></td><td>租户扩展字段可正常保存并回显</td></tr><tr><td>M1-BE-02</td><td>增加生命周期字段与状态流转</td><td>同上及 Alembic</td><td>为试用、正式、冻结、到期、负责人、来源等字段建立 schema 与状态流转校验；字段落入 profile 或独立一对一运营扩展</td><td>生命周期字段可正常保存、校验、查询</td></tr><tr><td>M1-BE-03</td><td>明确账务字段只读策略</td><td>schema、出参组装逻辑</td><td>一期仅允许只读返回，不开放手工写入</td><td>避免形成伪财务口径</td></tr><tr><td>M1-BE-04</td><td>梳理套餐扩展字段读写</td><td>同上</td><td>查询套餐时合并 <code>TenantPlanProfile</code>，创建/更新时写入扩展字段</td><td>套餐运营字段可正常保存并回显</td></tr><tr><td>M1-BE-05</td><td>新增套餐菜单查询接口</td><td><code>backend/app/api/routes/tenants.py</code></td><td>读取某套餐已授权菜单 ID 列表</td><td>前端可拿到菜单树已选状态</td></tr><tr><td>M1-BE-06</td><td>新增套餐菜单保存接口</td><td>同上</td><td>校验菜单存在性、去重保存、必要保底规则</td><td>保存成功后可立即重新读取</td></tr><tr><td>M1-BE-07</td><td>新增单套餐同步接口</td><td>同上</td><td>将套餐菜单基线同步到关联租户内置角色菜单</td><td>返回同步统计结果且不覆盖自定义角色</td></tr><tr><td>M1-BE-08</td><td>新增全量同步接口</td><td>同上</td><td>遍历全部租户或全部有效套餐关联租户</td><td>返回同步统计结果</td></tr><tr><td>M1-BE-09</td><td>增加默认/系统保护</td><td>同上</td><td>默认套餐、默认模板、保底菜单不允许破坏性修改</td><td>关键保护规则测试通过</td></tr><tr><td>M1-BE-10</td><td>操作日志接入</td><td>日志切面/路由</td><td>生命周期操作、套餐授权和菜单同步进入审计</td><td>可查询到操作日志</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="73-技术说明">7.3 技术说明<a href="#73-技术说明" class="hash-link" aria-label="7.3 技术说明的直接链接" title="7.3 技术说明的直接链接" translate="no">​</a></h3>
+<p>建议采用以下实现策略：</p>
+<ul>
+<li class="">租户查询统一通过 <code>build_tenant_public</code> 合并 <code>TenantProfile</code>。</li>
+<li class="">生命周期状态优先采用明确枚举字段，不继续把全部运营语义塞进 <code>is_active</code>。</li>
+<li class="">服务到期时间、试用截止时间一期作为“当前状态快照”；续期动作必须写审计日志，但不伪造订单、支付或订阅记录。</li>
+<li class="">套餐查询新增类似聚合函数，把 <code>TenantPlan</code> 与 <code>TenantPlanProfile</code> 合并成对外响应。</li>
+<li class="">套餐菜单授权接口复用角色菜单授权的菜单存在性校验模式。</li>
+<li class="">套餐同步接口一期允许同步执行；若后续数据量上升，再演进为后台任务。</li>
+<li class="">套餐同步的落点是租户内置角色菜单基线，例如 <code>super_admin</code>、<code>admin</code>、<code>user</code>，自定义角色默认不覆盖。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="74-后端验收命令">7.4 后端验收命令<a href="#74-后端验收命令" class="hash-link" aria-label="7.4 后端验收命令的直接链接" title="7.4 后端验收命令的直接链接" translate="no">​</a></h3>
+<p>建议至少执行：</p>
+<div class="language-powershell codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-powershell codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">cd backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run pytest backend/tests/api/routes/test_tenants.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run pytest</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run ruff check .</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-m2-前端页面与交互打通">8. M2 前端页面与交互打通<a href="#8-m2-前端页面与交互打通" class="hash-link" aria-label="8. M2 前端页面与交互打通的直接链接" title="8. M2 前端页面与交互打通的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="81-目标">8.1 目标<a href="#81-目标" class="hash-link" aria-label="8.1 目标的直接链接" title="8.1 目标的直接链接" translate="no">​</a></h3>
+<p>让租户、套餐、模板三页形成可完整操作的后台体验。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="82-前端任务">8.2 前端任务<a href="#82-前端任务" class="hash-link" aria-label="8.2 前端任务的直接链接" title="8.2 前端任务的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>任务</th><th>涉及文件</th><th>实施要点</th><th>验收标准</th></tr></thead><tbody><tr><td>M2-FE-01</td><td>扩展租户表单字段</td><td><code>frontend/apps/web-pro/src/pages/platform/TenantPages.tsx</code></td><td>补齐生命周期、负责人、来源、联系人、手机号、行业、账号数、地址、域名、管理员账号信息</td><td>创建/编辑租户表单可用</td></tr><tr><td>M2-FE-02</td><td>扩展租户列表列与筛选</td><td>同上</td><td>展示负责人、到期时间、生命周期状态，并支持即将到期筛选</td><td>列表具备运营检索能力</td></tr><tr><td>M2-FE-03</td><td>新增生命周期操作入口</td><td><code>src/pages/platform/TenantPages.tsx</code></td><td>增加“转正式”“续期”“冻结/解冻”“更换负责人”操作</td><td>运营动作可直接完成</td></tr><tr><td>M2-FE-04</td><td>扩展套餐表单字段</td><td><code>src/pages/platform/TenantPages.tsx</code></td><td>补齐类型、logo、价格、发布状态、排序号、备注等字段</td><td>套餐画像字段可编辑</td></tr><tr><td>M2-FE-05</td><td>扩展套餐列表列</td><td>同上</td><td>展示价格、发布状态、订阅数等关键字段</td><td>套餐列表更运营化</td></tr><tr><td>M2-FE-06</td><td>新增套餐菜单授权弹窗/抽屉</td><td><code>src/pages/platform/TenantPages.tsx</code>、现有授权组件</td><td>使用菜单树进行授权</td><td>可读取、勾选、保存菜单</td></tr><tr><td>M2-FE-07</td><td>新增套餐同步动作</td><td><code>src/pages/platform/TenantPages.tsx</code></td><td>增加“同步租户内置角色菜单”操作</td><td>可触发并收到结果反馈</td></tr><tr><td>M2-FE-08</td><td>模板页文案收敛</td><td><code>src/pages/platform/config.ts</code>、<code>TenantPages.tsx</code> 和 locale</td><td>强化“初始化用途”说明</td><td>用户不再混淆模板与套餐</td></tr><tr><td>M2-FE-09</td><td>API 封装补齐</td><td><code>web-pro/src/api/request.ts</code> 与 <code>pages/platform/TenantPages.tsx</code> 中的当前适配</td><td>增加生命周期、套餐菜单查询/保存/同步 API</td><td>页面调用链路完整</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="83-交互建议">8.3 交互建议<a href="#83-交互建议" class="hash-link" aria-label="8.3 交互建议的直接链接" title="8.3 交互建议的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">租户表单按“基础信息 / 生命周期 / 联系信息 / 开通信息”分组。</li>
+<li class="">即将到期租户在列表中应有显著提示，例如 Tag 或颜色标识。</li>
+<li class="">套餐菜单授权采用抽屉，复用角色权限树操作体验。</li>
+<li class="">同步操作必须二次确认，并提示可能影响关联租户功能菜单。</li>
+<li class="">模板页在表单顶部展示提示文案，说明该模块仅影响开通初始化。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="84-前端验收命令">8.4 前端验收命令<a href="#84-前端验收命令" class="hash-link" aria-label="8.4 前端验收命令的直接链接" title="8.4 前端验收命令的直接链接" translate="no">​</a></h3>
+<div class="language-powershell codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-powershell codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain"># 仓库根目录</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pnpm frontend:typecheck</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pnpm frontend:pro:test</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pnpm frontend:build</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-m3-联调测试与兼容验证">9. M3 联调、测试与兼容验证<a href="#9-m3-联调测试与兼容验证" class="hash-link" aria-label="9. M3 联调、测试与兼容验证的直接链接" title="9. M3 联调、测试与兼容验证的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="91-目标">9.1 目标<a href="#91-目标" class="hash-link" aria-label="9.1 目标的直接链接" title="9.1 目标的直接链接" translate="no">​</a></h3>
+<p>确保新增能力不只“能跑”，还要与现有多租户链路兼容。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="92-测试任务">9.2 测试任务<a href="#92-测试任务" class="hash-link" aria-label="9.2 测试任务的直接链接" title="9.2 测试任务的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>场景</th><th>验收标准</th></tr></thead><tbody><tr><td>M3-QA-01</td><td>新建租户</td><td>可创建包含扩展字段的租户，管理员账号正常落库/生效</td></tr><tr><td>M3-QA-02</td><td>生命周期流转</td><td>试用转正式、续期、冻结、解冻状态流转正确</td></tr><tr><td>M3-QA-03</td><td>运营筛选</td><td>可筛出即将到期、已过期、已冻结租户</td></tr><tr><td>M3-QA-04</td><td>编辑租户</td><td>扩展字段更新后列表与详情一致</td></tr><tr><td>M3-QA-05</td><td>新建套餐</td><td>配额字段与扩展字段均可保存</td></tr><tr><td>M3-QA-06</td><td>套餐菜单授权</td><td>授权后再次打开页面能正确回显</td></tr><tr><td>M3-QA-07</td><td>套餐菜单同步</td><td>执行同步后关联租户内置角色菜单按预期更新，自定义角色不被覆盖</td></tr><tr><td>M3-QA-08</td><td>模板创建与选择</td><td>创建/编辑模板不受新能力影响</td></tr><tr><td>M3-QA-09</td><td>默认保护</td><td>默认套餐、默认模板、保底菜单保护规则有效</td></tr><tr><td>M3-QA-10</td><td>越权访问</td><td>无权限用户访问新接口返回 403</td></tr><tr><td>M3-QA-11</td><td>历史数据兼容</td><td>历史空字段数据可正常展示</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="93-自动化建议">9.3 自动化建议<a href="#93-自动化建议" class="hash-link" aria-label="9.3 自动化建议的直接链接" title="9.3 自动化建议的直接链接" translate="no">​</a></h3>
+<p>建议新增或补齐：</p>
+<ul>
+<li class="">后端 <code>backend/tests/api/routes/test_tenants.py</code> 针对扩展字段、授权、同步的 API 测试。</li>
+<li class="">前端关键租户流程 E2E 或最小冒烟用例。</li>
+<li class="">若同步逻辑较复杂，可补充服务层单元测试。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-m4-文档与发布收口">10. M4 文档与发布收口<a href="#10-m4-文档与发布收口" class="hash-link" aria-label="10. M4 文档与发布收口的直接链接" title="10. M4 文档与发布收口的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="101-目标">10.1 目标<a href="#101-目标" class="hash-link" aria-label="10.1 目标的直接链接" title="10.1 目标的直接链接" translate="no">​</a></h3>
+<p>把这次专题增强沉淀为可交接、可持续维护的产物。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="102-任务清单">10.2 任务清单<a href="#102-任务清单" class="hash-link" aria-label="10.2 任务清单的直接链接" title="10.2 任务清单的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>任务</th><th>输出物</th></tr></thead><tbody><tr><td>M4-01</td><td>更新专题文档</td><td>本 PRD 与开发计划定稿</td></tr><tr><td>M4-02</td><td>更新模块使用说明</td><td>租户、套餐、模板页面使用说明</td></tr><tr><td>M4-03</td><td>更新 API 契约说明</td><td>新接口列表、权限码说明</td></tr><tr><td>M4-04</td><td>形成验收清单</td><td>产品、开发、测试共同验收项</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-数据迁移与兼容策略">11. 数据迁移与兼容策略<a href="#11-数据迁移与兼容策略" class="hash-link" aria-label="11. 数据迁移与兼容策略的直接链接" title="11. 数据迁移与兼容策略的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="111-数据迁移原则">11.1 数据迁移原则<a href="#111-数据迁移原则" class="hash-link" aria-label="11.1 数据迁移原则的直接链接" title="11.1 数据迁移原则的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">优先复用现有表结构。</li>
+<li class="">若当前数据库尚未完全创建扩展表或字段，以 Alembic 迁移补齐。</li>
+<li class="">历史记录默认允许扩展字段为空。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="112-存量数据处理">11.2 存量数据处理<a href="#112-存量数据处理" class="hash-link" aria-label="11.2 存量数据处理的直接链接" title="11.2 存量数据处理的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>处理策略</th></tr></thead><tbody><tr><td>历史租户</td><td>缺失 <code>TenantProfile</code> 时补空白 profile 或查询时兜底</td></tr><tr><td>历史套餐</td><td>缺失 <code>TenantPlanProfile</code> 时补默认 profile</td></tr><tr><td>历史套餐菜单</td><td>缺失 <code>TenantPlanMenu</code> 关系时按空菜单处理，再由管理员补授权</td></tr><tr><td>默认套餐</td><td>初始化时保证存在必要保底菜单</td></tr><tr><td>默认模板</td><td>持续保持唯一默认模板</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="113-回滚策略">11.3 回滚策略<a href="#113-回滚策略" class="hash-link" aria-label="11.3 回滚策略的直接链接" title="11.3 回滚策略的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">页面级功能可通过隐藏按钮快速回退前端入口。</li>
+<li class="">新增接口不影响旧接口主链路，可按路由级回退。</li>
+<li class="">扩展字段写入失败时，不应影响已存在的租户主记录查询。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-风险与应对">12. 风险与应对<a href="#12-风险与应对" class="hash-link" aria-label="12. 风险与应对的直接链接" title="12. 风险与应对的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>风险</th><th>说明</th><th>应对策略</th></tr></thead><tbody><tr><td>运营化做成“字段堆砌”</td><td>做完后仍不能支撑试用、续费、冻结管理</td><td>优先交付生命周期状态、时间、负责人与筛选动作</td></tr><tr><td>套餐授权与角色授权语义混淆</td><td>容易不清楚最终权限来自哪里</td><td>文档与页面文案明确“套餐是功能基线，角色是用户授权”</td></tr><tr><td>套餐同步覆盖策略不清晰</td><td>未来如果出现人工例外菜单会有冲突</td><td>一期先约束为“同步套餐基线”，人工例外能力后置</td></tr><tr><td>扩展字段较多导致表单复杂</td><td>页面体验可能变重</td><td>按分组展示，优先展示高频字段</td></tr><tr><td>同步逻辑影响面大</td><td>错误同步可能影响多个租户菜单</td><td>增加二次确认、日志、统计反馈，优先支持单套餐同步</td></tr><tr><td>旧数据 profile 缺失</td><td>页面可能空指针或字段不一致</td><td>后端统一兜底并补 <code>ensure_*_profile</code> 逻辑</td></tr><tr><td>生命周期字段持续膨胀</td><td>续费、支付、套餐变更历史可能挤入租户资料</td><td>设置订阅层升级触发条件，达到条件即新增 <code>TenantSubscription</code></td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="13-订阅层演进预案">13. 订阅层演进预案<a href="#13-订阅层演进预案" class="hash-link" aria-label="13. 订阅层演进预案的直接链接" title="13. 订阅层演进预案的直接链接" translate="no">​</a></h2>
+<p>一期不实现 <code>TenantSubscription</code>，但接口和字段命名不得暗示租户资料就是订单事实。建议预留以下演进路径：</p>
+<ol>
+<li class="">一期：租户保存当前状态、试用截止时间、服务到期时间，运营动作写审计日志。</li>
+<li class="">二期：新增订阅记录，保存套餐、开始/结束时间、订阅状态、价格快照。</li>
+<li class="">三期：订单、支付、退款、账单与订阅关联，租户页只聚合展示当前有效订阅和财务摘要。</li>
+</ol>
+<p>启动二期的判定条件：出现多次续费历史查询、套餐升降级、支付状态、退款或财务对账中的任意一项。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="14-建议排期顺序">14. 建议排期顺序<a href="#14-建议排期顺序" class="hash-link" aria-label="14. 建议排期顺序的直接链接" title="14. 建议排期顺序的直接链接" translate="no">​</a></h2>
+<p>建议按以下顺序实施：</p>
+<ol>
+<li class="">锁定字段与接口范围。</li>
+<li class="">先完成租户生命周期字段与状态流转。</li>
+<li class="">完成后端聚合出参与写入逻辑。</li>
+<li class="">完成套餐菜单授权接口。</li>
+<li class="">完成前端租户与套餐页面增强。</li>
+<li class="">完成同步动作与结果反馈。</li>
+<li class="">完成测试、文档和验收。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="15-完成定义">15. 完成定义<a href="#15-完成定义" class="hash-link" aria-label="15. 完成定义的直接链接" title="15. 完成定义的直接链接" translate="no">​</a></h2>
+<p>满足以下条件可视为一期完成：</p>
+<ol>
+<li class="">租户页已支持核心运营字段录入与展示。</li>
+<li class="">租户页已支持试用、续期、冻结、负责人和到期筛选等核心运营动作。</li>
+<li class="">套餐页已支持配额字段、运营字段、菜单授权。</li>
+<li class="">已提供单套餐租户内置角色菜单同步能力。</li>
+<li class="">初始化模板页仍独立可用且职责清晰。</li>
+<li class="">后端测试、前端构建、关键冒烟流程通过。</li>
+<li class="">文档、权限码、操作日志同步完成。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="16-一期实施结果">16. 一期实施结果<a href="#16-一期实施结果" class="hash-link" aria-label="16. 一期实施结果的直接链接" title="16. 一期实施结果的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="161-交付状态">16.1 交付状态<a href="#161-交付状态" class="hash-link" aria-label="16.1 交付状态的直接链接" title="16.1 交付状态的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>里程碑</th><th>状态</th><th>实施结果</th></tr></thead><tbody><tr><td>M0</td><td>已完成</td><td>已锁定生命周期、运营字段、套餐菜单基线、角色同步策略与订阅层边界</td></tr><tr><td>M1</td><td>已完成</td><td>已完成数据迁移、租户生命周期 API、套餐画像、菜单授权与同步接口、权限保护和审计接入</td></tr><tr><td>M2</td><td>已完成</td><td>已完成租户运营页、生命周期操作、运营概览、套餐菜单授权、同步入口及中英文文案</td></tr><tr><td>M3</td><td>已完成</td><td>后端完整测试通过，桌面端与 390px 移动端关键流程已完成浏览器冒烟</td></tr><tr><td>M4</td><td>已完成</td><td>PRD、开发计划、实现边界和验收结果已收口</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="162-一期验收结果">16.2 一期验收结果<a href="#162-一期验收结果" class="hash-link" aria-label="16.2 一期验收结果的直接链接" title="16.2 一期验收结果的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">租户创建、编辑、运营筛选、负责人、来源、试用期和服务期字段已打通。</li>
+<li class="">转正式、续期、冻结、解冻、归档动作具备状态校验和独立操作入口；试用租户在冻结期间到期后可通过续期恢复为正式态并解冻。</li>
+<li class="">租户运营概览可查看配额使用量、只读账务摘要和套餐菜单基线。</li>
+<li class="">套餐可维护运营画像和菜单基线，并支持单套餐、单租户及全套餐同步；批量同步按租户使用数据库保存点隔离异常，结果反馈成功、失败和跳过数量。</li>
+<li class="">菜单同步按一期规则处理：<code>super_admin</code> 跟随套餐基线，<code>admin</code>、<code>user</code> 保留交集，自定义角色不覆盖。</li>
+<li class="">初始化模板保持创建时初始化职责，不承担长期授权、续费或账务事实。</li>
+<li class="">套餐授权树已过滤平台菜单、自动包含祖先节点，并处理异步加载展开和不可见勾选项。</li>
+<li class="">桌面端和移动端列表、抽屉、更多操作菜单及二次确认交互均可正常使用。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="163-历史验证结果旧-vue-阶段">16.3 历史验证结果（旧 Vue 阶段）<a href="#163-历史验证结果旧-vue-阶段" class="hash-link" aria-label="16.3 历史验证结果（旧 Vue 阶段）的直接链接" title="16.3 历史验证结果（旧 Vue 阶段）的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">后端：<code>uv run alembic check</code> 通过。</li>
+<li class="">后端：<code>uv run ruff check app tests</code> 通过。</li>
+<li class="">后端：租户专题测试 <code>8 passed</code>，完整测试集连续两轮均为 <code>168 passed</code>。</li>
+<li class="">前端：变更范围 ESLint 通过，全部变更文件 <code>oxfmt --check</code> 通过。</li>
+<li class="">前端：<code>pnpm -F @vben/web-antd run typecheck</code> 通过。</li>
+<li class="">前端：<code>pnpm -F @vben/web-antd run build</code> 通过。</li>
+<li class="">浏览器：租户概览、续期、冻结、套餐授权、同步确认、初始化模板及 390px 移动端冒烟通过，控制台无业务错误。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="164-明确后置项">16.4 明确后置项<a href="#164-明确后置项" class="hash-link" aria-label="16.4 明确后置项的直接链接" title="16.4 明确后置项的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">一期不实现订单、支付、退款、账单、续费历史和套餐预约升降级。</li>
+<li class="">出现上述需求时新增 <code>TenantSubscription</code>，不继续把交易事实扩展到 <code>TenantProfile</code>。</li>
+<li class="">全仓库 <code>pnpm lint</code> 仍包含与本专题无关的历史格式问题，本次未做跨模块批量格式化。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="17-模块使用说明">17. 模块使用说明<a href="#17-模块使用说明" class="hash-link" aria-label="17. 模块使用说明的直接链接" title="17. 模块使用说明的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="171-租户管理">17.1 租户管理<a href="#171-租户管理" class="hash-link" aria-label="17.1 租户管理的直接链接" title="17.1 租户管理的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">通过“新增租户”录入基础信息、生命周期、联系人、经营信息和开通信息。</li>
+<li class="">选择初始化模板后，模板只在租户创建阶段决定基础数据种子；创建后不可通过编辑租户重新执行模板。</li>
+<li class="">通过列表筛选试用、冻结、过期以及 7 天或 30 天内到期租户。</li>
+<li class="">通过行操作执行转正式、续期、冻结、解冻、套餐菜单同步和停用。</li>
+<li class="">通过“运营概览”查看当前配额使用量、只读账务摘要和套餐菜单基线。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="172-套餐管理">17.2 套餐管理<a href="#172-套餐管理" class="hash-link" aria-label="17.2 套餐管理的直接链接" title="17.2 套餐管理的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">套餐表单维护配额、价格、类型、发布状态、排序和展示信息。</li>
+<li class="">“菜单授权”维护套餐功能基线；平台管理菜单不可授权，保存时自动补齐所选菜单的祖先节点。</li>
+<li class="">当前默认套餐不可直接编辑、重新授权、停用或删除；其他套餐仍可按原流程设为默认。</li>
+<li class="">“同步租户菜单”只同步当前套餐关联的租户。</li>
+<li class="">同步结果返回成功、失败、跳过数量。<code>super_admin</code> 跟随套餐基线，<code>admin</code>、<code>user</code> 保留交集，自定义角色不覆盖。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="173-初始化模板">17.3 初始化模板<a href="#173-初始化模板" class="hash-link" aria-label="17.3 初始化模板的直接链接" title="17.3 初始化模板的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">初始化模板只维护租户开通时的根部门与基础数据种子策略。</li>
+<li class="">默认模板不可取消默认状态、停用或删除。</li>
+<li class="">模板不承担套餐配额、长期菜单授权、续费或账务事实。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="18-api-与权限契约">18. API 与权限契约<a href="#18-api-与权限契约" class="hash-link" aria-label="18. API 与权限契约的直接链接" title="18. API 与权限契约的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="181-租户接口">18.1 租户接口<a href="#181-租户接口" class="hash-link" aria-label="18.1 租户接口的直接链接" title="18.1 租户接口的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>路径</th><th>用途</th><th>前端权限码</th></tr></thead><tbody><tr><td><code>GET</code></td><td><code>/api/v1/tenants</code></td><td>运营列表与筛选</td><td><code>platform:tenant:list</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants</code></td><td>创建租户并可开通管理员</td><td><code>platform:tenant:create</code></td></tr><tr><td><code>PATCH</code></td><td><code>/api/v1/tenants/{tenant_id}</code></td><td>更新租户资料</td><td><code>platform:tenant:update</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants/{tenant_id}/lifecycle</code></td><td>转正式、续期、冻结、解冻</td><td><code>platform:tenant:lifecycle</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants/{tenant_id}/sync-menus</code></td><td>同步单租户内置角色菜单</td><td><code>platform:tenant:sync-menu</code></td></tr><tr><td><code>GET</code></td><td><code>/api/v1/tenants/{tenant_id}/usage</code></td><td>查询配额与使用量</td><td><code>platform:tenant:list</code></td></tr><tr><td><code>DELETE</code></td><td><code>/api/v1/tenants/{tenant_id}</code></td><td>停用并归档租户</td><td><code>platform:tenant:delete</code></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="182-套餐接口">18.2 套餐接口<a href="#182-套餐接口" class="hash-link" aria-label="18.2 套餐接口的直接链接" title="18.2 套餐接口的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>路径</th><th>用途</th><th>前端权限码</th></tr></thead><tbody><tr><td><code>GET</code></td><td><code>/api/v1/tenants/plans</code></td><td>套餐列表与筛选</td><td><code>platform:plan:list</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants/plans</code></td><td>创建套餐</td><td><code>platform:plan:create</code></td></tr><tr><td><code>PATCH</code></td><td><code>/api/v1/tenants/plans/{plan_id}</code></td><td>更新套餐</td><td><code>platform:plan:update</code></td></tr><tr><td><code>DELETE</code></td><td><code>/api/v1/tenants/plans/{plan_id}</code></td><td>删除未使用的非默认套餐</td><td><code>platform:plan:delete</code></td></tr><tr><td><code>GET</code></td><td><code>/api/v1/tenants/plans/{plan_id}/menus</code></td><td>查询套餐菜单基线</td><td><code>platform:plan:grant-menu</code></td></tr><tr><td><code>PUT</code></td><td><code>/api/v1/tenants/plans/{plan_id}/menus</code></td><td>保存套餐菜单基线</td><td><code>platform:plan:grant-menu</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants/plans/{plan_id}/sync-menus</code></td><td>同步当前套餐租户</td><td><code>platform:plan:sync-menu</code></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="183-初始化模板接口">18.3 初始化模板接口<a href="#183-初始化模板接口" class="hash-link" aria-label="18.3 初始化模板接口的直接链接" title="18.3 初始化模板接口的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>路径</th><th>用途</th><th>前端权限码</th></tr></thead><tbody><tr><td><code>GET</code></td><td><code>/api/v1/tenants/templates</code></td><td>初始化模板列表</td><td><code>platform:template:list</code></td></tr><tr><td><code>POST</code></td><td><code>/api/v1/tenants/templates</code></td><td>创建初始化模板</td><td><code>platform:template:create</code></td></tr><tr><td><code>PATCH</code></td><td><code>/api/v1/tenants/templates/{template_id}</code></td><td>更新初始化模板</td><td><code>platform:template:update</code></td></tr><tr><td><code>DELETE</code></td><td><code>/api/v1/tenants/templates/{template_id}</code></td><td>删除未使用的非默认模板</td><td><code>platform:template:delete</code></td></tr></tbody></table>
+<p>后端一期沿用当前平台管理边界：上述管理接口统一要求已激活超级管理员。前端权限码用于菜单和按钮级展示控制，后端超级管理员校验是最终安全边界。所有非 <code>GET</code> 管理请求由全局操作审计中间件写入 <code>OperationLog</code>。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/tenant-ops/tenant-ops-development-plan.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/designs/platform/DEVELOPMENT_PLAN/">Fast Vben Admin v1.0-v2.0 可落地实施计划</a></li><li><a href="/chein-doc-site/reference/designs/platform/TRD/">Fast Vben Admin 技术需求文档 TRD</a></li><li><a href="/chein-doc-site/reference/designs/tenant-ops/tenant-ops-prd/">租户运营能力增强 PRD</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li><li><a href="/chein-doc-site/reference/development/platform/rbac/">RBAC 权限模型</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/designs/tenant-ops/README/">租户运营文档</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdesigns%2Ftenant-ops%2Ftenant-ops-development-plan%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/designs/tenant-ops/README/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">租户运营文档</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/designs/tenant-ops/tenant-ops-prd/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">租户运营能力增强 PRD</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-文档信息" class="table-of-contents__link toc-highlight">1. 文档信息</a></li><li><a href="#2-开发目标" class="table-of-contents__link toc-highlight">2. 开发目标</a></li><li><a href="#3-实施原则" class="table-of-contents__link toc-highlight">3. 实施原则</a><ul><li><a href="#31-保留现有架构分层" class="table-of-contents__link toc-highlight">3.1 保留现有架构分层</a></li><li><a href="#32-复用现有权限与菜单体系" class="table-of-contents__link toc-highlight">3.2 复用现有权限与菜单体系</a></li><li><a href="#33-分阶段打通不一次性做大而全" class="table-of-contents__link toc-highlight">3.3 分阶段打通，不一次性做大而全</a></li><li><a href="#34-兼容存量数据" class="table-of-contents__link toc-highlight">3.4 兼容存量数据</a></li><li><a href="#35-参考项目分层映射" class="table-of-contents__link toc-highlight">3.5 参考项目分层映射</a></li></ul></li><li><a href="#4-当前基线" class="table-of-contents__link toc-highlight">4. 当前基线</a><ul><li><a href="#41-已具备的实现基础" class="table-of-contents__link toc-highlight">4.1 已具备的实现基础</a></li><li><a href="#42-当前缺口" class="table-of-contents__link toc-highlight">4.2 当前缺口</a></li></ul></li><li><a href="#5-里程碑规划" class="table-of-contents__link toc-highlight">5. 里程碑规划</a></li><li><a href="#6-m0-方案收口与字段梳理" class="table-of-contents__link toc-highlight">6. M0 方案收口与字段梳理</a><ul><li><a href="#61-目标" class="table-of-contents__link toc-highlight">6.1 目标</a></li><li><a href="#62-任务清单" class="table-of-contents__link toc-highlight">6.2 任务清单</a></li><li><a href="#63-退出标准" class="table-of-contents__link toc-highlight">6.3 退出标准</a></li></ul></li><li><a href="#7-m1-后端数据与-api-打通" class="table-of-contents__link toc-highlight">7. M1 后端数据与 API 打通</a><ul><li><a href="#71-目标" class="table-of-contents__link toc-highlight">7.1 目标</a></li><li><a href="#72-后端任务" class="table-of-contents__link toc-highlight">7.2 后端任务</a></li><li><a href="#73-技术说明" class="table-of-contents__link toc-highlight">7.3 技术说明</a></li><li><a href="#74-后端验收命令" class="table-of-contents__link toc-highlight">7.4 后端验收命令</a></li></ul></li><li><a href="#8-m2-前端页面与交互打通" class="table-of-contents__link toc-highlight">8. M2 前端页面与交互打通</a><ul><li><a href="#81-目标" class="table-of-contents__link toc-highlight">8.1 目标</a></li><li><a href="#82-前端任务" class="table-of-contents__link toc-highlight">8.2 前端任务</a></li><li><a href="#83-交互建议" class="table-of-contents__link toc-highlight">8.3 交互建议</a></li><li><a href="#84-前端验收命令" class="table-of-contents__link toc-highlight">8.4 前端验收命令</a></li></ul></li><li><a href="#9-m3-联调测试与兼容验证" class="table-of-contents__link toc-highlight">9. M3 联调、测试与兼容验证</a><ul><li><a href="#91-目标" class="table-of-contents__link toc-highlight">9.1 目标</a></li><li><a href="#92-测试任务" class="table-of-contents__link toc-highlight">9.2 测试任务</a></li><li><a href="#93-自动化建议" class="table-of-contents__link toc-highlight">9.3 自动化建议</a></li></ul></li><li><a href="#10-m4-文档与发布收口" class="table-of-contents__link toc-highlight">10. M4 文档与发布收口</a><ul><li><a href="#101-目标" class="table-of-contents__link toc-highlight">10.1 目标</a></li><li><a href="#102-任务清单" class="table-of-contents__link toc-highlight">10.2 任务清单</a></li></ul></li><li><a href="#11-数据迁移与兼容策略" class="table-of-contents__link toc-highlight">11. 数据迁移与兼容策略</a><ul><li><a href="#111-数据迁移原则" class="table-of-contents__link toc-highlight">11.1 数据迁移原则</a></li><li><a href="#112-存量数据处理" class="table-of-contents__link toc-highlight">11.2 存量数据处理</a></li><li><a href="#113-回滚策略" class="table-of-contents__link toc-highlight">11.3 回滚策略</a></li></ul></li><li><a href="#12-风险与应对" class="table-of-contents__link toc-highlight">12. 风险与应对</a></li><li><a href="#13-订阅层演进预案" class="table-of-contents__link toc-highlight">13. 订阅层演进预案</a></li><li><a href="#14-建议排期顺序" class="table-of-contents__link toc-highlight">14. 建议排期顺序</a></li><li><a href="#15-完成定义" class="table-of-contents__link toc-highlight">15. 完成定义</a></li><li><a href="#16-一期实施结果" class="table-of-contents__link toc-highlight">16. 一期实施结果</a><ul><li><a href="#161-交付状态" class="table-of-contents__link toc-highlight">16.1 交付状态</a></li><li><a href="#162-一期验收结果" class="table-of-contents__link toc-highlight">16.2 一期验收结果</a></li><li><a href="#163-历史验证结果旧-vue-阶段" class="table-of-contents__link toc-highlight">16.3 历史验证结果（旧 Vue 阶段）</a></li><li><a href="#164-明确后置项" class="table-of-contents__link toc-highlight">16.4 明确后置项</a></li></ul></li><li><a href="#17-模块使用说明" class="table-of-contents__link toc-highlight">17. 模块使用说明</a><ul><li><a href="#171-租户管理" class="table-of-contents__link toc-highlight">17.1 租户管理</a></li><li><a href="#172-套餐管理" class="table-of-contents__link toc-highlight">17.2 套餐管理</a></li><li><a href="#173-初始化模板" class="table-of-contents__link toc-highlight">17.3 初始化模板</a></li></ul></li><li><a href="#18-api-与权限契约" class="table-of-contents__link toc-highlight">18. API 与权限契约</a><ul><li><a href="#181-租户接口" class="table-of-contents__link toc-highlight">18.1 租户接口</a></li><li><a href="#182-套餐接口" class="table-of-contents__link toc-highlight">18.2 套餐接口</a></li><li><a href="#183-初始化模板接口" class="table-of-contents__link toc-highlight">18.3 初始化模板接口</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

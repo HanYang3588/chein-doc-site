@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/standards/agents" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Fast Vben Admin Agent Development Standard | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/standards/agents/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Fast Vben Admin Agent Development Standard | Chein 文档中心"><meta data-rh="true" name="description" content="Fast Vben Admin Agent Development Standard · Chein 技术文档"><meta data-rh="true" property="og:description" content="Fast Vben Admin Agent Development Standard · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/standards/agents/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/standards/agents/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/standards/agents/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"开发规范","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/开发规范"},{"@type":"ListItem","position":2,"name":"Fast Vben Admin Agent Development Standard","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/standards/agents"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="折叠侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/CONTRIBUTING/"><span class="linkLabel_gJOC">贡献指南</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/SECURITY/"><span class="linkLabel_gJOC">安全政策</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/standards/agents/"><span class="linkLabel_gJOC">Fast Vben Admin Agent Development Standard</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/backend-agents/"><span class="linkLabel_gJOC">后端开发规范</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/docs-agents/"><span class="linkLabel_gJOC">文档维护规范</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/frontend-agents/"><span class="linkLabel_gJOC">前端开发规范</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/standards/frontend-apps-web-pro-agents/"><span class="linkLabel_gJOC">web-pro 开发规范</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/开发规范/"><span>开发规范</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Fast Vben Admin Agent Development Standard</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Fast Vben Admin Agent Development Standard</h1></header>
+<p>本文件是所有自动化编码模型、代码生成模型和人工协作者的仓库级开发规范。进入任何子目录工作时，还必须读取并遵守距离目标文件最近的 <code>AGENTS.md</code>。子目录规范只能补充本文件，不能放宽本文件中的架构、安全和验证要求。</p>
+<ul>
+<li class="">规范版本：1.0</li>
+<li class="">架构基线：管理平台见 <code>docs/modular-architecture-implementation.md</code>，前端当前实现见 <code>docs/frontend-architecture.md</code>，Agent 见 <code>docs/agent-architecture.md</code></li>
+<li class="">维护方式：架构变更与相关 <code>AGENTS.md</code> 在同一变更中更新</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-开始工作前">1. 开始工作前<a href="#1-开始工作前" class="hash-link" aria-label="1. 开始工作前的直接链接" title="1. 开始工作前的直接链接" translate="no">​</a></h2>
+<p>在修改代码前，按顺序完成：</p>
+<ol>
+<li class="">阅读本文件和目标目录下的 <code>AGENTS.md</code>。</li>
+<li class="">阅读与任务相关的事实源、ADR、现有实现和测试。</li>
+<li class="">执行 <code>git status --short</code>，识别并保留用户已有修改。</li>
+<li class="">用 <code>rg</code> 定位现有实现、调用方、测试和兼容入口。</li>
+<li class="">明确变更边界、数据所有者、迁移影响、Edition 影响和验证范围。</li>
+</ol>
+<p>不要只依据需求描述、文件名或旧对话推断当前实现。代码、迁移、CI 和当前文档才是工作区事实。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-决策优先级">2. 决策优先级<a href="#2-决策优先级" class="hash-link" aria-label="2. 决策优先级的直接链接" title="2. 决策优先级的直接链接" translate="no">​</a></h2>
+<p>发生冲突时按以下顺序处理：</p>
+<ol>
+<li class="">当前任务的明确要求。</li>
+<li class="">已接受的 ADR。</li>
+<li class="">当前变更所属范围的架构基线：Agent 使用 <a class="" href="/chein-doc-site/reference/architecture/agent/runtime/">Agent 架构</a>，管理平台使用 <a class="" href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a>。</li>
+<li class=""><a class="" href="/chein-doc-site/reference/development/backend/module-guide/">模块开发指南</a>和目标目录规范。</li>
+<li class="">当前代码与测试反映的兼容约束。</li>
+</ol>
+<p>不要直接改写已经 Accepted 的 ADR 历史结论。需要改变已接受决策时，新增 ADR 并声明替代关系。Proposed ADR 不能由模型自行改成 Accepted；必须有团队签署和文档要求的演练证据。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-固定架构">3. 固定架构<a href="#3-固定架构" class="hash-link" aria-label="3. 固定架构的直接链接" title="3. 固定架构的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">管理平台的架构形态是“模块化单体 + 构建期 Edition 组合”。数据分析 Agent 是独立顶层运行时，其边界以 <code>docs/agent-architecture.md</code> 为准；当前阶段不拆业务微服务、不引入运行时微前端、不维护产品分支。显式启用的 HermiT 隔离计算例外位于 <code>services/chein-reasoner</code>，不拥有用户/RBAC、发布本体或 ERP 数据；见 <code>docs/ontology/reasoner/architecture.md</code>（ADR-0015 仍为 Proposed）。</li>
+<li class=""><code>platform</code> 是每个 Edition 必选的交付模块。<code>kernel</code>、<code>system</code>、<code>infra</code> 只是 Platform 内部限界上下文，不得加入 Edition YAML 或单独授权。</li>
+<li class=""><code>items</code> 是业务模块样板。新增 IOA、ERP 等模块必须复用同一种模块契约、迁移、公开 API、事件和前端装配方式。</li>
+<li class="">管理平台的新业务能力进入 <code>backend/app/modules/&lt;module_code&gt;</code> 和 <code>frontend/apps/web-pro/src/modules/&lt;module_code&gt;</code>，不得继续扩大中央业务模型、中央 Router 或全局业务页面。Agent 的前后端接入适配器遵守该规则，工作流、工具和模型依赖只进入顶层 <code>agent/</code>。Platform 仅管理 Agent 提示词的租户/用户/RBAC 元数据、Nacos 正文存取与运行前选择；Agent 负责兜底提示词与执行，不在 Platform 引入 Agent 框架依赖。</li>
+<li class="">业务模块只能依赖 Platform 稳定公开接口和其他模块的 <code>public_api</code>。禁止导入其他模块的 <code>domain</code>、<code>application</code>、<code>infrastructure</code>、<code>routes</code> 或 ORM 实体。</li>
+<li class="">可选能力通过 capability 契约和组合根选择 Provider。禁止从可选模块实现建立静态依赖。</li>
+<li class="">只读业务 Agent 工具由所属模块的 <code>ModuleDefinition.agent_tools</code> 声明。MCP 协议适配在后端组合根挂载；模型编排、工具发现与 Run 策略仍在顶层 <code>agent/</code>。工具处理函数逐次重验成员、权限、模块权益及 Tenant UoW；实施范围见 <code>docs/agent/tool-management-implementation.md</code>。</li>
+<li class="">可选 Langfuse SDK 仅在顶层 <code>agent/</code> 接线；Backend 可使用 <code>observability/</code> 的通用 metadata OTLP 适配层，不导入 Agent/模型框架。默认关闭，默认采用 metadata-only 与 HMAC 身份引用；仅显式 <code>redacted-content-v1</code> 允许有界的脱敏问答，系统/个人提示词、工具原始结果、媒体和纠正文本不外发，契约见 <code>docs/agent/langfuse-readable-tracing-design.md</code>；反馈和消息映射由 Agent 持有，查询先重验租户与拥有者。观测失败不能改变 Run、checkpoint、审批或授权；运行边界与实施证据见 <code>docs/agent-architecture.md</code> 和 <code>docs/agent/langfuse-delivery.md</code>。</li>
+<li class="">实时语音模型协议、音频与工具桥接只进入顶层 <code>agent/</code>；<code>modules/platform_voice</code> 仅提供当前授权、短期一次性票据与同源 WebSocket BFF，不加入 Edition。语音与文字共用 Thread/Checkpoint，服务端以 PostgreSQL advisory lock 互斥；模型参数不能构造身份，语音打断不能撤销业务事务。见 <a class="" href="/chein-doc-site/reference/development/agent/multimodal/realtime-voice-design/">实时语音设计</a>。</li>
+<li class="">Agent 能力路由复用原生 Middleware 与已授权工具注册结果；决策供应商协议隔离在 <code>agent/</code>，建议不能授予权限或替代 DeepAgents 规划。模型网关配置须区分聊天与决策协议，多轮续问和恢复保留现有执行路径。</li>
+<li class="">Creation 数据库测试使用 <code>pnpm backend:test:creation</code> 的一次性数据库，禁止与独立视频 Worker 共用队列。</li>
+<li class="">视频 Provider、prompt 补充与创建工具属于顶层 <code>agent/</code>；Suite Creation 拥有视频 Job/Asset，独立视频 Worker 只调用签名 Agent HTTP，不导入模型框架。状态与恢复以数据库为准，已提交任务禁止自动重提，见 <code>docs/agent/video-generation-design.md</code>。</li>
+<li class="">图片 Provider、优化与生成工具属于顶层 <code>agent/</code>；Suite 的 <code>creation</code> 模块拥有图片元数据、权限和 RustFS 生命周期。图片 UoW 与 RLS 同时约束 tenant/owner；仅租户 Schedule 与已授权存储渠道引用计数使用受控维护作用域，个人 HTTP/模型工具不能继承该旁路。见 <code>docs/agent/image-generation-design.md</code>。</li>
+<li class="">SQL 分析的纯 QuerySpec/ChartSpec DTO 位于 <code>app.modules.analysis_contracts</code>，不得导入 ORM 或业务实现。Analytics 经 capability 调用 ERP 数据所有者，目录、查询、scope 与取消通过现有 MCP 组合根发布；Agent 包装获准的 MCP 工具生成图表快照，不将原始结果工具重复交给模型。MCP 启用时不回退分析 HTTP 接口。ERP 受保护视图 schema 由 <code>MigrationSpec.additional_schemas</code> 声明，不授予通用 API 运行账号；快照由顶层 Agent 持有，个人收藏由 Analytics 持有。实施与兼容窗口见 <code>docs/agent/sql-analytics-delivery.md</code>。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-唯一事实源">4. 唯一事实源<a href="#4-唯一事实源" class="hash-link" aria-label="4. 唯一事实源的直接链接" title="4. 唯一事实源的直接链接" translate="no">​</a></h2>
+<p>Agent Automations 的业务表、Trigger、Scheduler 和执行服务由顶层 <code>agent/</code> 拥有；Backend 的 <code>modules/platform_automations</code> 仅是 Platform HTTP 授权/通知/BFF 适配包，不是 Edition 模块，不引入模型或调度依赖。Scheduler 必须独立运行并先取得 PostgreSQL leader guard；业务查询必须逐 tenant/owner 进入双重 RLS scope，控制面目录只能包含路由 ID。见 <code>docs/architecture/agent-automations.md</code>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>信息</th><th>人工维护的唯一事实源</th><th>禁止做法</th></tr></thead><tbody><tr><td>Edition 模块集合</td><td><code>editions/&lt;edition&gt;.yaml</code></td><td>用环境变量或菜单临时增加模块</td></tr><tr><td>模块契约</td><td><code>ModuleDefinition</code></td><td>在多个组合根重复声明 Router、权限或事件</td></tr><tr><td>构建组合</td><td>生成的 <code>build-manifest.json</code></td><td>前后端相互覆盖 Manifest</td></tr><tr><td>模块期望/实际状态</td><td><code>ModuleRegistry</code> 与迁移/健康检查</td><td>请求鉴权时同步或创建运行时记录</td></tr><tr><td>套餐权益/例外/租户偏好</td><td><code>TenantPlanModule</code> / <code>TenantModuleEntitlementOverride</code> / <code>TenantModule</code></td><td>通过菜单或表存在性推断模块可用</td></tr><tr><td>用户权限</td><td>Permission、Role、Menu 关系</td><td>只依赖前端按钮隐藏</td></tr><tr><td>数据表所有权</td><td>Platform migration metadata 或模块自己的 migration namespace</td><td>多模块共同拥有同一张表</td></tr><tr><td>Agent 运行时边界、状态与安全</td><td><code>docs/agent-architecture.md</code></td><td>在 README、管理后端或框架代码中另建一套设计</td></tr></tbody></table>
+<p>派生文件必须通过仓库命令生成，不得手工维护生成结果。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-多租户与安全红线">5. 多租户与安全红线<a href="#5-多租户与安全红线" class="hash-link" aria-label="5. 多租户与安全红线的直接链接" title="5. 多租户与安全红线的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">租户身份只能来自已验证 JWT、可信事件信封、受控 client-to-tenant resolver、Schedule 的平台枚举结果或显式受审计的平台入口。</li>
+<li class="">不得直接信任 body、query、header 中的 <code>tenant_id</code>。公开回调必须先通过租户编码、客户端凭据或其他可信映射解析租户，再进入 UoW。</li>
+<li class="">Tenant-owned 数据必须在对应 TenantUnitOfWork 内访问。API、Worker、Schedule、CLI 使用相同隔离原则。</li>
+<li class=""><code>privileged=True</code> 仅用于已经完成平台级授权的受控跨租户操作。调用点必须可审计，并具有跨租户负向测试。</li>
+<li class="">ORM tenant 过滤不是 PostgreSQL RLS 的替代品；RLS 也不是可信租户解析的替代品。扩展 RLS 时必须同时更新模型集合、迁移、runtime 角色测试和调用路径。</li>
+<li class="">不得假设所有带 <code>tenant_id</code> 的历史表已经启用 RLS。OAuth2/OIDC、租户全局目录和全局模块运行时表的前置设计见实施基线和 ADR-0013。</li>
+<li class="">运行时进程使用无超级用户、无建库/建角色、无 <code>BYPASSRLS</code> 的 <code>app_runtime</code>。迁移管理员凭据不得注入 API 或 Worker。</li>
+<li class="">禁止提交密钥、真实密码、访问令牌、个人数据或生产连接信息。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-模块api-与事件">6. 模块、API 与事件<a href="#6-模块api-与事件" class="hash-link" aria-label="6. 模块、API 与事件的直接链接" title="6. 模块、API 与事件的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">业务模块后端入口必须使用 <code>require_module_access(&quot;&lt;module&gt;&quot;, &quot;&lt;permission&gt;&quot;)</code>，Platform 管理能力使用对应 <code>require_permission</code>。</li>
+<li class="">前端权限只用于交互体验；真正的安全边界必须在后端。</li>
+<li class="">跨模块公开接口只暴露 DTO、不可变值对象、稳定错误码和版本化契约，不暴露 ORM、Session、Request 或第三方 SDK 对象。</li>
+<li class="">改变其他模块业务状态时使用事务 Outbox。事件 Schema 放在发布方 <code>public_api.events</code>，消费者按 event ID 幂等处理。</li>
+<li class="">无消费者、可选消费者、重试、租约、死信和回执必须遵循现有 Outbox 状态机，不能新增旁路投递方式。</li>
+<li class="">破坏性 HTTP、DTO、事件或公开 API 变更必须提供版本策略、兼容窗口和迁移说明。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-数据库与迁移">7. 数据库与迁移<a href="#7-数据库与迁移" class="hash-link" aria-label="7. 数据库与迁移的直接链接" title="7. 数据库与迁移的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">历史 Alembic revision 一经进入共享历史不得改写；新增 revision 接在正确 namespace 的当前 head 后。</li>
+<li class="">Platform 使用 Platform Alembic 链；业务模块使用自己的 schema、版本目录和版本表。</li>
+<li class="">模型、约束、索引、外键、RLS policy、降级逻辑和授权必须在迁移中显式表达。</li>
+<li class="">禁止用启动时 <code>create_all</code>、请求副作用或手工 SQL 替代迁移。</li>
+<li class="">修改迁移体系后必须运行对应 migration tests、<code>alembic check</code> 和受影响 Edition 构建。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-生成代码与兼容入口">8. 生成代码与兼容入口<a href="#8-生成代码与兼容入口" class="hash-link" aria-label="8. 生成代码与兼容入口的直接链接" title="8. 生成代码与兼容入口的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">不手工编辑 OpenAPI 生成客户端、类型文件或 Build Manifest。修改源契约后重新生成。</li>
+<li class=""><code>app.models</code>、<code>app.core.db</code> 以及旧 Router/Infra 路径是兼容门面，不是新增生产依赖入口。</li>
+<li class="">不删除兼容门面，除非任务明确包含迁移期结束、所有消费者审计和破坏性变更方案。</li>
+<li class="">生成器输出只是起始代码。合并前必须迁入目标模块结构并补齐权限、租户、迁移和测试。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-修改原则">9. 修改原则<a href="#9-修改原则" class="hash-link" aria-label="9. 修改原则的直接链接" title="9. 修改原则的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">优先遵循现有模式；只在减少真实复杂度或匹配既有边界时增加抽象。</li>
+<li class="">变更保持最小且完整：修复根因、所有调用方、测试、迁移和文档，不做无关重构。</li>
+<li class="">不回滚、覆盖或格式化与任务无关的用户修改。</li>
+<li class="">禁止为了让测试通过而放宽鉴权、租户隔离、RLS、错误处理或契约校验。</li>
+<li class="">对暂不能安全完成的范围，明确前置条件和失败关闭行为，不用占位实现伪装完成。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-验证矩阵">10. 验证矩阵<a href="#10-验证矩阵" class="hash-link" aria-label="10. 验证矩阵的直接链接" title="10. 验证矩阵的直接链接" translate="no">​</a></h2>
+<p>按变更风险选择测试，不能用窄测试证明宽范围完成：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变更</th><th>最低验证</th></tr></thead><tbody><tr><td>Python 代码</td><td><code>cd backend &amp;&amp; uv run ruff check app tests</code> + 受影响 pytest</td></tr><tr><td>数据模型/迁移</td><td>upgrade、对应 migration tests、<code>uv run alembic check</code></td></tr><tr><td>Tenant/RLS</td><td><code>app_runtime</code> 角色下的读写、bulk DML、无 scope、跨租户负向测试</td></tr><tr><td>API/DTO</td><td>路由测试；影响前端时重新生成 OpenAPI 客户端</td></tr><tr><td>模块契约/装配</td><td>manifest、边界、迁移和 Edition tests</td></tr><tr><td>前端 TypeScript/React</td><td><code>pnpm frontend:typecheck</code> + 受影响构建</td></tr><tr><td>Edition/Manifest</td><td><code>pnpm build:edition -- --edition base</code>、<code>items</code>、<code>suite</code></td></tr><tr><td>Compose/部署</td><td><code>docker compose config</code> + 对应健康/启动验证</td></tr><tr><td>架构文档/ADR</td><td>路径、状态、命令和实现证据核对</td></tr></tbody></table>
+<p>共享数据库测试不得并行运行，避免 fixture 互相清理产生伪失败。测试报告、coverage、构建目录和 <code>artifacts/</code> 是派生产物，除非发布流程明确要求，不提交到源码。</p>
+<p><code>backend/tests/conftest.py</code> 的 <code>db</code> fixture 会初始化并清理 User、Item 和 Outbox 数据；必须使用一次性测试数据库，禁止对开发或共享业务数据库执行。筛选单测前检查其直接及间接 fixture，不能仅凭文件名判断无数据库副作用。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-完成定义">11. 完成定义<a href="#11-完成定义" class="hash-link" aria-label="11. 完成定义的直接链接" title="11. 完成定义的直接链接" translate="no">​</a></h2>
+<p>只有同时满足以下条件才能宣称完成：</p>
+<ul>
+<li class="">行为与任务一致，失败路径和权限边界明确。</li>
+<li class="">架构依赖方向、事实源和模块所有权未被破坏。</li>
+<li class="">数据迁移、兼容策略和回滚影响已处理。</li>
+<li class="">测试覆盖与变更风险匹配，实际命令已成功完成。</li>
+<li class="">文档描述当前事实，不把目标态、建议或本地结果写成已上线事实。</li>
+<li class="">明确列出未执行的外部门禁，例如远端 CI、镜像扫描、签名、N-1 演练或团队签署。</li>
+</ul>
+<p>“文件已创建”“局部测试通过”或“实现看起来合理”都不构成完成证据。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-git依赖与交付">12. Git、依赖与交付<a href="#12-git依赖与交付" class="hash-link" aria-label="12. Git、依赖与交付的直接链接" title="12. Git、依赖与交付的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">未经明确要求，不创建分支、不暂存、不提交、不推送、不创建 PR，也不修改远端状态。</li>
+<li class="">禁止使用 <code>git reset --hard</code>、强制推送或其他会覆盖未提交工作的操作。不要回滚无法确认来源的修改。</li>
+<li class="">新增运行时依赖前，先证明标准库和现有依赖不能合理解决问题；同步更新 lockfile、镜像和供应链检查。</li>
+<li class="">不在功能任务中顺带升级框架、格式化全仓库或重写无关生成文件。</li>
+<li class="">交付说明至少包含：行为变化、关键文件、实际执行的验证、未执行的验证、兼容/迁移影响和已知剩余风险。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="开发验证截图">开发验证截图<a href="#开发验证截图" class="hash-link" aria-label="开发验证截图的直接链接" title="开发验证截图的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">浏览器验证截图使用 <code>scripts/save-dev-artifact.mjs</code> 的 <code>saveDevArtifact(bytes, { business, name })</code> 保存，保存时直接上传 RustFS；禁止写入工作区 <code>output/playwright/</code> 或其他源码目录。业务分类使用 <code>agent-ui</code>、<code>knowledge</code> 等短编码。</li>
+<li class="">原生浏览器工具返回的截图字节可直接传给该入口；需要落盘才能工作的工具，临时文件只放系统临时目录，随后通过 <code>pnpm dev:artifact --business &lt;code&gt; --name &lt;filename&gt;</code> 从 stdin 归档并清理临时文件。</li>
+<li class="">连接配置独立存放在项目外的 <code>~/.config/chein/dev-artifacts.json</code>，不得提交密钥。上传失败保留项目外的 <code>~/.cache/chein/dev-artifacts/</code> 待发文件并明确报告失败；用 <code>pnpm dev:artifact --retry</code> 重试。系统“存储渠道”仅控制业务上传接口，不控制开发工具截图。接入与验证见 <code>docs/operations/development.md</code>。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="agent-上下文用量边界">Agent 上下文用量边界<a href="#agent-上下文用量边界" class="hash-link" aria-label="Agent 上下文用量边界的直接链接" title="Agent 上下文用量边界的直接链接" translate="no">​</a></h2>
+<p>上下文占用只使用主 Agent 最近已准备/已执行请求的输入 Token，不能用会话累计、输出或子 Agent 用量替代。模型限额复用当前模型配置/Profile，缺失时显示未知；统计只保存数值与本人 Run 引用，沿用现有事件、租约、授权与历史恢复，失败不能影响执行或重做摘要。设计见 <a class="" href="/chein-doc-site/reference/development/agent/usage/context-usage-design/">上下文 Token 统计</a>。</p>
+<p>对话执行偏好只能收窄当前已审核 MCP 工具，Provider 固定枚举须在 delegation 验证后解析并隔离请求；设置绑定现有 RunEvent，恢复不可悄悄切换。关闭 Qwen 决策只能回到已有默认路径，不能关闭权限、业务校验或 Memory 证据门禁。见<a class="" href="/chein-doc-site/reference/development/agent/chat-execution-controls/">对话控制</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="datasource-数据源边界">Datasource 数据源边界<a href="#datasource-数据源边界" class="hash-link" aria-label="Datasource 数据源边界的直接链接" title="Datasource 数据源边界的直接链接" translate="no">​</a></h2>
+<p><code>modules/datasource</code> 拥有 Suite 外部连接凭据、持久目录、业务配置、外键和采集任务，使用独立 schema、Tenant UoW 与 FORCE RLS；采集复用模块 ScheduleHandler。只允许代码注册的驱动，连接地址与端口由有权限的用户在页面配置，不设应用级网络/端口白名单。预览只查询已启用表的暴露字段，不接收任意 SQL、不缓存样本行。Ontology IRI 仅预留引用，不授予本体或 ERP 数据访问；后续跨模块映射须新增公开引用契约。见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源交付</a>。</p>
+<p>OWL 前端可由组合根按 Manifest 可选注入 <code>datasource/public_api/catalog</code> 只读目录 Reader，消费方只类型引用 DTO；沿用数据所有者 HTTP 授权。已启用表与已暴露字段仅复制为已有草稿命令，不保存活跃映射、不读取样本、不写回数据源 IRI，见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/#%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9B%AE%E5%BD%95%E6%89%B9%E9%87%8F%E6%96%B0%E5%A2%9E">OWL 目录导入</a>。</p>
+<p>OWL 原始表面板通过组合根另行注入 <code>datasource/public_api/preview</code> Reader，不能把元数据 Reader 当作数据访问授权。仅从目录导入 IRI 的实体 ID 定位源表，数据所有者逐次核验 tenant、模块及 read/preview 权限、启用/暴露/脱敏配置和结构摘要。允许选中对象后在当前页面自动加载，折叠后停止加载并清除展示数据；不保存样本或建立活跃映射。分页保持现有只读、超时及大小预算，不接收 SQL、租户或任意地址，也不向外部连接注入或绕过其他模块的 RLS/业务 scope。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="ontology-本体边界">Ontology 本体边界<a href="#ontology-本体边界" class="hash-link" aria-label="Ontology 本体边界的直接链接" title="Ontology 本体边界的直接链接" translate="no">​</a></h2>
+<p>Neo4j 独立语义本体页面已退役，Ontology 管理入口为 OWL 可视化构建器；不得因页面退役删除构建器及 Agent 共用的 Neo4j/发布/推理能力。范围及菜单清理见 <a class="" href="/chein-doc-site/reference/history/ontology/neo4j-studio-removal/">页面退役</a>。</p>
+<p>Neo4j/Legacy 只切换授权后的发布语义读取；PostgreSQL 仍是发布、审核及 ACL 唯一事实源，ERP 仍拥有实时实例。图投影必须显式执行；空结果、权限/Schema/摘要错误不得故障回退，不混合 Provider 结果。见 <a class="" href="/chein-doc-site/reference/development/ontology/neo4j-design/">双 Provider 设计</a>。</p>
+<p>本体定义、版本、发布授权与审计属于 <code>modules/ontology</code>；ERP 通过代码维护的 <code>ontology.data</code> capability 提供固定只读映射，Knowledge 通过 <code>ontology.evidence</code> 复验来源。模型不能指定 SQL、脚本、URL、身份或权限；已发布正文不可变，当前发布版本及映射实质变化时失败关闭；仅允许数据所有者按完整旧契约证明的纯增量目录兼容，禁止忽略摘要。私有及租户本体均允许有当前 <code>ontology:publish</code> 权限的单账户发布；校验、来源复验、本人 OWL 校验任务和不可变版本门禁不变，不伪造第二审核人。个人候选及 Memory 不能自动发布为租户本体。工具通过现有模块 MCP 装配，业务源权限由工具声明推导 delegation 上限并在数据所有者逐次重验。设计见 <a class="" href="/chein-doc-site/reference/development/ontology/design/">本体架构</a>。</p>
+<p>Neo4j 与 Legacy 管理工作区独立，分类不可改；RDF 必须先进入受控草稿并通过校验与显式发布，标准语义只支持声明的有界子集。SHACL 为禁网隔离进程的模型样本门禁，不覆盖共享 GraphConfig/命名空间/Shapes，也不替代实时 ERP 校验。见<a class="" href="/chein-doc-site/reference/development/ontology/semantic-workspaces-delivery/">双工作区交付</a>。</p>
+<p>复杂 OWL TBox 公理保存在版本正文的 <code>owl_rules</code>，随本体经当前发布权限校验后发布，禁止作为 n10s 基础推理的隐式扩展。发布门禁必须绑定本人真实 OWLAPI/HermiT 校验任务与当前完整输入/正文/映射摘要；不能复用改稿前校验或他人私有任务。正式 Agent 工具仅接受已发布版本，失败或未完成结果不得进入依赖它的模型决策；历史推理证据重验当前权限。ERP ABox 只能经数据所有者 <code>reasoning-snapshot-v1</code> 的只读 RR 有界快照；身份/owner/仓库由当前授权解析，数据或 scope 摘要改变即失效。授权子图结论不代表全库完整性，也不能替代 ERP 事务校验；组织或全库 ABox 无对应契约时保持关闭。见<a class="" href="/chein-doc-site/reference/development/ontology/reasoner/integration/">集成设计</a>。</p>
+<p>发布 Action 的 <code>precondition</code> 只绑定已声明类及固定 ABox 深度；执行必须引用本人成功任务，并复验完整规范化参数摘要、发布版本、根、数据/权限快照与正向蕴含。含 OWL/SHACL 而无前置条件的 Action 失败关闭；普通显式事实读取仍使用原授权链。逻辑 <code>usable</code> 不等于业务许可，未蕴含为无法判断，不能改写为通过。参数修正只允许同一推理工具一次调用，不夹带业务操作。结果分页须在既有总预算内收齐；纯 TBox 序列化缓存不能缓存授权或 ERP 实例。现有 ERP 未提供授信/合同和跨资源法人唯一标识时，不创造事实或按名称/税号自动合并。</p>
+<p>Logic Pack 的受限 AST、三值求值、证明与重放位于 Ontology 的 <code>application/inference/</code>，禁止在该包读取数据库、网络、模型或系统时钟。Case 仅为独立命名空间的合成夹具，真实 ERP 样本只走授权 dry-run/本人私有推导记录，禁止自动转存共享 Pack。快照 IRI/sourceRef 一致性不构成身份或来源授权；外层必须按当前可信身份取得数据所有者快照及已核对摘要的发布公理。Pack/推导元数据由 Ontology UoW 与 FORCE RLS 约束；推导记录同时按 tenant+owner 隔离，过期清理也不能借此扩大读取范围。HTTP/MCP/Agent/UI 已接线；规则 then:type 目标类不从绑定自动断言，只能从规则证明取得（包括其继承证明），见 <a class="" href="/chein-doc-site/reference/development/ontology/inference-traceability-design/">Logic Pack 设计与实施证据</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="knowledge-检索边界">Knowledge 检索边界<a href="#knowledge-检索边界" class="hash-link" aria-label="Knowledge 检索边界的直接链接" title="Knowledge 检索边界的直接链接" translate="no">​</a></h2>
+<p>Knowledge 模块通过 Platform 公开组织目录访问 USER/ROLE/DEPARTMENT，不能直接导入组织 ORM。全平台系统库保持独立全局 RLS 与显式 writer；统一逻辑资源不等于合并物理租户策略。Knowledge 原生 Tool 默认经已有应用服务调用官方 HTTP API；RAGFlow MCP 保留为显式可选 Adapter，接入事实见 <code>docs/agent/ragflow-native-tool-integration.md</code>。Agent 的语义路由与 Judge 留在顶层运行时，必须限制于已授权目录，回写证据判断前重验文档状态。部署与真实评测事实见 <code>docs/agent/knowledge-retrieval-delivery.md</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="agent-长期记忆边界">Agent 长期记忆边界<a href="#agent-长期记忆边界" class="hash-link" aria-label="Agent 长期记忆边界的直接链接" title="Agent 长期记忆边界的直接链接" translate="no">​</a></h2>
+<p>长期记忆唯一引擎为 RAGFlow Native Memory。顶层 <code>agent/</code> 持有私有 Adapter、可信 tenant/owner 到独立 <code>me</code> Memory 的映射、开关、提交状态和来源拒绝记录；正文、四类提取、Embedding、检索和 FIFO 由 RAGFlow 管理，不新增 LangMem、pgvector 或独立 ES 投影。默认 Agent Nacos 可按白名单复用 Backend runtime 的 RAGFlow 地址/API Key/超时，不导入其他 Backend 配置或迁移凭据，不混用不完整连接。公共 API Key 的外部 <code>user_id</code> 不是鉴权；所有空间从当前可信身份解析，列表/详情/搜索/最近消息/修改/遗忘均重验当前成员与权限，管理员不能因此读取他人正文。默认 PRIVATE，不自动迁移旧共享数据。</p>
+<p>Backend <code>modules/platform_memory</code> 仅为 Platform BFF、当前授权、Outbox 生命周期和私有 Memory HTTP 调度适配，不加入 Edition 或导入模型框架。开启自动同步后，成功 Run 只持久化来源引用，离开 Agent 页面、切换会话或关闭助手时按新增问答归成一个同步批次（例如 10 轮为一次任务），由现有 Worker 逐轮提交用户原文和助手最终回复；不离开不自动出站，不用 System One 做保存/提取价值过滤。批次只保存来源引用，保留迟到成功 Run、去重、容量调度与逐轮提交状态；列表按批次显示，新增元数据迁移先于新代码启用。RAGFlow 官方负责提取和检索；它不保证语义去重或事实准确。复用视频 Worker 独立调度线程与 Agent PG leader guard；不明提交禁止盲重试，不回放已终止旧任务。元数据保持 tenant/owner FORCE RLS；关闭、清空、会话删除及恢复重验版本和来源墓碑。新记录通过每轮 delivery 关联具体来源，召回、详情和继承历史复用现有 Analysis/Knowledge/Memory 授权；未知工具或来源不明失败关闭。Backend 只签发当前已有的固定只读来源权限，Memory 不能授予业务权限。助手输出是低信任历史参考，不作用户事实或当前业务真值。保留 Checkpointer、会话历史、压缩和审批。现行架构、备份、迁移及启用证据见 <a class="" href="/chein-doc-site/reference/development/agent/memory/native-memory-design/">Native Memory 设计</a>和<a class="" href="/chein-doc-site/reference/development/agent/memory/long-term-memory-delivery/">交付</a>，旧价值治理仅保留<a class="" href="/chein-doc-site/reference/history/agent/memory-governance-design/">历史说明</a>。</p>
+<p>HermiT 仅接受 Backend 当前授权后签发的专用短期 delegation；不接受登录 Token 或未验签身份头。版本入口复验当前发布正文与完整来源可见性，上传仅为本人私有计算。禁止远程 Import、自动 Neo4j 物化及默认 Agent 全量推理；有限任务使用独立可终止 JVM 与单实例私有卷。设计与验证见 <a class="" href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">HermiT 计算服务</a>。</p>
+<p>Logic Pack 外部绑定与目录复制导入是独立路径。外部绑定通过可选 datasource.ontology-data capability，仅支持 PostgreSQL 单连接 UUID 单列主键与已暴露未脱敏字段的固定只读 RR 快照，不混合 ERP/外部源。Ontology 的 logic_binding_reference 为 tenant-only 最小删除索引，不含正文或样本；Datasource 只通过当前删除权限下的只读引用 capability 获取布尔结果，不能借此读取他人 Pack/推导。绑定保存与连接删除共用事务锁。原目录复制导入仍不建立活跃映射。实施状态见 Logic Pack 设计与交付，ADR-0017 保持 Proposed。</p>
+<p>Logic Pack 的人工出库审核由 ERP 的 approve-with-evidence HTTP 命令拥有，Ontology 只经可选 ontology.action-evidence capability 核验本人业务证明。首次提交复验 replay 与 fresh 快照；已完成幂等回执的重试只复验当前权限/归属/证明，不重复库存写入。证明是人工辅助证据，不是 ERP 事务内通用规则硬门禁。Agent 卡片仅跳转授权的 ERP 隐藏页面，MCP 仍只读，见 ADR-0017 与 Logic Pack 交付。</p>
+<p>OWL 原生工作区通过 builder_binding.mode=native 标识，正文与发布版本仍归 PostgreSQL Network/Version/Audit；空白新建和可选文件导入不读取、绑定或投影共享 Neo4j Resource。编辑保存沿用 ontology:edit，发布仍须本人当前 HermiT 校验与 ontology:publish。历史 mode=resource 接管保留平台检查、原文件、图摘要及显式写回门禁；不得把原生工作区伪装成 Resource 绑定，见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 画布</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="token-计量与额度边界">Token 计量与额度边界<a href="#token-计量与额度边界" class="hash-link" aria-label="Token 计量与额度边界的直接链接" title="Token 计量与额度边界的直接链接" translate="no">​</a></h2>
+<p>Token 账本、版本价格、计数器、策略执行及聚合/告警 Worker 由顶层 <code>agent/usage</code> 持有；Backend 的 <code>modules/platform_token_budget</code> 仅提供可信身份、部门目录、授权 BFF 和 Platform 站内通知适配，不加入 Edition、不导入 Agent 框架、不查询 Agent 表。账本只含数值与引用，使用租户 FORCE RLS；个人读取额外绑定当前 owner，部门采用签名 delegation 的发生时快照。模式默认 off；observe 只记账提醒，enforce 下所有适用 hard 策略共同约束新 Run 及后续模型调用。计数器故障时 hard 新准入失败关闭，运行中故障放行并告警；费用缺价及并发在途消耗不构成精确费用上限。Higress 仅负责 L1 宽松熔断，配置示例和 Agent 接线已实现，目标插件摘要、顺序、抓包和取消对账仍待实测。RAGFlow 当前接口缺少内部 Usage，hard 策略下暂停其付费提取/搜索，不能伪造纳管完成。实现与外部门禁见 <a class="" href="/chein-doc-site/reference/development/agent/usage/token-billing-delivery/">Token 计费交付</a>。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/development/agent/chat-execution-controls/">对话本体与决策控制</a></li><li><a href="/chein-doc-site/reference/development/agent/memory/long-term-memory-delivery/">Native Memory 迁移与交付</a></li><li><a href="/chein-doc-site/reference/development/agent/memory/native-memory-design/">RAGFlow Native Memory 迁移设计</a></li><li><a href="/chein-doc-site/reference/development/agent/multimodal/realtime-voice-design/">Chein 实时语音：调研与实施设计</a></li><li><a href="/chein-doc-site/reference/development/agent/usage/context-usage-design/">Agent 上下文 Token 统计与可视化设计</a></li><li><a href="/chein-doc-site/reference/development/agent/usage/token-billing-delivery/">Token 计费与费用控制交付</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/ontology/reasoner/integration-delivery/">OWL 规则与推理集成交付记录</a></li><li><a href="/chein-doc-site/reference/development/standards/backend-agents/">后端开发规范</a></li><li><a href="/chein-doc-site/reference/development/standards/CONTRIBUTING/">贡献指南</a></li><li><a href="/chein-doc-site/reference/development/standards/docs-agents/">文档维护规范</a></li><li><a href="/chein-doc-site/reference/development/standards/frontend-agents/">前端开发规范</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fstandards%2Fagents%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/standards/SECURITY/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">安全政策</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/standards/backend-agents/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">后端开发规范</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-开始工作前" class="table-of-contents__link toc-highlight">1. 开始工作前</a></li><li><a href="#2-决策优先级" class="table-of-contents__link toc-highlight">2. 决策优先级</a></li><li><a href="#3-固定架构" class="table-of-contents__link toc-highlight">3. 固定架构</a></li><li><a href="#4-唯一事实源" class="table-of-contents__link toc-highlight">4. 唯一事实源</a></li><li><a href="#5-多租户与安全红线" class="table-of-contents__link toc-highlight">5. 多租户与安全红线</a></li><li><a href="#6-模块api-与事件" class="table-of-contents__link toc-highlight">6. 模块、API 与事件</a></li><li><a href="#7-数据库与迁移" class="table-of-contents__link toc-highlight">7. 数据库与迁移</a></li><li><a href="#8-生成代码与兼容入口" class="table-of-contents__link toc-highlight">8. 生成代码与兼容入口</a></li><li><a href="#9-修改原则" class="table-of-contents__link toc-highlight">9. 修改原则</a></li><li><a href="#10-验证矩阵" class="table-of-contents__link toc-highlight">10. 验证矩阵</a></li><li><a href="#11-完成定义" class="table-of-contents__link toc-highlight">11. 完成定义</a></li><li><a href="#12-git依赖与交付" class="table-of-contents__link toc-highlight">12. Git、依赖与交付</a><ul><li><a href="#开发验证截图" class="table-of-contents__link toc-highlight">开发验证截图</a></li></ul></li><li><a href="#agent-上下文用量边界" class="table-of-contents__link toc-highlight">Agent 上下文用量边界</a></li><li><a href="#datasource-数据源边界" class="table-of-contents__link toc-highlight">Datasource 数据源边界</a></li><li><a href="#ontology-本体边界" class="table-of-contents__link toc-highlight">Ontology 本体边界</a></li><li><a href="#knowledge-检索边界" class="table-of-contents__link toc-highlight">Knowledge 检索边界</a></li><li><a href="#agent-长期记忆边界" class="table-of-contents__link toc-highlight">Agent 长期记忆边界</a></li><li><a href="#token-计量与额度边界" class="table-of-contents__link toc-highlight">Token 计量与额度边界</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/frontend/agent-ui" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Agent 交互前端设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Agent 交互前端设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Agent 交互前端设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Agent 交互前端设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"前端开发","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/前端开发"},{"@type":"ListItem","position":2,"name":"Agent 交互前端设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="折叠侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/frontend/agent-ui/"><span class="linkLabel_gJOC">Agent 交互前端设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/frontend/architecture/"><span class="linkLabel_gJOC">前端架构与技术栈</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/frontend/history-pagination/"><span class="linkLabel_gJOC">Agent 会话与历史消息游标加载</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/前端开发/"><span>前端开发</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Agent 交互前端设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Agent 交互前端设计</h1></header>
+<blockquote>
+<p>状态：React assistant-ui 已接入 FastAPI BFF/AG-UI；以下逐项区分实际接线、独立组件与目标态</p>
+<blockquote>
+<p>适用范围：<code>web-pro</code> 应用</p>
+</blockquote>
+</blockquote>
+<p>管理前端框架、生成客户端和交付入口见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>；Agent
+运行时事实源仍为<a class="" href="/chein-doc-site/reference/architecture/agent/runtime/">Agent 架构</a>。框架重构不改变后端授权与运行时边界。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-当前-ui-选型与入口">1. 当前 UI 选型与入口<a href="#1-当前-ui-选型与入口" class="hash-link" aria-label="1. 当前 UI 选型与入口的直接链接" title="1. 当前 UI 选型与入口的直接链接" translate="no">​</a></h2>
+<p><code>frontend/apps/web-pro/src/pages/agent/index.tsx</code> 使用 <code>AssistantRuntimeProvider</code> 和
+<code>useExternalStoreRuntime</code>，将本地会话/消息状态接入 assistant-ui。界面复用
+<code>src/components/assistant-ui</code> 的 <code>Thread</code>、<code>ThreadListSidebar</code>、消息、输入、推理与工具部件，
+以及 <code>src/components/ui</code> 的侧栏、Base UI 交互原语、Tailwind 样式和 Lucide 图标。</p>
+<p><code>pages/Workspace.tsx</code> 完成菜单与权限检查后，在管理布局的内容区域渲染 Agent；会话侧栏保留新建、搜索、会话列表和折叠功能，已移除品牌标题和返回管理系统按钮。会话区使用 assistant-ui，管理页面继续使用 ProLayout/Ant Design/ProComponents。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="单层会话项目">单层会话项目<a href="#单层会话项目" class="hash-link" aria-label="单层会话项目的直接链接" title="单层会话项目的直接链接" translate="no">​</a></h3>
+<p>聊天侧栏的项目可独立展开/收起，对应会话缩进显示在目录下，可同时展开多个项目。项目内不展示“今天/昨天/更早”日期分组；未归类会话直接与项目平级展示，保留日期分组，不再创建“未分组”目录。支持新建、重命名和删除项目。
+会话的原生更多菜单提供“移动到项目”，可移回未分组；在指定项目中新建的会话在首条消息被服务端接受时归入该项目，空白草稿不落库。
+展开/收起项目不取消当前回答，也不切换正在阅读的对话；展开项目后，新建会话仍归入该项目。项目不共享提示词、知识库或聊天上下文。
+每个展开目录独立调用现有项目筛选分页接口，复用游标分页器与原生会话行，失败可重试，收起时取消请求并拒绝迟到响应。
+项目首屏请求期间仅在项目图标位置显示小转圈，返回后展示列表或空状态；分页和重试继续保留已有行。根列表直接复用页面的未分组会话分页，不再额外查询全部会话；搜索仍查询全部项目。
+搜索覆盖全部项目和未分组会话，清空搜索后恢复原有展开状态；完整页面与浮动助手共用同一列表。
+项目和会话目录 BFF 只签发 <code>agent:chat</code> 委托，继续经过当前入口权限和 Agent tenant/owner 校验；执行、历史授权与审批请求仍计算各自所需的完整权限。目录读取不再逐项查询工具、Memory 等执行权限，也不读取对应模块权益缓存。
+2026-10-20 本地只读测量：同一有效成员身份各重复 5 次，委托生成的中位耗时在超级用户路径由约 655ms 降至 0.22ms；模拟普通 RBAC 路径由约 2120ms 降至 3.24ms，每次额外权限 SQL 由 17 条降至 0 条。这仅衡量委托生成，未涵盖 HTTP、入口认证或 Agent SQL，不能作为生产接口时延。
+同日本地验证通过：<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:pro:build</code>、前端全量 273 项测试、Backend Ruff 及目录 BFF/委托 20 项测试。已登录浏览器确认项目行转圈、会话返回后展示且控制台无错误；截图已按开发归档入口上传 RustFS。无接口结构或数据库迁移；生产时延、生产 SQL 执行计划和远端 CI 未验证。</p>
+<p>根列表中的项目与独立会话可以混合拖动排序，项目内会话可单独排序；按住 Alt 使用上下方向键也可调整顺序。
+会话拖到项目行中间归入项目，拖到项目边缘用于排序；拖到根列表空白区域可移出项目。插入线/项目高亮区分排序与归类。
+归类复用现有授权 API，失败保留原归属；排序只作为按当前租户/用户隔离的浏览器偏好保存，不改变数据库分页顺序，也不跨设备同步。
+分页只排序已加载会话，不为拖动拉取全部历史；日期标题始终按会话自身的活动时间显示，手工跨区排序时可出现多个同名日期区段。
+新建/重命名项目时，名称输入框左侧可选择 8 个 Lucide 图标；图标随项目存储在 Agent，旧项目默认文件夹，旧调用省略 icon 时保留原图标。</p>
+<p>2026-10-18 后续拖拽/图标验证：全量前端 31 个文件、253 项通过；最后补充 API 图标断言及拖拽指示后，受影响的 70 项回归通过。
+类型检查、Agent 受影响 Ruff、Backend 全量 Ruff、BFF 12 项测试与 Base/Items/Suite Edition 构建通过，OpenAPI 客户端由命令重新生成。
+一次性本地 PostgreSQL 的 3 项项目测试通过，覆盖图标保存/默认值/非法值、迁移重复执行、回滚再升级、runtime 作用域及跨租户/拥有者负向检查；测试库随后销毁。
+现有 <code>migrate_projects.py</code> 也已用指定 migration Data ID 成功执行；本地结果不代表生产发布。
+原生浏览器控制/截图仍返回 ScreenCaptureKit 错误，本轮真实拖拽与窄屏视觉、控制台/网络检查、截图归档和远端 CI 未完成。</p>
+<p>2026-10-18 首次项目树调整的历史本地验证（不含后续拖拽和图标）：<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:build</code> 和
+<code>pnpm --dir frontend -F @chein/web-pro exec vitest run --maxWorkers=1</code> 通过（30 个文件、247 项测试）。
+测试覆盖完整页面/浮窗、多项目同时展开、独立分页、全局搜索恢复、失败重试、迟到响应以及移动/删除后更新。
+已登录的本地浏览器确认项目可展开且未分组会话仍保留；原生截图接口返回 ScreenCaptureKit 错误，未能生成或归档截图。
+窄屏视觉、浏览器控制台/网络检查与远端 CI 未完成；本次展示调整没有新增接口、依赖或数据库迁移。</p>
+<p>核对<a href="https://www.assistant-ui.com/elements/thread-list" target="_blank" rel="noopener noreferrer" class="">官方 Thread List</a>、
+<a href="https://www.assistant-ui.com/docs/api-reference/primitives/thread-list" target="_blank" rel="noopener noreferrer" class="">ThreadListPrimitive</a>
+及当前安装的 <code>@assistant-ui/react 0.15.21</code> 后，未找到现成的项目/文件夹组件。
+继续使用原生 <code>ThreadListPrimitive</code>、<code>ThreadListItemPrimitive</code>、<code>ThreadListItemMorePrimitive</code>，
+项目行、表单和确认框复用现有 assistant-ui 注册表的 Button、Input、Dialog 及主题样式；没有升级或新增依赖。</p>
+<p>数据由 Agent 的 <code>agent_projects</code> 持有，按可信 tenant/owner 设置事务作用域并启用 FORCE RLS。
+<code>agent_threads.project_id</code> 通过含租户、拥有者的组合外键关联项目，防止跨用户或跨租户关联；
+项目无父级字段，创建/更新输入拒绝额外字段。删除项目仅清空会话的 <code>project_id</code>，保留消息、归档状态及归属。
+旧会话默认未分组，旧调用省略项目参数时继续查询全部会话；项目筛选参与游标作用域校验。
+归档表格新增项目列及项目筛选，继续按更新时间倒序和原时间范围条件查询。</p>
+<p>部署新代码前执行新增迁移（不修改历史迁移）：</p>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token builtin class-name">cd</span><span class="token plain"> agent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token assign-left variable" style="color:#36acaa">NACOS_CONFIG_DATA_ID</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">chein-agent-migration.yaml uv run python scripts/migrate_projects.py</span><br></div></code></pre></div></div>
+<p>迁移可重复执行，并为受限 Agent runtime 角色授权；当前依次应用 <code>0002_thread_projects</code> 和 <code>0004_project_icons</code>。
+图标迁移新增有枚举 CHECK 的 <code>icon</code> 列，部署须先迁移，再更新 Agent/BFF/前端；它不修改历史迁移或现有项目归属。
+回滚先停止新版 Agent，使用迁移管理员在事务中执行 <code>agent/migrations/0004_project_icons.down.sql</code>，仅丢弃图标选择；
+如需回滚整个项目功能，再执行 <code>agent/migrations/0002_thread_projects.down.sql</code>，项目分类丢弃，会话保留。
+Agent 使用独立 SQL 迁移，不进入 Platform Alembic 链；本次不新增菜单、权限码或 Edition 模块。</p>
+<p>本地验证覆盖项目操作、失败重试、生成中切换筛选、归档归属、隔离 PostgreSQL 下的迁移重复执行/回滚、
+无作用域和跨租户/跨拥有者负向检查。浏览器使用模拟 BFF 验证 UI；不代表真实模型与生产 BFF 联调、远端 CI 或生产发布已完成。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="归档会话管理">归档会话管理<a href="#归档会话管理" class="hash-link" aria-label="归档会话管理的直接链接" title="归档会话管理的直接链接" translate="no">​</a></h3>
+<p>菜单采用「AI 工作台 → 数据分析助手 / 已归档会话」，保留聊天地址 <code>/agent</code>，
+新增 <code>/agent/archives</code>。统一目录及提示词、知识库、创作分组见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/#ai-%E5%B7%A5%E4%BD%9C%E5%8F%B0%E5%AF%BC%E8%88%AA">前端导航</a>。归档是当前用户的会话生命周期操作，放在工作台目录下；
+不属于系统设置或租户级日志。原会话侧栏底部的归档折叠列表已移除，
+普通会话行的“归档”操作保留，聊天运行时不再预取归档列表。</p>
+<p>页面位于 <code>src/modules/platform/agent/Archives.tsx</code>，通过受控 <code>pageMap</code> 注册，
+Base、Items、Suite 均可用，继续要求 <code>agent:chat</code>。同源 BFF 与 Agent
+逐次验证租户和拥有者，未新增权限码、接口、依赖或数据库结构。
+导航播种保留 <code>/agent</code> 菜单 ID，并为已有聊天角色及套餐补齐目录与归档页关联；
+部署后通过现有 <code>cd backend &amp;&amp; uv run python -m app.initial_data</code> 初始化流程更新菜单，
+重新登录或刷新应用以加载新菜单。</p>
+<p>归档页使用 Ant Design 原生 <code>Table</code>（紧凑行、标题、更新时间、固定操作列）和
+<code>DatePicker.RangePicker</code>，页面不显示内容区标题、说明或独立刷新按钮。
+标题搜索延迟 250ms 后提交；更新时间按浏览器本地日期筛选，包含结束日期当天。
+浏览器将起始日零点与结束日次日零点转换为带时区时间，由 BFF 转发
+<code>updated_from</code>（含）/<code>updated_before</code>（不含），Agent 在数据库查询中筛选。
+排序固定为 <code>(updated_at DESC, id DESC)</code>，表格显示 <code>updatedAt</code>，不使用归档时间替代。
+时间范围变化会清空旧记录与游标，后续页沿用相同搜索/时间条件；清空日期恢复全部时间范围。</p>
+<p>保留待回答标记、取消归档、永久删除确认及失败重试，恢复/删除后同步当前 Workspace
+保留的聊天运行时；已归档深链仍为只读。复用现有游标“加载更多”，计数明确表示已加载数量；
+没有全量计数，不伪造表格总页数。小屏使用表格内部横向滚动；项目筛选与“全部删除”仍不展示。
+时间参数为兼容性可选参数，无结构迁移；启用筛选须同时更新 Agent、BFF 与前端。</p>
+<p>本地验证（2026-10-16）：类型检查、API 客户端生成及 Base/Items/Suite 构建通过；
+<code>pnpm --dir frontend -F @chein/web-pro exec vitest run --maxWorkers=1</code> 全量 221 项通过，
+Agent 的分页与 API 测试 24 项、BFF 测试 11 项通过，受影响 Python lint 通过。
+默认并发前端回归中两个非归档弹窗用例出现等待超时，串行复跑通过，未修改测试门槛。
+Playwright 在模拟 BFF 下验证了原生表格、时间范围跨页筛选、清空条件、搜索、
+更新时间倒序、桌面与 390px 小屏表格内部滚动，截图归档到开发制品存储的
+<code>agent-ui/screenshots/2026-10-16/</code>。真实 PostgreSQL 时间筛选联调、跨租户真实浏览器测试、
+生产性能与远端 CI 未执行。</p>
+<p>新建按钮采用<a href="https://github.com/assistant-ui/assistant-ui/blob/main/apps/docs/components/pages/home/demo/sidebar.tsx" target="_blank" rel="noopener noreferrer" class="">官方首页 demo</a> 的 <code>ThreadListPrimitive.New</code> 原生按钮与样式；搜索采用官方 <code>ThreadListSearch</code> 配合同一 demo 的边框、背景和字体。<code>rounded-control</code> 使用<a href="https://github.com/assistant-ui/assistant-ui/blob/main/apps/docs/styles/globals.css" target="_blank" rel="noopener noreferrer" class="">官方主题</a> 的 <code>0.5rem</code>；搜索控件在当前 Base Nova Input 上按此值及官方字号适配，公共 Button/Input 和其他控件的圆角不变。</p>
+<p>会话列表将 Agent 已持久化的 <code>updatedAt</code> 映射为 assistant-ui 原生 <code>lastMessageAt</code>，独立会话保留<a href="https://www.assistant-ui.com/elements/thread-list" target="_blank" rel="noopener noreferrer" class="">官方 ThreadList</a> 的今天/昨天/更早分组，项目内不显示日期标题；完整页面与浮窗共用此列表，归档记录使用独立管理页。会话行的更多菜单常驻显示，标题固定预留菜单空间，行内不再显示时间。悬停会话或用键盘聚焦标题时，Base UI Tooltip 在右侧显示标题摘要、活动时间和所属项目（如有）；长标题最多三行，空间不足时由定位原语避让，卡片通过 Portal 避免被列表滚动容器裁切。开始拖拽时关闭预览，卡片不触发会话切换。按浏览器本地时区，预览中的今天显示 <code>HH:mm</code>、昨天显示“昨天”、更早显示“N 天前”，时间的 title 属性提供完整日期。跨午夜或返回浏览器标签页会更新日期分组；运行开始与新消息、编辑/恢复结束后重新读取列表。无效更新时间回退创建时间，两者都无效时不显示时间。当前时间含义是最近会话活动：现有 Agent 归档/恢复也会更新 <code>updatedAt</code>；它不是每条消息的独立时间或完整事件审计。本次不改变数据库、BFF 契约与权限。</p>
+<p>2026-10-18 悬停预览修复：移除依赖后续 <code>mousemove</code> 的静止延迟，Trigger 使用 <code>delay={0}</code>，鼠标进入即可显示。回归用例仅触发鼠标进入事件，修复前失败、修复后通过。<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:build</code> 和会话页/时间格式的 63 项回归通过，覆盖拖拽关闭、Escape 关闭与菜单交互。完整页及浮窗的时间更新、无效时间回退和跨午夜处理均使用同一预览。独立 Playwright 浏览器使用拦截的本地测试数据验证右侧位置、320px 宽度、移入卡片保持显示、Escape 关闭及更多菜单，截图已归档到 RustFS（<code>agent-ui/screenshots/2026-10-18/e4012d1763224c54b556b8960e1f5dbc/hover-fixed.png</code>）。用户原浏览器检查仍被 ScreenCaptureKit 错误阻塞；窄屏及远端 CI 未执行。</p>
+<p>2026-10-19 悬停卡片样式：浅色使用 80% 不透明度的主题背景，深色为 75%，叠加 12px 背景模糊；容器及文字不设置整体透明度，沿用对应主题文字色。内置浏览器核对两种模式的实际颜色、背景模糊与文字可读性，控制台无 error；截图归档 RustFS 的 <code>04e9cfe39af44a81841d2be50abdf7f6/thread-preview-glass-light-full.png</code> 与 <code>cbf2c4da6fe34d7f856931158c64e05a/thread-preview-glass-dark-full.png</code>（均位于 <code>agent-ui/screenshots/2026-10-19/</code>）。类型检查及前端构建通过，无 API 或数据迁移，远端 CI 未执行。</p>
+<p>管理业务页面右下角使用<a href="https://github.com/assistant-ui/assistant-ui/blob/main/apps/docs/components/pages/docs/samples/assistant-modal.tsx" target="_blank" rel="noopener noreferrer" class="">官方 AssistantModal 示例</a> 的 <code>AssistantModalPrimitive</code>、悬浮按钮、窗口、会话记录和新建入口，组件位于 <code>src/components/assistant-ui/assistant-modal.aui.tsx</code>。它复用 <code>AgentPage</code> 的运行时、消息组件和同源 BFF；首次打开才加载会话列表与业务场景，不读取或改写业务页面的查询参数。样式只应用于浮窗及其子元素，沿用既有 Tailwind 主题，没有增加全局样式或依赖。</p>
+<p>2026-11-04 悬浮入口拖动：已核对安装的 <code>@assistant-ui/react 0.15.21</code> 源码与<a href="https://www.assistant-ui.com/docs/api-reference/primitives/assistant-modal" target="_blank" rel="noopener noreferrer" class="">官方 API</a>，没有直接开启自由拖动的专用参数。本地 <code>assistant-modal.aui.tsx</code> 在原生 Anchor 上增加 Pointer Events 拖动，支持鼠标与触屏；移动达到5px后阻止该次点击，普通单击及较小手抖仍沿原 Trigger 打开/收起。位置限制在视口内并保留8px边距，视口变小时重夹取；方向键每次16px、Shift+方向键64px，Home恢复默认右下角。位置只保留在组件内存，不写入本地存储或服务端。Content 复用官方 <code>updatePositionStrategy=&quot;always&quot;</code> 与 <code>collisionPadding={8}</code> 跟随锚点并自动避让，不改变会话、语音退出、权限或业务查询。新文案进入中英文 locale，无运行依赖、API、迁移、生成文件或 Edition 装配变更。</p>
+<p>本次关键文件：<code>components/assistant-ui/assistant-modal.aui.tsx</code>、新增 <code>assistant-modal.test.tsx</code>、中英文 <code>locales/*/pages.ts</code>。实际验证 <code>pnpm frontend:pro:test src/components/assistant-ui/assistant-modal.test.tsx src/pages/agent/index.test.tsx --maxWorkers=2</code>：2文件86项通过；<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:build</code>、<code>git diff --check</code> 通过。回归覆盖拖动不误开、轻微移动后单击、触屏/视口边界、键盘复位、取消手势、原完整/浮动对话流程；测试日志仍有既有 happy-dom localhost:3000 静态资源连接拒绝，不能写成无异常日志。</p>
+<p>浏览器使用实际组件、LocalRuntime 与合成业务表验证1280×720及390×844：拖离分页、正常打开、打开中继续拖动、自动上下翻转/左右避让、视口缩小夹取、Home恢复与再次收起均通过，无页面横向溢出，控制台无warning/error。未调用模型或真实业务服务；触屏路径为单测模拟，浏览器拖动使用鼠标。截图通过 <code>saveDevArtifact</code> 归档到 RustFS <code>chein-dev-artifacts</code> 的 <code>agent-ui/screenshots/2026-11-04/b962a4470f1e43f3987efe766917f973/movable-launcher-desktop.png</code>（SHA-256 <code>79a417afa74d6606e2cc418045cb3cabfe75a09b1e5934acdbe13c67195b6514</code>）及 <code>agent-ui/screenshots/2026-11-04/06fc3b7e26da4555a44df39a4a645219/movable-launcher-mobile.png</code>。临时页面、进程及文件已清理。未执行后端/数据库/Edition测试、真实设备触屏、远端CI、镜像扫描、签名或N-1演练；本次仅前端交互变更，回滚为恢复前端代码/构建产物，无Nacos或数据库步骤。</p>
+<p><code>Workspace</code> 向有 <code>agent:chat</code> 权限且有受控完整 Agent 路由的登录用户提供同一个对话运行时：业务页展示浮窗，完整页展示原生侧栏和对话。浮窗右上角“在完整页面打开”复用 <code>TooltipIconButton</code>，通过 Umi 路由进入已授权的 Agent 页面，携带当前 <code>thread</code> 与非通用 <code>scene</code>。未收到 <code>RUN_STARTED</code> 时先进入完整页，服务端确认会话后更新 URL；不会额外创建新会话。切换界面保留消息、输入草稿和正在生成的回答，不取消 Run；后续消息继续使用同一会话 ID。完整页不会另挂浮窗，缓存的 Agent 标签也不会建立第二个运行时。收起窗口不会取消当前 Run；切换租户时先卸载运行时，用户或当前租户变化也会重建运行时，清理旧消息并取消旧运行。焦点返回和窗口外继续操作业务页面由官方交互原语提供。浮窗不会自动附带当前业务页面内容，也不改变服务端的租户、会话归属和审批鉴权。</p>
+<p>Markdown 使用 <code>@assistant-ui/react-markdown</code> 的 <code>MarkdownTextPrimitive</code> 与 <code>remark-gfm</code>；用户消息与助手回答均复用该渲染器，支持标题、列表、表格和代码块。用户原文保留 chunk 字样，不套用助手引用标记的隐藏处理。主输入框和消息编辑框仅编辑 Markdown 原文，不提供渲染预览；提交仍传原文，发送后的消息气泡渲染 Markdown。消息队列和引导沿用原路径；无 API 或数据库迁移。未启用 raw HTML，危险 URL 由默认 Markdown 渲染规则过滤。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-运行边界">2. 运行边界<a href="#2-运行边界" class="hash-link" aria-label="2. 运行边界的直接链接" title="2. 运行边界的直接链接" translate="no">​</a></h2>
+<!-- -->
+<p>浏览器不得直连 Agent、RAGFlow、模型供应商或数据库。后端
+<code>backend/app/platform/agent_ui_router.py</code> 在请求前校验身份、租户和 <code>agent:chat</code> 权限，
+签发绑定运行/线程的委托上下文；浏览器提供的 <code>tenant_id</code> 不是可信租户来源。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-bff-契约">3. BFF 契约<a href="#3-bff-契约" class="hash-link" aria-label="3. BFF 契约的直接链接" title="3. BFF 契约的直接链接" translate="no">​</a></h2>
+<p>路径统一位于同源 <code>/api/v1/agent-ui</code>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>路径</th><th>用途</th></tr></thead><tbody><tr><td><code>GET</code> / <code>POST</code></td><td><code>/threads</code></td><td>查询、创建会话</td></tr><tr><td><code>GET</code></td><td><code>/threads/{thread_id}/messages</code></td><td>读取持久化历史</td></tr><tr><td><code>PATCH</code> / <code>DELETE</code></td><td><code>/threads/{thread_id}</code></td><td>归档、恢复或删除</td></tr><tr><td><code>POST</code></td><td><code>/chat</code></td><td><code>{ threadId, message, deepThinking? }</code>，响应为 SSE</td></tr><tr><td><code>GET</code></td><td><code>/threads/{thread_id}/pending-approval</code></td><td>读取当前 checkpoint 的待确认动作</td></tr><tr><td><code>POST</code></td><td><code>/runs/{run_id}/decide</code>、<code>/runs/{run_id}/resume</code></td><td>提交决定并恢复同一 Run</td></tr><tr><td><code>GET</code></td><td><code>/threads/{thread_id}/checkpoints</code>、<code>/threads/{thread_id}/resumable-run</code></td><td>查询可重跑检查点与可恢复 Run</td></tr><tr><td><code>POST</code></td><td><code>/threads/{thread_id}/checkpoints/{checkpoint_id}/replay</code>、<code>/threads/{thread_id}/messages/{message_id}/edit</code></td><td>受限重跑与消息编辑</td></tr><tr><td><code>POST</code></td><td><code>/runs/{run_id}/cancel?thread_id=...</code></td><td>协作式取消</td></tr><tr><td><code>POST</code></td><td><code>/runs/{run_id}/pause</code></td><td>在安全检查点暂停</td></tr><tr><td><code>POST</code></td><td><code>/memory/threads/{thread_id}/leave</code></td><td>以当前拥有者身份通知离开会话，可携带最后已知 <code>run_id</code>；需 <code>agent:memory:create</code></td></tr><tr><td><code>GET</code></td><td><code>/knowledge/documents/{dataset_id}/{document_id}</code></td><td>鉴权后下载已批准的 RAGFlow 共享文档</td></tr></tbody></table>
+<p><code>/chat</code> 的 <code>run_id</code> 由 BFF 生成。当前 BFF 不公开 Run 详情、事件 cursor 补发或通用产物
+下载接口。前端普通请求复用认证路径；流式请求由 <code>pages/agent/api.ts</code> 使用同源 fetch，
+<code>pages/agent/sse.ts</code> 解析分片并处理结束/错误。</p>
+<p>开启“离开会话时自动保存”后，成功回复只留下持久待保存引用；切换或新建会话、离开聊天页、关闭浮窗时异步通知后台，Worker 才提交此前尚未处理的合规轮次。通知使用 <code>keepalive</code>，不等待记忆提交/提取，不阻塞历史加载；只发送会话和 Run 引用，不从浏览器上传对话正文。重复离开由服务端幂等处理。任务页以“等待离开会话”区分尚未放行的 PENDING 任务；强制关闭浏览器或断网可能未送达通知，此时再次离开该会话可触发。已取消或未完成回复不保存，删除会话仍走撤销屏障。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-消息与运行状态">4. 消息与运行状态<a href="#4-消息与运行状态" class="hash-link" aria-label="4. 消息与运行状态的直接链接" title="4. 消息与运行状态的直接链接" translate="no">​</a></h2>
+<p>当前消息是 assistant-ui 的 <code>ThreadMessageLike</code> 扩展（<code>AgentMessage</code>），不是旧 Vue
+<code>ChatMessage</code> 模型。<code>events.ts</code> 将 SSE 投影为 text、reasoning、tool、citation、image 等
+消息部件/事件；<code>index.tsx</code> 负责应用到当前选中会话。</p>
+<ul>
+<li class="">线程列表由 BFF 提供；新会话首条消息发送时创建，支持历史加载、切换、归档/恢复与删除。</li>
+<li class=""><code>TEXT_MESSAGE_CONTENT</code> 更新文本；<code>REASONING_MESSAGE_CONTENT</code> 可投影为 reasoning part。</li>
+<li class=""><code>TOOL_CALL_*</code> 更新工具名、参数、结果与计时，由现有 assistant-ui 工具部件渲染；参数流结束与执行完成分开处理。工具分组与单次调用在运行中仅使用闪光文字，不显示转圈图标；完成、失败、取消和待审批仍保留状态图标。</li>
+<li class="">等待响应使用灰色闪光“正在思考”；工具等待按实际调用显示知识库检索、目录查询、ERP 统计、日期确认或问题准备等目的，多工具或未知工具使用通用任务提示。结果返回且尚未开始下一段正文时，提示正在核对结果并整理回答；失败显示失败提示，不根据等待时长或空结果声称找到依据。入口决策沿用自己的闪光状态记录。已移除等待与 Markdown 流式输出的圆点。正文末尾最多 48 个字素按距离逐渐变淡，随着后续输出恢复正常颜色；末尾文字在呼吸的亮相位恢复到所在正文的正常颜色，避免固定低透明度使动态效果难以辨认。最后一个正文块的底部视觉行以 4 秒周期平滑呼吸，周期由稳定的 Markdown 容器提供，追加文字和换行不重新开始。段落、列表项、标题和表格单元格共用该效果，代码保留原生渲染。完成、取消或断流会还原正文颜色，减少动画模式关闭闪光、呼吸及渐淡效果。完整页面与浮窗共用此渲染，不改变 SSE、引用核对或历史数据。</li>
+<li class="">Agent 装配在已选择的 Nacos 系统提示词或内置兜底提示词后统一附加公开过程说明规则：耗时查询前简短说明目标和用途，同批工具合并说明；真实结果返回后，需要继续查询才说明已确认事实、缺口与下一步，能够回答则直接给结论。说明随现有文本流和工具调用输出，保留原生消息顺序与历史；不新增模型调用、SSE 协议、执行循环或提示词配置，也不自动发布或改写 Nacos 正文。规则是对模型的行为要求，不是每次必然遵循的执行保证；页面状态提示覆盖模型省略说明时的等待阶段，不展示内部推理或原始日志。</li>
+<li class=""><code>CUSTOM(name=&quot;agent.decision&quot;)</code> 经白名单校验后更新命名 data part，由官方 <code>makeAssistantDataUI</code> 展示可展开的入口决策记录，支持 shadow / active。记录包含运行、完成、回退或中断状态，以及模型名称、完成耗时、处理建议和固定原因；shadow 明确标注建议未参与路由。异常断流和取消会结束转圈。它只展示当前流状态，刷新历史不补回决策记录；不展示原始日志、提示词、供应商响应或推理正文，也不把本地规则、上下文跳过或知识检索内部判断伪装为入口模型调用。配置与运行时边界见 <a class="" href="/chein-doc-site/reference/development/agent/jev-integration/">决策模型接入</a>。</li>
+<li class=""><code>APPROVAL_REQUESTED</code> 将 Deep Agents 的中断映射为现有 <code>ToolFallback.Approval</code>，在 assistant-ui <code>ViewportFooter</code> 的输入框上方显示独立圆角卡片，回答正文中不重复显示待确认控件。确认选项纵向排列并编号，执行参数可展开查看；允许执行仍需 <code>agent:approval:decide</code>，选项不得超出该动作的 <code>allowedDecisions</code>。<code>ask_user</code> 使用同一卡片的文字回答模式，Enter 发送、Shift+Enter 换行，不伪造跳过必填问题的回答。多项请求逐项显示并标注进度，全部回答后统一提交到 BFF，由 LangGraph <code>Command(resume=...)</code> 恢复；原流结束前禁用提交，提交失败重新读取待确认动作。已提交记录保留在同一 assistant 消息内，完整页与浮窗共用此交互。刷新页面从 Agent checkpoint 重新读取待确认动作，不新增 API、数据库或第二套审批状态。</li>
+<li class="">同一用户问题中的工具调用、待回答卡和继续执行共用一条 assistant 消息；历史待确认卡并入当前回答，提交失败替换相同工具 ID 的卡片，避免重复部件。运行中或等待用户输入时不渲染消息操作栏，结束后仅在回答末尾展示。新用户消息、编辑重跑和重新生成保留各自的回答边界。</li>
+<li class="">会话列表的可选 <code>pendingInput</code> 字段由 Agent 按当前租户与用户的 <code>waiting_input</code> Run 查询投影，显示“待回答”标记；不逐会话请求 checkpoint，不新增持久化状态或轮询。实时提问、历史待确认动作和当前批次回答同步标记，未答完时保留，提交失败重新读取待确认动作。完整页与浮窗共用原生列表项和 <code>custom</code> 元数据；普通工具或敏感操作审批不作为待回答问题。</li>
+<li class="">审批继续、断线恢复与消息编辑重跑会按页面 URL 保留的业务场景重新读取当前 Nacos 系统提示词；个人提示词仍作为用户消息的一部分，修改后需发送新消息或编辑原消息才能生效。Nacos 内容变更后的重跑可能生成不同回答。</li>
+<li class="">对话界面不提供手动“暂停到检查点”入口，保留原生停止和消息编辑；已有可恢复 Run 仍可继续执行，并重新读取 Nacos 系统提示词。后端暂停/恢复 API 保持兼容，暂停仅在当前模型或工具节点完成并持久化后生效，不撤销正在执行的工具。运行中普通发送（按钮或 Enter）进入 assistant-ui 原生队列，当前回答结束后逐条按 FIFO 发送；队列显示在输入框上方，可移除或点击“引导”。引导会协作取消当前 Run，等待其结束后优先发送该提示，保留上下文和其他排队项；取消失败显示错误并等待原运行结束，不并发启动替代运行。原生 Ctrl/Cmd+Shift+Enter 仍可直接引导。等待补充输入或审批时挂起队列，继续执行结束后再处理。手动停止保留待发项并暂停自动发送，下次显式发送重新启动队列；已发送消息编辑、重生成、切换会话或身份重置会清空队列，URL 导航也使用同一切换入口。待发消息只保存在当前页面内存，刷新后不恢复，不新增后端 MQ、API 或数据库迁移。</li>
+<li class="">待发队列只显示消息行，不显示等待说明。拖动左侧手柄或在手柄上使用上下方向键可调整实际发送顺序；编辑按钮将该条消息移出队列并回填输入框，重新发送后加入队尾，不取消当前回答或清空其他待发项。输入框已有草稿时暂时禁用队列编辑，防止覆盖；当前未启用附件队列编辑，包含非文本内容的待发项禁用编辑。完整页与浮窗共用此交互。</li>
+<li class="">已发送的用户消息使用 assistant-ui 原生编辑框；运行中提交编辑会先清空并挂起待发队列，协作取消当前 Run 并等待其结束，再由 Agent 自动定位该消息对应的模型前检查点创建新分支。先前会话上下文保留，该消息之后的回答由新分支替换；首条消息尚未收到运行 ID 时打开的编辑框会在提交时解析持久化消息 ID。取消失败时不启动编辑 Run，切换会话后不提交迟到编辑。编辑或新消息会结束同线程尚未继续的暂停 Run。没有匹配检查点的消息无法编辑。</li>
+<li class="">对话页不提供检查点选择或任意检查点重跑入口，也不请求检查点列表；检查点由运行时内部管理。历史检查点查询/重跑 HTTP 接口保留兼容，前端只通过消息编辑接口重跑该消息后的模型与后续只读工具。待审批或已批准但未完成的 Run 会阻止同线程新 Run，后者可通过“继续执行”恢复。</li>
+<li class="">Run 完成、暂停、错误、取消与非正常断流分别处理；会话切换使用上下文版本检查，避免迟到事件
+覆盖另一线程，取消请求避免重复发送。</li>
+<li class="">历史来自 Agent checkpoint；浏览器状态不是持久化事实源。断线后的完整事件重放仍未提供。</li>
+<li class="">当前工具集均为只读，因此尚无真实业务写入审批样例；新增写工具还需业务权限、幂等键和效果审计，不能仅依赖确认卡。</li>
+</ul>
+<p>工具展示继续使用当前安装的 <code>@assistant-ui/react 0.15.21</code> 和已有注册表组件，在原组件中调整运行指示，没有升级依赖或新增组件。带样式的 <code>Thread</code>、<code>ToolFallback</code>、<code>ToolGroup</code> 和 <code>Reasoning</code> 是项目已有的官方注册表入口，不是 npm 包的直接导出。实际接入如下：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>入口</th><th>实际导入路径</th><th>职责</th></tr></thead><tbody><tr><td>Runtime、<code>MessagePrimitive.GroupedParts</code>、<code>groupPartByType</code>、<code>useToolCallElapsed</code></td><td><code>@assistant-ui/react</code></td><td>管理消息、按连续部件分组、提供状态与耗时</td></tr><tr><td><code>Thread</code></td><td><code>@/components/assistant-ui/thread.aui</code></td><td>现有消息渲染与默认分组组合</td></tr><tr><td><code>ToolFallback</code></td><td><code>@/components/assistant-ui/tool-fallback.aui</code></td><td>工具折叠、参数、结果、错误和单次调用耗时</td></tr><tr><td><code>ToolGroupRoot/Trigger/Content</code></td><td><code>@/components/assistant-ui/tool-group.aui</code></td><td>连续工具的数量摘要与折叠</td></tr><tr><td><code>Reasoning</code></td><td><code>@/components/assistant-ui/reasoning.aui</code></td><td>独立展示真实 reasoning 部件</td></tr></tbody></table>
+<p>官方用法见 <a href="https://www.assistant-ui.com/elements/tool-fallback" target="_blank" rel="noopener noreferrer" class="">Tool Fallback</a>、<a href="https://www.assistant-ui.com/elements/tool-group" target="_blank" rel="noopener noreferrer" class="">Tool Group</a> 和 <a href="https://www.assistant-ui.com/docs/api-reference/tools/status" target="_blank" rel="noopener noreferrer" class="">Tool Status</a>。当前默认分组显示调用数量和运行指示；没有接入 Codex 的整轮 “Worked for …” 摘要，也没有自动生成自然语言工具描述。</p>
+<p>官方另有 <a href="https://www.assistant-ui.com/elements/run-activity" target="_blank" rel="noopener noreferrer" class="">Run Activity</a>，支持折叠公开过程与工具，并接收整轮状态和时长标签。它是通过 shadcn 安装源码的 registry 组件，不是当前 <code>@assistant-ui/react</code> 的直接导出，仓库也没有该组件。按本次禁止复制或新增工具展示组件源码的约束，未安装它。其摘要与时长需要应用提供真实运行边界、正文分类和持久化时间，并非仅更换组件即可自动生成。</p>
+<p>事件适配保留参数片段顺序，并由官方 Runtime 解析参数。<code>TOOL_CALL_END</code> 只表示参数流结束；收到结果后才结束执行状态。Agent 将真实 <code>ToolMessage.status</code> 放入 AG-UI 的 <code>metadata.chein.isError</code>，现有渲染入口将失败映射为官方 incomplete/error 状态。开始和结果事件提供 epoch 毫秒时间；<code>timing.startedAt/completedAt</code> 交给官方耗时 Hook。该时长包含参数生成到结果返回的时间，不是整轮回答或纯工具执行耗时。运行中每秒更新并按整数秒显示；完成后小于 10 秒保留一位小数并四舍五入。<code>ask_user</code> 不显示耗时，避免把用户等待时间当作执行耗时；原始时间戳仍保留在事件及历史部件中。旧调用没有计时数据时不补造耗时，取消且没有结束时间的调用也不显示完成时长。</p>
+<p>历史读取从 checkpoint 恢复有序 text/tool-call 部件，按租户、用户和线程读取既有 Run 事件中的状态与时间。旧 <code>content</code> 字段保留兼容；没有建立第二套工具数据存储，也不改变数据库 Schema。正文、工具结果和最终回答按实际消息顺序显示，刷新与切换会话继续使用同一 Runtime。内部语义路由和 Judge 调用使用 <code>nostream</code> 标签，工具节点的内部模型片段不进入回答流；工具调用仍作为工具部件展示，不转成 reasoning。</p>
+<p>完整页与浮窗在回答结束后的操作栏内显示本轮开始时间；时间与操作按钮默认隐藏，悬停回答区域时一起显示，包括最后一条回答。采用浏览器本地时区的 24 小时 <code>HH:mm</code>，悬停时间可查看完整日期。实时消息保留发起时间，历史接口新增可选 <code>createdAt</code>，复用该用户消息对应的 <code>agent_runs.created_at</code>；同一回答的工具调用、补充输入和恢复共用原时间。无法关联运行记录或时间无效时不显示，不用页面加载时间补造。BFF 透传该兼容字段，管理后端 OpenAPI 没有新增 Schema，数据库无需迁移。</p>
+<p>RAGFlow 引用通过 <code>agent.citations</code> 传递经过检索结果核对的文档与 chunk ID；现有 Markdown 渲染器显示数字引用及文档链接。服务端仍保留旧客户端使用的文档链接正文，没有新增 Sources 组件或引用样式。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-已接线与待收口能力">5. 已接线与待收口能力<a href="#5-已接线与待收口能力" class="hash-link" aria-label="5. 已接线与待收口能力的直接链接" title="5. 已接线与待收口能力的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>能力</th><th>当前源码事实</th><th>不能作出的结论</th></tr></thead><tbody><tr><td>会话/流式文本/工具/取消</td><td><code>index.tsx</code>、<code>api.ts</code>、<code>events.ts</code>、<code>sse.ts</code> 已连接 BFF 与 assistant-ui</td><td>单元测试不能证明真实后端浏览器流程已通过</td></tr><tr><td>深度思考</td><td>SSE projector 支持 reasoning；当前发起聊天固定 <code>deepThinking: false</code></td><td>不能写成 UI 已提供深度思考开关或请求时已启用</td></tr><tr><td>ChartSpec</td><td>旧 <code>chart.tsx</code> 保留 V1 解析；Suite 的 <code>modules/analytics/AnalysisResult.tsx</code> 渲染 V2 授权快照</td><td>组合根注册 <code>analyze_data</code> 独立 renderer，完整/浮动聊天与收藏页共用；实现与启用见 <a class="" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析交付</a></td></tr><tr><td>RAGFlow 文档引用</td><td>Agent 仅将回答中标记了真实检索 chunk ID 的文档追加为 Markdown 链接；现有 <code>MarkdownTextPrimitive</code> 渲染链接，点击经同源 BFF 鉴权下载</td><td>未配置 RAGFlow 时无引用；未实现租户私有文档 ACL、索引版本固定或通用产物存储</td></tr><tr><td>其他引用/图片事件</td><td><code>events.ts</code> 支持投影；页面经 <code>sameOriginArtifactUrl</code> 过滤后追加 Markdown</td><td>不代表已实现通用产物存储或专用下载服务</td></tr><tr><td>Markdown 安全辅助</td><td><code>security.ts</code> 中有 DOMPurify <code>sanitizeMarkdown</code>，并有单元测试</td><td>该辅助函数目前仅被测试调用，不能声称线上消息链路已统一经它消毒</td></tr><tr><td>Markdown 主渲染</td><td>当前 <code>MarkdownTextPrimitive</code> + GFM 未配置 raw-HTML 执行插件</td><td>完整 URL/内容安全仍需渲染链路测试，不能用独立辅助函数测试替代</td></tr></tbody></table>
+<p>RAGFlow 文档链接只使用现有 assistant-ui Markdown 渲染器和链接样式，没有新增引用组件或样式。模型需输出 <code>[chunk:&lt;chunk_id&gt;]</code>；服务端只认可检索工具返回的 ID，完整标记输出后即通过 <code>agent.citations</code> 发送已引用文档的累计快照，不等待整条回答结束；只有来源或已引用片段发生变化才发送事件。文档按正文首次引用顺序编号，checkpoint 历史读取采用同一顺序。前端保留原文与来源映射，在展示时将已核对的完整标记转为数字 Markdown 链接，后续再次引用也即时转换；展示层隐藏未核对的完整及流式半截标记。回答结束后追加一份参考文档汇总；服务端保留旧客户端的文档链接正文。未标记的检索结果不会列出。引用点击沿用同源 BFF 鉴权文档下载，不代表已实现片段定位。</p>
+<p>提示词管理页面位于 <code>/agent-prompts</code>，使用 Ant Design Pro 原生表格与表单；正文编辑和只读查看均使用 Milkdown Crepe 内置主题，保存格式仍为 Markdown。对话页可选择 <code>general</code> 或当前用户可用的业务场景；BFF 按当前登录用户及场景组合 Nacos 提示词。系统提示词只向租户超级管理员显示；个人提示词只有创建人可查看。详情和每次新对话均重新读取 Nacos 正文，页面保存使用 CAS 检测并发修改。</p>
+<p>上述是当前代码边界。补齐深度思考、图表或 Markdown
+安全接线时，需要同时验证实际页面、异常输入及后端授权，而不只是增加组件文件。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-渲染与安全要求">6. 渲染与安全要求<a href="#6-渲染与安全要求" class="hash-link" aria-label="6. 渲染与安全要求的直接链接" title="6. 渲染与安全要求的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">模型输出只能作为数据，不执行 JavaScript、原始 HTML widget 或任意图表函数配置。</li>
+<li class=""><code>ChartSpecV1</code> 校验限定 <code>bar/line/pie/radar</code>、有限行数/维度、来源 ID、有限数值及安全键；
+只有显式注册受控渲染器后才能开放工具图表，未知/无效输入安全降级。</li>
+<li class=""><code>sameOriginArtifactUrl</code> 仅接受同源 HTTP(S) 且路径以 <code>/api/v1/agent-ui/</code> 或 <code>/api/v1/files/</code>
+开头的地址；这只是客户端过滤，不替代服务端资源授权与短期 URL 签发。</li>
+<li class="">Markdown 禁止 raw HTML；危险链接、内容消毒和图片加载行为必须在真实消息链路验收。
+DOMPurify 辅助函数存在但未接线的事实不得掩盖。</li>
+<li class="">不向浏览器暴露模型密钥、RAGFlow 原始地址、数据库连接或跨租户数据。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-配置运行和验证">7. 配置、运行和验证<a href="#7-配置运行和验证" class="hash-link" aria-label="7. 配置、运行和验证的直接链接" title="7. 配置、运行和验证的直接链接" translate="no">​</a></h2>
+<p>后端 Nacos runtime 使用 <code>AGENT_API_URL</code> 与 <code>AGENT_API_TIMEOUT_SECONDS</code>；本机 Agent
+内部地址示例为 <code>http://127.0.0.1:8100/internal/agent/v1</code>，不是浏览器访问地址。
+Backend 的共用转发入口直连该地址，不继承系统或环境代理；Agent 必须能从 Backend
+所在机器或容器直接访问。<code>GET /threads</code> 只验证委托上下文并查询 Agent 会话表，
+不调用模型或 RAGFlow；该接口的 502 应先排查 Backend 到 Agent 的连接与代理。
+三个进程启动方式见<a class="" href="/chein-doc-site/reference/operations/development/">本地开发</a>。</p>
+<p>React 测试使用根目录 <code>pnpm frontend:pro:test</code>，覆盖事件投影、SSE、取消、URL/ChartSpec
+等边界；类型检查与构建见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。真实 BFF/Agent E2E、
+恶意内容渲染、刷新/会话切换、移动端、归档/删除和已注册工具图表需另行验证。</p>
+<p>浮窗本地测试覆盖延迟加载、业务 URL 不变、收起后流式回答、历史搜索/切换/新建、作用域变化清理以及入口权限；完整页跳转测试覆盖 <code>RUN_STARTED</code> 前后切换、会话 ID 连续、输入草稿、历史消息与场景保留、返回业务页面以及缓存 Agent 标签不重复挂载。浮窗使用独立弹层层级，内部提示/菜单和图片预览位于浮窗上层。真实构建产物在模拟 BFF 下验证了桌面与窄屏的完整页跳转、同一会话的历史和草稿保留、生成中切换后继续回答、返回浮窗及刷新按 URL 恢复历史；模拟服务端记录一次对话请求、零取消请求，浏览器无错误或警告。这些本地证据不代表真实模型、RAGFlow、生产 BFF 或远端 CI 联调已经通过。</p>
+<p>会话时间的本地测试覆盖真实 assistant-ui 外部运行时接入、列表重载、搜索与归档日期、运行开始/编辑后刷新、返回标签页时跨日更新、无效时间回退及中英文格式；日历计算另在 <code>America/New_York</code> 时区验证夏令时边界。构建产物在模拟 BFF 下检查了完整页面与浮窗、长标题与更多菜单、小屏和深色主题，没有发现时间遮挡或浏览器错误。真实 Agent 数据、生产浏览器与远端 CI 尚未验证。</p>
+<ul>
+<li class=""><a class="" href="/chein-doc-site/reference/development/frontend/history-pagination/">会话与消息游标加载</a>：分页、快速滚动与兼容边界。</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent-ui/README.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/development/agent/jev-integration/">Chein 阿里云 Decision Model 接入与能力路由</a></li><li><a href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析与图表收藏交付</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li><li><a href="/chein-doc-site/reference/development/frontend/history-pagination/">Agent 会话与历史消息游标加载</a></li><li><a href="/chein-doc-site/reference/operations/development/">本地启动</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/designs/platform/TRD/">Fast Vben Admin 技术需求文档 TRD</a></li><li><a href="/chein-doc-site/reference/development/agent/phase-1-delivery/">Agent Phase 1 运行控制与只读数据工具</a></li><li><a href="/chein-doc-site/reference/development/entrypoints/agent-README/">Chein Agent 运行时</a></li><li><a href="/chein-doc-site/reference/development/entrypoints/frontend-apps-web-pro-README/">Chein Ant Design Pro 前端</a></li><li><a href="/chein-doc-site/reference/development/entrypoints/frontend-apps-web-pro-README.zh-CN/">Chein React 管理前端</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li><li><a href="/chein-doc-site/reference/development/platform/api-contract/">API 契约</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Ffrontend%2Fagent-ui%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/category/前端开发/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">前端开发</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/frontend/architecture/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">前端架构与技术栈</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-当前-ui-选型与入口" class="table-of-contents__link toc-highlight">1. 当前 UI 选型与入口</a><ul><li><a href="#单层会话项目" class="table-of-contents__link toc-highlight">单层会话项目</a></li><li><a href="#归档会话管理" class="table-of-contents__link toc-highlight">归档会话管理</a></li></ul></li><li><a href="#2-运行边界" class="table-of-contents__link toc-highlight">2. 运行边界</a></li><li><a href="#3-bff-契约" class="table-of-contents__link toc-highlight">3. BFF 契约</a></li><li><a href="#4-消息与运行状态" class="table-of-contents__link toc-highlight">4. 消息与运行状态</a></li><li><a href="#5-已接线与待收口能力" class="table-of-contents__link toc-highlight">5. 已接线与待收口能力</a></li><li><a href="#6-渲染与安全要求" class="table-of-contents__link toc-highlight">6. 渲染与安全要求</a></li><li><a href="#7-配置运行和验证" class="table-of-contents__link toc-highlight">7. 配置、运行和验证</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

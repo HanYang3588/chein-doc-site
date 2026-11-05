@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/frontend/architecture" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">前端架构与技术栈 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/architecture/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="前端架构与技术栈 | Chein 文档中心"><meta data-rh="true" name="description" content="前端架构与技术栈 · Chein 技术文档"><meta data-rh="true" property="og:description" content="前端架构与技术栈 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/architecture/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/architecture/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/architecture/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"前端开发","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/前端开发"},{"@type":"ListItem","position":2,"name":"前端架构与技术栈","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/architecture"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="折叠侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/frontend/agent-ui/"><span class="linkLabel_gJOC">Agent 交互前端设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/frontend/architecture/"><span class="linkLabel_gJOC">前端架构与技术栈</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/frontend/history-pagination/"><span class="linkLabel_gJOC">Agent 会话与历史消息游标加载</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/前端开发/"><span>前端开发</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">前端架构与技术栈</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>前端架构与技术栈</h1></header>
+<blockquote>
+<p>状态：当前源码与交付入口说明，不等同于生产验收报告</p>
+<blockquote>
+<p>适用范围：<code>frontend/apps/web-pro</code></p>
+</blockquote>
+</blockquote>
+<p>本文维护前端技术栈、实际执行链路和现状/目标边界。模块所有权服从
+<a class="" href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a>，Agent 协议与渲染细节见
+<a class="" href="/chein-doc-site/reference/development/frontend/agent-ui/">Agent 交互前端设计</a>，原重构范围与验收要求见
+<a class="" href="/chein-doc-site/reference/history/frontend/ant-design-pro-migration-design/">前端迁移设计</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-当前交付结论">1. 当前交付结论<a href="#1-当前交付结论" class="hash-link" aria-label="1. 当前交付结论的直接链接" title="1. 当前交付结论的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p><code>/ontology-neo4j</code> 独立语义本体页面已移除，Ontology 仅注册 <code>/ontology-builder</code>；构建器及 Agent 共用 Neo4j/推理能力保留，见 <a class="" href="/chein-doc-site/reference/history/ontology/neo4j-studio-removal/">退役与菜单清理</a>。</p>
+</li>
+<li class="">
+<p>Suite 的 <code>/datasources</code> 页面位于 <code>modules/datasource</code>，动态连接表单、虚拟表树、字段分页与表配置复用 Ant Design 和现有模块装配；接口及本地验证见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源交付</a>。</p>
+</li>
+<li class="">
+<p>OWL 构建器可由 page registry 按 Manifest 注入数据源 <code>public_api/catalog</code> 的只读 Reader，消费方只类型引用目录 DTO；未装配或无读取权限时不显示入口。选择仅转换成已有 OWL 草稿命令，不授予实时数据访问，见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/#%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9B%AE%E5%BD%95%E6%89%B9%E9%87%8F%E6%96%B0%E5%A2%9E">目录批量新增</a>。</p>
+</li>
+<li class="">
+<p>原始表数据由独立的 <code>datasource/public_api/preview</code> Reader 可选注入，沿用数据源 read/preview 权限。目录对象选中后在底部自动加载，分隔处突出标签控制折叠，原生 Splitter 调整高度并同步表格滚动区，刷新及翻页使用紧凑文字样式；分页从服务端读取；折叠取消请求并清空数据，身份/工作区/对象切换丢弃旧响应，不将样本写入本体或持久状态。见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/#%E6%9F%A5%E7%9C%8B%E5%AF%BC%E5%85%A5%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8E%9F%E5%A7%8B%E8%A1%A8%E6%95%B0%E6%8D%AE2026-11-03">原始表面板</a>。</p>
+</li>
+<li class="">
+<p><code>/automations</code> 任务页与 <code>/automation-runs</code> 运行页位于 <code>modules/platform/agent/automations</code>，在“自动化”目录下配置为两个独立子菜单，沿用 Ant Design 主题和同源 Agent BFF；日程计算、统计聚合与运行事实留在后端。设计与验收边界见 <a class="" href="/chein-doc-site/reference/architecture/agent-automations/">Automations</a>。</p>
+</li>
+<li class="">
+<p>默认管理应用为 <code>frontend/apps/web-pro</code>，包名 <code>@chein/web-pro</code>，不是 Vue/Vben。</p>
+</li>
+<li class="">
+<p>Ontology 提供独立 ReactFlow 本体构建器，支持 Neo4j Resource 现库读取、原文件预览、分页实例、草稿编辑及受控工作区发布；复用 page registry 和模块权限。工具区可折叠，提供层级树、横向关系、网格三种布局。绑定、ACL、发布与显式写回的实施及部署限制见 <a class="" href="/chein-doc-site/reference/development/ontology/owl-builder/">OWL 画布交付边界</a>。</p>
+</li>
+<li class="">
+<p>根目录 <code>frontend:dev</code>、<code>frontend:build</code>、<code>frontend:typecheck</code>，Edition 构建默认值，
+<code>frontend/Dockerfile</code> 和 <code>compose.override.yml</code> 均指向 React 应用。</p>
+</li>
+<li class="">
+<p>旧 Vue 应用、Vben workspace 公共包、文档站和兼容客户端已从源码树删除。</p>
+</li>
+<li class="">
+<p>“默认入口已切换”“源码已迁移”“真实环境 E2E 通过”“已上线”是不同结论。
+本文只确认当前工作区事实，不推断线上运行版本或远端 CI 状态。</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-技术栈与实际用途">2. 技术栈与实际用途<a href="#2-技术栈与实际用途" class="hash-link" aria-label="2. 技术栈与实际用途的直接链接" title="2. 技术栈与实际用途的直接链接" translate="no">​</a></h2>
+<p>版本栏来自 <a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/package.json" target="_blank" rel="noopener noreferrer" class="">应用 package.json</a> 的声明范围，
+不是最新版本推荐；实际安装版本以 <a href="https://github.com/HanYang3588/chein/blob/main/frontend/pnpm-lock.yaml" target="_blank" rel="noopener noreferrer" class="">pnpm-lock.yaml</a> 为准。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>领域</th><th>当前声明</th><th>实际用途与边界</th></tr></thead><tbody><tr><td>UI 运行时</td><td>React / React DOM <code>^19.2.7</code></td><td>函数组件、Hooks、TSX 页面</td></tr><tr><td>应用框架</td><td>Umi Max <code>^4.7.3</code></td><td>配置路由、initialState、request、access、locale；开发/构建使用 <code>max dev</code> / <code>max build</code></td></tr><tr><td>类型系统</td><td>TypeScript <code>6.0.3</code></td><td><code>tsc --noEmit</code>；不是 <code>vue-tsc</code></td></tr><tr><td>管理界面</td><td>Ant Design <code>^6.6.0</code>、ProComponents <code>^3.1.14-2</code></td><td>Ant Design Pro 工程基线；ProLayout、ProTable、ProForm、详情和弹窗</td></tr><tr><td>提示词文本</td><td>Ant Design <code>Input.TextArea</code> / <code>Drawer</code> / <code>Tabs</code></td><td>新增中文 Markdown 原文、正文预览与草稿编辑、编辑配置及 Nacos 发布指引；不加载富文本编辑器主题</td></tr><tr><td>Agent 界面</td><td><code>@assistant-ui/react</code> <code>^0.15.21</code>、<code>@assistant-ui/react-markdown</code> <code>^0.14.16</code></td><td>会话运行时、消息、输入、推理与工具部件；完整页面接线状态见 Agent UI 文档</td></tr><tr><td>Agent 基础组件</td><td>Base UI <code>^1.8.0</code>、本地 <code>components/ui</code> 与 <code>components/assistant-ui</code></td><td>assistant-ui 风格的侧栏和交互原语；不是全部用 Ant Design 重写</td></tr><tr><td>样式</td><td>Ant Design token、<code>antd-style</code> <code>^4.1.0</code>、Less、Tailwind CSS <code>^4.3.2</code></td><td>管理界面主题与 Agent 局部组件样式；不导入 Vben 样式</td></tr><tr><td>图标</td><td><code>@ant-design/icons</code>、<code>lucide-react</code></td><td>管理菜单受控图标映射；Agent 原语使用 Lucide</td></tr><tr><td>图表</td><td><code>@ant-design/plots</code> <code>^2.6.8</code></td><td>仪表盘；Agent ChartSpec 校验/渲染组件的接线边界见专题文档</td></tr><tr><td>OWL 画布</td><td><code>@xyflow/react</code> <code>^12.12.0</code>、<code>@dagrejs/dagre</code> <code>^3.1.3</code></td><td>本体现库 / 原文件投影、草稿编辑、三种布局与渐进式实例展开</td></tr><tr><td>小数</td><td><code>bignumber.js</code> <code>9.3.1</code></td><td>ERP 十进制字符串处理和展示；后端仍是计算事实源</td></tr><tr><td>API 生成</td><td>workspace 的 <code>@hey-api/openapi-ts</code></td><td>仓库脚本按 Edition 生成 Platform / 模块客户端；不使用模板 <code>oneapi.json</code> 作为业务契约</td></tr><tr><td>测试</td><td>Vitest <code>4.1.10</code>、happy-dom</td><td>当前 React 单元/组件环境测试；不等同于真实浏览器 E2E</td></tr></tbody></table>
+<p><a href="https://github.com/HanYang3588/chein/blob/main/frontend/package.json" target="_blank" rel="noopener noreferrer" class="">frontend/package.json</a> 声明 Node.js <code>^22.18.0 || ^24.0.0</code>，
+包管理器固定为 <code>pnpm@11.7.0</code>，<code>frontend/.node-version</code> 指定 Node.js <code>24.16.0</code>。workspace 只包含 React 应用。
+锁文件中的 <code>vue</code> 来自仍声明的 Milkdown Crepe 间接依赖（<code>pnpm why -r vue</code> 可核对），不代表旧应用仍存在；当前提示词页面已不再加载 Milkdown。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="菜单维护界面">菜单维护界面<a href="#菜单维护界面" class="hash-link" aria-label="菜单维护界面的直接链接" title="菜单维护界面的直接链接" translate="no">​</a></h3>
+<p><code>pages/platform/SpecialPages.tsx</code> 的菜单维护使用 ProTable 树表与 Ant Design Drawer / Form：
+操作列固定在右侧，提供新增下级、展开/收起、中文类型标签和原生列设置；窄屏用原生 Dropdown 收纳行操作，避免遮挡菜单标题。
+标题、路由、组件和权限的本地筛选保留祖先；编辑时上级选择排除自身、下级与按钮，清空上级会提交 <code>null</code>。
+页面组件使用原生可搜索 Select，候选项直接取自 <code>runtime/page-registry.ts</code> 的当前 Edition 页面映射，不另建组件目录；旧 <code>.vue</code> / <code>#/</code> 标识回显为不带扩展名的 key，保存时使用该 key。未注册的旧值保留显示并阻止表单保存，必须重新选择或清空。
+图标 Select 的选项和预览与侧栏共用 <code>runtime/icons.tsx</code> 的受控映射：提供 Ant Design 官方线框、实心、双色图标的 <code>antd:&lt;组件名&gt;</code> 标识，并保留旧 <code>lucide:</code> 编码及其外观。原生 Select 按样式分组，可搜索并即时预览；官方图标按名称显式导入，不整库动态加载或引用外部图标脚本。
+表单按目录、菜单、按钮区分字段，桌面双列、窄屏单列；仅维护现有 API 的字段，未引入 Vben 的外链、内嵌、徽标或激活图标能力。
+这些界面变化不需要数据库迁移，后端权限、循环层级校验和组件 key 的失败关闭规则仍是安全边界。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="ai-工作台导航">AI 工作台导航<a href="#ai-工作台导航" class="hash-link" aria-label="AI 工作台导航的直接链接" title="AI 工作台导航的直接链接" translate="no">​</a></h3>
+<p><code>/agent-center</code> 为统一的“AI 工作台”目录。数据分析助手、已归档会话、提示词管理是二级入口；
+知识库管理和创作中心保留分组，其下页面为三级入口。统一的是使用入口，模块边界与授权不合并：
+Knowledge、Analytics、Creation 的页面仍由本模块 <code>NavigationSpec</code> / Platform 组合根按 Edition 装配，
+保留 <code>/agent</code>、<code>/agent/archives</code>、<code>/agent-prompts</code>、<code>/knowledge/*</code>、<code>/creation/*</code> 与 <code>/analytics/favorites</code> 地址和菜单 ID。</p>
+<p>工作台目录不携带 <code>agent:chat</code>。已有角色和套餐根据已授予的子入口补齐中性目录关联；
+新角色绑定同样补齐中性祖先，不授予兄弟页面或带权限码的父菜单。只有知识库、提示词或图片权限的用户
+无需聊天权限即可进入自己的功能。前端不展示没有可见子项的目录，隐藏兼容页仍保留受控路由。
+目录默认落点按实际菜单子树选择首个可访问页面，不再要求子页面 URL 与目录有相同前缀。</p>
+<p>此变更没有数据库结构迁移。通过现有菜单初始化流程应用层级与关联，刷新权限和菜单后生效；
+菜单合并不替代服务端权限、模块权益与租户隔离。归档页行为见 <a class="" href="/chein-doc-site/reference/development/frontend/agent-ui/#%E5%BD%92%E6%A1%A3%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86">Agent UI</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="模块权益配置">模块权益配置<a href="#模块权益配置" class="hash-link" aria-label="模块权益配置的直接链接" title="模块权益配置的直接链接" translate="no">​</a></h3>
+<p>Platform 的 <code>TenantPages.tsx</code> 在租户套餐和租户管理的行操作中提供“模块权益”，共用 <code>ModuleEntitlements.tsx</code>。仅平台超级管理员可访问这些页面，后端状态读取和写入仍逐次校验超级管理员身份。默认租户提供模块权益入口，其生命周期和其他编辑限制保持不变。</p>
+<p>套餐开关管理使用该套餐的所有租户；租户面板展示套餐权益、当前有效授权/禁用例外、租户启用偏好及当前模块访问结果。例外操作要求填写原因，复用现有审计与缓存失效接口。可选模块清单来自后端当前 Edition Manifest，必选 Platform 不作为可授权项；查看页面不会播种菜单、安装模块或创建授权记录。</p>
+<p>模块权益不替代用户角色权限。开启模块后仍由角色管理分配用户权限，页面提示刷新权限或重新登录。首次部署新增模块仍需执行菜单初始化，步骤见 <a class="" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/#%E5%90%AF%E7%94%A8%E6%AD%A5%E9%AA%A4">SQL 分析交付</a>。本次新增两个只读状态接口并重新生成客户端，无数据库结构迁移。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="状态管理不是-pinia也不是已全面接入-query">状态管理不是 Pinia，也不是“已全面接入 Query”<a href="#状态管理不是-pinia也不是已全面接入-query" class="hash-link" aria-label="状态管理不是 Pinia，也不是“已全面接入 Query”的直接链接" title="状态管理不是 Pinia，也不是“已全面接入 Query”的直接链接" translate="no">​</a></h3>
+<p>当前用户、租户成员关系、权限和菜单由 Umi <code>getInitialState</code> / <code>useModel(&#x27;@@initialState&#x27;)</code>
+维护；页面交互主要使用 React Hooks。TanStack Query 依赖和 Umi <code>reactQuery</code> 插件已配置，
+Zustand 也已声明依赖（附件组件使用其 <code>useShallow</code> 辅助函数），但当前业务源码未形成 <code>useQuery</code> / <code>useMutation</code> 或 Zustand store
+的统一状态层。不能仅凭安装了依赖就把它们写成已完成的全局状态/缓存架构。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-实际目录与所有权">3. 实际目录与所有权<a href="#3-实际目录与所有权" class="hash-link" aria-label="3. 实际目录与所有权的直接链接" title="3. 实际目录与所有权的直接链接" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">frontend/apps/web-pro/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  config/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    config.ts                  # Umi 插件、构建、主题与代理选择</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    routes.ts                  # 认证/错误页及 /* 工作区入口</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    proxy.ts                   # 开发 /api 代理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  src/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    app.tsx                    # 初始化、统一 request、根主题与错误边界</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    access.ts                  # Umi UI 权限适配</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    api/{core,request}.ts      # Platform 手写调用与统一错误/下载处理</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    runtime/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      auth.ts                  # token 存取</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      menu.tsx                 # 后端菜单规范化</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      page-registry.ts          # Edition 受控 React 页面及下拉候选项</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      permissions.ts           # can / hasPermission</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      manifest.ts              # 前后端摘要兼容校验</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      build-manifest.ts        # 生成文件，禁止手改</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    services/generated/platform/  # Platform 生成客户端</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    modules/&lt;module&gt;/api/generated/ # 模块生成客户端</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    pages/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Workspace.tsx            # ProLayout、权限与工作区入口</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      auth/                    # 认证流程</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      platform/                # 平台管理页面</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      dashboard/               # 仪表盘</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      profile/                 # 个人中心</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      shared/                  # 已有 CRUD 页面模式</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      items/                   # 当前 Items 迁移页面</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      erp/                     # 当前 ERP 迁移页面与 api.ts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      agent/                   # 当前 Agent UI、SSE 和事件投影</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    components/{ui,assistant-ui}/  # 本地 React UI 组件</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    locales/                   # Umi 国际化资源</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  vitest.config.ts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  tests/setupTests.ts</span><br></div></code></pre></div></div>
+<p>以上是<strong>当前结构</strong>，不是允许继续扩大中央业务页面的架构决策。现有 Items、ERP、Agent
+页面仍集中在 <code>pages/</code>，模块目录目前主要存放生成客户端；React 尚无生成的
+<code>modules/generated-registry.ts</code> 或完整 <code>module.ts</code> 注册实现。</p>
+<p>新业务能力必须进入 <code>src/modules/&lt;module_code&gt;</code>，复用同一个组合入口；既有页面和 API
+逐步归位的目标见<a class="" href="/chein-doc-site/reference/development/backend/module-guide/">模块开发指南</a>。不能把文档中的目标模块契约当作
+已存在的文件，也不能为绕开当前缺口建立第二套注册机制。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-初始化路由和权限执行顺序">4. 初始化、路由和权限执行顺序<a href="#4-初始化路由和权限执行顺序" class="hash-link" aria-label="4. 初始化、路由和权限执行顺序的直接链接" title="4. 初始化、路由和权限执行顺序的直接链接" translate="no">​</a></h2>
+<ol>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/config/routes.ts" target="_blank" rel="noopener noreferrer" class="">config/routes.ts</a> 保留认证与错误页，
+其他路径进入 <a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/pages/Workspace.tsx" target="_blank" rel="noopener noreferrer" class="">Workspace.tsx</a>。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/frontend/apps/web-pro/src/app.tsx" target="_blank" rel="noopener noreferrer" class="">app.tsx</a> 读取已有 token；无 token 的受保护访问
+跳转 <code>/auth/login?redirect=...</code>。</li>
+<li class=""><code>getInitialState</code> 并发加载后端 Build Manifest、<code>/users/me</code>、<code>/permissions/me</code>、
+<code>/menus/me</code>、租户成员关系；这些相对路径均使用 <code>/api/v1</code> 前缀。</li>
+<li class=""><code>runtime/manifest.ts</code> 始终比较 <code>schema_version</code>、Edition、Platform 契约、模块迁移
+head 与 OpenAPI 摘要；生产构建还必须精确比较 <code>source_revision</code> 和
+<code>manifest_digest</code>。本地开发不比较这两个产物标识，避免提交后前端生成文件与后端
+当前 HEAD 的必然差异掩盖真正的契约检查；不兼容或初始化失败时显示错误，不继续进入业务页面。</li>
+<li class=""><code>runtime/menu.tsx</code> 规范化组件 key、路径、排序、重复/循环菜单；<code>Workspace.tsx</code>
+通过 <code>runtime/page-registry.ts</code> 中唯一的受控 <code>pageMap</code> 映射 React 组件，按 Manifest 注册 Knowledge / Items / ERP 入口；菜单组件选项从同一映射派生。</li>
+<li class=""><code>can(initialState, permissionCode)</code> 控制页面和操作的 UI 访问；未知组件停止加载，
+无权限显示 403。真正的用户、租户、模块访问与 RLS 校验仍由后端执行。</li>
+</ol>
+<p>历史菜单下发 <code>views/.../index.vue</code>、<code>#/views/.../index.vue</code> 或 <code>modules/.../index.vue</code> 格式的兼容 component key。
+这些是逻辑映射键，实际加载 React 页面，不是 Vue 文件路径。运行时去掉 <code>#/</code> 前缀和 <code>.vue</code> 后缀，
+新建和编辑菜单使用不带扩展名的标识（例如 <code>views/system/tenants/index</code>）；未编辑的数据库记录无需迁移。
+候选项只包含当前 Edition 注册的业务页面，不扫描测试、弹框或基础组件；新增可路由页面仍须在受控映射中注册，注册后自动进入下拉列表。
+该目录不授予访问权限，路由仍通过菜单授权与后端 API 校验。认证旧 URL 与 <code>/erp/settings</code> 等兼容入口继续保留。</p>
+<p>管理页面使用手动挂载的 ProLayout（Umi 配置 <code>layout: false</code>）；Agent 经同一工作区
+授权后在管理布局内展示，进入时自动折叠管理菜单，保留 Agent 自身的会话侧栏。</p>
+<p>仪表盘的五个图表通过 <code>pages/dashboard/index.tsx</code> 的 <code>ChartFrame</code> 共用 Plots
+<code>ConfigProvider</code>，将 Ant Design 当前 token 映射到图例文字、坐标轴文字/边线和图表背景。
+Ant Design 根主题不会自动配置 Plots；主题切换时由 token 更新触发图表重绘，无需重新请求统计数据。
+2026-10-18 本地主题往返切换回归、类型检查及前端构建通过；独立 Playwright 浏览器以拦截的
+测试数据确认明暗模式下五个图表文字可见，截图已归档至 RustFS 的 <code>platform-ui</code> 分类。
+本次未执行远端 CI，不涉及 API、数据迁移或 Edition 装配变更。</p>
+<p>登录页蓝色光晕通过 CSS 缓慢漂移。大图标在固定的图标区域内跟随鼠标进行轻微 3D 倾斜，
+移出或取消指针操作后平滑复位；触控输入不触发倾斜。开启“减少动态效果”时，光晕及图标
+交互保持静止。装饰效果不参与表单提交或登录状态。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="登录使用须知">登录使用须知<a href="#登录使用须知" class="hash-link" aria-label="登录使用须知的直接链接" title="登录使用须知的直接链接" translate="no">​</a></h3>
+<p>密码登录及 <code>pages/auth/flows.tsx</code> 中的短信、扫码、扫码确认、OIDC 回调和注册入口共用
+<code>components/UsageNoticeGate.tsx</code>。访问认证页时直接显示表单，不自动弹出须知。
+有效表单提交登录、注册、生成二维码或确认扫码登录时，经 <code>useUsageNotice()</code> 弹出须知。
+密码登录关闭 ProForm 的额外 Enter 提交逻辑，由原生表单处理回车，避免同一次按键在弹窗
+焦点切换后误触关闭按钮。点击登录与回车提交共用同一校验及确认流程。
+勾选并确认后才继续本次操作。关闭弹窗、按 Escape、点击遮罩或选择“我再考虑一下”都会
+取消本次操作，保留表单输入；下次提交须重新确认。获取验证码及登录方式状态查询不受影响。
+企业 OIDC 发起前须确认；回调页及密码登录页收到企业票据后，显示“继续企业登录”按钮，
+点击并确认后才交换票据，不在页面加载时自动交换。找回/重置密码保持可访问。</p>
+<p>须知采用适用范围、敏感数据、第三方处理、生成内容、资料权利、使用责任与解释争议七项条款，
+提醒用户不要输入敏感数据，提交前脱敏、确认提交权限，并自行备份与保护凭据。
+确认文案简化为“我已阅读使用须知并知晓风险”，底部在空间足够时同排展示复选框与按钮，
+小屏幕自动换行；取消按钮为“我再考虑一下”，放行按钮为“我已知晓风险”，勾选后可用且呈红色。
+不再显示黄色提示，未勾选时放行按钮保持禁用。
+弹窗遮罩使用背景模糊效果，弹窗内容保持清晰，关闭后恢复原页面。
+Agent 交互的问题和生成回复所需上下文会发送至阿里云百炼的 Qwen 模型服务；上下文
+可能包含文件内容、引用资料和工具结果。须知提醒不同产品及套餐的规则可能不同，
+部分订阅条款包含输入输出用于服务改进和模型优化的约定，以适用产品协议为准。
+弹窗提供以下官方文字链接，供用户了解第三方数据处理规则：</p>
+<ul>
+<li class=""><a href="https://help.aliyun.com/zh/model-studio/faq-about-alibaba-cloud-model-studio" target="_blank" rel="noopener noreferrer" class="">阿里云百炼常见问题（数据保存与使用）</a></li>
+<li class=""><a href="https://terms.alicdn.com/legal-agreement/terms/common_platform_service/20230728213935489/20230728213935489.html" target="_blank" rel="noopener noreferrer" class="">阿里云百炼服务协议</a></li>
+<li class=""><a href="https://terms.alicdn.com/legal-agreement/terms/privacy_policy_full/20230801173543354/20230801173543354.html" target="_blank" rel="noopener noreferrer" class="">阿里云百炼隐私政策</a></li>
+</ul>
+<p>外部链接在新标签页打开，使用 <code>noopener noreferrer</code>，不向第三方传递认证页来源地址。
+模型调用由 <code>agent/src/chein_agent/model_provider.py</code> 的 <code>QwenModelProvider</code> 实现，
+实际上游地址和模型由 <code>QWEN_*</code> 配置决定；更换服务提供方时须同步更新须知与链接。
+Agent 输出仅作辅助参考，须独立核实。作者解释权以法律允许范围为限，不排除法定责任
+和用户权利。中英文文案维护在现有 <code>locales/*/component.ts</code>。</p>
+<p>确认仅放行当前提交，不写浏览器存储；页面卸载时取消待确认操作。
+不新增后端确认记录、API 或数据库迁移，也不能作为服务端鉴权或法律同意留痕。
+OIDC 票据若在阅读期间过期，沿用现有失败提示，需重新发起登录。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-api生成客户端与-edition">5. API、生成客户端与 Edition<a href="#5-api生成客户端与-edition" class="hash-link" aria-label="5. API、生成客户端与 Edition的直接链接" title="5. API、生成客户端与 Edition的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">HTTP 调用统一经 Umi request，<code>app.tsx</code> 设置 <code>/api/v1</code>、Bearer token、语言头、超时
+与 401/403/404/409/503 错误处理。手写调用位于 <code>src/api</code> 及现有页面适配器；不能宣称
+所有页面都已直接调用生成 SDK。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/scripts/generate-openapi.mjs" target="_blank" rel="noopener noreferrer" class="">scripts/generate-openapi.mjs</a> 从所选 Edition 的 FastAPI
+应用导出临时 OpenAPI，使用 Hey API 生成 Platform 与模块子客户端；不要求先运行 8000
+端口服务，但需要可用的后端依赖及其导入所需配置。</li>
+<li class="">同一命令只更新 React <code>services/generated</code>、模块 <code>api/generated</code> 和 <code>runtime/build-manifest.ts</code>。</li>
+<li class=""><a href="https://github.com/HanYang3588/chein/blob/main/scripts/build-edition.mjs" target="_blank" rel="noopener noreferrer" class="">scripts/build-edition.mjs</a> 只构建 React。Edition 内容由 <code>editions/&lt;edition&gt;.yaml</code> 决定，
+不是由前端菜单或环境变量临时增加模块。</li>
+<li class="">React 当前是 Manifest 条件注册 + 手写 <code>pageMap</code>，不是已实现的生成静态模块注册表。
+“未注册入口”不等于“dist 中完全没有可选模块代码”；Base 物理裁剪仍需产物检查。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-开发验证与部署入口">6. 开发、验证与部署入口<a href="#6-开发验证与部署入口" class="hash-link" aria-label="6. 开发、验证与部署入口的直接链接" title="6. 开发、验证与部署入口的直接链接" translate="no">​</a></h2>
+<p>以下命令均在仓库根目录执行；首次配置见<a class="" href="/chein-doc-site/reference/operations/development/">本地启动</a>。</p>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> frontend:dev                 </span><span class="token comment" style="color:#999988;font-style:italic"># React / Umi，默认 5174</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> frontend:typecheck           </span><span class="token comment" style="color:#999988;font-style:italic"># tsc --noEmit</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> frontend:pro:test            </span><span class="token comment" style="color:#999988;font-style:italic"># vitest run</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> frontend:build               </span><span class="token comment" style="color:#999988;font-style:italic"># max build -&gt; apps/web-pro/dist</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> generate:api -- </span><span class="token parameter variable" style="color:#36acaa">--edition</span><span class="token plain"> suite</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> build:edition -- </span><span class="token parameter variable" style="color:#36acaa">--edition</span><span class="token plain"> base</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> build:edition -- </span><span class="token parameter variable" style="color:#36acaa">--edition</span><span class="token plain"> items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> build:edition -- </span><span class="token parameter variable" style="color:#36acaa">--edition</span><span class="token plain"> suite</span><br></div></code></pre></div></div>
+<p><code>frontend:pro:dev/build/typecheck</code> 是同一 React 应用的显式别名。根脚本
+<code>frontend:e2e</code> 当前实际执行 <code>web-pro</code> 的 <code>vitest run</code>，<strong>不能作为 Playwright 或真实后端
+E2E 的证据</strong>。生成/Edition 命令会更新派生文件，执行前确认 Edition 并检查生成差异。</p>
+<p>本机开发由 <code>config/proxy.ts</code> 将 <code>/api</code> 代理到 <code>CHEIN_BACKEND_URL</code>，默认
+<code>http://127.0.0.1:8000</code>；浏览器不得直接访问 Python Agent。容器内代理目标必须是
+可达的 backend 服务地址，不能把容器自身 <code>127.0.0.1</code> 当作后端。</p>
+<p>生产 Docker 复制 <code>apps/web-pro/dist</code>，Nginx 提供 SPA fallback、<code>/api</code> 反代及关闭缓冲的
+Agent SSE 路径。React 请求基址仍是同源 <code>/api/v1</code>。Compose 端口及外部依赖见<a class="" href="/chein-doc-site/reference/operations/deployment/README/">部署</a>。</p>
+<p>Agent 回答操作栏复用 assistant-ui 的消息状态和持久 execution 标识，提供受控运行摘要与版本化反馈。旧历史回答未关联时隐藏操作；浏览器只调用同源 BFF，不持有 Langfuse Key。实现、权限与启用条件见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">Langfuse P1–P5 实施</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-验收边界与剩余工作">7. 验收边界与剩余工作<a href="#7-验收边界与剩余工作" class="hash-link" aria-label="7. 验收边界与剩余工作的直接链接" title="7. 验收边界与剩余工作的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围</th><th>当前证据</th><th>尚需验证/收口</th></tr></thead><tbody><tr><td>主应用切换</td><td>根脚本、workspace、Edition 默认值、Dockerfile / Compose override</td><td>实际服务 URL、生产发布和回滚演练</td></tr><tr><td>模块边界</td><td>Manifest 校验与 Items/ERP 条件 pageMap；生成客户端分模块</td><td>集中页面归位、React 静态注册生成与 Base dist 裁剪</td></tr><tr><td>React 测试</td><td><code>src/**/*.test.ts</code>、<code>vitest.config.ts</code></td><td>真实后端登录、租户负向、ERP 单据和 Agent 浏览器流程</td></tr><tr><td>CI</td><td><code>frontend.yml</code> 检查 React typecheck、Vitest、build 和客户端 drift</td><td>Manifest 含提交 SHA，生成时随提交变化；真实浏览器 E2E 仍需补充，远端结果需单独核对</td></tr><tr><td>Agent 接线</td><td>assistant-ui 会话与 SSE；部分渲染/安全辅助组件已存在</td><td>以 <a class="" href="/chein-doc-site/reference/development/frontend/agent-ui/">Agent UI 当前状态</a> 区分组件存在与主页面已使用</td></tr></tbody></table>
+<p>旧应用删除不改变运行时 API/DTO、数据库、权限或 Edition 集合。远端 CI、镜像扫描/签名、
+跨租户真实浏览器验证与生产观察期必须由相应执行结果证明。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="历史本地核对范围2026-09-20">历史本地核对范围（2026-09-20）<a href="#历史本地核对范围2026-09-20" class="hash-link" aria-label="历史本地核对范围（2026-09-20）的直接链接" title="历史本地核对范围（2026-09-20）的直接链接" translate="no">​</a></h3>
+<p>当时文档同步执行并通过 <code>pnpm frontend:typecheck</code>、<code>pnpm frontend:pro:test</code>、
+<code>pnpm frontend:build</code>。运行环境为 Node.js 25.2.1 / pnpm 11.7.0，pnpm 报出了 Node 不满足
+workspace <code>^22.18.0 || ^24.0.0</code> 的 engine 警告；这些通过结果不能替代受支持 Node 版本的 CI。</p>
+<p>默认/生产 Compose 配置检查均失败，具体缺失配置与历史服务残留见<a class="" href="/chein-doc-site/reference/operations/deployment/README/">部署说明</a>。
+未重新运行 OpenAPI 生成与 Edition 构建（避免在纯文档任务中改写生成清单），也未运行
+后端/数据库迁移、真实浏览器 E2E、镜像启动或远端 CI；不把历史报告继承为本次验证结果。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="knowledge-页面">Knowledge 页面<a href="#knowledge-页面" class="hash-link" aria-label="Knowledge 页面的直接链接" title="Knowledge 页面的直接链接" translate="no">​</a></h3>
+<p>Suite 通过受控组件映射加载知识库、检索测试、Agent 知识配置三个菜单入口。五种分类在列表通过原生 Tabs 切换；旧地址为已授权隐藏路由。<code>buildMenuTree</code> 保留隐藏 RouteEntry，使用原生 <code>hideInMenu</code> 隐藏入口并排除默认落点，停用页面/按钮不注册路由。<code>NavigationSpec.is_visible</code> 是模块显示状态声明，播种保留菜单 ID 与角色关联。租户级参数集中到检索测试页。权限与操作见<a class="" href="/chein-doc-site/product/features/knowledge/management/">知识管理</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="analytics-页面与聊天图表">Analytics 页面与聊天图表<a href="#analytics-页面与聊天图表" class="hash-link" aria-label="Analytics 页面与聊天图表的直接链接" title="Analytics 页面与聊天图表的直接链接" translate="no">​</a></h3>
+<p>Suite 的组合根按 Manifest 注册 <code>modules/analytics/favorites</code> 和 <code>analyze_data</code> 独立工具 renderer；Base/Items 不注册。ChartSpecV2 仅携带快照引用，组件通过同源后端 API 获取重新授权的结果。完整聊天、浮动助手、个人收藏共用模块内 renderer，旧 ChartSpecV1 解析继续兼容。行为、精度降级、迁移和本地浏览器验证见 <a class="" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析交付</a>。</p>
+<p>Agent 会话列表与历史消息按游标分批请求，复用当前 assistant-ui 组件，滚动触发、版本限制与真实性能范围见 <a class="" href="/chein-doc-site/reference/development/frontend/history-pagination/">分页设计</a>。</p>
+<p>Agent 归档记录独立为「AI 工作台 → 已归档会话」二级菜单，聊天页保留归档操作，移除底部归档列表；页面、权限与菜单更新方式见 <a class="" href="/chein-doc-site/reference/development/frontend/agent-ui/#%E5%BD%92%E6%A1%A3%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86">Agent UI</a>。</p>
+<p>视频生成工具返回稳定 job ID，由 Creation 的 VideoGenerationTaskCard 通过授权 GET 恢复阶段；视频库 <code>/creation/videos</code> 使用分页和按需 HTML5 video。前端轮询不拥有任务状态；真实 RustFS Range/CORS 验收边界见 <a class="" href="/chein-doc-site/reference/development/agent/multimodal/video-generation-design/">视频生成</a>。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/frontend-architecture.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/product/features/knowledge/management/">系统与个人知识库管理</a></li><li><a href="/chein-doc-site/reference/architecture/agent-automations/">Agent 自动化任务</a></li><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/development/agent/multimodal/video-generation-design/">AI 视频生成：调查、设计与验收</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">Langfuse P1–P5 实施与启用</a></li><li><a href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/">SQL 分析与图表收藏交付</a></li><li><a href="/chein-doc-site/reference/development/backend/module-guide/">新增业务模块指南</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/architecture/overview/">系统架构导读</a></li><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/architecture/views/">Chein 当前系统架构视图与证据</a></li><li><a href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/">ADR-0008：模块级 OpenAPI 与前端客户端生成</a></li><li><a href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/">ADR-0011：Edition 制品策略与 Build Manifest v2</a></li><li><a href="/chein-doc-site/reference/decisions/README/">架构决策记录</a></li><li><a href="/chein-doc-site/reference/designs/agent/sql-analytics-design/">Agent SQL 分析与图表收藏设计</a></li><li><a href="/chein-doc-site/reference/designs/erp/erp-prd/">Fast Vben Admin 轻量进销存 ERP 产品需求文档</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Ffrontend%2Farchitecture%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/frontend/agent-ui/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Agent 交互前端设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/frontend/history-pagination/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Agent 会话与历史消息游标加载</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-当前交付结论" class="table-of-contents__link toc-highlight">1. 当前交付结论</a></li><li><a href="#2-技术栈与实际用途" class="table-of-contents__link toc-highlight">2. 技术栈与实际用途</a><ul><li><a href="#菜单维护界面" class="table-of-contents__link toc-highlight">菜单维护界面</a></li><li><a href="#ai-工作台导航" class="table-of-contents__link toc-highlight">AI 工作台导航</a></li><li><a href="#模块权益配置" class="table-of-contents__link toc-highlight">模块权益配置</a></li><li><a href="#状态管理不是-pinia也不是已全面接入-query" class="table-of-contents__link toc-highlight">状态管理不是 Pinia，也不是“已全面接入 Query”</a></li></ul></li><li><a href="#3-实际目录与所有权" class="table-of-contents__link toc-highlight">3. 实际目录与所有权</a></li><li><a href="#4-初始化路由和权限执行顺序" class="table-of-contents__link toc-highlight">4. 初始化、路由和权限执行顺序</a><ul><li><a href="#登录使用须知" class="table-of-contents__link toc-highlight">登录使用须知</a></li></ul></li><li><a href="#5-api生成客户端与-edition" class="table-of-contents__link toc-highlight">5. API、生成客户端与 Edition</a></li><li><a href="#6-开发验证与部署入口" class="table-of-contents__link toc-highlight">6. 开发、验证与部署入口</a></li><li><a href="#7-验收边界与剩余工作" class="table-of-contents__link toc-highlight">7. 验收边界与剩余工作</a><ul><li><a href="#历史本地核对范围2026-09-20" class="table-of-contents__link toc-highlight">历史本地核对范围（2026-09-20）</a></li><li><a href="#knowledge-页面" class="table-of-contents__link toc-highlight">Knowledge 页面</a></li><li><a href="#analytics-页面与聊天图表" class="table-of-contents__link toc-highlight">Analytics 页面与聊天图表</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

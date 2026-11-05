@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/ontology/owl-builder" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">OWL 画布构建器 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/owl-builder/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="OWL 画布构建器 | Chein 文档中心"><meta data-rh="true" name="description" content="OWL 画布构建器 · Chein 技术文档"><meta data-rh="true" property="og:description" content="OWL 画布构建器 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/owl-builder/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/owl-builder/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/owl-builder/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"业务本体","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/业务本体"},{"@type":"ListItem","position":2,"name":"OWL 画布构建器","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/owl-builder"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="折叠侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/README/"><span class="linkLabel_gJOC">企业业务本体</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/bkn-interchange/"><span class="linkLabel_gJOC">BKN 文件互操作支持范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/delivery/"><span class="linkLabel_gJOC">本体交付记录</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/design/"><span class="linkLabel_gJOC">Chein 原生本体设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/inference-traceability-design/"><span class="linkLabel_gJOC">本体规则、状态与可溯源推导设计（Logic Pack）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/neo4j-design/"><span class="linkLabel_gJOC">Neo4j 与 Legacy 双 Provider</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/openbkn-alignment/"><span class="linkLabel_gJOC">OpenBKN 核心本体能力对齐：审查与实施设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/ontology/owl-builder/"><span class="linkLabel_gJOC">OWL 画布构建器</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/owl-推理服务/"><span class="categoryLinkLabel_adV2">OWL 推理服务</span></a><button aria-label="展开侧边栏分类 &#x27;OWL 推理服务&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/semantic-workspaces-delivery/"><span class="linkLabel_gJOC">双本体工作区与十一阶段交付</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/setup/"><span class="linkLabel_gJOC">OWL / Logic Pack / Agent 启用操作单</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/业务本体/"><span>业务本体</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">OWL 画布构建器</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>OWL 画布构建器</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="当前交付边界">当前交付边界<a href="#当前交付边界" class="hash-link" aria-label="当前交付边界的直接链接" title="当前交付边界的直接链接" translate="no">​</a></h2>
+<p>画布现在支持命名类、子类、对象属性、数据属性、实例、实例关系和类型的草稿编辑。右键选择操作后在右侧表单输入；拖线按节点类型选择语义，撤销/重做按整次表单提交恢复。RDF 图仍是唯一编辑正文，复杂公理及匿名表达式保留只读。当前开发环境已增加工作区绑定迁移；不会在打开页面、编辑或查看源码时修改 Resource 图。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="紧凑工具栏2026-11-04">紧凑工具栏（2026-11-04）<a href="#紧凑工具栏2026-11-04" class="hash-link" aria-label="紧凑工具栏（2026-11-04）的直接链接" title="紧凑工具栏（2026-11-04）的直接链接" translate="no">​</a></h2>
+<p>顶部移除“新增类 / 子类”快捷按钮，创建类仍从画布或节点右键菜单进入。创建工作区、规则与状态、撤销/重做、保存/恢复草稿及整理操作采用小号图标加文字；工作区保存、校验、发布和导出操作同样使用紧凑文字样式，原有权限、禁用条件及确认流程保留。</p>
+<p>展开工具区将工作区、查找/显示与导出放在同一行，常规高度37px；宽度不足或工作区操作较多时仅在工具行内横向滚动，不另起一行或使整页横向溢出。错误和校验警告仍在工具行下方独立展示。类、实例、只读表达式、子类关系、对象属性及虚拟类型边收进原生多选下拉，收起显示已选项数；沿用原 <code>visibleGraph</code> 筛选，只改变画布显示，不提交命令。选中项正常字重且仅用勾号标记，没有蓝色背景；选中并悬停/键盘激活时同样无蓝底。工具文字、标题及下拉激活项的 hover 色读取当前主题主色，禁用操作保留禁用样式。实现与验证见 <a class="" href="/chein-doc-site/reference/development/ontology/delivery/#2026-11-04owl-%E5%B7%A5%E5%85%B7%E6%A0%8F%E6%95%B4%E7%90%86">交付记录</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="查看导入对象的原始表数据2026-11-03">查看导入对象的原始表数据（2026-11-03）<a href="#查看导入对象的原始表数据2026-11-03" class="hash-link" aria-label="查看导入对象的原始表数据（2026-11-03）的直接链接" title="查看导入对象的原始表数据（2026-11-03）的直接链接" translate="no">​</a></h2>
+<p>装配 Datasource 且具有 <code>datasource:read</code>、<code>datasource:preview</code> 权限时，画布底部提供原始表面板。选中从目录导入的类、数据属性或对象属性后，通过 IRI 中保留的目录实体 ID 定位源表并自动加载；画布与表格之间的突出标签负责折叠/展开，顶部仅保留紧凑的文字刷新，不显示来源路径、查询按钮或常驻说明。上下拖动分隔线可调整表格高度（可用区域的20%–80%，默认40%）；表头固定，表格滚动区随高度变化。折叠后不占表格高度，再展开恢复本次页面中调整后的高度；不持久保存高度。刷新与上一页/下一页使用文字样式，行数选择去掉边框。折叠会取消请求并清空展示数据，切换对象保持折叠；再次展开重新读取。每页20或50行，使用服务端分页与上一页/下一页，不伪造全表总行数。切换对象、工作区或身份时，旧响应不能显示到新对象下。</p>
+<p>字段沿用数据库物理名称和数据源预览返回值，前端不额外脱敏或格式化日期；源配置为 <code>none</code> 的值直接展示，既有隐藏/脱敏规则和大小预算继续生效。该面板不写入 OWL、草稿、Pack 或本地存储，不接收任意 SQL，也不按类名或表名猜测映射。已改写目录 IRI、丢失目录 ID、源实体已删除或无权访问时不回退到其他表。普通外部 OWL/Neo4j 对象及 Logic Pack 的 ERP 绑定不属于本次目录预览入口。</p>
+<p>前端组合根另行注入 <code>datasource/public_api/preview</code> Reader；原 <code>catalog</code> Reader 仍只提供元数据。Backend 数据源入口逐次使用既有身份、模块权限和 Tenant UoW，复验表启用、字段暴露/脱敏、结构摘要及外部读取后的授权。共享应用表的数据库 RLS 仍会生效；如果外部连接账号没有该表要求的 scope，结果可能为空，不能通过去掉页面鉴权或向连接注入租户来绕过。</p>
+<p>新增 <code>GET /datasource/catalog/entities/{id}/source-table</code>，原 preview POST 兼容增加可选 <code>offset</code>：不传时保留旧的100行样本行为；传入时每页最多50行，额外读取一行确定是否有下一页，偏移上限10000。SQL 驱动按返回投影稳定排序，MongoDB 按 <code>_id</code> 排序；JDBC 沿用厂商原有限行语法并有界跳过前面的行，不假设所有厂商支持 OFFSET。翻页是实时查询，不能保证源表并发变化时跨页一致快照。无数据库迁移、运行依赖或 MCP 变更，需同步部署 Backend、前端及命令生成的 API/Manifest。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="从数据源目录批量新增">从数据源目录批量新增<a href="#从数据源目录批量新增" class="hash-link" aria-label="从数据源目录批量新增的直接链接" title="从数据源目录批量新增的直接链接" translate="no">​</a></h2>
+<p>以下记录描述此前的目录导入交付；导入本身仍不自动读取业务样本。</p>
+<p>Suite 装配数据源模块且账号具有 <code>ontology:edit</code>、<code>datasource:read</code> 权限时，空白画布或可编辑类的右键菜单增加“从已有数据源新增类 / 属性”。窗口居中显示原生 Ant Design 目录树，桌面默认820×820，受视口宽高约束；窄屏改为适配屏幕的纵向布局，内容内部滚动、底部操作保持可见。目录收起或选表后不改变弹窗高度，虚拟树按剩余空间调整可视高度。目录按数据源 → 数据库 → PostgreSQL Schema → 表 → 字段逐层懒加载；MySQL 在数据库下直接展示表。只列出已启用表、已暴露字段；空目录需先在数据源管理中同步并启用目标表。Schema（MySQL 为数据库）节点提供全选、全不选；全选遍历完整表和字段分页，失败或超出剩余额度时不应用部分选择，已读取分页可供重试复用，关闭窗口取消未完成的请求。</p>
+<p>空白处默认新建类与属性，在已有类上打开时默认向该类添加数据属性。可切换模式、目标类与 IRI 命名空间。普通表生成类及所选字段的数据属性；勾选表后，OWL 类型直接显示在树的表节点行内，不再使用树下方的独立配置表格。改为对象属性时，同一行显示可选的起点类（Domain）、终点类（Range）选择框，可搜索已有类并引用同批新增的普通类；允许两端留空、只选一端或两端选择同一个类，也可以清空后稍后在编辑面板补充。未指定的一端不生成对应的 domain/range 声明，不自动补为 owl:Thing。已指定但失效的引用仍拒绝；重复导入只跳过两端声明完全一致的已有属性，不清除或覆盖已有约束。操作选择框不会展开、收起或重新加载分支。切回普通类保留原字段选择与关系端点，取消勾选后移除该表的行内配置。窄屏沿用原生虚拟树的横向滚动访问行内控件，不撑宽页面。对象属性连接实例，该模式不导入该表的字段；需要保留时间、状态等关系自身的业务字段时应作为类处理。当前不根据表名或外键自动猜测对象属性两端。</p>
+<p>IRI 使用命名空间与目录实体 ID 生成，区分跨 Schema 同名表及字段；重复导入保留已存在且类型、domain/range 一致的定义，有实质冲突则拒绝覆盖。类和数据属性名称优先使用业务名，对象属性使用表名，冲突时加来源限定；注释取业务描述或源注释。整数、数值、布尔、时间及二进制等 SQL 类型对应 XSD 类型，未知或数组类型作为不透明 string；这只生成定义，不执行值转换。<code>xsd:date/time</code> 等仍受现有 OWL Profile/HermiT 发布校验约束，不会为通过校验而隐式改成其他数据类型。可在现有编辑面板中继续调整定义。</p>
+<p>选择结果通过现有 <code>/ontology/builder/draft/preview</code> 批量命令链路验证后才进入当前草稿，一次撤销/重做恢复整批；沿用现有500条累计命令和画布预算，失败不替换原草稿。发布、校验及显式图库写回流程保持不变。导入不读业务样本、不生成实例或 Ontop/SQL 映射，不向数据源配置写回 IRI，也不保存活跃引用；源结构后续变化不会自动更新已复制定义，删除数据源不会因此删除 OWL 定义。</p>
+<p>前端组合根按 Build Manifest 可选注入 <code>datasource/public_api/catalog</code> 的只读目录 Reader；Ontology 仅类型引用公开 DTO，不导入数据源组件、私有实现或客户端。请求仍通过数据所有者现有授权 HTTP 接口与 Tenant UoW/RLS，未装配时不提供入口，服务端拒绝时不回退或绕过鉴权。本次无后端接口、数据库迁移、运行配置或依赖变更。</p>
+<p>本轮改动文件：前端 <code>modules/datasource/public_api/catalog.ts</code> 及测试，<code>modules/ontology/builder/{CatalogImport.tsx,catalog-commands.ts,catalogImport.module.css}</code> 及测试、<code>pages/OwlBuilder.tsx</code> 与测试、两种 locale、组合根 <code>runtime/page-registry.ts</code>；同步本说明、前端架构、数据源交付及根 AGENTS 边界。未改动后端生产代码或生成契约。</p>
+<p>本地验证：<code>pnpm frontend:typecheck</code> 通过，Ontology、Datasource 与 page registry 共14文件79项测试通过，覆盖完整分页全选/清空、单字段选择、分支缓存与失败重试、现有类的数据属性、重复/冲突/限额、右键入口及错误时保留窗口。Base、Items、Suite Edition 串行构建通过并保留 Suite，最终前端构建通过；前端生成的5条合成命令交由现有 Python RDF 草稿引擎实际校验，Turtle/XML 往返同构。临时浏览器预览加载实际 Workspace 和选择组件、使用合成目录与草稿接口，在1440×1000验证2类＋4数据属性＋1对象属性批量添加及一次撤销，在390×844检查弹窗按钮、遮罩与页面宽度；控制台无警告/错误。截图按开发归档入口保存到 RustFS，临时页面、进程及文件已清理。未用真实数据库连接重新联调，未执行数据库测试、HermiT 发布、Neo4j 写回或远端 CI；合成浏览器预览不代表这些外部链路验收。</p>
+<p>对象属性表名规则确认后，补充断言验证业务名不会覆盖表名；相关12项命令测试、<code>pnpm frontend:typecheck</code> 与 <code>pnpm frontend:pro:build</code> 再次通过。本次命名调整未重新执行真实数据库或浏览器联调。</p>
+<p>固定尺寸弹窗调整后，目录导入/命令与数据源配置4文件26项前端测试、类型检查和构建通过。隔离浏览器使用真实组件与合成目录，在1440×1000确认收起及选表后均为820×820，在390×844确认358×812、页面无横向溢出、底部按钮可见，控制台无警告/错误；桌面与窄屏截图经开发归档入口上传 RustFS。此 UI 验证未连接真实业务库。</p>
+<p>2026-10-30 修正目录树下半部空白与短视口导致弹窗变窄：高度监听改为在树 DOM 的 callback ref 挂载时注册、卸载时释放，避免 Modal 延迟挂载导致首次 effect 错过节点、虚拟滚动区一直停在340px。宽度仅受视口宽度限制，默认820px；高度独立适配视口高度，底部控制台占位不再连带压缩宽度。本次修改 <code>CatalogImport.tsx</code>、<code>CatalogImport.test.tsx</code> 和本文，无 API、权限、数据迁移或配置变化。新增回归测试在修改前失败，修改后目录导入相关18项测试、类型检查和前端构建通过。隔离 Playwright 浏览器使用真实组件与合成目录，确认树填满588px空间、80表分页与末项可达、选表后树调整为444px；1440×600下弹窗保持820px宽、568px高，390×844下宽358px且底部操作可见、无页面横向溢出。控制台无警告/错误，桌面与窄屏截图经开发归档入口上传 RustFS。未在真实业务目录联调或执行远端 CI。</p>
+<p>行内 OWL 配置调整修改 <code>CatalogImport.tsx</code>、<code>catalogImport.module.css</code>、<code>CatalogImport.test.tsx</code> 及本文。相关19项测试、<code>pnpm frontend:typecheck</code> 和 <code>pnpm frontend:pro:build</code> 通过，覆盖同一树行的类型切换、起终点引用同批新增类、切回后保留选择、不触发分支加载及生成对象属性命令。隔离 Playwright 合成目录验证1440×1000下类型/起点/终点同排、无独立表格；390×844下原生横向滚动可访问终点选择框，搜索与键盘选择生成正确命令、分支未被收起，页面无横向溢出且底部按钮可见。控制台无警告/错误，截图已上传 RustFS；未联调真实业务库或运行远端 CI。</p>
+<p>对象属性可选端点调整（2026-10-31）：修改 <code>CatalogImport.tsx</code>、<code>catalog-commands.ts</code>、两份对应测试、中英文 locale 与本文；26项相关前端测试、类型检查及前端构建通过。实际后端 DTO/RDF 处理器验证两端留空、仅 domain、仅 range、两端齐全和自关联五种组合，并完成 Turtle 序列化往返。隔离 Playwright 合成目录验证留空提交、仅选起点及清空后提交，未捕获 JavaScript 错误，截图已归档 RustFS。无后端契约、数据库、配置或依赖变更；未联调真实业务库或运行远端 CI。</p>
+<p>PostgreSQL 继续拥有工作区、ACL、不可变发布版本和审计。平台管理员可以把整套配置中的 Resource 数据库显式绑定一个工作区，原文件作为独立无损基线；普通账号只能访问当前租户可见的绑定。本次命令只投影显式变更，保留现库与原文件的已有差异。发布后需显式执行 Neo4j 写回；两库之间没有分布式原子事务，界面明确显示待写回/失败，且此时拒绝继续编辑。实际发布仍要求启用并配置现有 HermiT 服务；依赖不可用时拒绝发布。</p>
+<p>页面组件 key 为 <code>modules/ontology/builder</code>，导航路径为 <code>/ontology-builder</code>，由 Ontology 的 <code>ModuleDefinition.navigation</code> 和现有受控 page registry 装配，要求 <code>ontology:read</code>。部署时使用现有导航初始化流程，不通过访问页面隐式创建菜单或修改权限。前端沿用 React 19 / Umi Max / Ant Design / pnpm；新增 ReactFlow 和 dagre，后端沿用 FastAPI / uv / 已安装的 RDFLib。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="在当前系统中打开">在当前系统中打开<a href="#在当前系统中打开" class="hash-link" aria-label="在当前系统中打开的直接链接" title="在当前系统中打开的直接链接" translate="no">​</a></h2>
+<p>当前开发环境入口：<strong>AI 工作台 → OWL 可视化构建器</strong>，也可直接访问 <code>http://localhost:5174/ontology-builder</code>。新增菜单已同步到当前数据库，并沿用原 Neo4j 语义本体入口已有的 <code>ontology:read</code> 角色和套餐关联；已打开的系统需刷新以重新获取菜单。平台管理员打开页面自动加载 Neo4j 当前 Resource 图，不再需要先上传文件；“读取 / 刷新 Neo4j 现库”可以重新读取。点击“打开 OWL / Turtle 文件”会切换到独立的原文件基线预览，不能混合两份数据，也不会导入数据库。有编辑权限的账号可从顶部工作区选择器打开已授权的绑定；未绑定的全局现库仍仅供平台管理员核查。不需要启动独立预览服务或测试 Neo4j 容器。</p>
+<p>有 <code>ontology:read/edit</code> 权限即可点击画布顶部 <strong>创建工作区</strong>，默认 <strong>新建空白本体（无需文件）</strong>。填写编码、名称和可见范围（默认仅本人）后得到独立空白画布，可新增类、属性、关系及实例；<strong>保存本体</strong> 将当前正文保存为可继续编辑的版本，重新打开工作区可恢复。原有 <strong>保存草稿</strong> 仍是本人私有编辑检查点，与共享工作区正文保存区分。<strong>校验当前草稿 → 发布版本</strong> 继续要求本人当前输入对应的真实 HermiT 成功任务与当前发布权限；独立工作区发布后即可配置规则与状态，不需要 Resource 写回。</p>
+<p>向导另有 <strong>从文件创建独立本体</strong>：文件仅作为初始正文，沿用 UTF-8/4 MiB/隔离 RDF 解析限制，不核对或绑定 Neo4j。独立工作区可创建多个，使用 PostgreSQL 的 Network/Version/Audit 与现有 Tenant UoW、FORCE RLS；不会读取或覆盖共享 Resource 图。<code>builder_binding.mode=native</code> 表示原生编辑状态，<code>original_source</code> 是系统生成或导入的初始基线，不要求用户提供原文件；正文的当前事实源仍是 Version.rdf_document。原生状态为 <code>local</code>，<code>projected_version=0</code>，明确没有 Resource 投影。模式、初始基线与归属不可修改，不能通过 <code>/project</code> 将其切换成历史现库绑定。</p>
+<p>只有历史 <strong>绑定现库工作区</strong> 选项仍要求平台检查与发布权限、原始文件和当前图摘要。该选项先核对原文件与现库差异，再显式登记；整套 Resource 图只能绑定一个历史工作区，发布后仍需显式写回。不能将有损重建图伪装为原文件。这一历史接管限制不适用于空白新建或独立文件导入。</p>
+<p>新增接口 <code>POST /api/v1/ontology/builder/workspaces/native</code> 接受严格的 <code>{code,name,scope?,source?}</code>，不接受身份、权限或连接信息；<code>POST /builder/draft/save</code> 使用既有 workspace_id/expected_revision/commands 保存原生正文。保存使旧校验回执失效；发布后的编辑新建草稿版本，不改写发布正文。迁移 <code>ontology_native_builder_v1</code> 接在 <code>ontology_binding_refs_v1</code> 后，为现有 builder_binding 增加不可变 mode 与模式/状态约束；保留原 RLS policy、授权和模型所有权集合。保留原生工作区时降级明确拒绝，需先导出并按审核流程移除，不自动删数据。完整验证与当前运行环境启用状态见 <a class="" href="/chein-doc-site/reference/development/ontology/delivery/">交付记录</a>。</p>
+<p>其他环境仍需按现有导航初始化流程同步菜单；仅修改 ModuleDefinition 或重启 API 不会自动给已有数据库新增入口。</p>
+<p>画布直接铺满当前菜单标签栏下的内容区域，不使用 PageContainer 卡片式外框或四周留白；页面级样式只取消该画布所在内容区的顶部间距。顶部“全屏画布”使用浏览器原生全屏，支持按钮或 Esc 退出。缩放与适应画布固定在顶部，其他操作、类型开关、源码格式及导出选项通过“展开工具与选项”显示，可再次折叠。两条来源/有损重建提示不再常驻；来源以顶部标签显示，配置及重建限制可从工具区查看。点击类、表达式、实例或属性边，在画布右侧打开无蒙层详情抽屉；继续点击另一节点立即替换内容，关闭后释放画布。实例分页响应补充规范化的 <code>statements</code>，详情展示该页读取到的 RDF 属性值和字面值语言/类型，不触发全量实例加载。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="代码与现库核查">代码与现库核查<a href="#代码与现库核查" class="hash-link" aria-label="代码与现库核查的直接链接" title="代码与现库核查的直接链接" translate="no">​</a></h2>
+<p><code>CheinOntologySnapshot</code> 是已有 PostgreSQL 发布版本的不可变 Neo4j 投影。它按 tenant/network/version 关联 <code>CheinOntologyElement</code>、<code>CheinOntologyTerm</code> 等节点，不是 Resource 图的编辑前备份。不能把原 Resource 图与这套发布投影当成同一份数据。</p>
+<p>本次只读核查中，Resource 尚无 tenant/owner 归属；实例通过类缩写 label 表示类型，不能依靠不存在的 <code>rdf:type</code> 关系查询。实际业务命名空间拼写为 <code>http://dataQ.com/ontology/adventrueworks#</code>。原始 OWL 与现库不等价；原始文件作为无损基线，差异只供查看，不自动覆盖或重新导入图库。</p>
+<p>核查到的 GraphConfig 如下；这是本次环境的读取结果，运行时比较仍读取当前全部配置，不把这些值作为所有数据库的默认值。</p>
+<p>核查接口同时读取 <code>_GraphConfig</code> 节点的全部存储属性和 <code>n10s.graphconfig.show()</code> 的生效配置；返回的 <code>configuration</code> 中，原始属性使用 <code>_GraphConfig.</code> 前缀区分。不支持的编码规则失败关闭，不能把存储属性名当成 RDF 谓词。</p>
+<p>原始存储中的 <code>_handleVocabUris</code>、<code>_handleRDFTypes</code>、<code>_handleMultival</code> 为枚举数字（本次均为 0），不能按字符串字面值解释；上表使用 n10s procedure 解析后的名称，默认 schema namespace/prefix 也来自该 procedure。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>参数</th><th>值</th></tr></thead><tbody><tr><td>handleVocabUris</td><td>SHORTEN</td></tr><tr><td>handleMultival</td><td>OVERWRITE</td></tr><tr><td>handleRDFTypes</td><td>LABELS</td></tr><tr><td>keepLangTag</td><td>false</td></tr><tr><td>keepCustomDataTypes</td><td>false</td></tr><tr><td>applyNeo4jNaming</td><td>false</td></tr><tr><td>baseSchemaNamespace</td><td>neo4j://graph.schema#</td></tr><tr><td>baseSchemaPrefix</td><td>n4sch</td></tr><tr><td>classLabel</td><td>Class</td></tr><tr><td>subClassOfRel</td><td>SCO</td></tr><tr><td>dataTypePropertyLabel</td><td>Property</td></tr><tr><td>objectPropertyLabel</td><td>Relationship</td></tr><tr><td>subPropertyOfRel</td><td>SPO</td></tr><tr><td>domainRel</td><td>DOMAIN</td></tr><tr><td>rangeRel</td><td>RANGE</td></tr><tr><td>classNamePropName</td><td>name</td></tr><tr><td>relNamePropName</td><td>name</td></tr></tbody></table>
+<p><code>OVERWRITE</code> 和 <code>keepLangTag=false</code> 已可能丢失多值和语言信息，现库不能恢复这些内容。Neo4j 原生属性与 RDF datatype 的转换也有歧义。因此比较结果是<strong>有损重建图的差异</strong>，不作为自动合并指令；空白节点图差异计数也不是最小编辑次数。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="规范化模型与读取接口">规范化模型与读取接口<a href="#规范化模型与读取接口" class="hash-link" aria-label="规范化模型与读取接口的直接链接" title="规范化模型与读取接口的直接链接" translate="no">​</a></h2>
+<p><code>public_api/builder.py</code> 定义 <code>chein.rdf/v1</code>：namespaces 和 subject/predicate/object statements；每个 term 显式区分 URI、空白节点、literal，并保留 language 或 datatype。类、对象属性、数据属性和只读公理是该文档的投影。RDF 图是集合，空白节点标识、声明顺序、前缀排版、XML 注释不属于无损语义往返保证；保证以 RDF 图同构为准。</p>
+<p>Restriction、intersection/complement/equivalent/disjoint、RDF 列表和未知谓词都保存在规范化文档。匿名表达式在投影时规范化 ID，显示为只读节点，并可在只读公理列表查看。名称空间缩写不改变 URI。布局坐标仅保存在浏览器 localStorage，以当前用户、租户、源摘要隔离，不进入 RDF 或数据库节点属性。</p>
+<p>读取接口均位于 <code>/api/v1/ontology/builder</code>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法与路径</th><th>输入</th><th>行为</th></tr></thead><tbody><tr><td><code>POST /preview</code></td><td>content、format</td><td>解析调用者提供的文件，返回完整 TBox 投影与文件实例总数</td></tr><tr><td><code>POST /individuals</code></td><td>文件、class_uri、cursor、limit</td><td>按 URI 游标返回该类及后代类的文件实例；最多 100 条</td></tr><tr><td><code>POST /serialize</code></td><td>document、output_format</td><td>从当前规范化模型输出 Turtle 或 RDF/XML；源码面板和 TBox 导出共用</td></tr><tr><td><code>POST /export</code></td><td>文件、scope、output_format</td><td>导出原文件 TBox 或全部文件实例</td></tr><tr><td><code>POST /compare-neo4j</code></td><td>文件</td><td>仅当前平台管理员可进行未绑定全局 Resource 的只读差异核查；不向普通租户授权</td></tr><tr><td><code>GET /neo4j</code></td><td>无</td><td>当前平台管理员读取现库 TBox、实例总数、完整配置与有损提示；不返回全部实例</td></tr><tr><td><code>GET /neo4j/individuals</code></td><td>class_uri、cursor、limit</td><td>平台管理员按类及子类 label 分页现库实例；默认 50、最多 100</td></tr><tr><td><code>POST /neo4j/export</code></td><td>output_format</td><td>平台管理员导出现库全部 Resource；Neo4j 游标逐条写入临时 SQLite，再流式响应</td></tr></tbody></table>
+<p>接口不接受文件路径、任意 URL 或 Cypher。所有原文件解析和序列化在无凭据子进程运行，禁网、禁外部文件、拒绝 DTD/实体，不跟随 <code>owl:imports</code>。错误为稳定错误码。普通租户可解析自己提供的文件，无权读取未绑定 Resource；HTTP 测试覆盖了在访问 Provider 前拒绝此类请求。</p>
+<p>画布初始仅加载 TBox。双击类或 Inspector 按钮展开每页 50 个实例，可继续加载或折叠；同一实例去重，虚拟类型边仅连接已声明类型。实例为菱形图标和圆角外形，类为矩形，表达式为虚线外框，另有图例及类型过滤。增量展开保留已有位置，画布最多 600 个节点。实例来自当前选择的 Neo4j Resource 图或上传文件，不能视为实时 ERP 数据。现库查询读取实际 <code>_NsPrefDef</code> 前缀来映射类 URI 与 label，不依赖不存在的 rdf:type 关系。祖先类展开覆盖后代类，查询在数据库以 URI 排序、游标和 LIMIT 限流；不先加载全部实例再在 Python 截断。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="序列化与资源上限">序列化与资源上限<a href="#序列化与资源上限" class="hash-link" aria-label="序列化与资源上限的直接链接" title="序列化与资源上限的直接链接" translate="no">​</a></h2>
+<p>浏览器文件入口要求有效 UTF-8，非法编码明确拒绝，不以替换字符静默改写标签；其他编码须先转换。HTTP <code>content</code> 是已解码的 Unicode 字符串。</p>
+<p>源码面板直接提交当前 <code>RdfDocument</code>，不调用 n10s 导出。序列化复用 RDFLib。Turtle 输出采用合法的 N-Triples 子集，避免 RDFLib Turtle 序列化器的全图排序。全部文件实例导出将三元组直接写入临时 SQLite Store，再使用逐三元组/逐 subject 的成熟序列化器写入临时文件；HTTP 以 64 KiB 分块流出，断开时关闭文件。完整输出先在隔离进程完成，因此不是解析同时向客户端传输；不会在 API 进程组装完整输出字符串。</p>
+<p>现库完整导出不在 API 内构造全量节点列表：驱动游标必须在同一只读事务内消费，三元组直接落临时 SQLite；只保留单条记录与单个 subject 的内存，完整序列化后按 64 KiB 分块传输。现库输入编码预算 32 MiB、最多 20 万三元组、输出 64 MiB，复用两个并发槽及现有 Neo4j 查询超时。现库值的 RDF datatype 还原仍有歧义，不能宣称与原始导入文件无损等价。匿名节点 ID 统一映射为稳定合法的 XML NCName，避免 n10s 数字开头的 ID 导出无法解析。</p>
+<p>文件预览安全预算：输入文件 4 MiB、20 万三元组、每进程 15 秒 CPU / 20 秒总超时、输出 64 MiB、并发解析 2 个。Linux 另限制 512 MiB 地址空间；macOS 不使用不可靠的 RLIMIT_AS。文件输入字符串本身仍受 4 MiB 内存预算约束。这些是当前预览的上限，不是无限规模实例导出的完成证据。</p>
+<p>仅本体范围保留未知结构与孤立匿名表达式，移除文件实例及其独占空白子图。同 URI 同时为类/实例时保留完整共享 subject，避免丢失公理和歧义注解，因此 TBox 导出可能保守保留该 subject 的实例陈述；完整导出保证全部陈述往返同构。XML 不能表达的字符或谓词将明确拒绝，不能返回不可解析文件或静默删值。</p>
+<p>全局现库比较目前最多读取 2 万 Resource 和 20 万条边，且只支持 SHORTEN/SHORTEN_STRICT + LABELS，要求 keepLangTag、keepCustomDataTypes、applyNeo4jNaming 为 false；这些编码规则为 true 或其他配置/预算不支持时失败关闭。现库画布同样限制 TBox 2 万节点、20 万条边；不加载 ABox 节点列表。两种核查均不等于后续普通租户按工作区 ACL 读取的接口。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="草稿工作区与受控发布">草稿、工作区与受控发布<a href="#草稿工作区与受控发布" class="hash-link" aria-label="草稿、工作区与受控发布的直接链接" title="草稿、工作区与受控发布的直接链接" translate="no">​</a></h2>
+<p>新增 API 沿用 <code>/api/v1/ontology/builder</code>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法与路径</th><th>权限和语义</th></tr></thead><tbody><tr><td><code>GET /binding-preview</code></td><td>平台管理员读取当前完整图摘要；绑定时乐观校验</td></tr><tr><td><code>GET /workspaces</code>、<code>GET /workspaces/{id}</code></td><td>当前 UoW + RLS 的可见工作区和版本正文</td></tr><tr><td><code>POST /workspaces</code></td><td>当前发布权限 + 平台管理员；绑定原文件和原始图库快照，不写 Resource</td></tr><tr><td><code>POST /draft/preview</code>、<code>/draft/individuals</code>、<code>/draft/export</code></td><td>当前编辑权限；<code>commands</code> 重放到全量基线，预览只返回 TBox 与本次编辑实例，分页最多 100</td></tr><tr><td><code>GET /workspaces/{id}/individuals</code>、<code>POST /workspaces/{id}/export</code></td><td>当前读取权限；只读版本分页与后端流式导出</td></tr><tr><td><code>POST /draft/validate</code></td><td>当前编辑权限；校验完整基线与全量实际实例约束，再提交本人真实 OWLAPI/HermiT 任务</td></tr><tr><td><code>POST /draft/publish</code></td><td>当前发布权限；校验任务、完整正文摘要、本人身份、revision、原图库摘要必须匹配，明确确认现库差异保留</td></tr><tr><td><code>POST /workspaces/{id}/project</code></td><td>当前发布权限 + revision；明确执行或重试 Neo4j 原子写回</td></tr></tbody></table>
+<p><code>put</code>、<code>link</code>、<code>unlink</code>、<code>rename</code>、<code>delete</code> 命令由后端重放，URI、重名、层级环、引用、父类继承后的 domain/range、值类型均在完整图中检查。删除类先统计包括后代类型的全部受影响实例并阻止；未知公理引用的 URI 改名/删除拒绝。表单注释和标签支持多语言，标准 RDF 序列化保留语言信息。当前 <code>OVERWRITE</code> 无法投影多值原生属性，写回检查明确拒绝此类变更，不能悄悄丢值。未知公理、匿名 superclass/domain/range 在表单修改时保留；不提供 Restriction/RDF 列表编辑器。</p>
+<p>右键菜单和详情面板的删除入口统一使用 Ant Design <code>Modal.useModal().confirm</code>，复用当前主题与中英文按钮文案，居中显示红色删除按钮；取消不提交，确认等待原草稿校验请求并显示加载状态。弹窗挂载到画布工作区，兼容原生全屏。</p>
+<p>删除类时，确认框列出仅以该类为 domain 的可编辑数据属性；确认后先删除这些字段定义，再删除类，作为一个原子草稿批次，可一次撤销/重做。不自动删除共享属性、对象属性、子类、实例或只读公理。所有命令仍由后端在完整图中检查；任何引用或实例保护失败都不替换现有草稿，确认框保留并显示具体原因，可取消或重试。关系 unlink 与单独属性删除仍走原命令。统一请求错误解析同时读取平台 <code>message/details.errors</code> 与原生 FastAPI <code>detail</code>，不再把业务 422 一律误报为参数校验失败；验证信息仅展示位置及消息，不展示请求输入值。</p>
+<p>本次修复涉及 <code>api/request.ts</code>、<code>builder/commands.ts</code>、<code>pages/OwlBuilder.tsx</code>、相关测试及中英文文案，无生产后端、接口契约、数据库或配置变更。本地32项前端测试、14项纯 RDF 后端测试、后端 Ruff、前端类型检查及构建通过。隔离 Playwright 使用合成本体及真实 RDF 命令处理器，验证取消无请求、确认删除类和字段、一次撤销恢复，以及全屏中的实例拒绝提示、弹窗保留与草稿不变；无未捕获 JavaScript 错误，拒绝场景的 HTTP 422 为预期，截图已归档 RustFS。未对当前业务图库执行删除，未运行远端 CI。</p>
+<p>绑定记录是 <code>ontology.builder_binding</code>，迁移 <code>ontology_builder_v1</code> 接在既有 semantic workspace 迁移后。复用 Network/Version/Audit；<code>OntologySchema.rdf_document</code> 与 ERP 映射 DSL 互斥，旧正文序列化及摘要保持不变。旧保存/转换入口拒绝绕过 RDF 工作区门禁。新表 FORCE RLS，继承父 Network 的 private/tenant 可见性，绑定身份及原始文件不可改。绑定唯一键覆盖配置的整套 Neo4j 数据库，不按未经确认的命名空间猜测租户归属。此版本没有把这些 Resource 直接接入正式 ERP/Agent 查询。</p>
+<p>Neo4j 写回在<strong>一个显式事务</strong>中重新读取全图及配置、检查摘要、重放全量校验、生成 <code>CheinOntologyBuilderSnapshot</code>、应用 delta 并再次核对结果。类 URI 变化同步所有实例 label；属性 URI 变化同步关系类型或原生键；新命名空间在同一事务更新 <code>_NsPrefDef</code>。动态标签/类型使用 Neo4j 5.26+ 原生参数表达式，用户内容不拼入 Cypher，无 APOC 依赖。待删除关系带未知原生 metadata 时失败关闭，避免丢失。快照不带 Resource 标签，不进入 RDF 导出；序列化记录额外标记原生特殊类型，不提供自动恢复按钮。</p>
+<p>PostgreSQL 网络行锁和 revision 保护受控并发发布；图摘要阻止检查前已经发生的外部改动，提交标记保护“图库已提交但 PG 尚未记录成功”的显式重试。<strong>不承诺与绕过本应用的并行 Neo4j 写入实现跨库串行化</strong>；实际发布窗口应暂停外部导入/修改。任何中间失败不会报告为已同步。该投影由同一模块的显式命令执行，不新增旁路 Worker/跨模块消息，不自动重试不明提交。</p>
+<p>绑定允许保留已有语义问题的基线，但不表示批准发布。工具区显示当前第一处约束问题；草稿可继续组合修改，并按全图显示问题，正式校验和发布必须通过全部约束。当前原文件与现库均核查到 <code>statusCode</code> 的 domain 同时包含 OrderStatus 与 SalesOrder，有 6 个 OrderStatus 实例没有 SalesOrder 类型；多个 domain 按标准 OWL 表示交集。未自动修改原文件、实例类型或属性约束。另用真实 OWLAPI 5.5.1 的 OWL2DLProfile 检查原文件，得到 31 项 Profile 报告，涉及 <code>xsd:date</code> 的声明/使用；HermiT 校验返回 <code>owl2dl_profile_required</code>。这不等于 RDF/XML 语法不可解析，原图仍可无损导出；但修正 domain 后仍需解决 Profile 问题，不能自动把 date 改成 string/dateTime。</p>
+<p>发布校验使用 <code>validate-ontology</code>，既检查实例一致性，又返回不可满足类；原 <code>validate-rules</code> 的仅 TBox 限制保持不变。</p>
+<p>发布步骤：打开原始 OWL → 展开工具 → 绑定现库工作区并核对差异 → 编辑草稿 → 校验当前草稿并刷新结果 → 确认保留现库差异 → 发布版本 → 执行写回。普通编辑不需要先发布即可查看或导出当前草稿。未保存修改在切换文件、刷新现库或切换工作区前提示确认；关闭/刷新浏览器时触发浏览器原生离开提醒。只有点击“保存草稿”且显示服务器保存成功后，才能在刷新后通过“恢复草稿”继续编辑。未点击保存的修改仍只存在本页面内存。</p>
+<p>部署新表使用 <code>pnpm migrate:edition --edition suite</code>，依照现有 runtime grant 流程授予新表；不要把管理员凭据注入 API。降级在存在绑定时拒绝删除数据，须先显式归档/清除绑定；没有修改历史 migration。现有展示入口继续沿用原调用链。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="本地验证">本地验证<a href="#本地验证" class="hash-link" aria-label="本地验证的直接链接" title="本地验证的直接链接" translate="no">​</a></h2>
+<p>从仓库根目录运行构建器全部检查：</p>
+<div class="language-sh codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-sh codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token function" style="color:#d73a49">pnpm</span><span class="token plain"> ontology:builder:test</span><br></div></code></pre></div></div>
+<p>需要 Docker、uv、pnpm、Maven、Java21 和本机 Chrome。设置 <code>JAVA_HOME</code> 或 <code>CHEIN_REASONER_JAVA_HOME</code> 指向实际 JDK21；脚本先执行 <code>mvn verify</code> 测试并打包计算服务，再运行发布链路；<code>CHROME_BIN</code> 可显式指定浏览器可执行文件。脚本自动创建随机名字、随机密码、仅回环端口的一次性 Neo4j 5.26.32 Community，挂载经固定 SHA-256 核验的 n10s 5.26.0，等待 Bolt 和真实 n10s procedure 就绪后测试，结束删除容器和匿名卷。不需要 APOC，不访问配置中的业务数据库。镜像和首次 JAR 下载需要网络；下载失败即整条命令失败，不能算集成测试通过。</p>
+<p>该命令执行 Java21 真实 HermiT 测试、RDF 单元/HTTP/真实 n10s 测试、前端类型检查、组件测试及两组 ReactFlow 浏览器检查。纯后端测试使用 <code>--noconftest</code>；数据库用例由 <code>test_creation_isolated.py</code> 创建并清理一次性 PostgreSQL，禁止手工对开发库执行根 fixture。第一组浏览器用合成授权/Neo4j 记录覆盖只读与草稿交互；第二组使用真实 FastAPI 授权、app_runtime、一次性 PostgreSQL/Neo4j 和签名 Java21 HermiT，覆盖绑定、编辑、标准导出、校验、发布、显式写回及刷新。浏览器测试容器替换 Umi 页面壳，不验证现有登录表单。真实 Neo4j 的 5000 个 label 实例分页另由容器集成用例覆盖。</p>
+<p>黄金文件为合成小型本体，含 inverse、多语言、词法值、Restriction/intersection/RDF 列表。测试包含两种格式的图同构往返、规范化模型修改后序列化、5000 文件实例的分页、空图、中文、特殊字符和 XML 不可表示字符。使用私有原文件的本地核查不将其正文复制到仓库或测试样例。</p>
+<p>新增页面/模块装配另需执行仓库规定的三个 Edition 构建与边界测试。截图使用仓库的 <code>saveDevArtifact</code> 归档，不写入源码目录。该命令包含编辑发布、事务回滚、URI/实例标签迁移、摘要冲突、受控并发及 RLS 检查。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="历史验证记录">历史验证记录<a href="#历史验证记录" class="hash-link" aria-label="历史验证记录的直接链接" title="历史验证记录的直接链接" translate="no">​</a></h2>
+<p>以下记录按发生时间保留。早期镜像拉取、Docker 未启动及当时未交付的范围，不代表当前状态；当前编辑与发布结果见文末。</p>
+<p>原文件存在而现库丢失语言信息时，不能通过全图 n10s 重导实现无损恢复；PostgreSQL 保留完整文档，Neo4j 投影明确检查表示限制。未知 OWL 构造继续只读。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="现库显示问题修复验证2026-10-29">现库显示问题修复验证（2026-10-29）<a href="#现库显示问题修复验证2026-10-29" class="hash-link" aria-label="现库显示问题修复验证（2026-10-29）的直接链接" title="现库显示问题修复验证（2026-10-29）的直接链接" translate="no">​</a></h2>
+<p>根因是页面只在上传文件时调用 <code>/preview</code>，没有现库首屏读取接口。现已增加管理员现库 GET、label 分页与全量流式导出，打开页面默认读取；上传文件会取消现库请求并切换到独立基线，权限撤销会清空现库视图。</p>
+<ul>
+<li class="">当前环境真实只读核查：64 类、18 对象属性、43 数据属性、312 实例；首屏只返回 157 个非实例 Resource，画布为 86 个类 / 表达式节点。Address 两页各 2 条、URI 不重复。两种完整导出均为 3713 三元组，与现库重建图同构；首屏 TBox 文档也与全图重建后提取的 TBox 完全一致，核查前后节点和关系未变化。原文件仍单独保留，不与现库重建图混用。</li>
+<li class=""><code>pnpm ontology:builder:test</code> 的 lint、后端 / 边界 / Manifest 检查（45 passed、1 个数据库相关检查未选中）、TypeScript、前端组件 / 图转换 / 注册检查（15 passed）、浏览器文件与现库模式流程均通过。旧 Neo4jStudio 在额外组件回归中通过。</li>
+<li class="">Base、Items、Suite 构建均通过，最后恢复 Suite。当前登录系统的浏览器中已观察到现库来源提示、86 节点 / 312 实例及真实中文类、属性与关系。控制台唯一可见错误来自浏览器扩展的 unload 权限策略，不属于本构建器。</li>
+<li class="">统一测试命令最终在启动隔离 Neo4j 时失败：Docker socket 不存在，daemon 未启动。新增的 5000 个真实 label 实例分页集成用例尚未运行，不算通过；启动 Docker 后重跑同一命令。此前镜像拉取超时记录仍保留。没有数据库迁移、实例导入、发布写入或权限变更；工作区 ACL 与编辑发布仍未交付。远端 CI、镜像扫描与正式部署未执行。</li>
+</ul>
+<p>现库页面验证截图已按开发规范上传 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/9d91860034a14a35bb70fac5fe1d0da3/owl-builder-neo4j-live.png</code>，没有保存在源码目录。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="画布布局调整验证2026-10-29">画布布局调整验证（2026-10-29）<a href="#画布布局调整验证2026-10-29" class="hash-link" aria-label="画布布局调整验证（2026-10-29）的直接链接" title="画布布局调整验证（2026-10-29）的直接链接" translate="no">​</a></h2>
+<p>移除了两条常驻提示及固定右栏；画布使用可用视口高度，原生全屏时包含工具区和详情抽屉，下拉层也挂在全屏容器内。右侧详情无蒙层且不锁定焦点，打开期间可继续点选其他节点。匿名表达式长标识在抽屉标题内换行。</p>
+<p>本轮验证：Ruff、45 项后端 / 模块边界 / Manifest 检查通过（1 项数据库用例未选中）；TypeScript、27 项前端组件 / 图转换 / 注册回归通过；浏览器覆盖全屏进出、全屏格式选择、顶部折叠、连续点选与关闭重开、窄屏抽屉、按需实例和两种导出解析。Base / Items / Suite 构建通过，最终保留 Suite。实际登录系统中已确认地址→客户连续点选更新详情，现库仍显示 86 个初始节点、312 实例。本轮没有数据库迁移或写入。Docker daemon 未启动，未重跑隔离 n10s 容器测试；远端 CI 与正式部署未执行。</p>
+<p>实际页面截图按规范存入 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/28127e08a3864626a141b0f0ecb70ed1/owl-builder-canvas-drawer.png</code>。截图后进一步补充了长标题换行。</p>
+<p>取消卡片布局验证（2026-10-29）：TypeScript、15 项组件 / 图转换测试、浏览器流程与 Suite 前端构建通过。浏览器断言画布左边界为内容区起点、顶部紧接测试菜单栏、底部贴合视口，且边框和圆角均为 0；当前登录系统也已观察到相同行为。无后端、权限或数据库变更，未重跑数据库集成或远端 CI。截图归档：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/8d71bfb600014ad580567a41279f1254/owl-builder-edge-to-edge.png</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="编辑阶段本地验证2026-10-29">编辑阶段本地验证（2026-10-29）<a href="#编辑阶段本地验证2026-10-29" class="hash-link" aria-label="编辑阶段本地验证（2026-10-29）的直接链接" title="编辑阶段本地验证（2026-10-29）的直接链接" translate="no">​</a></h2>
+<p><code>CHEIN_REASONER_JAVA_HOME=&lt;实际 JDK21&gt; pnpm ontology:builder:test</code> 已完整通过：Maven 28 项中 27 通过、外部 Nacos 1 默认跳过；Ruff；58 项后端/边界/Manifest（1 项有 DB fixture 的用例不在纯测试运行）；TypeScript；24 项前端；真实 ReactFlow 草稿浏览器流程；6 项一次性 Neo4j+n10s 集成；6 项一次性 PostgreSQL/发布/RLS/迁移检查。补充 owl:Thing 边界、问题基线的草稿编辑与属性操作入口后，59 项后端检查、34 项前端回归、TypeScript、草稿浏览器流程及 Suite 前端构建通过。</p>
+<p>完整发布浏览器检查使用同一一次性 Neo4j、一次性 PostgreSQL 的 app_runtime 角色和容器内 Java21 HermiT，验证绑定、右键新增子类/对象属性、标准导出解析、真实签名校验、版本发布、显式原子写回及刷新。真实 n10s 测试覆盖 5000 实例分页、5000 实例标签随类 URI 同步、删除受影响类被拒绝、事务回滚、摘要冲突与幂等重试。PG 用例覆盖非法原始基线可绑定但不能发布、NOWAIT 并发、runtime RLS、原文不可变、待投影/失败/重试及 migration check。既有生命周期另运行 10 项通过。Base/Items/Suite 构建通过，最终保留 Suite。</p>
+<p>截图按规范归档 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/5a98241b7421410cb16bebaa4ce1b8f3/owl-builder-property-editor.png</code>。没有截图或私有原文件副本进入源码目录。</p>
+<p>当前开发数据库仅应用新增绑定表迁移，未自动绑定原文件、发布版本或写回实际 Resource。计算服务须部署本次重建 Jar，旧版本不支持 <code>validate-ontology</code>。远端 CI、镜像扫描、生产部署、外部 Nacos 和外部 Neo4j 写入协调演练未执行。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="工具栏与自动整理2026-10-29">工具栏与自动整理（2026-10-29）<a href="#工具栏与自动整理2026-10-29" class="hash-link" aria-label="工具栏与自动整理（2026-10-29）的直接链接" title="工具栏与自动整理（2026-10-29）的直接链接" translate="no">​</a></h2>
+<p>顶部常用操作保留布局选择和整理画布；编辑权限下还提供新增类与撤销/重做。缩放及适应视口使用画布左下角的 ReactFlow 原生 <code>Controls</code>，浏览器全屏沿用原有全屏容器，通过官方 <code>ControlButton</code> 扩展接入同一控件组；顶部不重复放置视图按钮。控件使用现有中英文文案、原生按钮提示及全屏按下状态。展开“工具”后按“数据与工作区”“导出与源码”“查找与显示”分组。只读公理、导入配置和现库差异核对归入“更多工具”，选项仍按当前数据源和权限显示。</p>
+<p>布局仅提供三种，切换立即整理；手动拖动后可点击“整理画布”重新排列：</p>
+<ul>
+<li class="">层级树：基于子类和实例类型关系从上到下排列，父类在上。</li>
+<li class="">横向关系：使用已有 Dagre 按全部已加载关系从左到右排列。</li>
+<li class="">网格排列：按节点尺寸分行，方便浏览属性较多的类。</li>
+</ul>
+<p>整理只针对当前已加载节点，不额外加载实例，不改变边的语义、草稿命令、RDF 或数据库。类型过滤只改变显示，不删除参与布局的已加载节点。展开实例仍放在所属类附近，不自动重排全图。布局模式与类的位置沿用浏览器本地存储，按当前用户/租户身份和数据源/工作区隔离；实例位置只在当前页面保留。清除浏览器存储会重置布局。没有新增依赖、接口或数据库迁移。</p>
+<p>鼠标悬停节点时，从该节点分别沿入边、出边递归追踪全部上游和下游，高亮沿途节点及边，支持多跳、环、自环和并行边。追踪仅使用当前已加载且显示的图，不额外加载数据，也不跨入仅与下游汇合的其他分支。边加粗并使用主题色，箭头同步着色；虚拟类型边仍为虚线。</p>
+<p>点击节点锁定当前链路，此后移开鼠标或悬停其他节点不会切换链路；无关节点及边降低透明度。下一次点击页面任意位置（含该节点、其他节点、空白画布、工具栏或详情抽屉）取消锁定并恢复原样，该次点击不会重新锁定另一个节点；原有详情及工具操作仍执行。再次移入节点可恢复普通悬停高亮。隐藏/移除当前节点会清除对应状态，不修改布局、RDF 草稿或数据库。</p>
+<p>悬停功能本地验证：TypeScript、37 项既有前端回归、Suite 构建及真实 ReactFlow 浏览器流程通过。浏览器新增检查两个节点间连续切换悬停、全部直接关联边加粗、相邻节点描边、无关边保持不变、移开后恢复边颜色/宽度/箭头及不打开详情。无后端或数据库变更，未重跑真实数据库集成、远端 CI 或部署。</p>
+<p>完整链路与锁定扩展本地验证：TypeScript、39 项前端回归、Suite 构建和浏览器流程通过。新增图测试覆盖多跳、汇合分支排除、环、自环、并行边、孤立节点及隐藏端点；浏览器验证多跳高亮、锁定后移开/悬停其他节点仍保持、无关节点淡化，以及点击原节点、其他节点、空白画布、工具栏、详情抽屉和构建器外部均取消且不重新锁定。数据库集成、远端 CI 和部署未重跑；没有新增依赖或迁移。</p>
+<p>节点样式参考 ReactFlow 官方 <a href="https://reactflow.dev/ui/components/base-node" target="_blank" rel="noopener noreferrer" class="">Base Node</a>、<a href="https://reactflow.dev/ui/components/database-schema-node" target="_blank" rel="noopener noreferrer" class="">Database Schema Node</a> 的标题/内容分区，以及<a href="https://reactflow.dev/learn/customization/theming" target="_blank" rel="noopener noreferrer" class="">主题 CSS 变量</a>。本项目使用现有 Ant Design Token 与 CSS Modules 实现，没有安装官方示例使用的 shadcn/Tailwind 组件。以下 OWL 类型配色为本项目配置，并非官方定义的 OWL 配色：类为蓝色圆角矩形和数据属性行；实例为绿色、更圆的轮廓及数据库图标；只读表达式为琥珀色、虚线边框及锁图标。每种类型另有文字标识，缩略图颜色保持一致。类型/属性名称保留完整文本，长标题显示省略并提供完整标题/URI 提示；细节仍在 Inspector。控件和节点使用当前系统的明暗主题 Token。初始节点高度估算同步适配更宽松的属性行；已保存的位置仍保留，必要时点击“整理画布”按实测尺寸重排。</p>
+<p>节点外观本地验证：TypeScript、39 项前端回归、Suite 构建通过；浏览器检查三种节点的颜色、边框、轮廓、缩略图配色及明暗主题，完整复跑高亮/锁定、三种布局、全屏菜单、源码与两种标准导出解析、右键编辑和撤销重做。一次与构建并行的浏览器检查在初始读取时超时，原因未确认；串行完整复跑通过。截图归档 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/4c43aba024014310a6f6a0bf791af9dc/owl-builder-node-types.png</code>。无新增依赖、后端或数据库变更；真实数据库集成、远端 CI 及部署未执行。</p>
+<p>详情面板使用基本信息、类型/层级、数据属性及 RDF 值分组，完整 URI 支持复制，数据类型显示短标签并在提示中保留完整 URI。面板宽度最多 460px，窄屏预留侧边标签空间。点击面板边缘的方向标签会完全折叠详情，并暂停本页面内的自动展开；此后点选节点或属性仅更新选中内容，点击源码或编辑操作只切换待显示的页签，均不自动打开面板。只有点击画布右侧的方向标签才恢复展开，详情页显示最近选中的内容。标签支持键盘及原生全屏。此偏好只保留在当前页面内存中，刷新后重置；原有关闭按钮仍为普通关闭，后续选中可以再次打开，区别于方向标签的持续折叠。</p>
+<p>详情折叠本地验证：TypeScript、40 项前端回归、Suite 构建通过；浏览器验证普通/全屏下的折叠、连续选择不展开、标签贴右、Enter 打开最新节点、窄屏无横向溢出，并复跑编辑、标准导出、主题及高亮锁定流程。没有后端、数据库、权限或依赖变更，未重跑真实数据库集成、远端 CI 或部署。</p>
+<p>展开与折叠截图已归档 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/53f780d040334f9c9fb9fd7170b3fccc/owl-builder-inspector-expanded.png</code>、<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/26d82b9b032b48489b9ba9a2eff34184/owl-builder-inspector-folded.png</code>。截图后另将多语言标签/注释改为逐行显示，避免并排连在一起。</p>
+<p>详情字段对齐修正：取消基本信息独有的上下排布，所有字段统一为 128px 名称列与自适应内容列，字号/行高统一为 13px/22px，多行从顶部对齐。属性链接和可复制 URI 使用相同行高；长字段名可换行，多语言值仍逐行显示。浏览器增加桌面与 390px 窄屏的行顶、名称列宽及内容起点测量检查。展开/折叠实例和分页操作位于详情顶部，与编辑/删除放在同一操作区。</p>
+<p>字段对齐的本地验证：TypeScript、15 项页面组件测试、完整构建器浏览器回归（含桌面与 390px 字段对齐）及 Suite 前端构建通过。截图已归档至 <code>chein-dev-artifacts/ontology/screenshots/2026-10-29/76616ccc8ec44d3ebb0234528a5ba4bf/owl-builder-inspector-expanded.png</code>。仅修改前端排版，无依赖、接口或数据库迁移；未重跑真实数据库集成、远端 CI 或部署。</p>
+<p>本轮本地验证：<code>pnpm frontend:typecheck</code>、37 项前端回归、<code>pnpm frontend:pro:build</code> 通过。<code>node frontend/apps/web-pro/tests/ontology-builder.e2e.mjs</code> 覆盖三种布局切换、父子位置、节点标识/正文保持、整理不发起写请求、全屏“更多工具”、移动端宽度、源文件和模拟现库读取、按需实例、两种标准导出解析与草稿编辑。组件测试另检查布局恢复；图转换测试包含长属性节点、断开节点、环和增量展开。浏览器使用隔离 RDF Worker 与合成授权/Neo4j 夹具，本轮未重跑真实数据库集成、远端 CI 或部署。截图通过 <code>saveDevArtifact</code> 归档到 RustFS：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/b785db345beb4bdeaace10a7591b85c0/owl-builder-toolbar-layouts.png</code>。</p>
+<p>原生视图控件替换后，TypeScript、同一组 37 项回归及 Suite 前端构建通过；浏览器新增检查原生控件位置、缩放比例实际变化、适应视口后节点在可视区域内、全屏按钮状态，以及顶部不再重复出现放大按钮。首次浏览器检查与构建并行时在全屏格式下拉选项处超时，原因未确认；构建完成后完整复跑通过，未通过放宽点击检查来规避。截图归档：<code>chein-dev-artifacts/ontology/screenshots/2026-10-29/a571f7c28f7945dd8f1ff9ebbdd05699/owl-builder-toolbar-layouts.png</code>。本次仅调整前端控件，没有后端、依赖、权限或迁移变更；未重跑数据库集成或远端 CI。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="服务端私有草稿">服务端私有草稿<a href="#服务端私有草稿" class="hash-link" aria-label="服务端私有草稿的直接链接" title="服务端私有草稿的直接链接" translate="no">​</a></h2>
+<p>画布顶部的“保存草稿”将当前编辑基线及命令写入 PostgreSQL；“恢复草稿”列出本人保存记录，可在刷新后、尚未打开文件或加载画布时使用。第一次保存创建记录，恢复后继续保存更新同一记录，显示服务器已保存/有未保存修改。列表按更新时间倒序每页50条，可刷新和加载更多；每条显示工作区/文件来源名称与更新时间。恢复会替换当前编辑，有未保存改动时先确认，失败保留原画布。删除已保存草稿需确认和当前草稿 revision，仅删除服务器记录，不删除当前画布或已发布定义。恢复保留已执行命令及本次编辑实例；浏览器内撤销/重做栈不持久化，恢复后新操作仍可撤销。</p>
+<p>保存不是发布：允许保存现有语义约束未通过的草稿，仍复用隔离 RDF worker 验证安全、命令引用和解析预算；语义错误在恢复视图中继续显示。发布校验任务及审批/写回状态不保存在草稿中，正式发布仍需当前版本对应的本人真实校验任务和原有显式流程。工作区草稿保留 workspace_id、expected_revision 与命令，读取/更新时逐次重验工作区可见性、版本及写回状态；变更后失败关闭，不静默改基线或修改已保存记录。</p>
+<p>未绑定现库和上传文件的草稿保存原始 RDF 基线快照及命令，不保存数据库连接凭据。未绑定现库保存时必须传 base_digest，与完整图投影出的当前 TBox 基线摘要一致，否则409；现库快照同时绑定连接 graph_key，恢复和更新仍需当前平台检查权限，连接变化时拒绝。恢复后的文件/现库快照作为私有离线编辑输入，不会自动合并外部图库变化，不会直接写回图库或成为已发布版本。仅保存已授权的 RDF 编辑输入（可含原有实例），不执行数据源样本查询。</p>
+<p><code>ontology.builder_saved_draft</code> 归 Ontology 所有，字段为 id、tenant_id、owner_id、name、revision、payload（基线及命令）、graph_key（仅原始现库快照）、updated_at。索引 <code>(tenant_id, owner_id, updated_at, id)</code> 支持目录分页；revision&gt;0。复用 Tenant UoW，ORM 与 FORCE RLS 均按当前可信 tenant/owner 隔离；数据库触发器阻止改 owner/tenant，不使用超级管理员旁路。更新在行锁内检查 saved-draft revision，避免多窗口覆盖；删除同样检查 revision。上传、工作区权限不因草稿存在而获得提升。</p>
+<p>接口统一前缀 <code>/api/v1/ontology/builder</code>，均需当前 <code>ontology:read</code> 和 <code>ontology:edit</code>，身份不接受客户端 tenant_id/owner_id：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>路径</th><th>入参与结果</th></tr></thead><tbody><tr><td>GET</td><td><code>/drafts?page=1</code></td><td>每页50条本人草稿元数据：id/name/revision/updated_at</td></tr><tr><td>POST</td><td><code>/drafts</code></td><td><code>{name, draft: BuilderDraft, base_digest?}</code>；返回保存后的元数据。base_digest 在无 source/workspace 的现库保存时必需</td></tr><tr><td>GET</td><td><code>/drafts/{id}</code></td><td>返回元数据、原 draft、可见工作区元数据 workspace（或 null）及重放后的 view，含 validationErrors/editedIndividuals</td></tr><tr><td>PUT</td><td><code>/drafts/{id}</code></td><td>POST 入参加 <code>expected_revision</code>，更新成功 revision+1</td></tr><tr><td>DELETE</td><td><code>/drafts/{id}?expected_revision=N</code></td><td>成功204；只删本人记录，不影响发布或 Resource 图</td></tr></tbody></table>
+<p>保存示例（文件草稿）：</p>
+<div class="language-json codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-json codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;客户本体草稿&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;draft&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;source&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;format&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;turtle&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;content&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;&lt;urn:Customer&gt; a &lt;http://www.w3.org/2002/07/owl#Class&gt; .&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;commands&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;operation&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;put&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;kind&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;datatypeProperty&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;uri&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;urn:name&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;domains&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;urn:Customer&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;ranges&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;http://www.w3.org/2001/XMLSchema#string&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>工作区草稿用 <code>draft.workspace_id</code> + <code>draft.expected_revision</code> 替代 source。saved-draft revision 与工作区 expected_revision 是独立并发版本。记录不存在、跨 owner/tenant、工作区不可见返回404；缺少当前检查权限403；覆盖/删除版本冲突 <code>ontology_builder_saved_draft_conflict</code>/409，基线改变 <code>ontology_builder_graph_changed</code>/409；其他工作区/连接/预算错误沿用原构建器错误。失败不会自动覆盖、删除或发布。</p>
+<p>部署新增迁移 <code>ontology_saved_drafts_v1</code>，接在 <code>ontology_builder_v1</code> 后；Suite API/Manifest 和前端须一起更新。维护前备份并停止 API/Worker，执行现有 Nacos 维护脚本：</p>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token function" style="color:#d73a49">bash</span><span class="token plain"> /Users/hanyang/Task/SelfStudy/agentStudy/chein/scripts/ontology-setup.sh migrate</span><br></div></code></pre></div></div>
+<p>脚本使用已有私有 Nacos bootstrap，执行所有待迁移 Suite revision 并授予新表权限；不新增地址、密码配置或服务。迁移后重启后端。旧 API 不提供草稿接口，不能只更新前端；回滚代码前先停用保存入口并保留新表。存在草稿时 downgrade 拒绝删表，须先显式备份导出并删除草稿；升级不改变已有发布正文、验证和写回记录。未对实际业务数据库执行此次迁移。</p>
+<p>本地交付验证（2026-10-31）：57项前端测试、27项构建器后端测试、17项模块 Manifest/边界测试通过；后端 Ruff、前端类型检查、最终前端构建和 Base/Items/Suite 构建通过。一次性本机 PostgreSQL 完成模块 upgrade/check/downgrade/再升级、保留数据时拒绝降级、Suite 全量升级及模型 check；<code>app_runtime</code> 实际角色覆盖无 scope、跨租户/owner 的读写与 bulk DML 拒绝。HTTP 测试覆盖新接口的权限、CRUD、CAS 冲突、删除和当前平台检查权限撤销；工作区基线变化及可见性撤销失败关闭。</p>
+<p>隔离浏览器使用合成数据源目录、真实构建器 Router/RDF worker 和临时 PostgreSQL（身份与业务授权在测试入口固定，未使用真实 JWT），完成目录导入类与字段 → 保存 → 刷新 → 私有列表恢复，确认类/字段及语义错误都保留，未调用 publish/project。390px 宽度检查无页面横向溢出，保存/恢复按钮可用；截图通过开发归档入口上传 RustFS。未联调实际业务库、真实用户登录、HermiT 发布/Neo4j 写回或远端 CI，不代表目标环境已部署。临时浏览器、进程和数据库已清理。</p>
+<p>主要文件：后端 <code>application/builder_drafts.py</code>、<code>builder_routes.py</code>、<code>public_api/builder.py</code>、<code>infrastructure/{models.py,tenant_uow.py}</code>、迁移 <code>20261031_saved_drafts.py</code> 及 <code>test_saved_drafts.py</code>；前端 <code>builder/SavedDrafts.tsx</code>、<code>pages/OwlBuilder.tsx</code>、对应测试及中英文 locale。OpenAPI 客户端与 Suite Manifest 由仓库命令重新生成，没有手改生成结果。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/ontology/owl-builder.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/development/ontology/delivery/">本体交付记录</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/product/features/index/">功能导览</a></li><li><a href="/chein-doc-site/product/features/ontology/">本体与业务结合</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li><li><a href="/chein-doc-site/reference/development/ontology/delivery/">本体交付记录</a></li><li><a href="/chein-doc-site/reference/development/ontology/design/">Chein 原生本体设计</a></li><li><a href="/chein-doc-site/reference/development/ontology/inference-traceability-design/">本体规则、状态与可溯源推导设计（Logic Pack）</a></li><li><a href="/chein-doc-site/reference/development/ontology/README/">企业业务本体</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fontology%2Fowl-builder%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/ontology/openbkn-alignment/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">OpenBKN 核心本体能力对齐：审查与实施设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/category/owl-推理服务/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">OWL 推理服务</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#当前交付边界" class="table-of-contents__link toc-highlight">当前交付边界</a></li><li><a href="#紧凑工具栏2026-11-04" class="table-of-contents__link toc-highlight">紧凑工具栏（2026-11-04）</a></li><li><a href="#查看导入对象的原始表数据2026-11-03" class="table-of-contents__link toc-highlight">查看导入对象的原始表数据（2026-11-03）</a></li><li><a href="#从数据源目录批量新增" class="table-of-contents__link toc-highlight">从数据源目录批量新增</a></li><li><a href="#在当前系统中打开" class="table-of-contents__link toc-highlight">在当前系统中打开</a></li><li><a href="#代码与现库核查" class="table-of-contents__link toc-highlight">代码与现库核查</a></li><li><a href="#规范化模型与读取接口" class="table-of-contents__link toc-highlight">规范化模型与读取接口</a></li><li><a href="#序列化与资源上限" class="table-of-contents__link toc-highlight">序列化与资源上限</a></li><li><a href="#草稿工作区与受控发布" class="table-of-contents__link toc-highlight">草稿、工作区与受控发布</a></li><li><a href="#本地验证" class="table-of-contents__link toc-highlight">本地验证</a></li><li><a href="#历史验证记录" class="table-of-contents__link toc-highlight">历史验证记录</a></li><li><a href="#现库显示问题修复验证2026-10-29" class="table-of-contents__link toc-highlight">现库显示问题修复验证（2026-10-29）</a></li><li><a href="#画布布局调整验证2026-10-29" class="table-of-contents__link toc-highlight">画布布局调整验证（2026-10-29）</a></li><li><a href="#编辑阶段本地验证2026-10-29" class="table-of-contents__link toc-highlight">编辑阶段本地验证（2026-10-29）</a></li><li><a href="#工具栏与自动整理2026-10-29" class="table-of-contents__link toc-highlight">工具栏与自动整理（2026-10-29）</a></li><li><a href="#服务端私有草稿" class="table-of-contents__link toc-highlight">服务端私有草稿</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

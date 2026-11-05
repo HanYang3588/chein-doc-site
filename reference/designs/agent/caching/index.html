@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-designs/agent/caching" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Agent 对话与工具结果缓存设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/caching/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Agent 对话与工具结果缓存设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Agent 对话与工具结果缓存设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Agent 对话与工具结果缓存设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/caching/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/caching/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/caching/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Agent 系统","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/agent-系统-2"},{"@type":"ListItem","position":2,"name":"Agent 对话与工具结果缓存设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/caching"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="折叠侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/abuse-and-execution-security/"><span class="linkLabel_gJOC">Agent 滥用防护与执行安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/designs/agent/caching/"><span class="linkLabel_gJOC">Agent 对话与工具结果缓存设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/data-architecture/"><span class="linkLabel_gJOC">Agent 数据与业务契约设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/human-in-loop/"><span class="linkLabel_gJOC">人工介入与审批设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/integrations/"><span class="linkLabel_gJOC">Agent 技术栈与外部集成设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/langsmith-observability/"><span class="linkLabel_gJOC">Agent LangSmith 观测接入设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/reliability/"><span class="linkLabel_gJOC">Agent 可靠性与终端恢复设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/security/"><span class="linkLabel_gJOC">Agent 安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/sql-analytics-design/"><span class="linkLabel_gJOC">Agent SQL 分析与图表收藏设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/system-architecture/"><span class="linkLabel_gJOC">Agent 总体系统架构</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/tool-governance/"><span class="linkLabel_gJOC">Tool、MCP 与 Skill 治理设计</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="展开侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/agent-系统-2/"><span>Agent 系统</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Agent 对话与工具结果缓存设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Agent 对话与工具结果缓存设计</h1></header>
+<blockquote>
+<p>状态：Proposed（模型网关基线采用 Higress AI Cache，配置尚未落地）</p>
+<p>适用范围：Higress 模型响应缓存、工具结果缓存、并发请求合并、失效和观测</p>
+</blockquote>
+<p>本文是 Agent 缓存策略的唯一事实源。缓存只用于减少重复模型调用、工具调用和响应
+延迟，不是 Run、RunEvent、Checkpoint、Snapshot 或权限判断的事实源；删除缓存后
+必须仍能得到正确结果。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-当前情况和结论">1. 当前情况和结论<a href="#1-当前情况和结论" class="hash-link" aria-label="1. 当前情况和结论的直接链接" title="1. 当前情况和结论的直接链接" translate="no">​</a></h2>
+<p>项目模型网关基线采用 Higress。当前工作区还没有 Higress 部署和 <code>ai-cache</code> 插件配置，
+<code>QWEN_BASE_URL</code> 仍指向模型服务地址；因此本文按目标态设计，接入前必须先补齐网关配置。</p>
+<p>缓存职责划分如下：</p>
+<ol>
+<li class=""><strong>模型响应缓存</strong>：使用 Higress 官方 <code>ai-cache</code> 插件，通过 Redis 做精确缓存。</li>
+<li class=""><strong>工具结果缓存</strong>：使用 Higress 官方 <code>response-cache</code> 插件缓存内部 ERP Facade 响应；
+数据所有者负责定义哪些 Tool 可以缓存、缓存键和 TTL。</li>
+<li class=""><strong>并发请求合并</strong>：使用 Agent/Redis 短期锁，Higress 两个缓存插件都没有 singleflight 能力。</li>
+<li class=""><strong>模型 Prefix/KV Cache</strong>：只在自部署模型时评估，当前通过 Qwen 兼容 API，不适用。</li>
+</ol>
+<p>首期只启用精确匹配，不启用语义缓存。金额、权限和时间范围查询不能接受近似问题命中。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>缓存类型</th><th>实现位置</th><th>默认作用域</th><th>首期策略</th></tr></thead><tbody><tr><td>Model Response Cache</td><td>Higress <code>ai-cache</code> + Redis</td><td>租户 + 有效数据范围</td><td>首先实现精确缓存</td></tr><tr><td>Tool Result Cache</td><td>Higress <code>response-cache</code> + Redis</td><td>租户 + 有效数据范围</td><td>与模型缓存分开配置</td></tr><tr><td>In-flight Coalescing</td><td>Agent / Redis</td><td>与模型缓存键相同</td><td>第二期实现</td></tr><tr><td>Semantic Cache</td><td>Higress + Embedding + Vector DB</td><td>近似问题</td><td>默认关闭</td></tr><tr><td>Checkpoint</td><td>Agent</td><td>Thread</td><td>恢复执行，不是缓存</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-higress-缓存的硬边界">2. Higress 缓存的硬边界<a href="#2-higress-缓存的硬边界" class="hash-link" aria-label="2. Higress 缓存的硬边界的直接链接" title="2. Higress 缓存的硬边界的直接链接" translate="no">​</a></h2>
+<p>Higress 提供两个适合本项目的官方缓存插件：</p>
+<ul>
+<li class=""><code>ai-cache</code>：缓存 LLM 结果，支持 OpenAI 协议、流式和非流式响应。</li>
+<li class=""><code>response-cache</code>：缓存普通 HTTP 响应，支持从请求头或请求体提取缓存键。</li>
+</ul>
+<p>两者都支持 Redis、<code>cacheTTL</code>、<code>cacheKeyPrefix</code> 和跳过缓存头：</p>
+<ul>
+<li class="">LLM 缓存使用 <code>x-higress-skip-ai-cache: on</code>。</li>
+<li class="">工具响应缓存使用 <code>x-higress-skip-response-cache: on</code>。</li>
+<li class="">两者默认 <code>cacheTTL=0</code> 都是永不过期，必须显式设置有限 TTL。</li>
+</ul>
+<p>插件不知道本项目的租户、RBAC、仓库授权、Policy 或数据版本，因此不能直接把用户问题
+交给插件生成缓存键。缓存键必须由 Agent 在完成授权后计算：</p>
+<ul>
+<li class=""><code>ai-cache</code>：把组合键放入 OpenAI Chat Completions 标准字段 <code>user</code>，配置
+<code>cacheKeyFrom: user</code>。</li>
+<li class=""><code>response-cache</code>：把组合键放入请求头 <code>x-chein-cache-key</code>，配置
+<code>cacheKeyFromHeader: x-chein-cache-key</code>。</li>
+</ul>
+<p><code>x-chein-cache-key</code> 是内网头，只能由 Agent 在完成授权后生成；BFF 必须丢弃或覆盖
+浏览器传入的同名 Header。缺少合法缓存键时按 <code>skip</code> 处理，不能退回按 URL 缓存。</p>
+<p><code>user</code> 的值是服务端 HMAC 后的一次性缓存标识，不包含用户原文、问题原文或仓库名称。
+接入前必须确认 Qwen 兼容接口接受并忽略该不透明值；如果供应商拒绝、改写或将其作为
+模型语义输入，则不得开启跨用户缓存，改为只在用户范围内缓存或关闭 Higress 缓存。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-缓存键">3. 缓存键<a href="#3-缓存键" class="hash-link" aria-label="3. 缓存键的直接链接" title="3. 缓存键的直接链接" translate="no">​</a></h2>
+<p>Higress 最终使用的 Redis Key 是：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">&lt;cacheKeyPrefix&gt;&lt;cacheKeyFrom 提取的值&gt;</span><br></div></code></pre></div></div>
+<p><code>ai-cache</code> 的组合键至少包含：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>组成</th><th>作用</th></tr></thead><tbody><tr><td>key version</td><td>组合键格式变化时自动 miss</td></tr><tr><td>tenant + data scope fingerprint</td><td>隔离租户、权限、所有者和仓库范围</td></tr><tr><td>question hash + context hash</td><td>当前问题、历史消息和摘要</td></tr><tr><td>tool result hash</td><td>ERP 查询参数、Snapshot、数据修订和 <code>source_as_of</code></td></tr><tr><td>model + model config hash</td><td>模型版本、Thinking 和生成参数</td></tr><tr><td>prompt + toolset + policy version</td><td>Prompt、工具集合和策略版本</td></tr><tr><td>response options</td><td>语言、输出格式、深度思考和图表开关</td></tr><tr><td>time bucket</td><td>当前日期、月份和历史时间窗口</td></tr></tbody></table>
+<p><code>response-cache</code> 的组合键至少包含：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>组成</th><th>作用</th></tr></thead><tbody><tr><td>key version + Tool code/version</td><td>缓存格式和工具版本</td></tr><tr><td>tenant + data scope fingerprint</td><td>隔离租户、权限、所有者和仓库范围</td></tr><tr><td>normalized args hash</td><td>查询类型、日期、粒度和过滤条件</td></tr><tr><td>policy + dataset version</td><td>授权和指标口径版本</td></tr><tr><td>data revision / source_as_of + time bucket</td><td>数据新鲜度</td></tr></tbody></table>
+<p>输入规范化只统一空格、大小写、全角/半角和等价标点，不删除否定词、数字、日期、
+实体名或条件词，也不做同义词改写。规范化规则必须版本化。</p>
+<p>模型缓存要求同一租户、相同有效数据范围、相同问题、上下文和 ToolResult；工具缓存
+要求相同 Tool、参数、数据版本和授权范围。不同租户、权限、仓库范围、工具结果或
+模型/Prompt 版本必须 miss。数据范围指纹未建立前，缓存键必须包含 <code>user_id</code>，不能与
+同租户其他用户共享。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-higress-模型响应缓存">4. Higress 模型响应缓存<a href="#4-higress-模型响应缓存" class="hash-link" aria-label="4. Higress 模型响应缓存的直接链接" title="4. Higress 模型响应缓存的直接链接" translate="no">​</a></h2>
+<p>目标 Higress 配置示例：</p>
+<div class="language-yaml codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-yaml codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">enableSemanticCache</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean important" style="color:#36acaa">false</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cacheKeyStrategy</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> lastQuestion</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cacheKeyFrom</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> user</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cache</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">serviceName</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> chein</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">agent</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">cache.dns</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">servicePort</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">6379</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">username</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> chein</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">agent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">password</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;&lt;deployment secret&gt;&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">database</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">cacheKeyPrefix</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;chein-agent:prod:qwen:&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">cacheTTL</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">60</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">timeout</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><br></div></code></pre></div></div>
+<p>这里的 <code>lastQuestion</code> 只是 Higress 选择 <code>cacheKeyFrom</code> 的策略名，实际缓存键完全来自
+Agent 写入的 <code>user</code> 组合值，不是直接使用用户最后一句问题。</p>
+<p>规则：</p>
+<ol>
+<li class=""><code>cacheTTL</code> 必须显式设置，不能用默认值 <code>0</code>，默认值表示永不过期。</li>
+<li class="">Redis 使用独立 database、ACL 和内存预算，不复用 RBAC/登录限流 namespace。</li>
+<li class=""><code>cacheKeyPrefix</code> 按环境和模型区分，模型或 Prompt 版本变化时组合键也必须变化。</li>
+<li class="">当前 Agent 使用流式模型调用。必须用 <code>cacheToolCallsFrom</code> 对齐 Qwen 的实际 SSE
+<code>tool_calls</code> 路径并验证检测有效；只有不含 ToolCall 的最终文本响应才允许缓存。
+如果无法可靠识别 ToolCall，工具调用阶段必须通过跳过缓存头禁用缓存。</li>
+<li class="">最终回答基于工具结果时，组合键必须包含 ToolResult/Snapshot hash，不能只用用户问题。</li>
+<li class="">Agent 明确禁止缓存的请求使用 <code>x-higress-skip-ai-cache: on</code>；浏览器和模型不能控制该头。</li>
+<li class="">Higress 命中响应使用 <code>model:&quot;from-cache&quot;</code> 和零 Token usage 模板。LangChain 适配器
+必须能够正常解析；Token 成本统计需要单独记录命中数或节省量。</li>
+</ol>
+<p>首期不维护第二套 Agent 最终回答缓存，避免和 Higress 双写、双失效。未来如果需要在
+模型调用前直接完成整个 Run，才评估 Agent 级结果缓存，不能把它和 Higress 缓存混用。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-工具结果缓存">5. 工具结果缓存<a href="#5-工具结果缓存" class="hash-link" aria-label="5. 工具结果缓存的直接链接" title="5. 工具结果缓存的直接链接" translate="no">​</a></h2>
+<p>工具调用不是 LLM 响应，不能交给 <code>ai-cache</code>；目标是给 Backend ERP Statistics Facade
+增加一条 Higress 内部路由，并挂载官方 <code>response-cache</code> 插件。它缓存的是 HTTP 响应，
+不是 ToolCall 消息。</p>
+<div class="language-yaml codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-yaml codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">cacheKeyFromHeader</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;x-chein-cache-key&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cacheResponseCode</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">200</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cacheValueFromBodyType</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;application/json&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cacheValueFromBody</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;&quot;</span><span class="token plain">       </span><span class="token comment" style="color:#999988;font-style:italic"># 空值表示缓存完整 JSON 响应体</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">cache</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">serviceName</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> chein</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">agent</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">cache.dns</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">servicePort</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">6379</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">username</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> chein</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">agent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">password</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;&lt;deployment secret&gt;&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">database</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">cacheKeyPrefix</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;chein-tool:prod:erp-statistics:&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">cacheTTL</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">60</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">timeout</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><br></div></code></pre></div></div>
+<p>规则：</p>
+<ol>
+<li class="">Agent 完成委托上下文和参数校验后，生成 <code>x-chein-cache-key</code> HMAC 组合键。</li>
+<li class="">组合键包含 Tool code/version、参数、租户、有效数据范围、Policy version、数据修订
+和时间窗口；未建立数据范围指纹时包含 <code>user_id</code>。</li>
+<li class="">返回值必须带 <code>generated_at</code>、<code>source_as_of</code> 和适用的数据版本。</li>
+<li class="">没有数据版本或 <code>source_as_of</code> 时只能短 TTL，不能长期共享。</li>
+<li class="">只缓存整数 200 响应；403、404、422、5xx 和降级响应不缓存。</li>
+<li class="">大结果只缓存摘要和 Artifact 引用，不能把无上限明细放入 Redis。</li>
+<li class="">命中时 Higress 返回 <code>x-cache-status: hit</code>，Agent 可记录 <code>tool.cache.hit</code>；未命中为
+<code>miss</code>，跳过为 <code>skip</code>。</li>
+<li class="">数据写入、审批或反审核必须改变 <code>data_revision</code> 或时间窗口；没有修订号时只用短 TTL。</li>
+</ol>
+<p><code>response-cache</code> 不知道 Tool 语义和租户权限，数据所有者必须声明哪些 Tool 可以缓存、
+缓存键包含哪些字段以及 TTL。不能只按 URL 或请求体缓存 ERP 统计。</p>
+<p>命中工具响应缓存时请求不会到达 Backend，因此不会再次执行 Tenant UoW/RLS。只有当前
+请求已经完成授权，且缓存键包含数据范围指纹、Policy version（或未建立指纹时包含
+<code>user_id</code>）时才允许命中。若产品要求权限撤销立即生效，必须关闭该响应缓存，或使用
+版本化失效和足够短的 TTL。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>查询</th><th style="text-align:right">建议 TTL</th><th>原因</th></tr></thead><tbody><tr><td>含今天、当前月或当前年的统计</td><td style="text-align:right">30-60 秒</td><td>新审核单据会改变结果</td></tr><tr><td>已结束的历史日期范围</td><td style="text-align:right">5-15 分钟</td><td>仍可能反审核或补录</td></tr><tr><td>当前日期工具</td><td style="text-align:right">不缓存</td><td>每次结果都会变化</td></tr></tbody></table>
+<p>TTL 不能超过数据所有者声明的数据新鲜度。如果 Facade 后续返回可靠 <code>data_revision</code>，
+应优先用修订号，TTL 只做兜底。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-并发请求合并">6. 并发请求合并<a href="#6-并发请求合并" class="hash-link" aria-label="6. 并发请求合并的直接链接" title="6. 并发请求合并的直接链接" translate="no">​</a></h2>
+<p>Higress <code>ai-cache</code> 和 <code>response-cache</code> 当前都没有 in-flight 合并：两个同时到达的
+冷启动请求可能都 miss。
+如果需要严格只执行一次模型：</p>
+<ol>
+<li class="">所有请求先完成权限和数据范围校验。</li>
+<li class="">使用同一组合键在 Redis 申请短期锁。</li>
+<li class="">one leader 执行模型和工具，follower 等待最终结果。</li>
+<li class="">leader 成功后由对应的 Higress 插件写入 Redis，再唤醒 follower。</li>
+<li class="">leader 失败、超时或锁失效时，follower 回退正常执行。</li>
+</ol>
+<p>私有回答只能合并同一用户的请求；同租户共享只有在数据范围指纹可用且共享模式开启
+时才能合并。锁必须有过期时间，follower 超时不能返回空结果或缓存成功状态。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-失效删除和降级">7. 失效、删除和降级<a href="#7-失效删除和降级" class="hash-link" aria-label="7. 失效、删除和降级的直接链接" title="7. 失效、删除和降级的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">模型、Prompt、Tool、Workflow、Policy 或 Contract 版本变化时，组合键自然 miss。</li>
+<li class="">数据版本变化时，ToolResult hash 变化并自动 miss。</li>
+<li class="">RBAC、模块权益或数据范围变化时，组合键中的 scope/version 变化。</li>
+<li class="">没有可靠版本时只依赖短 TTL，不宣称强一致。</li>
+<li class="">租户、用户或 Thread 删除时必须覆盖对应缓存数据和索引。</li>
+</ol>
+<p>禁止用全库 <code>SCAN</code> 清理业务缓存。使用有限 TTL、按租户/环境区分的 key prefix 和必要
+索引。高敏感或个人信息必须加密或禁止缓存；普通租户业务数据至少要有 Redis ACL、
+短 TTL 和禁止跨用户复用。Higress 或 Redis 不可用时回源模型，不能改变 Run 状态和
+权限语义。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-观测">8. 观测<a href="#8-观测" class="hash-link" aria-label="8. 观测的直接链接" title="8. 观测的直接链接" translate="no">​</a></h2>
+<p>Higress <code>ai-cache</code> 的 AI 日志提供 <code>cache_status</code>：</p>
+<ul>
+<li class=""><code>hit</code>：网关缓存命中，未调用后端模型。</li>
+<li class=""><code>miss</code>：未命中，继续请求模型。</li>
+<li class=""><code>skip</code>：通过 <code>x-higress-skip-ai-cache</code> 跳过且不缓存。</li>
+</ul>
+<p>Higress <code>response-cache</code> 在工具响应头返回 <code>x-cache-status: hit|miss|skip</code>，Agent 工具
+可以据此写 <code>tool.cache.hit</code> 事件，但不得把缓存键、ERP 原始行或完整响应写入 RunEvent。</p>
+<p>至少采集命中率、miss、skip、缓存延迟、后端模型调用数、缓存 TTL 和 Redis 错误。日志
+不得记录拼接后的原始缓存键、问题、Prompt、ToolResult 或模型完整回答。</p>
+<p>当前 <code>ai-cache</code> 不提供来源 Run ID。RunEvent 默认只记录模型调用事件；如果需要“本次
+Run 由 Higress 缓存命中”的业务级审计，需要扩展插件响应头/日志并通过 Trace 关联，
+不能在 Agent 中伪造 <code>source_run_id</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-分阶段实施">9. 分阶段实施<a href="#9-分阶段实施" class="hash-link" aria-label="9. 分阶段实施的直接链接" title="9. 分阶段实施的直接链接" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>H0</strong>：部署 Higress、Redis 独立 database/ACL，配置 <code>ai-cache</code> 和 <code>response-cache</code>，
+但先关闭缓存。</li>
+<li class=""><strong>H1</strong>：只缓存单轮、无工具、同一用户的模型精确响应，<code>enableSemanticCache: false</code>。</li>
+<li class=""><strong>H2</strong>：通过 <code>response-cache</code> 缓存同一用户的 ERP Statistics 响应，只缓存 200，
+短 TTL，并记录 <code>x-cache-status</code>。</li>
+<li class=""><strong>H3</strong>：组合键加入 Snapshot、ToolResult、数据版本和时间窗口，支持同一数据范围内
+不同用户复用。</li>
+<li class=""><strong>H4</strong>：确有并发重复请求后，再增加 Redis 短期锁和请求合并。</li>
+<li class=""><strong>H5</strong>：语义缓存继续默认关闭；只有非权威、可人工核对的场景才单独评审。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-验收标准">10. 验收标准<a href="#10-验收标准" class="hash-link" aria-label="10. 验收标准的直接链接" title="10. 验收标准的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">同租户、同数据范围、同问题、同上下文的重复请求命中 Higress Redis。</li>
+<li class="">不同租户、权限、仓库范围、ToolResult 或数据版本必然 miss。</li>
+<li class="">模型、Prompt、Toolset、Policy 或 Contract 版本变化必然 miss。</li>
+<li class=""><code>cacheTTL</code> 为非零，缓存不会永久驻留。</li>
+<li class="">真实 Qwen 流式 <code>tool_calls</code> 响应不被 <code>ai-cache</code> 缓存；最终回答包含工具结果哈希。</li>
+<li class="">相同 Tool 参数和同一用户命中 <code>response-cache</code>；403、422 和 5xx 不缓存。</li>
+<li class=""><code>response-cache</code> 的 <code>x-cache-status</code> 能正确写入 <code>hit</code>、<code>miss</code> 或 <code>skip</code>。</li>
+<li class=""><code>x-higress-skip-ai-cache</code> 和 <code>x-higress-skip-response-cache</code> 同时跳过读取和写入。</li>
+<li class="">Higress/Redis 故障时回源模型或 ERP Facade，授权仍失败关闭。</li>
+<li class="">模型命中响应可被 LangChain 正常解析，零 usage 不污染真实成本统计。</li>
+<li class="">AI 日志不记录原始问题、Prompt、ToolResult 或完整回答。</li>
+<li class="">删除或权限变化后，相关缓存按 TTL、组合键或索引失效。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-开源方案对比">11. 开源方案对比<a href="#11-开源方案对比" class="hash-link" aria-label="11. 开源方案对比的直接链接" title="11. 开源方案对比的直接链接" translate="no">​</a></h2>
+<p>Star、最近活动和许可检查日期：2026-09-14。Star 只用于初筛，接入前仍需核对版本、
+许可证、CVE、维护状态和数据边界。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th style="text-align:right">Star</th><th>最近活动 / 许可</th><th>缓存能力</th><th>结论</th></tr></thead><tbody><tr><td><a href="https://github.com/higress-group/higress" target="_blank" rel="noopener noreferrer" class="">Higress</a></td><td style="text-align:right">9,375</td><td>2026-09-11 / Apache-2.0，CNCF Sandbox</td><td><a href="https://github.com/higress-group/higress/tree/main/plugins/wasm-go/extensions/ai-cache" target="_blank" rel="noopener noreferrer" class=""><code>ai-cache</code></a>：LLM 精确/语义/流式缓存；<a href="https://github.com/higress-group/higress/tree/main/plugins/wasm-go/extensions/response-cache" target="_blank" rel="noopener noreferrer" class=""><code>response-cache</code></a>：普通 HTTP 响应精确缓存</td><td>当前模型网关基线，本项目采用；模型和工具响应缓存均由 Higress 执行，语义缓存默认关闭</td></tr><tr><td><a href="https://github.com/BerriAI/litellm" target="_blank" rel="noopener noreferrer" class="">LiteLLM</a></td><td style="text-align:right">58,683</td><td>2026-09-14 / MIT + enterprise 目录单独许可</td><td>Redis/Valkey 精确缓存；Redis/Valkey/Qdrant 语义缓存；TTL、namespace、cache control</td><td>成熟备选；只有放弃 Higress 或替换模型网关时再评估</td></tr><tr><td><a href="https://github.com/Portkey-AI/gateway" target="_blank" rel="noopener noreferrer" class="">Portkey Gateway</a></td><td style="text-align:right">12,983</td><td>2026-05-25 / MIT</td><td>精确缓存和语义缓存，语义需要向量库和相应版本</td><td>网关备选，不纳入当前设计</td></tr><tr><td><a href="https://github.com/maximhq/bifrost" target="_blank" rel="noopener noreferrer" class="">Bifrost</a></td><td style="text-align:right">8,045</td><td>2026-09-14 / Apache-2.0</td><td>精确和语义缓存，支持 Redis/Valkey</td><td>网关备选，不纳入当前设计</td></tr><tr><td><a href="https://github.com/zilliztech/GPTCache" target="_blank" rel="noopener noreferrer" class="">GPTCache</a></td><td style="text-align:right">8,190</td><td>2025-07-11 / MIT</td><td>LLM 精确缓存、语义缓存</td><td>不采用：维护停滞，项目说明不再扩展新 API/模型</td></tr><tr><td><a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener noreferrer" class="">vLLM</a> / <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener noreferrer" class="">SGLang</a> / <a href="https://github.com/LMCache/LMCache" target="_blank" rel="noopener noreferrer" class="">LMCache</a></td><td style="text-align:right">91,702 / 35,931 / 11,796</td><td>2026-09-14 / Apache-2.0</td><td>Prefix/KV Cache</td><td>只在自部署模型时使用，当前 Qwen API 模式不适用</td></tr></tbody></table>
+<p>选择结论：模型响应缓存采用 Higress <code>ai-cache</code>；工具结果缓存采用 Higress
+<code>response-cache</code>；两者共用独立 Redis。请求合并按需使用 Redis 短期锁。LiteLLM、
+Portkey、Bifrost、GPTCache 不作为当前实现依赖。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-待决项">12. 待决项<a href="#12-待决项" class="hash-link" aria-label="12. 待决项的直接链接" title="12. 待决项的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">确认 Qwen 兼容接口对自定义 <code>user</code> 字段的接受、透传和安全策略。</li>
+<li class="">确认 Qwen SSE <code>tool_calls</code> 的实际路径和 <code>cacheToolCallsFrom</code> 配置。</li>
+<li class="">确认 Higress 插件版本、Redis 独立实例/database 和连接凭据来源。</li>
+<li class="">确认 <code>cacheTTL</code>、key prefix、最大响应大小和日志保留期限。</li>
+<li class="">如果需要 Run 级命中审计，确认插件响应头或日志关联方案。</li>
+<li class="">语义缓存是否允许只用于非权威说明；默认答案仍然是不进入首期。</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent/caching.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><p>没有已发布的文档引用。</p></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/architecture/views/">Chein 当前系统架构视图与证据</a></li><li><a href="/chein-doc-site/reference/designs/agent/integrations/">Agent 技术栈与外部集成设计</a></li><li><a href="/chein-doc-site/reference/designs/agent/reliability/">Agent 可靠性与终端恢复设计</a></li><li><a href="/chein-doc-site/reference/designs/agent/security/">Agent 安全设计</a></li><li><a href="/chein-doc-site/reference/designs/agent/system-architecture/">Agent 总体系统架构</a></li><li><a href="/chein-doc-site/reference/designs/agent/tool-governance/">Tool、MCP 与 Skill 治理设计</a></li><li><a href="/chein-doc-site/reference/development/agent/index/">Agent 设计文档</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdesigns%2Fagent%2Fcaching%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/designs/agent/abuse-and-execution-security/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Agent 滥用防护与执行安全设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/designs/agent/data-architecture/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Agent 数据与业务契约设计</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-当前情况和结论" class="table-of-contents__link toc-highlight">1. 当前情况和结论</a></li><li><a href="#2-higress-缓存的硬边界" class="table-of-contents__link toc-highlight">2. Higress 缓存的硬边界</a></li><li><a href="#3-缓存键" class="table-of-contents__link toc-highlight">3. 缓存键</a></li><li><a href="#4-higress-模型响应缓存" class="table-of-contents__link toc-highlight">4. Higress 模型响应缓存</a></li><li><a href="#5-工具结果缓存" class="table-of-contents__link toc-highlight">5. 工具结果缓存</a></li><li><a href="#6-并发请求合并" class="table-of-contents__link toc-highlight">6. 并发请求合并</a></li><li><a href="#7-失效删除和降级" class="table-of-contents__link toc-highlight">7. 失效、删除和降级</a></li><li><a href="#8-观测" class="table-of-contents__link toc-highlight">8. 观测</a></li><li><a href="#9-分阶段实施" class="table-of-contents__link toc-highlight">9. 分阶段实施</a></li><li><a href="#10-验收标准" class="table-of-contents__link toc-highlight">10. 验收标准</a></li><li><a href="#11-开源方案对比" class="table-of-contents__link toc-highlight">11. 开源方案对比</a></li><li><a href="#12-待决项" class="table-of-contents__link toc-highlight">12. 待决项</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

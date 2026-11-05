@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/agent/observability/langfuse-delivery-plan" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Langfuse 分阶段实施、性能实验与验收计划 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Langfuse 分阶段实施、性能实验与验收计划 | Chein 文档中心"><meta data-rh="true" name="description" content="Langfuse 分阶段实施、性能实验与验收计划 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Langfuse 分阶段实施、性能实验与验收计划 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Agent 系统","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/agent-系统"},{"@type":"ListItem","position":2,"name":"观测与质量","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/观测与质量"},{"@type":"ListItem","position":3,"name":"Langfuse 分阶段实施、性能实验与验收计划","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="折叠侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/index/"><span class="linkLabel_gJOC">Agent 设计文档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/chat-execution-controls/"><span class="linkLabel_gJOC">对话本体与决策控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/jev-integration/"><span class="linkLabel_gJOC">Chein 阿里云 Decision Model 接入与能力路由</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/knowledge-retrieval-delivery/"><span class="linkLabel_gJOC">Chein Knowledge Platform：实施与验收</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/长期记忆/"><span class="categoryLinkLabel_adV2">长期记忆</span></a><button aria-label="展开侧边栏分类 &#x27;长期记忆&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/多模态与语音/"><span class="categoryLinkLabel_adV2">多模态与语音</span></a><button aria-label="展开侧边栏分类 &#x27;多模态与语音&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" tabindex="0" href="/chein-doc-site/reference/category/观测与质量/"><span class="categoryLinkLabel_adV2">观测与质量</span></a><button aria-label="折叠侧边栏分类 &#x27;观测与质量&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/"><span class="linkLabel_gJOC">Langfuse 分阶段实施、性能实验与验收计划</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/"><span class="linkLabel_gJOC">Langfuse P1–P5 实施与启用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-design/"><span class="linkLabel_gJOC">Chein Agent 可观测性与持续优化总体设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/"><span class="linkLabel_gJOC">Langfuse 可读链路与脱敏问答设计</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/phase-1-delivery/"><span class="linkLabel_gJOC">Agent Phase 1 运行控制与只读数据工具</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/ragflow-native-tool-integration/"><span class="linkLabel_gJOC">RAGFlow 原生 Tool 集成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/"><span class="linkLabel_gJOC">SQL 分析与图表收藏交付</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/tool-management-implementation/"><span class="linkLabel_gJOC">Agent 工具管理实施设计</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/token-与额度/"><span class="categoryLinkLabel_adV2">Token 与额度</span></a><button aria-label="展开侧边栏分类 &#x27;Token 与额度&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/agent-系统/"><span>Agent 系统</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/观测与质量/"><span>观测与质量</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Langfuse 分阶段实施、性能实验与验收计划</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Langfuse 分阶段实施、性能实验与验收计划</h1></header>
+<blockquote>
+<p>状态：Proposed。<strong>P1–P5 本地实现已接线；以下完整性能/业务门槛、生产部署与治理签署仍待验收，当前实现及配置见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">实施与启用</a>。</strong>
+设计契约见<a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-design/">总体设计</a>，现状和依赖见<a class="" href="/chein-doc-site/reference/history/agent/langfuse-audit/">审计</a>，外部能力/固定 SDK 行为见<a class="" href="/chein-doc-site/reference/history/agent/langfuse-research/">调研</a>。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-实施边界与依赖">1. 实施边界与依赖<a href="#1-实施边界与依赖" class="hash-link" aria-label="1. 实施边界与依赖的直接链接" title="1. 实施边界与依赖的直接链接" translate="no">​</a></h2>
+<p>只在 <code>agent/</code> 加官方 Langfuse 候选依赖；BFF/业务数据所有者按实际阶段补通用 OTel/公开 DTO。禁止新增跨模块 ORM 导入、通用业务日志系统、任意 SQL Tool、原文采集、后台自动 Worker 或第二 Prompt 发布平台。</p>
+<p>P0 是本次静态审计，不等于全部环境验收。用户先授权 P1，随后已授权实施全部阶段。P1 接线与本地证据见 <a class="" href="/chein-doc-site/reference/history/agent/langfuse-p1-delivery/">P1 交付</a>，后续本地实现与剩余外部门禁见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">实施与启用</a>。实施顺序 P0→P1→P2→P3→P4→按真实需求决定 P5；<strong>P1 本身就必须有隐私、取消和故障验证</strong>，不能把安全/性能基础留到 P3 才补。</p>
+<p>“预计修改文件”中的 <code>[新增]</code> 是规划标记；是否已存在与当前实施证据以 P1 交付及代码为准。负责人角色为建议分工，具体人员待团队指定。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-阶段计划">2. 阶段计划<a href="#2-阶段计划" class="hash-link" aria-label="2. 阶段计划的直接链接" title="2. 阶段计划的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p0审计与环境基线">P0：审计与环境基线<a href="#p0审计与环境基线" class="hash-link" aria-label="P0：审计与环境基线的直接链接" title="P0：审计与环境基线的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>确认 Agent/BFF/Tool/Knowledge/ERP 全链、已有日志、版本、现状/目标边界</td></tr><tr><td>文件</td><td>本次四份 Markdown 与 <code>docs/README.md</code>、<code>docs/agent/README.md</code>；不改运行代码</td></tr><tr><td>前置</td><td>仓库和当前用户修改已核对；目标环境账户由运维持有</td></tr><tr><td>风险</td><td>Web 首页可用被误当完整摄取；工作区 lock 与运行版本不同；旧文档含历史阶段</td></tr><tr><td>验证</td><td>本地路径/函数/版本、相对链接、Mermaid/代码块/表格、diff；环境收集另行受控执行</td></tr><tr><td>验收</td><td>真实接入点表、完整时序、无假设已实施；运维后续提供 actual digest/CPU/RAM/disk/许可/迁移模式/合成落地证据</td></tr><tr><td>回滚</td><td>删除本次新增文档并恢复本次导航增量；保留全部用户原修改</td></tr><tr><td>Owner/Reviewer</td><td>Agent维护者 / 架构与运维负责人</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p1最小可行追踪及安全基线">P1：最小可行追踪及安全基线<a href="#p1最小可行追踪及安全基线" class="hash-link" aria-label="P1：最小可行追踪及安全基线的直接链接" title="P1：最小可行追踪及安全基线的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>单 Agent execution 根 + 官方 Callback；日志关联；关闭/异常不改变核心执行</td></tr><tr><td>预计文件</td><td><code>agent/pyproject.toml</code>、<code>agent/uv.lock</code>、<code>agent/src/chein_agent/{settings,main,api,observability,model_provider}.py</code>；<code>deploy/nacos/chein-agent-runtime.yaml.example</code>；<code>agent/tests/{test_observability,test_api,test_model_provider,test_settings}.py</code>；必要时 <code>[新增] agent/tests/test_langfuse_integration.py</code></td></tr><tr><td>前置</td><td>4.17.0依赖重新解析（OTel≥1.45）；独立dev项目；实例完整写入/消费可见；采集白名单与HMAC密钥配置</td></tr><tr><td>风险</td><td>generator根提前关闭、configurable身份/query外发、并发parent串线、stream Usage不支持、关停join</td></tr><tr><td>测试</td><td>Fake模型+InMemory exporter验证单根/父子/内容canary；实际框架Tool与nostream模型；错误/取消/等待/关闭；子进程退出；合成真实Qwen流式计量与dev trace摄取</td></tr><tr><td>验收</td><td>关闭时零遥测调用；每claim执行一根；LLM不重复generation；原SSE事件/顺序/终态不变；所有遥测出口无canary；故障不增加业务失败；未验证Usage标missing；通过第3节P1门槛</td></tr><tr><td>回滚</td><td><code>LANGFUSE_TRACING_ENABLED=false</code>并滚动重启；若依赖不兼容回到原Agent镜像/lock；不动Run/checkpoint/Nacos Prompt/模型业务配置</td></tr><tr><td>Owner/Reviewer</td><td>Agent维护者 / 安全及前端联调负责人</td></tr></tbody></table>
+<p>记录 execution→trace 引用优先用现有有界 RunEvent，不新增控制面实体表。后续若需要 message-level可靠关联，必须在持久化消息映射上补契约，不以浏览器缓存代替事实源。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p2业务阶段与跨服务关联">P2：业务阶段与跨服务关联<a href="#p2业务阶段与跨服务关联" class="hash-link" aria-label="P2：业务阶段与跨服务关联的直接链接" title="P2：业务阶段与跨服务关联的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>检索、决策、MCP/ERP查询、快照/图片等现有能力；BFF→Agent→Tool受信关联</td></tr><tr><td>预计文件</td><td>Agent <code>decision.py</code>、<code>decision_middleware.py</code>、<code>knowledge_pipeline.py</code>、<code>retrieval.py</code>、<code>mcp_tools.py</code>、<code>analysis.py</code>、<code>images.py</code>；Backend <code>app/platform/agent_ui_router.py</code>、<code>app/core/observability.py</code>、MCP组合根；<code>app/modules/knowledge/application/retrieval.py</code>、ERP <code>application/{analysis,analysis_sql}.py</code>；对应现有测试；必要纯DTO在所属<code>public_api</code></td></tr><tr><td>前置</td><td>P1门禁；单OTel Provider设计；内部HTTP/MCP可传播；各模块Owner确认DTO白名单；当前ERP/Knowledge权限/RLS测试环境</td></tr><tr><td>风险</td><td>retrieval业务UUID覆盖OTel trace；JSON/schema泄密；把总检索耗时编造成rerank；嵌套MCP重复计Tool/成本；共享基础设施容量</td></tr><tr><td>测试</td><td>两并行Tool/子任务上下文、JWT失败/外部traceparent、HTTP/MCP失联、拒绝/无结果/撤销；System One usage；真实只读ERP role/owner/warehouse/tenant负向与取消；历史授权不变</td></tr><tr><td>验收</td><td>数据所有者负责授权/SQL Span；metadata完整可用/不可用标记；System One一个物理调用一条generation；RAG阶段可追且不外发内容；跨服务parent关联；全量技术成功/拒绝来源不依赖采样</td></tr><tr><td>回滚</td><td>按接线开关关闭各span/export，不改变工具/权限/AST/只读/RLS；保留已生成安全引用；必要恢复前镜像；若扩DTO保持兼容默认字段</td></tr><tr><td>Owner/Reviewer</td><td>Agent、Platform、Knowledge、ERP维护者 / 各数据Owner与安全负责人</td></tr></tbody></table>
+<p>P2不新增SQL决策审核、SubAgent/Skills/文件能力。公共API变更重新生成OpenAPI客户端，不能手改生成结果；仅trace Header接线未改变DTO时无需为它重写全客户端。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p3性能容量和运行期降级">P3：性能、容量和运行期降级<a href="#p3性能容量和运行期降级" class="hash-link" aria-label="P3：性能、容量和运行期降级的直接链接" title="P3：性能、容量和运行期降级的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>生产采样、payload边界、队列/停机验证、Agent低基数指标、共享资源容量</td></tr><tr><td>预计文件</td><td>Agent观测/Settings/main及测试；<code>observability/</code>仅确有通用需求时；Nacos示例、<code>docs/operations/monitoring.md</code>、Langfuse部署文档；<code>[新增]</code>性能用例优先放<code>agent/tests/</code>，报告放项目外</td></tr><tr><td>前置</td><td>P1/P2；固定负载与隔离tenant；生产硬件和网络基线；可控代理故障/合成Provider</td></tr><tr><td>风险</td><td>降采样仍需格式化大对象；高并发GIL/队列；共享Redis noeviction OOM；100000 score队列；SIGTERM/atexit超过期限</td></tr><tr><td>测试</td><td>第3节完整矩阵、注入拒绝/延迟/500/401/队列满/CH停机；长任务RSS、SIGKILL重领；100%/10%比较</td></tr><tr><td>验收</td><td>第4节性能/完整性门槛通过；错误和usage全量来源；资源预算和保留清理可执行；未采样错误仅摘要明确；退出在总期限内</td></tr><tr><td>回滚</td><td>降采样/关采集并重启；回前镜像；不通过扩大业务timeouts或放宽payload/权限“修复”观测性能</td></tr><tr><td>Owner/Reviewer</td><td>Agent与运维 / 性能及数据负责人</td></tr></tbody></table>
+<p>Collector/tail sampling需独立真实需求和POC，本阶段默认不引入。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p4反馈质量评估与回归闭环">P4：反馈、质量评估与回归闭环<a href="#p4反馈质量评估与回归闭环" class="hash-link" aria-label="P4：反馈、质量评估与回归闭环的直接链接" title="P4：反馈、质量评估与回归闭环的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>用户反馈可靠保存、typed Scores；规则/人工gold、Dataset/Experiment与独立Judge预算</td></tr><tr><td>预计文件</td><td><code>agent/src/chein_agent/evaluation.py</code>、<code>agent/evaluation/</code>、对应测试；Agent-owned feedback <code>[新增]</code>契约/存储/migration；Platform适配器；前端<code>pages/agent/api.ts</code>、<code>events.ts</code>、<code>index.tsx</code>及实际反馈组件（新代码按<code>modules/&lt;owner&gt;</code>边界）；隔离评测入口</td></tr><tr><td>前置</td><td>execution/message映射可持久化；反馈Owner/分母定义；gold审核；P3容量/停机；Judge供应商授权/价格/绝对预算</td></tr><tr><td>风险</td><td>赞踩串到最后一轮、跨用户写Score、生产内容进入Dataset、sampling缺失Trace、Judge同模型偏差、同步评估延迟</td></tr><tr><td>测试</td><td>历史/恢复/replay消息feedback、稳定score id/upsert、重复提交/失败重试、租户owner/权限撤销负向；规则gold、Judge注入/分歧、配额、临时模型失败；数据删除与Dataset分离</td></tr><tr><td>验收</td><td>本地反馈是事实源，Langfuse宕机仍可保存；无同步Judge；unknown与真实失败分开；一个固定脱敏dataset在至少两版本上成对实验、完整质量/成本/延迟报告；安全负向全部拒绝</td></tr><tr><td>回滚</td><td>关闭Score/Judge同步与新反馈入口；保留反馈供重发，新增表用扩展兼容策略，不删除业务反馈；退回既有rules/manual evaluator</td></tr><tr><td>Owner/Reviewer</td><td>Agent/前端维护者与业务标注人员 / 安全、数据Owner、业务Owner</td></tr></tbody></table>
+<p>新增存储至少需要tenant/owner隔离、非超级用户运行角色、upgrade/downgrade影响、migration tests和受控跨租户负向；若引入异步可靠任务必须遵守现有Outbox/幂等契约。评测修改不自动发布Nacos Prompt。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p5按需求业务管理查询与apm扩展">P5：按需求业务管理查询与APM扩展<a href="#p5按需求业务管理查询与apm扩展" class="hash-link" aria-label="P5：按需求业务管理查询与APM扩展的直接链接" title="P5：按需求业务管理查询与APM扩展的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>目标/模块</td><td>审核是否需要Chein本人/租户Run摘要页；通用APM/尾采样只按需要接线</td></tr><tr><td>预计文件</td><td>Platform管理模块或实际能力所属模块的<code>routes/application/public_api</code>、前端<code>modules/&lt;owner&gt;</code>、模块权限声明及组合根、对应测试；Langfuse v4有限字段API adapter；如需新增权限走真实迁移链</td></tr><tr><td>前置</td><td>已确认用户角色/许可、权限Owner和真实页面需求；Observations v2/Metrics v2/Scores v3实例契约；trace关联留存</td></tr><tr><td>风险</td><td>Shared project全量查询造成部门/租户穿透、通用DSL代理、iframe认证泄漏、APM双provider、tail collector过载</td></tr><tr><td>测试</td><td>本人/管理员/跨tenant/部门撤销、时段/分页/字段限额、API500/timeout；网关/OTLP入参负向；新权限/Edition装配测试</td></tr><tr><td>验收</td><td>只查本地先获准execution；无任意Langfuse查询代理；观测查询失败不影响chat；后台脱敏一致；如果新增APM/tail，容量与跨进程parent实验另有报告</td></tr><tr><td>回滚</td><td>隐藏/关闭管理入口与adapter，仅内部运维跳转；停新exporter/Collector，保留旧日志及AI观测；新增权限可禁用但不破坏原Run</td></tr><tr><td>Owner/Reviewer</td><td>Platform/产品/运维 / 安全及业务范围Owner</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-性能实验协议">3. 性能实验协议<a href="#3-性能实验协议" class="hash-link" aria-label="3. 性能实验协议的直接链接" title="3. 性能实验协议的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="31-可复现负载和对比矩阵">3.1 可复现负载和对比矩阵<a href="#31-可复现负载和对比矩阵" class="hash-link" aria-label="3.1 可复现负载和对比矩阵的直接链接" title="3.1 可复现负载和对比矩阵的直接链接" translate="no">​</a></h3>
+<p>本地 Callback 压测、SSE 驱动与 loopback OTLP 故障服务已提供，见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">实施与启用</a>。下述完整生产性能矩阵、固定 arrival-rate 服务负载与隔离 CH/Worker 演练仍待执行，尚未改生产配置。</p>
+<p>固定容器CPU/RAM、镜像/lock、DB/KB数据快照、租户、权限、Prompt/hash、Qwen模型/温度、环境网络；baseline保留已有ECS Callback，其余关闭Langfuse，避免拿“完全无日志”当现有对照。交错运行baseline/variant至少3轮，先预热200请求，再每单元至少10000请求用于P99；初步冒烟可100请求但不能证明P99。真实付费模型先100–500个合成请求核对，费用上限经批准后再扩；不能为统计样本量无限花费。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>组</th><th>Langfuse/采样/故障</th><th>负载</th><th>核心对比</th></tr></thead><tbody><tr><td>B0</td><td>关闭，保留现有日志</td><td>固定Fake流：首chunk50ms、100chunk、每10ms；c=1/8/32/64</td><td>开销基线、事件顺序</td></tr><tr><td>B1</td><td>开启100%</td><td>同B0；真实合成Qwen另跑</td><td>CPU/RSS、TTFT、Token、完整性</td></tr><tr><td>B2</td><td>开启10%</td><td>同B0/B1，固定同样seed/配置</td><td>sampling ratio、开销是否随比例降低</td></tr><tr><td>F1</td><td>100%，网络拒绝</td><td>c=32；仅阻断测试export端点</td><td>核心错误/延迟、队列/drop</td></tr><tr><td>F2</td><td>100%，export响应延迟30s或黑洞</td><td>c=32，持续至少15min</td><td>exporter deadline、线程/RSS/背压</td></tr><tr><td>F3</td><td>100%，返回500/429/401/403</td><td>固定状态分别一组，c=32</td><td>有界retry、限频告警、主业务独立</td></tr><tr><td>F4</td><td>摄取成功但CH/Worker不可消费</td><td>隔离Langfuse测试栈，c=32</td><td>visible lag、Redis/S3增长与告警</td></tr><tr><td>L1</td><td>100%/10%</td><td>每Run20次只读Tool+5次辅助模型、并行2Tool；c=8/32</td><td>parent、重复计数、长任务RSS</td></tr><tr><td>L2</td><td>100%/10%</td><td>10000流式chunk，合成32KiB Prompt、512KiB Tool结果；c=8</td><td>序列化/脱敏、无逐Token上报、内存</td></tr><tr><td>C1</td><td>正常/网络异常</td><td>首chunk前、流中、Tool执行、等待HITL分别取消/断开</td><td>取消时长、无新增业务调用、span结束</td></tr><tr><td>R1</td><td>正常/异常</td><td>暂停/决定/重领/replay、多worker、历史读取</td><td>same Session/Run，不同execution，不重复历史usage</td></tr><tr><td>X1</td><td>正常/断网/full queue</td><td>子进程SIGTERM；另组SIGKILL</td><td>退出deadline、incomplete、恢复不阻塞</td></tr></tbody></table>
+<p>并发数字为实验候选，不代表现有服务支持64并发；先探测业务自身capacity，超过baseline容量单独标出。负载发生器与服务资源隔离，固定arrival rate做容量测试，另用固定concurrency做开销对照；要记录客户端排队时间，避免闭环负载的 coordinated omission 掩盖P99。实际业务测试数据库串行，各组结束再清理fixture。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="32-可以直接运行的合成sse计时驱动">3.2 可以直接运行的合成SSE计时驱动<a href="#32-可以直接运行的合成sse计时驱动" class="hash-link" aria-label="3.2 可以直接运行的合成SSE计时驱动的直接链接" title="3.2 可以直接运行的合成SSE计时驱动的直接链接" translate="no">​</a></h3>
+<p>下面脚本只用标准库，运行于<strong>隔离测试BFF</strong>，调用当前已核对的 <code>/api/v1/agent-ui/threads</code>、<code>/chat</code> 契约。它会创建N个测试线程，不自动删除，便于核对Trace/Run；实验结束通过已有授权API清理。提前给专用账户配置当前租户与工具权限，真实请求Header从项目外私有环境读取，不在CLI/报告输出凭据。没有合成数据/隔离环境时不要运行。</p>
+<p>将代码保存到 <code>/tmp/chein-langfuse-sse-bench.py</code>，用 <code>CHEIN_BENCH_BASE_URL</code>、<code>CHEIN_BENCH_HEADERS_JSON</code> 私有环境指定可信测试BFF与已鉴权Header，<code>CHEIN_BENCH_N/C</code>控制请求与并发。输出只含ID/时序/状态，不记录回答正文；它测客户端首文本事件，浏览器实际渲染TTFT需要前端performance计时。</p>
+<div class="language-python codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-python codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> concurrent</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">futures</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> math</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> os</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> time</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">error</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">request</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> uuid</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">base </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> os</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">environ</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;CHEIN_BENCH_BASE_URL&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">rstrip</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;/&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">headers </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token operator" style="color:#393A34">**</span><span class="token plain">json</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">loads</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">os</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">environ</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;CHEIN_BENCH_HEADERS_JSON&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           </span><span class="token string" style="color:#e3116c">&quot;Content-Type&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;application/json&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Accept&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;text/event-stream&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">n</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> concurrency </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">int</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">os</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">getenv</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;CHEIN_BENCH_N&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;100&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">int</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">os</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">getenv</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;CHEIN_BENCH_C&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;8&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">assert</span><span class="token plain"> n </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> concurrency </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> n</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 遵循项目内部服务直连行为；不把环境HTTP代理带进对比。</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">opener </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">request</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">build_opener</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">request</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ProxyHandler</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">post</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">path</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> body</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    data </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> json</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">dumps</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">body</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">encode</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> opener</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">open</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">request</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Request</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">base </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> path</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> data</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">data</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> headers</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">headers</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> timeout</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">120</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">run</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">thread_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    started </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> time</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">perf_counter</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    row </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token string" style="color:#e3116c">&quot;thread_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> thread_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;incomplete&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;first_text_ms&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           </span><span class="token string" style="color:#e3116c">&quot;chunk_count&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;run_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;request_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    previous</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> max_gap </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.0</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">try</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">with</span><span class="token plain"> post</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;/api/v1/agent-ui/chat&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token string" style="color:#e3116c">&quot;threadId&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> thread_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;message&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;合成测试：回复测试完成。&quot;</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> response</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;request_id&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> response</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">headers</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;X-Request-ID&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            data_lines </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> raw </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> response</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                line </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> raw</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">decode</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;utf-8&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">rstrip</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;\r\n&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> line</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">startswith</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;data:&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    data_lines</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">append</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">line</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">:</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">lstrip</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">elif</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">not</span><span class="token plain"> line </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> data_lines</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    event </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> json</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">loads</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;\n&quot;</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">join</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">data_lines</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    data_lines</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">clear</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    kind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> event</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;type&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    now </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> time</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">perf_counter</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> kind </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;RUN_STARTED&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;run_id&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> event</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;runId&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;run_id&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    </span><span class="token keyword" style="color:#00009f">elif</span><span class="token plain"> kind </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;TEXT_MESSAGE_CONTENT&quot;</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> event</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;delta&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;chunk_count&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;first_text_ms&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">is</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                            row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;first_text_ms&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">now </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> started</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> previous </span><span class="token keyword" style="color:#00009f">is</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">not</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                            max_gap </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">max</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">max_gap</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> now </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> previous</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        previous </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> now</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    </span><span class="token keyword" style="color:#00009f">elif</span><span class="token plain"> kind </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;RUN_ERROR&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;error&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    </span><span class="token keyword" style="color:#00009f">elif</span><span class="token plain"> kind </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;RUN_FINISHED&quot;</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">!=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;error&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> event</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;result&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">or</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">or</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;succeeded&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">except</span><span class="token plain"> urllib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">error</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">HTTPError </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> error</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string-interpolation string" style="color:#e3116c">f&quot;http_</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">error</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">code</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">except</span><span class="token plain"> Exception </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> error</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">type</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">__name__  </span><span class="token comment" style="color:#999988;font-style:italic"># 不输出异常正文/URL/headers</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    row</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">update</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_ms</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">time</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">perf_counter</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> started</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> max_chunk_gap_ms</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">max_gap </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> row</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 会话准备不计入chat延迟；拒绝跨组共享同一活跃thread。</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">threads </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token builtin">str</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">uuid</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">uuid4</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> _ </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> </span><span class="token builtin">range</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">n</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> identity </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> threads</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">with</span><span class="token plain"> post</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;/api/v1/agent-ui/threads&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token string" style="color:#e3116c">&quot;threadId&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> identity</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> response</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        response</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">read</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># 合成thread元数据，不输出</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">with</span><span class="token plain"> concurrent</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">futures</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ThreadPoolExecutor</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">max_workers</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">concurrency</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> pool</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    rows </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">list</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">pool</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">map</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">run</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> threads</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">percentiles</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">field</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    values </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">sorted</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">field</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> row </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> rows </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> row</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">field</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">is</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">not</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token builtin">str</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">p</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> values</span><span class="token punctuation" style="color:#393A34">[</span><span class="token builtin">min</span><span class="token punctuation" style="color:#393A34">(</span><span class="token builtin">len</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">values</span><span class="token punctuation" style="color:#393A34">)</span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> math</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">ceil</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">p</span><span class="token operator" style="color:#393A34">*</span><span class="token builtin">len</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">values</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> p </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0.5</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.95</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0.99</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> values </span><span class="token keyword" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">json</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">dumps</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">{</span><span class="token string" style="color:#e3116c">&quot;n&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> n</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;concurrency&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> concurrency</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  </span><span class="token string" style="color:#e3116c">&quot;counts&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain">s</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">sum</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> s </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> r </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> rows</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> s </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain">r</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> r </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> rows</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  </span><span class="token string" style="color:#e3116c">&quot;total_ms&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> percentiles</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;total_ms&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;first_text_ms&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> percentiles</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;first_text_ms&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  </span><span class="token string" style="color:#e3116c">&quot;rows&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> rows</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ensure_ascii</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">False</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># 在私有环境已加载、P1接线部署到隔离测试环境后执行；报告仅放系统临时目录。</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token assign-left variable" style="color:#36acaa">CHEIN_BENCH_N</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">100</span><span class="token plain"> </span><span class="token assign-left variable" style="color:#36acaa">CHEIN_BENCH_C</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">8</span><span class="token plain"> python3 /tmp/chein-langfuse-sse-bench.py </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> /tmp/chein-langfuse-b1.json</span><br></div></code></pre></div></div>
+<p>这是最小端到端计时驱动，不是完整压测工具：缺固定arrival-rate、浏览器渲染、Token、CPU/内存/export统计。正式验收按下节补收集，不能拿它单独证明全部性能。故障通过测试专用export代理注入，不改真实模型/ERP/数据库网络；5xx/timeout实验要确认打断的只是Langfuse目的地。模型/Tool负载L1/L2由P1新增的Fake/provider fixtures生成，不以自然语言“请调用20次工具”作为可复现负载。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="33-指标采集与计算">3.3 指标采集与计算<a href="#33-指标采集与计算" class="hash-link" aria-label="3.3 指标采集与计算的直接链接" title="3.3 指标采集与计算的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>指标</th><th>来源/计算/注意点</th></tr></thead><tbody><tr><td>P50/P95/P99</td><td>发生器send→终态，Agent active execution另计；至少3轮，报告所有错误/超时，不能删慢样本；paired bootstrap/置信区间离线计算</td></tr><tr><td>TTFT</td><td>上述客户端首文本、server首次yield、callback首模型chunk、浏览器<code>performance.now</code>首次渲染分别记录；RUN_STARTED不是首Token</td></tr><tr><td>tokens/s</td><td>actual output_tokens/生成窗；Fake流有已知Token fixture，真实missing则null；记录chunk gap和顺序校验</td></tr><tr><td>CPU/RSS/event-loop lag</td><td>容器/进程监控与Agent低基数loop-lag直方图；观察RSS是否随并发/已结束请求持续增长</td></tr><tr><td>网络/线程</td><td>容器network bytes、export代理接收bytes/requests、进程thread数；排除模型业务网络，记录batch/压缩</td></tr><tr><td>queue/export lag</td><td>已结束/抽样/提交/可查询span计数、导出日志、测试exporter收发统计；不用SDK私有队列字段作公开监控契约</td></tr><tr><td>Agent错误率</td><td>全量Run/driver终态及稳定error code；failed/cancelled/waiting/incomplete分开</td></tr><tr><td>Trace丢失率</td><td>选中且应导出的execution中，在给定可见性SLA后缺根的比例；采样排除不算丢失</td></tr><tr><td>Span完整率</td><td>固定fixture预期invocation/span引用集合与实际比较；只数trace根不能证明工具全部收集</td></tr><tr><td>重复计量</td><td>provider/physical invocation唯一标识与generation逐项对账；logical tool外壳/remote子span不重复</td></tr></tbody></table>
+<p>Langfuse返回200/flush完成不等于Worker落地。测试端需通过实例v4 API限定时间/字段轮询，按已保存expected ID集核对，不用“观察页面似乎有很多Trace”。正常可见性候选≤60s；故障恢复后只对仍被SDK保存的数据验收，不假设可补回全部。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-候选验收门槛">4. 候选验收门槛<a href="#4-候选验收门槛" class="hash-link" aria-label="4. 候选验收门槛的直接链接" title="4. 候选验收门槛的直接链接" translate="no">​</a></h2>
+<p><strong>全部是待压测/业务确认的目标，不是本次已达到的结果。</strong> 先以确定性Fake、相同资源、baseline业务未饱和范围评估；真实模型另报告供应商抖动与覆盖率。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>P1候选目标</th><th>P3完整目标/方法</th></tr></thead><tbody><tr><td>正确性/隐私</td><td>Trace关联与canary外发测试零失败；原流顺序/终态不变</td><td>跨worker/恢复/不同租户并发、header/config/error/media所有出口零泄漏</td></tr><tr><td>业务错误</td><td>固定fixture新增业务失败=0</td><td>真实合成请求错误率差95%置信上界≤0.1个百分点；因供应商故障样本另列，不删</td></tr><tr><td>TTFT</td><td>P95/P99增量分别≤max(5%baseline,20ms)/max(10%baseline,50ms)</td><td>100%/10%和故障组均比较；浏览器渲染另验</td></tr><tr><td>总耗时</td><td>P50/P95/P99增量≤max(3%,10ms)/max(5%,20ms)/max(10%,50ms)</td><td>固定并发及固定arrival-rate都满足；否则降范围/采样，记录不通过</td></tr><tr><td>输出速率</td><td>actual Token rate下降≤5%；delta顺序一致</td><td>长串流/大结果下chunk P99 gap增加≤20ms（fixture无业务等待阶段）</td></tr><tr><td>CPU/RSS</td><td>先记录，P1无持续RSS增长</td><td>CPU增量≤10%baseline核秒/请求；RSS增量≤max(15%baseline,100MiB)每worker，峰值并发内；1h压测最后30min线性增长&lt;1MiB/min</td></tr><tr><td>正常Trace/Span</td><td>小样本预期覆盖100%，无重复模型generation</td><td>选中Trace/预期Span集合≥99.9%，可见≤60s；完整失败原因统计</td></tr><tr><td>采样</td><td>配置比例与预期相符</td><td>N≥10000，用二项置信区间确认约10%；以sampled标记作实际分母，不硬要求恰好1000</td></tr><tr><td>故障隔离</td><td>Langfuse错Key/断网不破坏业务fixture</td><td>全矩阵无新增失败；高压queue满可丢遥测，不阻塞SSE；错误告警有限频</td></tr><tr><td>退出</td><td>子进程正常关停成功，退出时间实测</td><td>编排总预算候选15s；观测best effort5s；SIGKILL遗失如实标incomplete，非零丢失承诺</td></tr><tr><td>成本/Usage</td><td>actual/partial/estimated/missing准确标记</td><td>provider/gateway/SDK同调用对账；actual覆盖率报告，不用低覆盖数据证明真实全量成本</td></tr></tbody></table>
+<p>如果已饱和baseline在64并发超目标，应报告服务自身容量限制，不能把所有失败归Langfuse；如果100%开启额外成本超过门槛，先缩字段/业务Span并用10%，仍不达标就保持关闭。不得靠加大业务超时、关闭权限复验、丢流式chunk来通过。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-实施后的仓库验证命令">5. 实施后的仓库验证命令<a href="#5-实施后的仓库验证命令" class="hash-link" aria-label="5. 实施后的仓库验证命令的直接链接" title="5. 实施后的仓库验证命令的直接链接" translate="no">​</a></h2>
+<p>以下是审核后根据实际改动运行的命令；<strong>本次未执行</strong>，不用它们当设计完成证据。环境/数据库由既有测试部署提供，禁止为了设计安装依赖或运行迁移。</p>
+<div class="language-bash codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-bash codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Agent变更：在已按批准计划解析/安装的环境执行</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token builtin class-name">cd</span><span class="token plain"> agent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run ruff check src tests</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run pytest tests/test_observability.py tests/test_api.py tests/test_harness.py tests/test_model_provider.py tests/test_settings.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">uv run pytest tests/test_decision.py tests/test_knowledge_pipeline.py tests/test_mcp_tools.py tests/test_mcp_runs.py tests/test_analysis.py tests/test_images.py tests/test_evaluation.py</span><br></div></code></pre></div></div>
+<p>Backend Python修改：<code>cd backend &amp;&amp; uv run ruff check app tests</code>，以及受影响的Platform/Knowledge/ERP pytest；共享数据库测试串行。新增migration跑正确namespace upgrade/migration tests/<code>uv run alembic check</code>及受影响Edition；不能将Agent自有迁移当Backend Alembic迁移运行。新Tenant/RLS表要在实际runtime角色下无scope、跨tenant/user、bulkDML、连接复用负向。</p>
+<p>前端接线：<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:pro:test</code>和受影响构建；模块/权限/Manifest装配变更再跑boundary/Edition测试及<code>pnpm build:edition -- --edition base/items/suite</code>（三个Edition分别执行）；API改变用<code>pnpm generate:api</code>生成，不能手改。部署改动执行<code>docker compose config</code>与合成启动/健康/真实摄取；截图遵循<code>scripts/save-dev-artifact.mjs</code>归档，禁止写源码output目录。</p>
+<p>文档校验使用已有<code>pnpm docs:check</code>或其等价Node入口，并检查新增文件的相对链接/Mermaid/代码块。文档站发布有审核catalog/哈希治理，不能为了本次设计自动发布或改审核状态。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-发布与回滚检查">6. 发布与回滚检查<a href="#6-发布与回滚检查" class="hash-link" aria-label="6. 发布与回滚检查的直接链接" title="6. 发布与回滚检查的直接链接" translate="no">​</a></h2>
+<p>先发布默认关闭镜像→合成dev启用→staging故障/压测→经业务/安全确认production候选采样；每步保存release/config digest、实际SDK/server/OTel版本、结果与Owner。配置是启动快照，修改Nacos后须受控滚动重启并确认所有worker同版。</p>
+<p>出现泄密/性能/兼容性回归：关闭Langfuse、重启或回前镜像；不回滚Prompt/工具/权限策略以掩盖遥测问题。已生成业务数据/RunEvent保持可兼容；反馈表使用扩展式迁移，P4回滚关闭新入口而非删反馈。独立Langfuse服务升级/备份恢复按部署方案处理，禁止<code>down -v</code>或对共享Redis执行<code>FLUSHALL</code>。旧Trace可能残留，按经批准清理策略删，不假装配置关闭即删除历史数据。</p>
+<p>Nacos Prompt/模型/检索策略优化发布要独立回滚到先前已审核版本；Langfuse实验与Score仅供证据，不自动写生产latest。新增APM/Collector时回滚仅撤其出口，不破坏业务日志/安全审计和现有AI观测。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-本次交付验证与未执行项">7. 本次交付验证与未执行项<a href="#7-本次交付验证与未执行项" class="hash-link" aria-label="7. 本次交付验证与未执行项的直接链接" title="7. 本次交付验证与未执行项的直接链接" translate="no">​</a></h2>
+<p>本次仅设计文档和导航。已通过代码静态审计、lock版本解析、官方页面及固定SDK源码核查。最终本地文档校验结果以交付说明为准；源码测试存在不代表它们本次执行通过。</p>
+<p>本地校验已通过：6份新增/修改Markdown的150个相对路径引用、代码围栏配对、表格列数；Python实验驱动AST和Bash代码块<code>bash -n</code>；容量公式与表格数值；<code>git diff --check</code>。用标准库内存响应执行了实验驱动的success、RUN_ERROR、HTTP401、incomplete、时序和敏感payload不输出自检，没有访问业务端点。复用主checkout已有Mermaid/jsdom依赖解析4个图通过，未安装依赖；未做浏览器视觉渲染验收。</p>
+<p><code>pnpm docs:check</code>已尝试，因当前worktree文档站未安装<code>unified</code>（缺少<code>website/node_modules</code>）失败，未补装依赖、未修改发布catalog/审核哈希。完整文档站构建/视觉验收仍待依赖环境可用时执行。</p>
+<p>未执行：依赖resolver/安装、业务测试、真实Qwen/Higress/RAGFlow/ERP运行、服务重启、迁移、压测/故障注入、Langfuse真实trace落地、目标角色/许可验证、生产清理/备份恢复、远端CI/镜像扫描签名、N-1演练和团队签署。以上是下一阶段门禁，<strong>设计审核不自动豁免</strong>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-审核需要确认的事项">8. 审核需要确认的事项<a href="#8-审核需要确认的事项" class="hash-link" aria-label="8. 审核需要确认的事项的直接链接" title="8. 审核需要确认的事项的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">是否批准B+D、metadata-only和每execution一个Trace作为起步方案。</li>
+<li class="">哪些人员可访问跨租户观测项目；是否需要P5业务页面，是否具备所需Langfuse许可。</li>
+<li class="">prod/dev/Dataset/备份保留期、OSS清理实现与数据Owner；提供服务器资源/余量。</li>
+<li class="">Qwen/Higress实际路由、价格来源/币种/缓存单位；可接受Usage缺失覆盖率。</li>
+<li class="">任务成功/gold、误拒绝/漏判代价、Judge模型/预算、性能候选门槛和RPO/RTO。</li>
+</ol>
+<p>这些事项等待设计审核；本次不会擅自开始实现。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent/langfuse-delivery-plan.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">Langfuse P1–P5 实施与启用</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-design/">Chein Agent 可观测性与持续优化总体设计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-audit/">Chein Agent 现有架构与可观测性审计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-p1-delivery/">Langfuse P1 接入与配置</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-research/">Langfuse v4 官方能力与 Chein 集成方案调研</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/agent/index/">Agent 设计文档</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">Langfuse P1–P5 实施与启用</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-design/">Chein Agent 可观测性与持续优化总体设计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-audit/">Chein Agent 现有架构与可观测性审计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-p1-delivery/">Langfuse P1 接入与配置</a></li><li><a href="/chein-doc-site/reference/operations/deployment/langfuse/">Langfuse v4 部署、账户配置与故障复盘</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fagent%2Fobservability%2Flangfuse-delivery-plan%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/category/观测与质量/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">观测与质量</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Langfuse P1–P5 实施与启用</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-实施边界与依赖" class="table-of-contents__link toc-highlight">1. 实施边界与依赖</a></li><li><a href="#2-阶段计划" class="table-of-contents__link toc-highlight">2. 阶段计划</a><ul><li><a href="#p0审计与环境基线" class="table-of-contents__link toc-highlight">P0：审计与环境基线</a></li><li><a href="#p1最小可行追踪及安全基线" class="table-of-contents__link toc-highlight">P1：最小可行追踪及安全基线</a></li><li><a href="#p2业务阶段与跨服务关联" class="table-of-contents__link toc-highlight">P2：业务阶段与跨服务关联</a></li><li><a href="#p3性能容量和运行期降级" class="table-of-contents__link toc-highlight">P3：性能、容量和运行期降级</a></li><li><a href="#p4反馈质量评估与回归闭环" class="table-of-contents__link toc-highlight">P4：反馈、质量评估与回归闭环</a></li><li><a href="#p5按需求业务管理查询与apm扩展" class="table-of-contents__link toc-highlight">P5：按需求业务管理查询与APM扩展</a></li></ul></li><li><a href="#3-性能实验协议" class="table-of-contents__link toc-highlight">3. 性能实验协议</a><ul><li><a href="#31-可复现负载和对比矩阵" class="table-of-contents__link toc-highlight">3.1 可复现负载和对比矩阵</a></li><li><a href="#32-可以直接运行的合成sse计时驱动" class="table-of-contents__link toc-highlight">3.2 可以直接运行的合成SSE计时驱动</a></li><li><a href="#33-指标采集与计算" class="table-of-contents__link toc-highlight">3.3 指标采集与计算</a></li></ul></li><li><a href="#4-候选验收门槛" class="table-of-contents__link toc-highlight">4. 候选验收门槛</a></li><li><a href="#5-实施后的仓库验证命令" class="table-of-contents__link toc-highlight">5. 实施后的仓库验证命令</a></li><li><a href="#6-发布与回滚检查" class="table-of-contents__link toc-highlight">6. 发布与回滚检查</a></li><li><a href="#7-本次交付验证与未执行项" class="table-of-contents__link toc-highlight">7. 本次交付验证与未执行项</a></li><li><a href="#8-审核需要确认的事项" class="table-of-contents__link toc-highlight">8. 审核需要确认的事项</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

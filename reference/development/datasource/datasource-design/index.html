@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/datasource/datasource-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">数据源与数据表管理：DataVines 提炼与 Chein 适配 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-design/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="数据源与数据表管理：DataVines 提炼与 Chein 适配 | Chein 文档中心"><meta data-rh="true" name="description" content="数据源与数据表管理：DataVines 提炼与 Chein 适配 · Chein 技术文档"><meta data-rh="true" property="og:description" content="数据源与数据表管理：DataVines 提炼与 Chein 适配 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-design/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-design/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-design/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"数据源","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/数据源"},{"@type":"ListItem","position":2,"name":"数据源与数据表管理：DataVines 提炼与 Chein 适配","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/datasource/datasource-design"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="折叠侧边栏分类 &#x27;数据源&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-api/"><span class="linkLabel_gJOC">数据源 API 与数据库</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-delivery/"><span class="linkLabel_gJOC">数据源与数据表管理交付说明</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/datasource/datasource-design/"><span class="linkLabel_gJOC">数据源与数据表管理：DataVines 提炼与 Chein 适配</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/数据源/"><span>数据源</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">数据源与数据表管理：DataVines 提炼与 Chein 适配</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>数据源与数据表管理：DataVines 提炼与 Chein 适配</h1></header>
+<blockquote>
+<p>设计用户已要求按此设计开发。
+下文保留提炼与设计提案，当前实现、差异及验证见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">交付说明</a> 和 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-api/">接口/数据库</a>。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-参考范围与结论">1. 参考范围与结论<a href="#1-参考范围与结论" class="hash-link" aria-label="1. 参考范围与结论的直接链接" title="1. 参考范围与结论的直接链接" translate="no">​</a></h2>
+<p>参考用户指定的 <a href="https://github.com/datavane/datavines" target="_blank" rel="noopener noreferrer" class="">datavane/datavines</a>，本次读取的 <code>dev</code> 提交为 <code>c0a8ed89317668279fd325c39d5ffefb54c0f724</code>。未获得其他本地路径或二开分支，不能声称已覆盖用户私有二开版本。下文引用均固定到此提交；若二开版本另有来源，应在实现前补充差异核对。</p>
+<p>采用其核心设计：<strong>数据源连接配置 → 类型连接器 → 持久化库/表/字段目录 → 刷新任务与结构差异 → 左树右详情</strong>。保留统一目录实体，不另建三套库、表、字段 CRUD。</p>
+<p>需要纠正三个前提：</p>
+<ul>
+<li class="">Chein 当前后端是 Python，不能直接使用 JDBC <code>DatabaseMetaData</code>。拟用现有 SQLAlchemy 的反射接口等价实现，必要时在 MySQL Adapter 内补充 <code>information_schema</code>，不引入 JVM 或 Spring 服务。</li>
+<li class="">DataVines 通用 JDBC 元数据 DTO 不包含本次要求的完整长度、默认值、可空、外键和索引信息；必须扩充，不能宣称原样照搬即可满足。</li>
+<li class="">DataVines 提供自由 SQL 查询入口，不能直接作为本次安全预览接口；固定 IV 加密、错误日志打印连接参数等行为也不能照搬。</li>
+</ul>
+<p>本次不实现本体生成、Ontop、Agent 工具、新调度平台、跨库查询、SQL 编辑器或数据库写入。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-datavines-已核实的设计">2. DataVines 已核实的设计<a href="#2-datavines-已核实的设计" class="hash-link" aria-label="2. DataVines 已核实的设计的直接链接" title="2. DataVines 已核实的设计的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="21-实体字段与关系">2.1 实体、字段与关系<a href="#21-实体字段与关系" class="hash-link" aria-label="2.1 实体、字段与关系的直接链接" title="2.1 实体、字段与关系的直接链接" translate="no">​</a></h3>
+<p>表结构以 <a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/scripts/sql/datavines-mysql.sql" target="_blank" rel="noopener noreferrer" class="">初始化 SQL</a> 与 Java Entity 共同核对：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>表/实体</th><th>主要字段</th><th>用途与关系</th></tr></thead><tbody><tr><td><code>dv_datasource</code> / <code>DataSource</code></td><td>id、uuid、workspace_id、name、category、type、param、param_code、create_by/time、update_by/time</td><td>category 默认 database；type 是插件名；param 是加密后的连接 JSON；param_code 是类型及连接关键属性的 MD5，用于连接身份匹配，不是密码哈希</td></tr><tr><td><code>dv_catalog_entity_definition</code></td><td>id、uuid、name、description、properties、super_uuid、创建/更新信息</td><td>描述实体类型及属性定义，不是每种数据库一张实体表</td></tr><tr><td><code>dv_catalog_entity_instance</code></td><td>id、uuid、datasource_id、type、fully_qualified_name、display_name、description、properties、owner、version、status、创建/更新信息</td><td>database/table/column 统一实体；properties 存 JSON 文本；FQN 区分库、库.表、库.表.字段</td></tr><tr><td><code>dv_catalog_entity_rel</code></td><td>entity1_uuid、entity2_uuid、type、source_type、related_script、update_by/time</td><td>目录包含关系及其他关系；采集器创建数据源→库→表→字段关系，不能当作完整外键模型</td></tr><tr><td><code>dv_catalog_schema_change</code></td><td>parent_uuid、entity_uuid、change_type、database/table/column_name、change_before/after、update_by/time</td><td>持久化结构差异，按实体查询</td></tr><tr><td><code>dv_catalog_tag_category/tag/entity_tag_rel</code></td><td>分类、标签、实体关联及审计信息</td><td>目录标签管理</td></tr><tr><td><code>dv_common_task/command/schedule</code></td><td>数据源、任务类型、参数、状态及调度信息</td><td>元数据采集任务与调度，不属于连接器本身</td></tr></tbody></table>
+<p><code>entity_instance</code> 唯一键包含 <code>(datasource_id, fully_qualified_name, status)</code>，删除实体使用 deleted 前缀状态保留记录；<code>active</code> 表示目录存在状态，<strong>不是“用户启用此表参与本体转换”</strong>。数据源名称在上游 MySQL DDL 中是全局唯一，Chein 应改为租户内唯一。</p>
+<p>连接参数通常为 host、port、database、user、password、properties，其他类型可增加 catalog/schema。保存时加密整个 param；列表解密后将密码置空，内部读取方法会返回解密参数。</p>
+<p><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-server/src/main/java/io/datavines/server/repository/service/impl/DataSourceServiceImpl.java" target="_blank" rel="noopener noreferrer" class="">DataSourceServiceImpl</a> 使用 <code>CryptionUtils</code>；其 <a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-common/src/main/java/io/datavines/common/utils/CryptionUtils.java" target="_blank" rel="noopener noreferrer" class="">AES 实现</a> 为 AES/CBC/PKCS5Padding、固定 IV、十六进制密文，密钥配置有源码默认值。只参考“服务端可逆保护连接凭据”的职责，不复制此实现或默认密钥。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="22-连接器与插件">2.2 连接器与插件<a href="#22-连接器与插件" class="hash-link" aria-label="2.2 连接器与插件的直接链接" title="2.2 连接器与插件的直接链接" translate="no">​</a></h3>
+<p><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-connector/datavines-connector-api/src/main/java/io/datavines/connector/api/ConnectorFactory.java" target="_blank" rel="noopener noreferrer" class="">ConnectorFactory</a> 聚合 Connector、ConfigBuilder、DataSourceClient、Executor、Dialect、类型/参数转换器，以及 SQL/质量相关扩展。<code>PluginDiscovery</code> 读取 <code>META-INF/services/io.datavines.connector.api.ConnectorFactory</code>，按插件名/别名解析工厂；前端类型列表过滤 <code>showInFrontend()</code>。</p>
+<p><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-connector/datavines-connector-api/src/main/java/io/datavines/connector/api/Connector.java" target="_blank" rel="noopener noreferrer" class="">Connector</a> 提供 testConnect、getDatabases、getTables、getColumns、getPartitions、keyProperties。MySQL 继承通用 <code>JdbcConnector</code>，库列表使用 JDBC catalogs；其他差异留在具体 Connector。</p>
+<p>上游新增数据库通常需要新增插件 Maven 模块、驱动、Factory/SPI 声明、连接信息与 Connector、ConfigBuilder；按需要实现 Dialect/Executor/转换器，并加入打包依赖。不是只新增一个 Java 类就一定能完成支持。</p>
+<p><code>JdbcDataSourceManager</code> 按连接唯一键复用 Hikari 池，源码设置最大池大小 10；连接器归还借用连接，管理器有 close。Chein 复用其职责划分，但不照搬无界池目录或异常处理方式。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="23-元数据获取持久化与刷新">2.3 元数据获取、持久化与刷新<a href="#23-元数据获取持久化与刷新" class="hash-link" aria-label="2.3 元数据获取、持久化与刷新的直接链接" title="2.3 元数据获取、持久化与刷新的直接链接" translate="no">​</a></h3>
+<p><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-connector/datavines-connector-plugins/datavines-connector-jdbc/src/main/java/io/datavines/connector/plugin/JdbcConnector.java" target="_blank" rel="noopener noreferrer" class="">JdbcConnector</a> 读取 <code>DatabaseMetaData.getTables/getColumns/getPrimaryKeys</code>；表包含 TABLE/VIEW。通用 <code>ColumnInfo</code> 仅 name、type、comment、isPrimaryKey；<code>TableColumnInfo</code> 另含主键名称列表，不能据此证明主键顺序、名称等已完整持久化。已检查的通用采集链不提供 imported keys 和 index info。</p>
+<p><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-server/src/main/java/io/datavines/server/scheduler/metadata/task/CatalogMetaDataFetchExecutorImpl.java" target="_blank" rel="noopener noreferrer" class="">采集执行器</a> 将库表字段写入 entity_instance/properties 和 rel；新建数据源触发采集，刷新请求通过任务服务提交，亦有调度机制。Controller 的库/表/字段浏览读取持久化目录；Service 中还存在直连元数据方法，不能混为同一条请求链。</p>
+<p>差异枚举覆盖库增删、表增删/注释变化、字段增删/类型/注释变化；没有证据表明已完整比较索引、外键、长度、默认值和可空变化。实体更新时间可显示目录更新情况，但不能等同于一个独立、完整成功的“最近同步批次时间”。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="24-后端-api-清单">2.4 后端 API 清单<a href="#24-后端-api-清单" class="hash-link" aria-label="2.4 后端 API 清单的直接链接" title="2.4 后端 API 清单的直接链接" translate="no">​</a></h3>
+<p>基址 <code>/api/v1</code>。来源：<a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-server/src/main/java/io/datavines/server/api/controller/DataSourceController.java" target="_blank" rel="noopener noreferrer" class="">DataSourceController</a>、<a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-server/src/main/java/io/datavines/server/api/controller/CatalogController.java" target="_blank" rel="noopener noreferrer" class="">CatalogController</a>。下表输出指业务载荷；上游还存在响应包装，测试接口显式返回 <code>{code,msg,data}</code>，其他入口不能一概声称直接返回同样的原始对象。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法与路径</th><th>入参</th><th>业务出参</th></tr></thead><tbody><tr><td>POST <code>/datasource</code></td><td>workspaceId,name,type,param(JSON 字符串)</td><td>新建 id</td></tr><tr><td>PUT <code>/datasource</code></td><td>创建字段 + id</td><td>更新条数</td></tr><tr><td>DELETE <code>/datasource/{id}</code></td><td>id</td><td>删除条数；服务会删除目录、任务/质量作业，不是引用阻断</td></tr><tr><td>GET <code>/datasource/page</code></td><td>workSpaceId,searchVal?,pageNumber,pageSize</td><td>IPage<datasourcevo>：id,uuid,name,type,param(密码置空),updater,updateTime</datasourcevo></td></tr><tr><td>POST <code>/datasource/test</code></td><td>type,dataSourceParam(JSON 字符串)</td><td>code,msg,data(boolean)；失败 msg 来自连接错误</td></tr><tr><td>GET <code>/datasource/type/list</code></td><td>无</td><td><code>[{key,value}]</code> 插件类型</td></tr><tr><td>GET <code>/datasource/config/{type}</code></td><td>type</td><td>JSON 字符串：字段、组件类型、默认值、校验等</td></tr><tr><td>GET <code>/datasource/list/{workspaceId}/{type}</code></td><td>工作区、类型</td><td>数据源列表</td></tr><tr><td>GET <code>/datasource/{id}/databases</code></td><td>id</td><td>目录 OptionItem 列表</td></tr><tr><td>GET <code>/datasource/{id}/{database}/tables</code></td><td>id,database</td><td>目录表 OptionItem 列表</td></tr><tr><td>GET <code>/datasource/{id}/{database}/{table}/columns</code></td><td>id,database,table</td><td>目录字段 OptionItem 列表</td></tr><tr><td>POST <code>/datasource/execute</code></td><td>datasourceId,script,variables?</td><td>查询 columns/rows；是传 SQL 的执行入口，非专用安全预览</td></tr><tr><td>POST <code>/catalog/refresh</code></td><td>datasourceId,taskType,database?,table?</td><td>刷新任务提交结果，Controller 标注 Long；不能把提交成功当采集完成</td></tr><tr><td>GET <code>/catalog/list/{database|table|column}/{upstreamUuid}</code></td><td>上级 UUID</td><td>子级 OptionItem 列表</td></tr><tr><td>GET <code>/catalog/list/{table|column}-with-detail/{upstreamUuid}</code></td><td>上级 UUID</td><td>表/字段详情列表</td></tr><tr><td>GET <code>/catalog/page/{table|column}-with-detail</code></td><td>upstreamUuid,name?,pageNumber,pageSize</td><td>分页详情</td></tr><tr><td>GET <code>/catalog/detail/{database|table|column}/{uuid}</code></td><td>uuid</td><td>基本 name,uuid,type,metrics,usages,tags,updateTime；表补 comment,columns,records，字段补 comment</td></tr><tr><td>GET <code>/catalog/list/schema-change/{uuid}</code></td><td>uuid</td><td>差异列表</td></tr><tr><td>GET <code>/catalog/page/schema-change</code></td><td>uuid,pageNumber,pageSize</td><td>差异分页</td></tr></tbody></table>
+<p>没有发现独立的 <code>GET /datasource/{id}</code> 编辑详情路由；上游表单用列表项回填。数据质量、profile、issue、血缘和报表接口不在本次范围。上游 SqlUtils 默认读取上限为 1000，不能作为本次 100 行上限的实现依据。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="25-前端结构与交互">2.5 前端结构与交互<a href="#25-前端结构与交互" class="hash-link" aria-label="2.5 前端结构与交互的直接链接" title="2.5 前端结构与交互的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-ui/src/view/Main/Home/AddDataSource/index.tsx" target="_blank" rel="noopener noreferrer" class="">Home/AddDataSource</a>：类型列表 → config JSON → FormRender 动态表单，Modal 内测试连接与保存，编辑回填列表 param。当前源码用测试成功状态控制保存；Chein 还须在参数变化时使测试结果失效。</li>
+<li class=""><code>src/view/Main/Home</code> 提供列表/卡片；<code>List/Table.tsx</code> 有名称跳转、类型、更新人/时间、编辑/删除和分页；<code>List/MetaDataFetcher.tsx</code> 管理采集入口。</li>
+<li class=""><code>HomeDetail/EditorData</code> 嵌入 DvEditor；<a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-ui/Editor/components/Tree/index.tsx" target="_blank" rel="noopener noreferrer" class="">Editor/components/Tree</a> 与 <code>useTableCloumn</code> 按库/表点击加载下一层，右键刷新，选择驱动右侧详情。</li>
+<li class=""><a href="https://github.com/datavane/datavines/blob/c0a8ed89317668279fd325c39d5ffefb54c0f724/datavines-ui/Editor/components/Database/index.tsx" target="_blank" rel="noopener noreferrer" class="">Editor/components/Database</a> 使用 Tabs、Table、Pagination、Drawer，分库/表/字段展示详情、标签与变更等。</li>
+<li class="">上游树搜索主要递归过滤已加载节点；不能保证命中未加载表，也不能据此宣称 500 张表性能合格。Chein 改为服务端检索持久化目录、子节点分页、固定高度虚拟树，字段分页。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-chein-当前事实与复用位置">3. Chein 当前事实与复用位置<a href="#3-chein-当前事实与复用位置" class="hash-link" aria-label="3. Chein 当前事实与复用位置的直接链接" title="3. Chein 当前事实与复用位置的直接链接" translate="no">​</a></h2>
+<p>已核对根目录、docs、backend、frontend 与 web-pro 的 AGENTS.md，以及以下事实源；本次开始时 <code>git status --short</code> 为空。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>领域</th><th>当前事实/复用入口</th></tr></thead><tbody><tr><td>后端</td><td><a href="https://github.com/HanYang3588/chein/blob/main/backend/pyproject.toml" target="_blank" rel="noopener noreferrer" class="">pyproject.toml</a>：Python 3.14、FastAPI、SQLModel/SQLAlchemy、Pydantic v2、Alembic；业务元数据库为 PostgreSQL，外部 MySQL 不改变它</td></tr><tr><td>模块边界</td><td><a class="" href="/chein-doc-site/reference/architecture/platform/implementation/">实施基线</a>、<a class="" href="/chein-doc-site/reference/development/backend/module-guide/">模块指南</a>、<a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/contracts.py" target="_blank" rel="noopener noreferrer" class="">ModuleDefinition</a>；使用自己的 module.py、schema、迁移、菜单、权限、生命周期</td></tr><tr><td>HTTP/权限</td><td><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/platform/web_api.py" target="_blank" rel="noopener noreferrer" class="">platform.web_api</a> 的 CurrentPrincipal/CurrentTenant、require_module_access、分页和用户目录；不读 Platform ORM</td></tr><tr><td>隔离</td><td>参考 <a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/items/infrastructure/tenant_uow.py" target="_blank" rel="noopener noreferrer" class="">Items UoW</a>，新模块完整覆盖 ORM scope、写入检查和 FORCE RLS；身份只从可信认证依赖解析</td></tr><tr><td>返回与异常</td><td><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/main.py" target="_blank" rel="noopener noreferrer" class="">main.py</a>：成功返回类型化业务 DTO，不新增 ResultMap；错误统一 <code>{code,message,details}</code>；稳定 HTTP 状态及错误映射</td></tr><tr><td>敏感值</td><td><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/platform/public_api/sensitive_values.py" target="_blank" rel="noopener noreferrer" class="">公开 SensitiveValueProtector</a>，已有 Platform Fernet 实现；通过组合根注入公开契约，不由业务模块导入实现或获取密钥</td></tr><tr><td>后台处理</td><td><a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/contracts.py" target="_blank" rel="noopener noreferrer" class="">ScheduleHandler</a>、<a href="https://github.com/HanYang3588/chein/blob/main/backend/app/modules/schedule_worker.py" target="_blank" rel="noopener noreferrer" class="">schedule_worker</a> 和现有 Worker/leader guard；逐租户领取持久任务，不引入 Quartz/Celery</td></tr><tr><td>前端</td><td><a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>：React 19、Umi Max、Ant Design 6/ProComponents；page-registry 为当前唯一映射入口，OpenAPI 客户端由仓库生成</td></tr><tr><td>Edition</td><td><a href="https://github.com/HanYang3588/chein/blob/main/editions/suite.yaml" target="_blank" rel="noopener noreferrer" class="">suite.yaml</a> 当前无 datasource；拟仅在 Suite 加入，Base/Items/ERP 不新增入口，新模块权益默认关闭</td></tr><tr><td>现有本体</td><td><a class="" href="/chein-doc-site/reference/development/ontology/design/">本体设计</a>：本次不修改已发布正文/固定 ERP capability，不把外部 MySQL 自动纳入现有本体执行链</td></tr></tbody></table>
+<p>当前没有找到可直接复用的通用数据源管理模块，也没有在 Backend 声明/锁文件中发现 MySQL DBAPI 驱动。Python 标准库、psycopg 不能完成 MySQL 协议连接；实现阶段拟仅补充 PyMySQL，复用 SQLAlchemy 反射和池，更新锁文件及镜像/供应链验证，不升级现有框架。反射能力已核对 <a href="https://docs.sqlalchemy.org/en/20/core/reflection.html" target="_blank" rel="noopener noreferrer" class="">SQLAlchemy 官方文档</a> 与 <a href="https://docs.sqlalchemy.org/en/20/dialects/mysql.html#module-sqlalchemy.dialects.mysql.pymysql" target="_blank" rel="noopener noreferrer" class="">MySQL/PyMySQL 方言</a>；具体驱动版本、Python 3.14 兼容与超时行为仍须实测。Context7 此次因服务 API key 无效不可用，改查官方文档。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-拟实施方案待确认">4. 拟实施方案（待确认）<a href="#4-拟实施方案待确认" class="hash-link" aria-label="4. 拟实施方案（待确认）的直接链接" title="4. 拟实施方案（待确认）的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-所有权与最小分层">4.1 所有权与最小分层<a href="#41-所有权与最小分层" class="hash-link" aria-label="4.1 所有权与最小分层的直接链接" title="4.1 所有权与最小分层的直接链接" translate="no">​</a></h3>
+<p>模块代码 <code>datasource</code>，后端 <code>backend/app/modules/datasource</code>，前端 <code>frontend/apps/web-pro/src/modules/datasource</code>，仅依赖 Platform。连接器与外部连接池在该模块 infrastructure，内部统一 Connector 端口在 application；public_api 仅导出后续消费者需要的 DTO/查询契约，不提前建设映射引擎。</p>
+<p>路由 → 当前授权/模块 UoW → application 服务 → repository / Connector。连接器不决定租户和权限；业务层不按 MySQL/PostgreSQL 写分支。按受控类型注册 Connector 及表单描述；新增类型添加 Adapter、描述/注册、驱动和测试即可，业务服务不改。首期仅 mysql 可选，不显示尚未实现的类型为可用，也不开放上传驱动、运行时加载插件。</p>
+<p>Connector 契约覆盖 test_connection、list_databases、list_tables、describe_table（列/主外键/索引/估计行数）、preview、close。使用 SQLAlchemy Inspector 等价于 JDBC 元数据，缺失信息由实现内固定查询补齐。catalog/schema 分开表达，MySQL database 对应 catalog；不预设 PostgreSQL 的 database/schema 与 MySQL 相同。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-数据模型草案">4.2 数据模型草案<a href="#42-数据模型草案" class="hash-link" aria-label="4.2 数据模型草案的直接链接" title="4.2 数据模型草案的直接链接" translate="no">​</a></h3>
+<p>保留 DataVines 的 datasource、统一目录实体、关系、差异概念；不复制其可配置元模型引擎。以下表位于拟新增 PostgreSQL <code>datasource</code> schema，全部带可信 tenant_id、UUID 标识、UTC 时间与 FORCE RLS：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>拟定表</th><th>主要字段/约束</th><th>对应与新增原因</th></tr></thead><tbody><tr><td><code>connection</code></td><td>name,type,category,connection_params(JSONB 非敏感参数),secret_ciphertext,revision,checked_revision,last_test_status/code/at,last_synced_at,created_by/at,updated_by/at；tenant+name 唯一</td><td>对应 dv_datasource；凭据单独加密；状态区分未测试、成功、失败、配置已变化</td></tr><tr><td><code>catalog_entity</code></td><td>connection_id,parent_id,kind(database/table/column),catalog_name,schema_name,physical_name,FQN,source_comment,properties(JSONB),presence(active/missing),revision,last_synced_at</td><td>对应 entity_instance；身份由结构化路径确定，FQN 仅显示，避免含点名称冲突；连接+父路径+kind+物理名的活动唯一约束</td></tr><tr><td><code>entity_config</code></td><td>entity_id,business_name,description,tags(JSONB 字符串数组),enabled(仅表),exposed(仅列),mask_policy,ontology_class_iri?,ontology_property_iri?,revision</td><td>分离人工配置与采集属性；entity 唯一，刷新不得覆盖；IRI 仅存可空标识，不生成或修改本体</td></tr><tr><td><code>catalog_relation</code></td><td>connection_id,source_table_id,target_table_id?,constraint_name,relation_kind(foreign_key),ordered_column_pairs(JSONB),target_catalog/schema/table,on_update/delete,properties,presence,revision</td><td>从上游 rel 扩充为一等外键；复合键逐项保序；目标未采集仍保留目标路径并显示 unresolved，不虚造目标实体</td></tr><tr><td><code>sync_task</code></td><td>connection_id,scope_entity_id?,requested_by,config_revision,status,lease_until,attempt,started/finished_at,error_code,summary,staging(JSONB)</td><td>对应采集任务；暂存有界采集页，完成范围才能提交缺失判定，租约可恢复；不保存预览行或凭据</td></tr><tr><td><code>schema_change</code></td><td>connection_id,task_id,entity_id?,kind,change_type,before/after(JSONB),created_at</td><td>对应上游差异；记录类型/注释外的长度、可空、默认值、主外键、索引变化</td></tr></tbody></table>
+<p>表实体 properties 使用类型化 DTO 保存有序主键 <code>{name,columns}</code>、有序索引（名称、唯一性、列/表达式、前缀长度等）与估计行数；列保存 ordinal、原始/标准类型、长度、precision/scale、nullable、default、generated、注释。未知值为 null，不能把“无法读取”写成无主键/零行数。索引无需独立业务配置，首期不再拆一张表；外键单独可查询。</p>
+<p>关系及层级外键带 tenant 和 connection 一致性约束；防止跨源、跨租户关联。配置限制实体类型，标签有数量/长度上限；至少索引 tenant+type+created_at、tenant+connection+parent+kind+presence、外键两端、tenant+connection+change_time、任务状态/租约，标签筛选按实际查询增加 JSONB 索引。物理标识保留大小写，不擅自 lower，按 MySQL 实际名称语义处理。</p>
+<p>按后续确认的交互规则，新发现的表默认启用，用户可以手动禁用。旧停用表仅在配置 revision=1（从未通过人工配置入口保存）时，于下次成功同步发布该表时启用并递增配置版本；revision&gt;1 的人工配置不覆盖，保留手动禁用。人工配置过的旧表可通过现有批量启用入口调整。新发现敏感字段默认 exposed=false，其他字段默认 true；规则只作保守初始分类，业务人员仍需核对。<code>_bak/_tmp/_log</code> 等规则显示“不建议”及原因，不误判为权限。人工配置、源存在状态与同步状态互不替代。删除后同名重建使用新实体身份，旧配置保留为历史，禁止自动继承旧映射/暴露授权；重命名保守视为删除+新增，不按相似度合并。</p>
+<p>未来生成器须同时检查表存在且启用、字段存在且暴露、当前授权和元数据版本。IRI 引用不等于发布或业务许可。本次没有跨模块本体引用；未来接入时由消费者使用公开契约/ReferenceGuard 登记与复验引用，不能仅凭 IRI 字符串认定引用安全。存在引用时删除返回 409，不通过“二次确认”绕过；删除/引用创建需同一受控并发约束，接入映射前完成竞争测试。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="43-同步差异与性能">4.3 同步、差异与性能<a href="#43-同步差异与性能" class="hash-link" aria-label="4.3 同步、差异与性能的直接链接" title="4.3 同步、差异与性能的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">新增数据源显式创建首次采集任务；GET 浏览只读目录，不隐式连接或写库。手动全源/单表刷新返回 task_id，UI 轮询状态；首期不增加定时自动刷新产品能力。</li>
+<li class="">通过 ModuleDefinition 的 ScheduleHandler 接入现有后台执行。每次按受控租户 UoW 获取任务，复验请求人当前权限/权益及配置 revision，租约领取；任务执行分批，有单表与总预算，避免长时间占用平台数据库事务或阻塞其他模块调度。</li>
+<li class="">同源刷新串行合并重复提交，配置修改使旧任务过期；租约恢复复验配置/权限。外部采集成功后在短事务中发布该范围的完整快照与差异，失败保留旧快照，绝不将网络异常或未完成分页解释成删表。</li>
+<li class="">MySQL 权限缩小可能表现为表消失，不能仅凭列表认定物理删除；差异标记“源中缺失/不可见”，后续映射失败关闭。采集期间 DDL 改变则重验结构摘要，不能声称拥有跨 MySQL DDL 的事务快照。</li>
+<li class="">首次采集显示基线结果；后续只比较结构属性，人工业务信息及预估行数波动不混入结构变更；单表刷新不标记同库其他表删除。保留最近成功同步时间、当前任务进度和失败原因。</li>
+<li class="">树/列表从 PostgreSQL 按父实体分页（默认 50，上限 100），服务端名称/前缀/关键词/启用/标签过滤；搜索可命中未展开节点并返回祖先。字段分页；页面防抖建议 300ms，取消旧请求或丢弃迟到响应。</li>
+<li class="">批量更新限定显式 ID、同源/同租户、最多 100 项，revision 防覆盖，校验后事务提交；外键依赖预览返回缺失目标/环和有界传递集合，用户明确“一并启用”后再原子提交，不自动启用。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="44-连接安全与预览">4.4 连接、安全与预览<a href="#44-连接安全与预览" class="hash-link" aria-label="4.4 连接、安全与预览的直接链接" title="4.4 连接、安全与预览的直接链接" translate="no">​</a></h3>
+<p>连接列表不实时逐个探活；显示最近测试结果、测试时间及对应配置版本，避免旧成功被当作当前连通。编辑不返回明文、密文或密码尾号，只返回 has_password；密码省略表示不变，显式替换才更新，首次创建必填，禁止用 <code>******</code> 作为密码。</p>
+<p>注入现有 SensitiveValueProtector；其当前实现使用 SECRET_KEY 派生 Fernet key，轮换该 key 会影响历史凭据解密。首期沿用现有机制，不另建 KMS；上线前需有密钥备份/轮换迁移方案。完整连接参数、凭据、驱动异常原文、查询行均不写入日志、审计、Sentry/OTLP。</p>
+<p>需要特别处理现有验证异常链：<code>main.py</code> 会输出 <code>exc.errors()</code>，其中可能携带非法输入。敏感 DTO 使用受控校验与统一错误清洗；必须测试嵌套连接参数、错误 extra 字段、密码格式错误，不能仅使用 SecretStr 就宣称不会泄露。</p>
+<p>MySQL 使用只读账号提示、服务端只读事务、固定 SQL；禁止前端传 SQL、表达式、排序片段、URL 或驱动选项。额外参数改成有类型白名单（字符集/TLS/超时等），未知选项拒绝；不照搬自由 JDBC properties，禁止 init SQL、local infile、多语句及关闭证书验证等危险选项。TLS 验证默认开启。</p>
+<p>数据源只有具备 datasource 管理权限的用户可配置。按用户确认的调整，主机与端口完全由页面配置，不设应用级网络/端口白名单；驱动直接连接该地址并执行 TLS 主机与证书校验，不需要在 Nacos 逐项放行目标。</p>
+<p>预览输入仅 table_id、limit（默认 20、上限 100）；后端复验当前权限、表存在/启用与字段 exposed。标识来自当前目录白名单，方言正确引用；查询前复验外部结构摘要，变化返回冲突要求刷新。显式 SELECT 获准列，禁止 SELECT * 后前端隐藏；exposed=false 的字段不查询不返回，mask_policy 在服务端执行。无可见列返回明确空态。无 ORDER BY 时是任意样本，UI 不保证稳定“前 N 条”。</p>
+<p>预览不持久化、不缓存行数据，响应 no-store；限制行数之外还需列数、单元格与总字节预算，Decimal/大整数用字符串，二进制/大文本有明确截断。估计行数来自元数据并标注估计，不执行无界 COUNT(*)。</p>
+<p>连接池按 tenant+connection_id+config_revision 缓存，建议每池 2、overflow 0、全局最多 16 池；淘汰/配置变更/删除/停机 dispose，借用连接与游标始终 finally 释放，失败连接失效。保存前测试使用短连接不进入持久池；多实例在借用时读取 revision，不能只清理本进程旧池。</p>
+<p>拟定连接超时 5s、单查询 5s、预览总预算 10s；全部操作须同时有驱动读写超时和受支持的数据库执行限制，不能把线程等待超时当作真正取消。MySQL 版本、权限或驱动无法提供安全时限时明确拒绝相应能力，测试取消后连接不可继续携带后台查询。错误以稳定类别返回：网络、超时、认证、库不存在、权限不足、TLS、未知；未知原因只返回安全提示/关联 ID，不透传原始连接串。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="45-chein-api-草案">4.5 Chein API 草案<a href="#45-chein-api-草案" class="hash-link" aria-label="4.5 Chein API 草案的直接链接" title="4.5 Chein API 草案的直接链接" translate="no">​</a></h3>
+<p>全部为拟新增路由，基址 <code>/api/v1</code>；成功为 DTO，分页采用 <code>{items,total,page,page_size}</code>（与 Items 风格一致），page_size 上限 100。权限统一 <code>require_module_access(&quot;datasource&quot;, &quot;datasource:...&quot;)</code>，每个资源继续复验 tenant；body 不接收身份字段。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法与路径</th><th>主要输入 → 输出</th><th>权限后缀</th></tr></thead><tbody><tr><td>GET <code>/datasource/types</code>、GET <code>/datasource/config/{type}</code></td><td>无/type → 可用类型/受控字段描述对象（不再双重 JSON 编码）</td><td>read</td></tr><tr><td>GET <code>/datasource</code>、GET <code>/datasource/{id}</code></td><td>search,type,page,page_size / id → 公开列表/编辑 DTO，has_password</td><td>read</td></tr><tr><td>POST <code>/datasource</code>、PATCH <code>/datasource/{id}</code></td><td>name,type,connection,password?；更新 expected_revision → 公开 DTO</td><td>create / update</td></tr><tr><td>DELETE <code>/datasource/{id}</code></td><td>expected_revision → 删除结果；引用冲突 409</td><td>delete</td></tr><tr><td>POST <code>/datasource/test</code></td><td>新配置，或已授权 id+草稿覆盖 → success,reason_code,message,tested_at,测试版本标识</td><td>test（引用已存源另验 read/update）</td></tr><tr><td>GET <code>/catalog/databases</code></td><td>datasource_id,page,page_size → 库目录</td><td>read</td></tr><tr><td>GET <code>/catalog/tables</code></td><td>parent_id,search,prefix,keyword,enabled,tags,page,page_size → 表目录</td><td>read</td></tr><tr><td>GET <code>/catalog/tables/{id}</code>、GET <code>/catalog/tables/{id}/columns</code></td><td>id；字段分页/搜索 → 表详情及主键/索引、字段 DTO</td><td>read</td></tr><tr><td>GET <code>/catalog/tables/{id}/foreign-keys</code></td><td>id,page,page_size → 有序外键、目标启用/解析状态</td><td>read</td></tr><tr><td>POST <code>/catalog/tables/{id}/preview</code></td><td>limit → columns,rows,returned_count,truncated,synced_revision</td><td>preview</td></tr><tr><td>POST <code>/catalog/refresh</code>、GET <code>/catalog/tasks/{id}</code></td><td>datasource_id,table_id? → task_id / status,progress,error,summary</td><td>sync</td></tr><tr><td>GET <code>/catalog/changes</code></td><td>datasource_id,entity_id?,task_id?,page,page_size → 差异及 before/after</td><td>read</td></tr><tr><td>PATCH <code>/catalog/entities/{id}/config</code></td><td>业务名/描述/标签，enabled 或 exposed/mask_policy，expected_revision → 配置 DTO</td><td>configure</td></tr><tr><td>POST <code>/catalog/tables/batch-config</code></td><td>ids+expected_revisions,enabled?,tags?,tag_mode? → 更新摘要</td><td>configure</td></tr><tr><td>POST <code>/catalog/tables/dependencies</code></td><td>ids → 缺失依赖、unresolved、环、可一并启用集合</td><td>read</td></tr></tbody></table>
+<p>沿用 DataVines 的 datasource/catalog 两个资源组；配置、预览是其下能力。不保留 script/variables/execute，不引入额外通用查询资源。路由静态路径优先避免 <code>{id}</code> 捕获；OpenAPI 定义固定 DTO 并通过 <code>pnpm generate:api -- --edition suite</code> 生成客户端。具体错误码由项目现有异常映射接入，401/403/404/409/422/503 含义保持一致。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="46-前端方案">4.6 前端方案<a href="#46-前端方案" class="hash-link" aria-label="4.6 前端方案的直接链接" title="4.6 前端方案的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">数据源列表用 ProTable：名称、类型、地址、最近连接状态/时间、创建人/时间；服务端搜索、分页和类型过滤，行操作收进二级菜单。</li>
+<li class="">新增/编辑 Drawer 用 ProForm/Ant Form，按后端类型描述渲染受控字段组件；密码留空保留，提示只读账号。测试/保存各有 loading、重复提交保护；连接参数变化立即失效测试结果，保存未测试时确认提示，不强制要求网络永远可达才允许维护配置。</li>
+<li class="">元数据页左侧库表虚拟树（分页“加载更多”），右侧表概览、字段、主外键/索引、预览、结构变更 Tabs；显示成功同步时间/任务状态，不将任务提交提示成同步完成。</li>
+<li class="">表配置页用同一目录数据的 ProTable 批量启停/标签和表/字段配置 Drawer；业务配置不挤占详情顶部，敏感字段默认提示、暴露权限明确。低频刷新/设置放二级入口。</li>
+<li class="">外键提示及“一并启用”展示受影响集合，未知目标不伪装成功；删除有确认和引用冲突说明。未采集/连接失败/无库表/未启用/无暴露字段分别提供引导；分页、防抖和过期请求处理覆盖大库场景。</li>
+</ol>
+<p>菜单/page-registry、生成客户端、locale、权限和 Edition 条件装配复用当前机制；不引入 Redux、DataVines FormRender、Monaco、Vue/Vben 或第二套状态层。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-采用改造与省略对照">5. 采用、改造与省略对照<a href="#5-采用改造与省略对照" class="hash-link" aria-label="5. 采用、改造与省略对照的直接链接" title="5. 采用、改造与省略对照的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>DataVines 概念</th><th>Chein 拟实现</th><th>原因</th></tr></thead><tbody><tr><td>DataSource + type/param</td><td>connection + 类型化参数/加密凭据</td><td>保留数据源实体和动态配置，符合现有敏感值机制</td></tr><tr><td>workspace_id</td><td>可信 tenant_id + 模块权限</td><td>不能从请求工作区 ID 推导身份；首期租户共享管理，无个人空间/新 ACL 产品</td></tr><tr><td>ConnectorFactory/SPI</td><td>内部 Connector + 静态类型注册</td><td>保留可替换连接器；Python 等价实现，无运行时插件加载</td></tr><tr><td>ConfigBuilder/FormRender</td><td>字段描述 DTO + ProForm/Ant Form</td><td>动态表单思想相同，复用 Chein 组件</td></tr><tr><td>entity_instance/rel</td><td>统一 catalog_entity + parent；独立外键 relation</td><td>保留目录模型，补齐完整外键；包含关系不再双存</td></tr><tr><td>source description/properties</td><td>源元数据 + 独立 entity_config</td><td>刷新不能冲掉业务名/标签/暴露设置</td></tr><tr><td>tag/category/rel</td><td>配置中的有界标签数组</td><td>本次仅要求批量标签，不建设标签分类治理平台</td></tr><tr><td>CommonTask/Quartz</td><td>sync_task + 现有模块后台执行</td><td>保留持久任务/异步刷新，不引入第二调度框架</td></tr><tr><td>schema_change</td><td>完整规范化结构差异记录</td><td>扩充默认值/可空/键/索引，不自动变更本体</td></tr><tr><td>execute/SQL 编辑</td><td>专用受限 preview</td><td>满足本次只读、脱敏与 SQL 安全要求</td></tr><tr><td>entity_definition、profile、DQ、血缘/报表</td><td>不实现</td><td>不属于本次范围，也不是库表管理的必要依赖</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-实施顺序与验收门禁">6. 实施顺序与验收门禁<a href="#6-实施顺序与验收门禁" class="hash-link" aria-label="6. 实施顺序与验收门禁的直接链接" title="6. 实施顺序与验收门禁的直接链接" translate="no">​</a></h2>
+<p>确认本文后按后端 → 前端 → 集成验收推进，每阶段报告改动、成功命令与未验证项；不创建分支、不暂存/提交/推送。</p>
+<ul>
+<li class="">后端：先模块装配/权限、模型迁移/RLS和加密，再 MySQL Adapter、持久目录/刷新差异、配置与预览；同期补公开 API。完整 DDL、索引、字段注释、grant/policy 与 downgrade 由独立 Alembic revision 实现；建表 SQL 从该迁移生成并核对，不另维护可绕过迁移的手写脚本。</li>
+<li class="">前端：生成客户端后实现列表/动态表单、元数据树与详情、配置批量操作；沿用后端安全边界。</li>
+<li class="">测试：MySQL 用隔离真实容器/一次性库，不能以 SQLite/内存库证明 MySQL 元数据正确；创建带复合主键/外键、索引、默认值、注释与特殊标识名的样本。验证成功/错误密码/不可达/TLS/超时、连接释放、SQL 注入、多实例配置失效。</li>
+<li class="">PostgreSQL 使用一次性数据库，先审查直接/间接 fixture；共享库测试串行。覆盖 CRUD、租户/无 scope/bulk DML/跨租户引用负例、runtime FORCE RLS、密码保留与响应/日志/验证异常脱敏、引用删除竞争、失败同步不删表、重试/并发/权限变化、配置保持和预览上限。</li>
+<li class="">前端 Vitest 覆盖动态表单、测试失效、密码省略、配置/批量校验和迟到请求；真实浏览器验收 500+ 表的加载与未展开搜索、10 表启用刷新保持、外键带上、DDL 后差异、不可见敏感列。记录数据规模/环境与耗时，不能以虚拟滚动组件存在代替性能证据。</li>
+<li class="">运行 <code>cd backend &amp;&amp; uv run ruff check app tests</code>、受影响 pytest、迁移 upgrade/downgrade/对应 tests、<code>uv run alembic check</code>；<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:pro:test</code>、受影响构建；装配变更跑 Base/Items/Suite Edition 构建及边界/Manifest tests。浏览器截图按仓库开发制品脚本上传，不写源码目录。</li>
+</ul>
+<p>初版提炼阶段仅完成源码/文档核对；后续实现证据统一维护在 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">交付说明</a>，本提案不是上线报告。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-待确认的边界与假设">7. 待确认的边界与假设<a href="#7-待确认的边界与假设" class="hash-link" aria-label="7. 待确认的边界与假设的直接链接" title="7. 待确认的边界与假设的直接链接" translate="no">​</a></h2>
+<p>确认本文即确认以下实施默认值：以已固定的上游提交为参考；新增独立 datasource 模块，仅 Suite；租户共享资源受模块 RBAC 管理；Python/SQLAlchemy + MySQL Adapter 代替 JDBC；沿用统一目录实体并分离人工配置；采用 PostgreSQL 持久目录、异步手动刷新；首期仅 MySQL、预览默认 20/最多 100 行；扩展 IRI 字段不触发本体写入。</p>
+<p>仍需部署时提供获准 MySQL 目标网络、只读凭据和隔离测试环境，凭据不得写入文档。若需要参考另一个二开版本，或数据源应为个人私有/细粒度 ACL，需在编码前修订本节及隔离设计。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/datasource-design.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/platform/implementation/">模块化架构实施基线</a></li><li><a href="/chein-doc-site/reference/development/backend/module-guide/">新增业务模块指南</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-api/">数据源 API 与数据库</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li><li><a href="/chein-doc-site/reference/development/frontend/architecture/">前端架构与技术栈</a></li><li><a href="/chein-doc-site/reference/development/ontology/design/">Chein 原生本体设计</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/datasource/datasource-api/">数据源 API 与数据库</a></li><li><a href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源与数据表管理交付说明</a></li><li><a href="/chein-doc-site/reference/development/start/">开发入口</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fdatasource%2Fdatasource-design%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/datasource/datasource-delivery/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">数据源与数据表管理交付说明</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/documentation/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">维护与发布文档中心</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-参考范围与结论" class="table-of-contents__link toc-highlight">1. 参考范围与结论</a></li><li><a href="#2-datavines-已核实的设计" class="table-of-contents__link toc-highlight">2. DataVines 已核实的设计</a><ul><li><a href="#21-实体字段与关系" class="table-of-contents__link toc-highlight">2.1 实体、字段与关系</a></li><li><a href="#22-连接器与插件" class="table-of-contents__link toc-highlight">2.2 连接器与插件</a></li><li><a href="#23-元数据获取持久化与刷新" class="table-of-contents__link toc-highlight">2.3 元数据获取、持久化与刷新</a></li><li><a href="#24-后端-api-清单" class="table-of-contents__link toc-highlight">2.4 后端 API 清单</a></li><li><a href="#25-前端结构与交互" class="table-of-contents__link toc-highlight">2.5 前端结构与交互</a></li></ul></li><li><a href="#3-chein-当前事实与复用位置" class="table-of-contents__link toc-highlight">3. Chein 当前事实与复用位置</a></li><li><a href="#4-拟实施方案待确认" class="table-of-contents__link toc-highlight">4. 拟实施方案（待确认）</a><ul><li><a href="#41-所有权与最小分层" class="table-of-contents__link toc-highlight">4.1 所有权与最小分层</a></li><li><a href="#42-数据模型草案" class="table-of-contents__link toc-highlight">4.2 数据模型草案</a></li><li><a href="#43-同步差异与性能" class="table-of-contents__link toc-highlight">4.3 同步、差异与性能</a></li><li><a href="#44-连接安全与预览" class="table-of-contents__link toc-highlight">4.4 连接、安全与预览</a></li><li><a href="#45-chein-api-草案" class="table-of-contents__link toc-highlight">4.5 Chein API 草案</a></li><li><a href="#46-前端方案" class="table-of-contents__link toc-highlight">4.6 前端方案</a></li></ul></li><li><a href="#5-采用改造与省略对照" class="table-of-contents__link toc-highlight">5. 采用、改造与省略对照</a></li><li><a href="#6-实施顺序与验收门禁" class="table-of-contents__link toc-highlight">6. 实施顺序与验收门禁</a></li><li><a href="#7-待确认的边界与假设" class="table-of-contents__link toc-highlight">7. 待确认的边界与假设</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

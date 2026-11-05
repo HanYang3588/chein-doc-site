@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-architecture/platform/implementation" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">模块化架构实施基线 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/architecture/platform/implementation/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="模块化架构实施基线 | Chein 文档中心"><meta data-rh="true" name="description" content="模块化架构实施基线 · Chein 技术文档"><meta data-rh="true" property="og:description" content="模块化架构实施基线 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/architecture/platform/implementation/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/architecture/platform/implementation/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/architecture/platform/implementation/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"管理平台","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/管理平台-1"},{"@type":"ListItem","position":2,"name":"模块化架构实施基线","item":"https://hanyang3588.github.io/chein-doc-site/reference/architecture/platform/implementation"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="折叠侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/architecture/platform/implementation/"><span class="linkLabel_gJOC">模块化架构实施基线</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="展开侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/管理平台-1/"><span>管理平台</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">模块化架构实施基线</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>模块化架构实施基线</h1></header>
+<blockquote>
+<ul>
+<li class="">状态：实施候选基线 v1.0（技术验收完成，治理签署待办）</li>
+<li class="">基线提交：<code>c3bcfa5</code></li>
+<li class="">（前端实现说明同步；原模块化验收记录保留）</li>
+<li class="">适用范围：Fast Vben Admin 平台基座、Items 样板模块及后续 IOA、ERP 模块</li>
+</ul>
+</blockquote>
+<p>本文是<a class="" href="/chein-doc-site/reference/designs/platform/modular-product/">模块化产品架构规划</a>的实施配套，负责定义可以直接拆分为开发任务和验收项的工程基线。架构原则和历史决策仍以 <a class="" href="/chein-doc-site/reference/decisions/README/">ADR 索引</a>为准；本文与已接受 ADR 冲突时，以 ADR 为准，并通过新增 ADR 修订本文。</p>
+<p>本基线已经固定 Platform 粒度、Edition 制品、事件状态机、租户数据库边界和运行期降级策略，分别见 ADR-0010 至 ADR-0014。文中不再保留影响实现兼容性的选择项；尚未完成的是代码落地与验收，而不是目标架构决策。</p>
+<blockquote>
+<p>前端现状说明：原基线技术验收记录不能直接用于 React 重构。当前默认入口已切至 <code>web-pro</code>；
+源码、模块注册差距及 React 门禁见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。本次不改变 ADR 状态或补签治理结论。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-实施结论">1. 实施结论<a href="#1-实施结论" class="hash-link" aria-label="1. 实施结论的直接链接" title="1. 实施结论的直接链接" translate="no">​</a></h2>
+<p>项目继续采用“模块化单体 + 构建期 Edition 组合”，当前阶段不拆业务微服务、不引入运行时微前端，也不维护产品分支。本次明确要求的 <a class="" href="/chein-doc-site/reference/development/ontology/reasoner/architecture/">HermiT 隔离计算服务</a>只拥有计算任务与结果，Ontology 发布/ACL、ERP实例和用户/RBAC 仍由原模块拥有；<a class="" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/">ADR-0015</a>保持 Proposed，实施不代表团队签署。</p>
+<p>实施顺序固定为：</p>
+<ol>
+<li class="">先修正模块授权、请求鉴权和 Outbox 的正确性。</li>
+<li class="">再闭合 Edition 的前端、后端、数据库和镜像构建链路。</li>
+<li class="">增加自动租户隔离，降低新增查询造成越权的风险。</li>
+<li class="">将过重的 Platform 渐进拆成平台内核、系统能力和基础设施能力。</li>
+<li class="">Items 通过全部验收后，才以它为模板建设 IOA、ERP。</li>
+</ol>
+<p>第一阶段完成前，Items 是唯一允许继续完善的业务样板模块，不新增第二种模块接入方式。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-当前基线与目标差距">2. 当前基线与目标差距<a href="#2-当前基线与目标差距" class="hash-link" aria-label="2. 当前基线与目标差距的直接链接" title="2. 当前基线与目标差距的直接链接" translate="no">​</a></h2>
+<p>2026-10-30 移除 Ontology 的 Neo4j 独立工作室导航及专属接口，保留 OWL 构建器、共用发布/Provider/Agent 能力及模块集合。已有菜单清理和兼容影响见 <a class="" href="/chein-doc-site/reference/history/ontology/neo4j-studio-removal/">页面退役</a>。</p>
+<p>2026-10-30 新增 Suite <code>datasource</code> 模块，复用同一 ModuleDefinition、独立迁移、权限、Tenant UoW/RLS 与模块 ScheduleHandler；只拥有外部连接和持久目录，不读写 Ontology/ERP 业务数据。实施、适配差异及启用门禁见 <a class="" href="/chein-doc-site/reference/development/datasource/datasource-delivery/">数据源交付</a>。</p>
+<p>当前已经具备：</p>
+<ul>
+<li class="">Edition YAML、Build Manifest 和摘要校验。</li>
+<li class="">按 Edition 装配后端 Router。</li>
+<li class="">独立模块 Schema、Alembic 环境和版本表。</li>
+<li class="">模块访问、套餐权益、租户偏好和 RBAC 的分层判断。</li>
+<li class="">React 的模块级 OpenAPI 客户端和 Manifest 生成；页面使用手写受控映射。</li>
+<li class=""><code>public_api</code>、平台公开接口和 AST 导入边界测试。</li>
+<li class="">Outbox、重试、死信和消费者回执的基础模型。</li>
+<li class=""><code>ModuleDefinition.agent_tools</code> 装配当前 Edition 的只读 MCP 工具；业务授权仍由所属模块负责，部署与验证范围见<a class="" href="/chein-doc-site/reference/development/agent/tool-management-implementation/">工具管理实施设计</a>。</li>
+</ul>
+<p>本轮优先差距与落实情况：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>编号</th><th>差距</th><th>目标状态</th><th>进度</th></tr></thead><tbody><tr><td>G1</td><td>新模块会默认给已有套餐开通</td><td>新模块权益默认关闭，只能显式授予</td><td>已完成 M1</td></tr><tr><td>G2</td><td>请求鉴权会同步运行时记录并写数据库</td><td>请求鉴权为纯读取，运行时同步由部署命令执行</td><td>已完成 M1</td></tr><tr><td>G3</td><td>无消费者事件会被标记为已发布</td><td>只有完成声明的投递目标后才能标记成功</td><td>已完成 M2</td></tr><tr><td>G4</td><td>失败消费者缺少独立事务边界</td><td>单事件、单消费者的副作用可以完整回滚和安全重试</td><td>已完成 M2</td></tr><tr><td>G5</td><td>前端 Docker 构建未绑定 Edition</td><td>前后端镜像由同一份 Manifest 构建并校验摘要</td><td>核心实现完成 M3</td></tr><tr><td>G6</td><td>Base 镜像仍包含 Items 源码</td><td>v1 允许包含源码，但不得装配 Items 的任何运行入口</td><td>核心实现完成 M3</td></tr><tr><td>G7</td><td>租户过滤依赖每条查询手工编写</td><td>Session 自动过滤和写入校验，核心表逐步启用 RLS</td><td>Items 与 27 张 Platform 核心/Infra/身份会话及模块权益表完成；OAuth2/OIDC、租户全局表和模块全局运行时表待按可信来源分批迁移</td></tr><tr><td>G8</td><td>ModuleDefinition 多数字段未接入组合根</td><td>声明、实际注册和运行状态一致并由 CI 校验</td><td>部分完成 M2</td></tr><tr><td>G9</td><td>Platform 聚合过多能力</td><td>平台内核、系统能力和基础设施能力边界清晰</td><td>模型、Infra、数据库连接及配置/导航/RBAC bootstrap 已拆分；遗留跨上下文服务按新增功能逐步收敛</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-架构事实源">3. 架构事实源<a href="#3-架构事实源" class="hash-link" aria-label="3. 架构事实源的直接链接" title="3. 架构事实源的直接链接" translate="no">​</a></h2>
+<p>各类状态只能有一个人工维护的事实源：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>信息</th><th>唯一事实源</th><th>派生结果</th></tr></thead><tbody><tr><td>Edition 包含的模块</td><td><code>editions/&lt;edition&gt;.yaml</code></td><td>Build Manifest、前后端注册表、构建产物</td></tr><tr><td>模块代码契约</td><td><code>ModuleDefinition</code></td><td>Router、迁移、权限、事件、Worker 注册</td></tr><tr><td>构建版本组合</td><td><code>build-manifest.json</code></td><td>前后端摘要、部署审计、兼容性检查</td></tr><tr><td>模块期望状态</td><td><code>ModuleRegistry.desired_state</code></td><td>是否允许运行模块能力</td></tr><tr><td>模块实际状态</td><td>迁移器和健康检查写入的 <code>observed_state</code></td><td>启动门禁和运维展示</td></tr><tr><td>套餐模块权益</td><td><code>TenantPlanModule</code></td><td>租户的基础模块权益</td></tr><tr><td>合同例外</td><td><code>TenantModuleEntitlementOverride</code></td><td>限时授予或收回</td></tr><tr><td>租户启用偏好</td><td><code>TenantModule</code></td><td>在已有权益内启用或停用</td></tr><tr><td>用户操作权限</td><td>Permission、Role、Menu 关系</td><td>API 和前端按钮授权</td></tr></tbody></table>
+<p>禁止：</p>
+<ul>
+<li class="">通过环境变量临时增加 Edition 未包含的模块。</li>
+<li class="">通过菜单是否存在推断模块安装或权益状态。</li>
+<li class="">通过数据库中存在某张表推断模块已就绪。</li>
+<li class="">由前端 Manifest 覆盖后端 Manifest，或反向覆盖。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-目标模块边界">4. 目标模块边界<a href="#4-目标模块边界" class="hash-link" aria-label="4. 目标模块边界的直接链接" title="4. 目标模块边界的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-模块分层">4.1 模块分层<a href="#41-模块分层" class="hash-link" aria-label="4.1 模块分层的直接链接" title="4.1 模块分层的直接链接" translate="no">​</a></h3>
+<!-- -->
+<p>模块职责：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模块</th><th>拥有能力</th><th>不应拥有</th></tr></thead><tbody><tr><td><code>platform/kernel</code></td><td>认证、用户、租户、RBAC、菜单、模块注册、请求上下文</td><td>文件存储、短信、邮件、具体业务流程</td></tr><tr><td><code>platform/system</code></td><td>部门、岗位、字典、系统参数、公告</td><td>登录协议、业务单据、通用存储实现</td></tr><tr><td><code>platform/infra</code></td><td>文件、存储、短信、邮件、日志、消息 Transport</td><td>组织权限、采购、审批业务状态</td></tr><tr><td><code>items</code></td><td>样板业务 CRUD、导入导出</td><td>平台 ORM、通用模块基础设施</td></tr><tr><td><code>ioa</code></td><td>流程、待办、办公协同、审批 Provider</td><td>ERP 单据和库存状态</td></tr><tr><td><code>erp</code></td><td>采购、销售、库存、结算</td><td>IOA 内部实现和流程表</td></tr></tbody></table>
+<p><code>kernel</code>、<code>system</code>、<code>infra</code> 在 v1 中都是 Platform 内部包，不进入 Edition YAML，不独立授权，也不维护独立模块版本。第一轮先形成代码和导入边界，不迁移 Platform 现有 <code>public</code> Schema。只有出现独立授权、发布、扩容或合规隔离要求时，才通过新 ADR 把内部上下文提升为 Edition 模块。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-允许的依赖方向">4.2 允许的依赖方向<a href="#42-允许的依赖方向" class="hash-link" aria-label="4.2 允许的依赖方向的直接链接" title="4.2 允许的依赖方向的直接链接" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">composition root</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; module implementation</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; declared dependency.public_api</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; platform.public_api / platform.web_api</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; stable technical libraries</span><br></div></code></pre></div></div>
+<p>强制规则：</p>
+<ul>
+<li class="">业务模块不能导入 <code>app.models</code>、<code>app.crud</code>、<code>app.api</code>。</li>
+<li class="">业务模块只能从平台的 <code>public_api</code> 和 <code>web_api</code> 获取平台能力。</li>
+<li class="">业务模块只能导入已声明依赖模块的 <code>public_api</code>。</li>
+<li class="">可选模块之间不能形成 Python import 依赖。</li>
+<li class="">公开 DTO 不能包含 ORM、Session、Request 或第三方 SDK 对象。</li>
+<li class="">平台核心不能导入具体业务模块；组合根和生成注册表除外。</li>
+</ul>
+<p>现有 <a href="https://github.com/HanYang3588/chein/blob/main/backend/tests/modules/test_module_boundaries.py" target="_blank" rel="noopener noreferrer" class="">test_module_boundaries.py</a> 继续作为最低门禁，后续增加事件、权限和 Schema 所有权检查。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-目标目录">5. 目标目录<a href="#5-目标目录" class="hash-link" aria-label="5. 目标目录的直接链接" title="5. 目标目录的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="51-后端">5.1 后端<a href="#51-后端" class="hash-link" aria-label="5.1 后端的直接链接" title="5.1 后端的直接链接" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">backend/app/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  composition/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    registry.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    lifecycle.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    capabilities.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    events.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  platform/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    module.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    public_api/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    web_api.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    kernel/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    system/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    infra/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  modules/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    contracts.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    manifest.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    access.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    migrations.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    items/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      module.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      public_api/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        dto.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        events.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        queries.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        commands.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      domain/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      application/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ports.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        services/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      infrastructure/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        models.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        repositories.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      routes/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      permissions.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      menus.py</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      migrations/</span><br></div></code></pre></div></div>
+<p>迁移期间允许 <code>platform</code> 继续使用现有目录，但新业务代码不得写回 <code>app.models</code>、<code>app.crud</code> 和 <code>app.api.routes</code>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="52-前端">5.2 前端<a href="#52-前端" class="hash-link" aria-label="5.2 前端的直接链接" title="5.2 前端的直接链接" translate="no">​</a></h3>
+<p>默认应用为 <code>frontend/apps/web-pro</code>（React / Umi Max / Ant Design Pro）。当前路径：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">frontend/apps/web-pro/src/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  app.tsx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  api/                          # Platform 手写适配</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  services/generated/platform/  # 生成的 Platform 客户端</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  runtime/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    build-manifest.ts           # 生成的 Manifest</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    manifest.ts                 # 兼容校验</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    menu.tsx                    # 后端菜单适配</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  pages/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Workspace.tsx               # 当前组合根与受控 pageMap</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    platform/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    items/                      # 当前集中迁移页面</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    erp/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    agent/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  modules/&lt;module_code&gt;/api/generated/</span><br></div></code></pre></div></div>
+<p>目标约束不变：业务页面、私有组件、Hooks、locale 与 API 应进入
+<code>src/modules/&lt;module_code&gt;</code>；模块只依赖本模块 API、Platform 公开 API 和稳定共享 UI，
+不能相互导入可选业务模块实现。</p>
+<p>当前 <code>Workspace.tsx</code> 按 Manifest 注册 Items/ERP 映射，尚无 React
+<code>generated-registry.ts</code> / <code>module.ts</code> 实现。静态注册生成、集中页面归位和 Base dist 裁剪
+仍是前端收口任务，不因主框架迁移完成而自动满足。后端旧 <code>.vue</code> component 字符串
+是兼容 key，不应更名为文件路径。开发命令和执行链路见<a class="" href="/chein-doc-site/reference/development/frontend/architecture/">前端架构</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-moduledefinition-落地契约">6. ModuleDefinition 落地契约<a href="#6-moduledefinition-落地契约" class="hash-link" aria-label="6. ModuleDefinition 落地契约的直接链接" title="6. ModuleDefinition 落地契约的直接链接" translate="no">​</a></h2>
+<p>目标结构如下，字段名可以随实现微调，但语义不得退化为字符串列表和 import 副作用：</p>
+<div class="language-python codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-python codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token decorator annotation punctuation" style="color:#393A34">@dataclass</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">frozen</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">True</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">class</span><span class="token plain"> </span><span class="token class-name">ModuleDefinition</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    code</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">str</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    version</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">str</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    api_prefix</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">str</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    permission_prefix</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">str</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    dependencies</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">ModuleDependency</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    routers</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">RouterSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    migration</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> MigrationSpec</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    permissions</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">PermissionSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    menus</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">MenuSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    published_events</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">PublishedEventSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_consumers</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">EventConsumerSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    capability_providers</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">CapabilityProviderSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    capability_requirements</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">CapabilityRequirement</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    reference_guards</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">ReferenceGuardSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    configuration</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> ConfigSpec</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    workers</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">WorkerSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    schedules</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token builtin">tuple</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">ScheduleSpec</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    lifecycle</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> LifecycleHooks</span><br></div></code></pre></div></div>
+<p>组合根在启动或构建时验证：</p>
+<ul>
+<li class="">模块编码、版本和依赖图合法且无环。</li>
+<li class="">Router 路径属于模块 API 前缀。</li>
+<li class="">权限码属于模块权限前缀。</li>
+<li class="">菜单引用的权限和前端组件存在。</li>
+<li class="">数据表属于模块声明的 PostgreSQL Schema。</li>
+<li class="">实际发布事件均已声明，消费者版本兼容。</li>
+<li class="">必选能力存在且只有一个确定 Provider。</li>
+<li class="">ReferenceGuard、Worker、Schedule 已被实际注册。</li>
+<li class="">必填配置存在，Secret 只声明引用而不进入 Manifest。</li>
+<li class="">生命周期钩子执行失败会使模块进入 <code>DEGRADED</code>。</li>
+</ul>
+<p>禁止在 <code>module.py</code> 导入时修改全局字典。ReferenceGuard、事件消费者和 Provider 作为声明对象交给组合根注册。</p>
+<p>能力 Provider 的选择顺序固定为：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">业务实例显式绑定</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; 当前租户 capability policy</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; Edition 默认 Provider</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; 唯一健康 Provider</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; CAPABILITY_UNAVAILABLE</span><br></div></code></pre></div></div>
+<p>长生命周期实例创建时保存 <code>provider_code</code>、<code>provider_version</code> 和外部实例标识。Provider 后续禁用或变更不能让既有实例自动切换。能力命令必须定义幂等键、超时、稳定错误码和是否允许业务补偿；本地 Provider 也遵循相同契约。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-请求访问链路">7. 请求访问链路<a href="#7-请求访问链路" class="hash-link" aria-label="7. 请求访问链路的直接链接" title="7. 请求访问链路的直接链接" translate="no">​</a></h2>
+<p>业务 API 的访问顺序固定为：</p>
+<!-- -->
+<p>请求链路的硬约束：</p>
+<ul>
+<li class="">Manifest 在进程启动时加载并校验一次，请求中不能重复读取 Edition YAML。</li>
+<li class="">模块访问检查不得插入、更新或 <code>flush</code> 任何数据库记录。</li>
+<li class="">模块注册同步只在迁移、prestart 或显式管理命令执行。</li>
+<li class="">超级管理员可以绕过业务 RBAC，但不能绕过未安装、未就绪和无权益状态。</li>
+<li class="">权限错误使用稳定错误码，不能依赖英文错误消息映射。</li>
+<li class="">模块状态或权益变化后，统一失效 RBAC 和模块访问缓存。</li>
+</ul>
+<p>访问判定由单一 <code>ModuleAccessRepository</code> 在一次数据库查询中返回模块状态、套餐权益、合同覆盖和租户偏好。允许使用 Redis 缓存完整判定，但必须满足：</p>
+<ul>
+<li class="">Cache key 包含租户授权版本和 Manifest digest。</li>
+<li class="">状态或权益事务提交后递增授权版本，再发布失效通知。</li>
+<li class="">Redis 不可用时回源数据库，不能因为缓存异常放行。</li>
+<li class="">数据库不可用时失败关闭。</li>
+<li class="">缓存实现不得改变判定顺序和错误码。</li>
+</ul>
+<p>模块权益计算顺序：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">有效的合同覆盖</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; 有效套餐模块配置</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  &gt; 默认无权益</span><br></div></code></pre></div></div>
+<p>租户偏好只能在已有权益内关闭或开启模块，不能创造权益。新增业务模块对所有已有套餐默认 <code>disabled</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-多租户隔离">8. 多租户隔离<a href="#8-多租户隔离" class="hash-link" aria-label="8. 多租户隔离的直接链接" title="8. 多租户隔离的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="81-模型分类">8.1 模型分类<a href="#81-模型分类" class="hash-link" aria-label="8.1 模型分类的直接链接" title="8.1 模型分类的直接链接" translate="no">​</a></h3>
+<p>所有持久化模型必须明确属于以下一种：</p>
+<ul>
+<li class=""><code>TenantOwned</code>：数据只能被单个租户访问。</li>
+<li class=""><code>PlatformGlobal</code>：平台全局数据，仅平台管理接口访问。</li>
+<li class=""><code>ModuleRuntime</code>：模块运行状态和构建信息。</li>
+</ul>
+<p>禁止使用“模型没有 <code>tenant_id</code>，所以它是全局表”的隐式约定。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="82-unit-of-work">8.2 Unit of Work<a href="#82-unit-of-work" class="hash-link" aria-label="8.2 Unit of Work的直接链接" title="8.2 Unit of Work的直接链接" translate="no">​</a></h3>
+<p>租户数据访问的唯一入口是 <code>TenantUnitOfWork(tenant_id)</code>：</p>
+<ul>
+<li class="">API 从验证后的 TenantContext 创建 UoW。</li>
+<li class="">Event Consumer 从可信事件信封创建 UoW。</li>
+<li class="">Schedule 先取得待处理租户列表，再逐租户创建 UoW。</li>
+<li class="">CLI 必须显式传入 tenant_id，或使用受审计的 PlatformUnitOfWork。</li>
+<li class="">缺少 tenant_id 时失败关闭。</li>
+</ul>
+<p><code>ContextVar</code> 只负责在调用链传播当前 UoW，不是租户身份的事实源。业务模块不能取得 PlatformUnitOfWork 工厂。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="83-orm-与数据库防护">8.3 ORM 与数据库防护<a href="#83-orm-与数据库防护" class="hash-link" aria-label="8.3 ORM 与数据库防护的直接链接" title="8.3 ORM 与数据库防护的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">Session 对 <code>TenantOwned</code> 自动应用 <code>with_loader_criteria</code>。</li>
+<li class=""><code>before_flush</code> 校验新增、更新和关联对象的 tenant_id。</li>
+<li class="">Tenant UoW 禁止 ORM bulk update/delete 和未包装 raw SQL。</li>
+<li class="">Items 和所有新业务模块表启用 <code>ENABLE/FORCE ROW LEVEL SECURITY</code>。</li>
+<li class=""><code>app_runtime</code> 每个事务使用 <code>SET LOCAL app.tenant_id</code>，设置缺失时 RLS 拒绝访问。</li>
+<li class="">连接归还池前必须结束事务，禁止使用跨事务 session-level <code>SET</code>。</li>
+</ul>
+<p>当前部署已启用的数据库角色为：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>角色</th><th>用途</th><th>已验证限制</th></tr></thead><tbody><tr><td><code>app_runtime</code></td><td>API、Worker、Schedule</td><td>非超级用户、不能建库/建角色、无 <code>BYPASSRLS</code>；Compose 和 CI 已使用该角色</td></tr><tr><td>部署管理员凭据</td><td>prestart 迁移、角色授权和播种</td><td>不注入 API、Worker 或 Schedule 进程</td></tr></tbody></table>
+<p>下列角色是目标部署模型，不是当前已启用事实；只有在凭据轮换、独立连接池、审计和 N-1 演练均完成后才能标记为启用：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>角色</th><th>目标用途</th><th>启用前验收</th></tr></thead><tbody><tr><td><code>app_platform</code></td><td>受审计的跨租户平台操作</td><td>独立连接池、只允许显式目标租户 UoW、跨租户 CLI/HTTP 写入审计</td></tr><tr><td><code>app_migrator</code></td><td>DDL 和迁移</td><td>迁移作业改用专用短期凭据，应用进程不可获取</td></tr><tr><td><code>app_readonly</code></td><td>受控运维查询</td><td>只读授权、有效期与访问审计</td></tr></tbody></table>
+<p>现有 Platform 租户表按独立迁移计划逐步接入 RLS；完成前继续保留显式 tenant 条件和跨租户负向测试。详细规则见 <a class="" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/">ADR-0013</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="84-自动检查">8.4 自动检查<a href="#84-自动检查" class="hash-link" aria-label="8.4 自动检查的直接链接" title="8.4 自动检查的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">AST 测试检查业务租户模型继承 <code>TenantOwned</code>。</li>
+<li class="">Repository 的读取、更新、删除都执行跨租户负向测试。</li>
+<li class="">API、Worker、Schedule 共用同一套租户隔离契约测试。</li>
+<li class="">HTTP 平台跨租户写操作必须产生操作审计；CLI 和运维路径在启用 <code>app_platform</code> 前不得宣称已达到同等审计保证。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-事件与-outbox">9. 事件与 Outbox<a href="#9-事件与-outbox" class="hash-link" aria-label="9. 事件与 Outbox的直接链接" title="9. 事件与 Outbox的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="91-事件信封">9.1 事件信封<a href="#91-事件信封" class="hash-link" aria-label="9.1 事件信封的直接链接" title="9.1 事件信封的直接链接" translate="no">​</a></h3>
+<p>所有跨模块事件使用统一信封：</p>
+<div class="language-json codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-json codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;event_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;uuid&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;event_type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;platform.user.archived&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;event_version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;tenant_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;uuid-or-null&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;aggregate_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;stable-id&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;occurred_at&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;RFC3339 timestamp&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;trace_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;trace-id&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;payload&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>事件类型和版本分字段保存，<code>event_type</code> 不再混用 <code>.v1</code> 后缀。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="92-投递语义">9.2 投递语义<a href="#92-投递语义" class="hash-link" aria-label="9.2 投递语义的直接链接" title="9.2 投递语义的直接链接" translate="no">​</a></h3>
+<p>事件、投递目标和消费回执分开建模：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">OutboxEvent: pending / complete / dead_letter</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; EventDelivery(local_consumer): pending / processing / delivered / dead_letter</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; EventDelivery(external_broker): pending / processing / delivered / dead_letter</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">InboxReceipt: UNIQUE (consumer_name, event_id)</span><br></div></code></pre></div></div>
+<ul>
+<li class="">业务状态、OutboxEvent 和初始 EventDelivery 在同一事务提交。</li>
+<li class="">Worker 在短事务内写入 <code>locked_by/locked_until</code> 领取 Delivery，避免处理期间长期持有数据库锁。</li>
+<li class="">本地消费者在自己的模块事务中提交业务副作用和 InboxReceipt。</li>
+<li class="">Inbox 提交后再确认 Delivery；两者之间崩溃时，重试通过 InboxReceipt 跳过重复副作用并完成确认。</li>
+<li class="">外部 Broker Delivery 只有收到 Broker ACK 后才进入 delivered。</li>
+<li class="">所有 required Delivery 成功后 OutboxEvent 才进入 complete。</li>
+<li class="">required Delivery 死信会使事件死信；optional Delivery 失败只告警，不阻塞事件完成。</li>
+<li class="">没有 Delivery target 且未显式声明 <code>allow_zero_subscribers</code> 的可靠事件在构建时失败。</li>
+<li class=""><code>allow_zero_subscribers</code> 只表示当前 Edition 无消费方时事件可完成，不允许用于业务上必须产生下游状态的事件。</li>
+<li class="">禁用消费者模块时对应 Delivery 保持 pending，不增加失败次数。</li>
+<li class="">API 生命周期默认以后台线程托管既有 Outbox/Schedule Worker，<code>BACKGROUND_WORKERS_ENABLED=false</code> 可切换为独立 CLI 部署。每类连续任务通过专用 PostgreSQL session advisory lock 选主，避免多 API 进程和实例重复启动；关闭先停止领取、等待当前事务完成，再关闭锁连接。投递状态机与可信租户 UoW 不随托管位置改变。</li>
+<li class="">同一 aggregate 要求顺序时携带单调 <code>aggregate_sequence</code>，前序 required Delivery 完成前不领取后序事件。</li>
+</ul>
+<p>不再使用 <code>PUBLISHED</code> 同时表达 Transport ACK 和消费者处理完成。完整状态机见 <a class="" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/">ADR-0012</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="93-契约检查">9.3 契约检查<a href="#93-契约检查" class="hash-link" aria-label="9.3 契约检查的直接链接" title="9.3 契约检查的直接链接" translate="no">​</a></h3>
+<p>CI 从代码和 ModuleDefinition 比较：</p>
+<ul>
+<li class="">未声明的事件不能发布。</li>
+<li class="">required 事件必须存在消费者或外部 Transport。</li>
+<li class="">同一消费者名称在全局唯一。</li>
+<li class="">相同事件的主版本必须兼容。</li>
+<li class="">重复投递测试不能产生重复业务副作用。</li>
+<li class="">模拟消费者在写入后崩溃，重试后结果仍然正确。</li>
+<li class="">租约超时后其他 Worker 可以重新领取。</li>
+<li class="">同 aggregate 顺序测试不会发生越序消费。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-数据与迁移">10. 数据与迁移<a href="#10-数据与迁移" class="hash-link" aria-label="10. 数据与迁移的直接链接" title="10. 数据与迁移的直接链接" translate="no">​</a></h2>
+<p>每个业务模块拥有：</p>
+<ul>
+<li class="">独立 PostgreSQL Schema。</li>
+<li class="">独立 Alembic 目录。</li>
+<li class="">独立版本表 <code>public.alembic_version_&lt;module&gt;</code>。</li>
+<li class="">声明的表所有权清单。</li>
+</ul>
+<p>迁移顺序由模块依赖拓扑决定，<code>platform</code> 始终最先执行。迁移由独立一次性 prestart Job 执行，整个 Edition 迁移受 PostgreSQL advisory lock 保护，但每个模块独立记录状态。Manifest 包含的模块无论 desired_state 是否启用都迁移到声明版本，API 实例启动时只验证迁移结果，不执行迁移。</p>
+<p>运行状态中的 <code>actual_revision</code> 必须保存数据库真实 revision，例如 <code>items_rename_tenant_index</code>，不能保存 <code>items-head</code> 这类占位值。启动门禁比较：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">manifest migration_heads == database current_heads == module observed revision</span><br></div></code></pre></div></div>
+<p>迁移失败时：</p>
+<ul>
+<li class="">把当前模块标为 <code>DEGRADED</code>，保留已经完成的前置模块状态。</li>
+<li class="">整个新版本部署失败，新 API 实例不得进入 readiness。</li>
+<li class="">滚动发布中的旧版本继续服务，不能启动部分完成迁移的新版本。</li>
+<li class="">输出明确的失败模块、revision 和前向恢复命令。</li>
+</ul>
+<p>运行期业务模块依赖故障与迁移失败分开处理：<code>platform</code> 或数据库故障使实例退出 readiness；业务模块故障只把该模块置为 degraded，其 API 返回 503，并暂停相应 Worker 和 Schedule。现有版本实例重启时允许隔离 degraded 业务模块继续提供 Platform；发布控制器仍禁止有迁移失败模块的新版本 rollout。详细规则见 <a class="" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/">ADR-0014</a>。</p>
+<p>跨模块不得建立数据库外键。平台主数据引用保存稳定 ID 和必要快照，并通过 ReferenceGuard 控制破坏性操作。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="101-发布与回退">10.1 发布与回退<a href="#101-发布与回退" class="hash-link" aria-label="10.1 发布与回退的直接链接" title="10.1 发布与回退的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">生产迁移采用 expand-contract：先增加兼容结构，再切换读写，最后在后续版本删除旧结构。</li>
+<li class="">每次发布保证数据库同时兼容 N 和 N-1 后端；破坏性 contract 至少跨一个发布版本完成。</li>
+<li class="">模块停用和 Edition 移除只停止装配，不自动删除 Schema、表、事件和历史数据。</li>
+<li class="">应用镜像只能回退到兼容当前数据库 revision 的版本。</li>
+<li class="">需要数据修复时发布新的前向迁移，不依赖生产环境执行 Alembic downgrade。</li>
+<li class="">每次发布记录 Manifest、镜像摘要、迁移前后 revision 和数据备份标识。</li>
+<li class="">迁移开始后发生失败，恢复流程必须先判断失败模块是否已经提交不可逆 DDL，再决定重试、前向修复或恢复备份。</li>
+</ul>
+<p>生产发布顺序固定为：</p>
+<ol>
+<li class="">在生产快照副本验证 N-1 到 N 的迁移和回滚兼容矩阵。</li>
+<li class="">确认 PITR 正常并记录发布前恢复点。</li>
+<li class="">执行唯一 prestart migration Job。</li>
+<li class="">滚动部署 N 后端 API，确认 readiness 和核心冒烟测试。</li>
+<li class="">N 后端默认托管 Worker 和 Schedule；选择独立部署时关闭内置任务，再启用兼容 Worker 入口。</li>
+<li class="">最后发布 N 前端静态资源。</li>
+<li class="">观察稳定窗口后允许执行后续 contract 清理迁移。</li>
+</ol>
+<p>回退优先回退应用和前端；数据库只前向修复。只有经过演练且确认数据恢复范围时才执行备份恢复。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-edition-构建协议">11. Edition 构建协议<a href="#11-edition-构建协议" class="hash-link" aria-label="11. Edition 构建协议的直接链接" title="11. Edition 构建协议的直接链接" translate="no">​</a></h2>
+<p>v1 后端镜像允许包含全部模块源码，Edition 的运行边界由构建期静态注册表保证。未启用模块不得注册 Router、Worker、Schedule、事件消费者和迁移。只有未来出现私有源码交付要求时才拆独立 wheel，当前不通过删除源码目录制造物理隔离。</p>
+<p>前端生产 dist 只包含当前 Edition 的静态入口。模块级 OpenAPI 客户端按模块提交仓库，CI 重新生成并检查 drift；组合 OpenAPI 只用于文档和兼容性验证，不再生成共享客户端。详细决策见 <a class="" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/">ADR-0011</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="111-manifest-v2">11.1 Manifest v2<a href="#111-manifest-v2" class="hash-link" aria-label="11.1 Manifest v2的直接链接" title="11.1 Manifest v2的直接链接" translate="no">​</a></h3>
+<p>构建 Manifest 使用确定性 Schema：</p>
+<div class="language-json codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-json codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;schema_version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;edition&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;items&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;source_revision&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;git-commit-sha&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;platform_contract_version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;modules&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;code&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;platform&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;version&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;1.0.0&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;migration_namespace&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;platform&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;migration_heads&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;revision-id&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;openapi_sha256&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;sha256:...&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;manifest_digest&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;sha256:...&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>模块按依赖拓扑和编码稳定排序。构建时间、镜像 digest、SBOM 地址和签名等非确定性信息进入独立 <code>artifact-metadata.json</code>，不参与 Manifest canonical digest。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="112-唯一入口">11.2 唯一入口<a href="#112-唯一入口" class="hash-link" aria-label="11.2 唯一入口的直接链接" title="11.2 唯一入口的直接链接" translate="no">​</a></h3>
+<p>目标命令如下，实施完成前不得在文档中宣称已经可用：</p>
+<div class="language-powershell codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-powershell codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">pnpm build:edition -- --edition base</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pnpm build:edition -- --edition items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pnpm build:edition -- --edition suite</span><br></div></code></pre></div></div>
+<p>命令按固定顺序执行：</p>
+<ol>
+<li class="">校验 Edition YAML 和依赖图。</li>
+<li class="">生成不可变 <code>build-manifest.json</code>。</li>
+<li class="">生成后端模块注册表。</li>
+<li class="">生成平台和模块 OpenAPI 契约及客户端。</li>
+<li class="">生成前端模块注册表和页面映射。</li>
+<li class="">对当前 Edition 执行后端检查、前端类型检查和构建。</li>
+<li class="">构建前后端镜像，并把同一 Manifest 写入两个镜像。</li>
+<li class="">启动镜像，比较前后端摘要并执行冒烟测试。</li>
+<li class="">输出制品清单和摘要。</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="113-制品要求">11.3 制品要求<a href="#113-制品要求" class="hash-link" aria-label="11.3 制品要求的直接链接" title="11.3 制品要求的直接链接" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">output/&lt;edition&gt;/&lt;version&gt;/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  build-manifest.json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  openapi/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    platform.json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    &lt;module&gt;.json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  frontend-dist/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  artifact-metadata.json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  sbom.spdx.json</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  checksums.txt</span><br></div></code></pre></div></div>
+<p>必须满足：</p>
+<ul>
+<li class="">前端不能包含未启用模块的页面入口和 API 客户端引用。</li>
+<li class="">后端不能注册未启用模块的 Router、Worker、Schedule 和事件消费者。</li>
+<li class="">Base 后端即使包含 Items 源码，也不能装配或执行 Items 的任何运行入口。</li>
+<li class="">前端启动前或首次加载时校验后端 Manifest 摘要；不一致时显示明确的版本错误页，不能只返回空菜单。</li>
+<li class="">生产环境设置 <code>BUILD_MANIFEST_PATH</code>，禁止根据运行时默认值重新生成 Manifest。</li>
+<li class="">镜像 OCI label 记录 Edition、source revision 和 Manifest digest。</li>
+<li class="">发布镜像生成 SBOM、执行依赖与镜像漏洞扫描，并由 CI 身份签名。</li>
+</ul>
+<p>源码物理隔离明确不属于 v1 Definition of Done，不能把它作为阻塞业务模块交付的隐含要求。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-可观测性与运维">12. 可观测性与运维<a href="#12-可观测性与运维" class="hash-link" aria-label="12. 可观测性与运维的直接链接" title="12. 可观测性与运维的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="121-工程-slo">12.1 工程 SLO<a href="#121-工程-slo" class="hash-link" aria-label="12.1 工程 SLO的直接链接" title="12.1 工程 SLO的直接链接" translate="no">​</a></h3>
+<p>以下是 v1 初始工程预算；上线取得四周基线后可以通过 ADR 调整，不能直接删除：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>指标</th><th>目标</th><th>告警</th></tr></thead><tbody><tr><td>核心管理 API 可用性</td><td>月度 99.9%</td><td>5 分钟窗口低于 99%</td></tr><tr><td>常规 API 延迟</td><td>p95 &lt; 300 ms，p99 &lt; 800 ms</td><td>连续 10 分钟超标</td></tr><tr><td>模块访问检查额外开销</td><td>缓存命中 p95 &lt; 5 ms；回源 p95 &lt; 20 ms</td><td>连续 10 分钟超标</td></tr><tr><td>Outbox required Delivery</td><td>99% 在 60 秒内 delivered</td><td>最老 pending &gt; 5 分钟</td></tr><tr><td>Dead letter</td><td>正常为 0</td><td>新增即告警</td></tr><tr><td>Edition CI 构建</td><td>单 Edition &lt; 15 分钟</td><td>连续三次超标</td></tr><tr><td>在线 DDL 阻塞</td><td><code>lock_timeout=5s</code></td><td>超时使迁移失败，不持续等待业务锁</td></tr><tr><td>RPO</td><td>5 分钟</td><td>PITR 链路异常</td></tr><tr><td>RTO</td><td>60 分钟</td><td>恢复演练超标</td></tr></tbody></table>
+<p>数据库每日全量备份并持续归档 WAL；至少每季度执行一次隔离环境恢复演练并记录实际 RPO/RTO。</p>
+<p>月度 99.9% 可用性对应约 43 分钟错误预算。月中过半前消耗超过 50% 时暂停高风险功能发布；预算耗尽后只允许可靠性、安全修复和已经批准的紧急变更。每个告警必须关联 Owner、处理 Runbook 和升级路径。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="122-模块指标与健康">12.2 模块指标与健康<a href="#122-模块指标与健康" class="hash-link" aria-label="12.2 模块指标与健康的直接链接" title="12.2 模块指标与健康的直接链接" translate="no">​</a></h3>
+<p>每个模块至少暴露：</p>
+<ul>
+<li class=""><code>desired_state</code>、<code>observed_state</code>、版本和 revision。</li>
+<li class="">最近迁移时间、最近健康检查时间和错误摘要。</li>
+<li class="">Outbox pending、retry、dead-letter 数量和最老事件年龄。</li>
+<li class="">模块 API 请求量、错误率和延迟。</li>
+<li class="">当前启用租户数和权益拒绝次数。</li>
+</ul>
+<p>健康检查分层：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>检查</th><th>用途</th><th>失败行为</th></tr></thead><tbody><tr><td>Liveness</td><td>进程是否存活</td><td>允许容器重启</td></tr><tr><td>Readiness</td><td>Platform 和共享依赖是否可服务</td><td>从流量入口摘除</td></tr><tr><td>Module health</td><td>单个业务模块依赖是否正常</td><td>隔离模块并返回 503，不影响 Platform readiness</td></tr></tbody></table>
+<p>v1 中 PostgreSQL、Manifest/注册表一致性和 Platform migration revision 属于 readiness 关键依赖。Redis、对象存储、SMTP、短信渠道、Sentry 和业务模块外部 Provider 默认属于可降级依赖：受影响功能返回稳定的 unavailable 错误，不能把故障伪装为成功，也不因此关闭无关 Platform API。新增依赖必须在 ConfigSpec 中明确标注 <code>critical</code> 或 <code>degradable</code>。</p>
+<p>模块管理界面至少支持查看状态、启停业务模块、配置套餐权益、查看死信和触发受控重试。<code>platform</code> 不允许通过普通模块管理接口停用。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="123-安全与供应链">12.3 安全与供应链<a href="#123-安全与供应链" class="hash-link" aria-label="12.3 安全与供应链的直接链接" title="12.3 安全与供应链的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">生产 Secret 只通过密钥管理服务或部署平台注入，不进入镜像、Manifest 和日志。</li>
+<li class="">应用、平台管理、迁移和只读运维使用不同数据库角色。</li>
+<li class="">Manifest digest 用于一致性，镜像签名和 CI provenance 用于真实性，二者不能互相替代。</li>
+<li class="">CI 生成 SBOM，执行依赖、容器和 Secret 扫描；高危漏洞阻断发布，例外必须有期限和批准记录。</li>
+<li class="">模块状态、权益、死信重试、跨租户操作和物理数据处理全部写入不可由普通租户修改的审计日志。</li>
+<li class="">错误响应和事件错误摘要不得包含 Token、Secret、验证码或完整个人敏感信息。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="13-ci-质量门禁">13. CI 质量门禁<a href="#13-ci-质量门禁" class="hash-link" aria-label="13. CI 质量门禁的直接链接" title="13. CI 质量门禁的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="131-edition-矩阵">13.1 Edition 矩阵<a href="#131-edition-矩阵" class="hash-link" aria-label="13.1 Edition 矩阵的直接链接" title="13.1 Edition 矩阵的直接链接" translate="no">​</a></h3>
+<div class="language-yaml codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-yaml codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">edition</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">base</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> items</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> erp</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> suite</span><span class="token punctuation" style="color:#393A34">]</span><br></div></code></pre></div></div>
+<p>这是当前已交付模块矩阵。IOA 合入前必须增加 <code>ioa</code> Edition 并把它加入同一矩阵；<code>suite</code> 始终代表所有已交付业务模块的组合，当前包含 Items 和 ERP。</p>
+<p>每个 Edition 执行：</p>
+<ul>
+<li class="">从空 PostgreSQL 数据库迁移到 head。</li>
+<li class="">从最近一个生产版本执行 N-1 到 N 升级。</li>
+<li class="">重复迁移验证幂等。</li>
+<li class="">后端启动和 readiness 检查。</li>
+<li class="">路由集合和 OpenAPI 路径快照。</li>
+<li class="">前端 API 生成、类型检查和生产构建。</li>
+<li class="">前后端 Manifest 摘要一致性检查。</li>
+<li class="">菜单组件存在性检查。</li>
+<li class="">Docker 镜像启动和登录冒烟测试。</li>
+<li class="">未启用模块没有 Router、Worker、Schedule、消费者和迁移入口。</li>
+<li class="">Manifest v2、SBOM、OCI label 和镜像签名元数据完整。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="132-分层测试">13.2 分层测试<a href="#132-分层测试" class="hash-link" aria-label="13.2 分层测试的直接链接" title="13.2 分层测试的直接链接" translate="no">​</a></h3>
+<p>测试必须分层，不能让架构测试依赖数据库：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">unit / architecture      不启动 PostgreSQL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">repository / migration  使用临时 PostgreSQL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">api integration         使用临时 PostgreSQL 和 Redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">edition smoke           使用构建后的镜像</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">e2e                     使用完整 Compose</span><br></div></code></pre></div></div>
+<p>数据库 fixture 不再全局 <code>autouse</code>。本地测试使用 <code>.env.test</code>、显式环境变量或 Testcontainers，不能默认使用 Docker 网络主机名 <code>db</code>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="133-契约门禁">13.3 契约门禁<a href="#133-契约门禁" class="hash-link" aria-label="13.3 契约门禁的直接链接" title="13.3 契约门禁的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">OpenAPI 破坏性变更检查。</li>
+<li class="">公开 DTO 和事件 Schema 兼容性检查。</li>
+<li class="">权限码重复、越界和孤儿菜单检查。</li>
+<li class="">模块依赖图和非法 import 检查。</li>
+<li class="">Schema/table 所有权检查。</li>
+<li class="">租户数据泄漏负向测试。</li>
+<li class="">Outbox 崩溃恢复和重复投递测试。</li>
+<li class="">RLS 缺少 tenant setting、Worker、Schedule 和 bulk DML 绕过测试。</li>
+<li class="">N/N-1 数据库兼容和发布顺序冒烟测试。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="14-分阶段实施计划">14. 分阶段实施计划<a href="#14-分阶段实施计划" class="hash-link" aria-label="14. 分阶段实施计划的直接链接" title="14. 分阶段实施计划的直接链接" translate="no">​</a></h2>
+<p>每个阶段独立提交、独立验收，不把 Platform 拆分和功能开发混入正确性修复。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>阶段</th><th>Milestone</th><th>Owner</th><th>Reviewer</th><th>依赖</th><th>当前状态</th><th>Exit Evidence</th></tr></thead><tbody><tr><td>A：访问控制纯化</td><td>M1</td><td>Backend Lead</td><td>Architecture Owner</td><td>无</td><td>已完成，待提交</td><td>访问 SQL 只读证据和权益矩阵测试</td></tr><tr><td>B：可靠事件基础设施</td><td>M2</td><td>Backend Lead</td><td>Architecture Owner</td><td>A</td><td>核心实现完成，待提交</td><td>ADR-0012 状态机、迁移和崩溃恢复测试</td></tr><tr><td>C：Edition 构建闭环</td><td>M3</td><td>DevOps Lead</td><td>Backend/Frontend Lead</td><td>A、B</td><td>制品与供应链工作流已落地，远端镜像门禁待验证</td><td>三种 Edition 制品、签名和冒烟报告</td></tr><tr><td>D：租户隔离纵深防御</td><td>M2</td><td>Security/Backend Lead</td><td>Architecture Owner</td><td>A</td><td>Items 与 27 张 Platform 核心/Infra/身份会话及模块权益表已接入；OAuth2/OIDC、租户全局表和模块全局运行时表待按可信来源分批迁移</td><td>ADR-0013 契约测试和 RLS 策略清单</td></tr><tr><td>E：Platform 内部拆分</td><td>M4</td><td>Platform Lead</td><td>Architecture Owner</td><td>A、D</td><td>Infra、全部持久化模型、数据库连接和配置/导航/RBAC bootstrap 已迁移；遗留跨上下文服务按新增功能收敛</td><td>内部导入边界和 Platform 回归报告</td></tr><tr><td>F：Items 样板封板</td><td>M5</td><td>Items Owner</td><td>Backend/Frontend Lead</td><td>A-E</td><td>进行中</td><td>完整 Definition of Done 证据包</td></tr></tbody></table>
+<p>阶段按依赖关系执行；B 和 D 可以在 A 完成后并行，C 需要使用稳定的访问和事件契约，F 是最终封板而不是独立功能阶段。Milestone 表示顺序而非自然日期，启动实施前由项目计划映射到具体迭代和截止日期。状态只在对应验收项进入 CI 并稳定通过后更新，不能以代码文件已经创建作为完成依据。角色对应的具体人员由项目 CODEOWNERS 或迭代计划维护。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-a访问控制纯化">阶段 A：访问控制纯化<a href="#阶段-a访问控制纯化" class="hash-link" aria-label="阶段 A：访问控制纯化的直接链接" title="阶段 A：访问控制纯化的直接链接" translate="no">​</a></h3>
+<p>改造范围：</p>
+<ul>
+<li class=""><code>backend/app/modules/access.py</code></li>
+<li class=""><code>backend/app/api/deps.py</code></li>
+<li class=""><code>backend/app/api/routes/modules.py</code></li>
+<li class="">模块访问与套餐权益测试</li>
+</ul>
+<p>任务：</p>
+<ul>
+<li class="">新模块默认无套餐权益。</li>
+<li class="">将运行时同步提取为显式 reconcile 服务和命令。</li>
+<li class="">启动时加载 Manifest，访问依赖只读缓存和数据库状态。</li>
+<li class="">为平台内核增加不可停用保护。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li class="">连续调用业务 API 不产生 <code>INSERT</code>、<code>UPDATE</code>、<code>FLUSH</code>。</li>
+<li class="">缓存未命中时模块访问状态由一次 SQL 查询返回，Redis 故障时正确回源。</li>
+<li class="">新增模块后所有已有套餐保持关闭。</li>
+<li class="">合同覆盖、套餐权益、租户偏好和 RBAC 的优先级测试通过。</li>
+<li class="">Platform 停用请求返回稳定错误码。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-b可靠事件基础设施">阶段 B：可靠事件基础设施<a href="#阶段-b可靠事件基础设施" class="hash-link" aria-label="阶段 B：可靠事件基础设施的直接链接" title="阶段 B：可靠事件基础设施的直接链接" translate="no">​</a></h3>
+<p>改造范围：</p>
+<ul>
+<li class=""><code>backend/app/modules/outbox.py</code></li>
+<li class=""><code>backend/app/modules/outbox_worker.py</code></li>
+<li class="">ModuleDefinition 事件声明</li>
+<li class="">Outbox、Inbox、死信测试</li>
+</ul>
+<p>任务：</p>
+<ul>
+<li class="">实现每事件和每消费者事务边界。</li>
+<li class="">由组合根注册消费者，取消 import 副作用。</li>
+<li class="">对齐实际事件与声明事件。</li>
+<li class="">定义零消费者和外部 Transport 语义。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li class="">消费者写数据库后抛异常，数据库副作用不会提交。</li>
+<li class="">Worker 崩溃后事件可重新领取且不重复执行业务动作。</li>
+<li class="">没有 target 且未显式允许零订阅者的可靠事件在构建时失败。</li>
+<li class="">所有 required Delivery 成功后事件才进入 <code>complete</code>。</li>
+<li class="">所有平台主数据生命周期事件有版本化 DTO。</li>
+</ul>
+<p>当前实现证据：</p>
+<ul>
+<li class=""><code>a2d4e6f8b0c1</code> 将旧 Outbox 迁移为 <code>OutboxEvent</code>、<code>EventDelivery</code>、<code>InboxReceipt</code> 三层模型。</li>
+<li class="">API 与独立 Worker 都从 Composition Root 装配 Event handler，并校验 <code>ModuleDefinition</code> 事件契约。</li>
+<li class=""><code>backend/tests/modules/test_outbox.py</code> 覆盖 required/optional、Broker ACK、幂等回执、消费者回滚、零订阅、禁用消费者和租约回收。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-cedition-构建闭环">阶段 C：Edition 构建闭环<a href="#阶段-cedition-构建闭环" class="hash-link" aria-label="阶段 C：Edition 构建闭环的直接链接" title="阶段 C：Edition 构建闭环的直接链接" translate="no">​</a></h3>
+<p>改造范围：</p>
+<ul>
+<li class="">根 <code>package.json</code></li>
+<li class=""><code>scripts/</code></li>
+<li class="">前后端 Dockerfile</li>
+<li class="">Compose 和 GitHub Actions</li>
+<li class="">前端生成注册表</li>
+</ul>
+<p>任务：</p>
+<ul>
+<li class="">实现统一 <code>build:edition</code>。</li>
+<li class="">前后端使用同一构建 Manifest。</li>
+<li class="">对 Base、Items、Suite 分别构建和启动。</li>
+<li class="">生成 Edition 制品清单和摘要。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li class=""><code>base</code> 前后端可以完整登录和加载菜单。</li>
+<li class=""><code>items</code> 和 <code>suite</code> 可以访问 Items。</li>
+<li class="">交换任意两个 Edition 的前后端镜像会得到明确版本错误。</li>
+<li class="">Base 后端不存在 Items Router、Worker、Schedule、消费者和迁移入口，前端不存在 Items 页面入口。</li>
+<li class="">Manifest v2 包含真实 migration heads、OpenAPI 摘要和 source revision。</li>
+</ul>
+<p>当前实现证据：</p>
+<ul>
+<li class=""><code>pnpm build:edition -- --edition &lt;base|items|erp|suite&gt;</code> 构建 React <code>web-pro</code>，生成 Manifest、分模块客户端和 <code>artifact-metadata.json</code>；页面使用手写受控映射。<code>--images</code> 进入镜像构建流程，其成功必须单独验证。</li>
+<li class="">Manifest v2 的 canonical digest 覆盖 source revision、模块 migration head 和模块 OpenAPI 摘要；前端初始化读取后端摘要，在渲染业务菜单前比较；不一致即停止进入业务页面。</li>
+<li class="">历史 Vben 本地验收记录中的 Base 空 <code>modulePageMap</code> 只证明旧 glob 生成行为，不证明 React dist 裁剪。React base/items/suite 构建、产物检查与真实环境 E2E 需分别执行；Docker 镜像冒烟仍需可访问基础镜像仓库的环境。</li>
+<li class=""><code>.github/workflows/release-supply-chain.yml</code> 对 Base、Items、Suite 并行构建前后端镜像，执行数据库迁移和容器健康冒烟，生成 CycloneDX SBOM，并以 Trivy 阻断 HIGH/CRITICAL 漏洞；版本标签发布到 GHCR 后使用 GitHub OIDC 进行 Cosign keyless 签名与 SBOM attest。工作流已通过 YAML 解析，本地重新生成三种后端制品成功；远端扫描、推送和签名结果仍须由 GitHub Actions 证明。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-d租户隔离纵深防御">阶段 D：租户隔离纵深防御<a href="#阶段-d租户隔离纵深防御" class="hash-link" aria-label="阶段 D：租户隔离纵深防御的直接链接" title="阶段 D：租户隔离纵深防御的直接链接" translate="no">​</a></h3>
+<p>改造范围：</p>
+<ul>
+<li class="">租户模型基类和 Session 工厂</li>
+<li class="">平台管理专用 Session</li>
+<li class="">Items Repository</li>
+<li class="">租户隔离迁移与测试</li>
+</ul>
+<p>任务：</p>
+<ul>
+<li class="">引入 <code>TenantOwned</code> 和 <code>PlatformGlobal</code>。</li>
+<li class="">实现 TenantUnitOfWork、自动查询过滤和写入校验。</li>
+<li class="">Items 启用并强制 RLS，Worker 和 Schedule 使用相同 UoW。</li>
+<li class="">收敛 Raw SQL 使用入口。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li class="">删除业务代码中的租户 where 条件后，Repository 测试仍不能跨租户读取。</li>
+<li class="">伪造其他租户 ID 的新增和更新在 flush 前失败。</li>
+<li class="">平台跨租户管理必须使用独立入口并产生审计记录。</li>
+<li class="">未设置 <code>app.tenant_id</code>、bulk DML 和 raw SQL 绕过测试失败关闭。</li>
+</ul>
+<p>当前实现证据：</p>
+<ul>
+<li class="">Items 路由通过 <code>ItemsTenantUnitOfWork</code> 和 <code>ItemsRepository</code> 访问数据，不再在 Repository 中手工拼装 <code>tenant_id</code> 条件。</li>
+<li class=""><code>items_enable_tenant_rls</code> 已为 <code>items.item</code> 启用并强制 PostgreSQL RLS；事务开始时设置 <code>app.tenant_id</code>，ORM 读取自动加过滤，flush 校验租户归属和不可变性。</li>
+<li class=""><code>backend/tests/modules/items/test_tenant_uow.py</code> 覆盖跨租户读取、跨租户写入和 ORM bulk DML 的失败关闭。现有 Platform 租户表仍按阶段计划逐表迁移，未在本阶段泛化为跨所有历史表的自动拦截器。</li>
+<li class=""><code>b6f8c1d2e3a4</code> 已为 Department、Post、Role、岗位/角色关联、字典、设置、公告和站内消息共 12 张 Platform 运营表启用并强制 PostgreSQL RLS；<code>d3e7f9a1b2c4</code> 将文件、邮件和审计的 7 张表纳入强制 RLS；<code>e4b8c2d6f0a3</code> 将短信渠道、模板和日志 3 张表纳入强制 RLS；<code>f5c9d3e7a1b4</code> 将社交客户端和社交用户 2 张表纳入强制 RLS；<code>a6d0e4f8b2c5</code> 将 <code>UserSession</code> 纳入强制 RLS；<code>c7e1a5f9b3d6</code> 将 <code>TenantModule</code> 和 <code>TenantModuleEntitlementOverride</code> 纳入强制 RLS，累计 27 张。<code>PlatformTenantUnitOfWork</code> 在解析 <code>CurrentTenant</code> 后绑定 <code>app.tenant_id</code>，自动为查询和 bulk DML 添加租户条件，并在 flush 时拒绝伪造或修改租户归属；最外层 UoW 退出时会清空事务级 GUC，防止 Worker 复用 Session 时残留前一租户。公开注册、租户初始化、受控租户切换、无认证密码恢复和跨租户模块权益管理分别使用显式 <code>privileged=True</code> 目标租户 UoW。</li>
+<li class=""><code>app.platform.provision_db_roles</code> 幂等创建 <code>app_runtime</code>：该角色无超级用户、建库、建角色或 <code>BYPASSRLS</code> 权限。Compose 的 API 和 Worker 使用此运行时角色；prestart 保留管理员凭据执行迁移与授权，再以 <code>app_runtime</code> 完成播种。Backend CI 同时以管理员验证迁移、以 <code>app_runtime</code> 验证 UoW、模块访问、文件、邮件、审计、登录、短信、社交、租户和用户 API；本地 runtime 门禁为 <code>96 passed</code>。</li>
+<li class="">短信回调现在要求 <code>tenant_code</code> query 参数，先解析活跃租户、绑定 UoW，再按请求 ID 查询日志并验证渠道；这消除了在无租户上下文下读取回调记录的路径。</li>
+</ul>
+<p>未纳入 RLS 的表不是遗漏后直接套用同一 policy，而是需要先具备下表所列可信租户来源；在此前，保留显式 tenant 条件、负向测试和受限调用入口：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据类别</th><th>当前不能直接强制 RLS 的原因</th><th>前置改造</th><th>验收证据</th></tr></thead><tbody><tr><td>OAuth2 Client、Authorization Code、Access Token</td><td><code>/oauth2/token</code> 在无用户 JWT 时仅持有公开 <code>client_id</code> 和客户端凭据，RLS 前必须先确定唯一 tenant</td><td>建立不可由请求参数伪造的 client-to-tenant 解析器，并把解析与 token/code 交换放在同一事务</td><td>双租户同名/错误 client、refresh、revoke 的 runtime 负向测试</td></tr><tr><td>Enterprise OIDC State、Identity、Login Ticket</td><td>当前模型是全局身份关联或无 tenant 字段，不能伪造为 tenant-owned 表</td><td>明确全局身份边界；仅把带 tenant 的会话/授权投影纳入 RLS</td><td>回调重放、跨租户用户映射和禁用用户回归</td></tr><tr><td>TenantMembership、TenantProfile</td><td>登录、租户切换和平台管理需要在 UoW 建立前解析成员关系和生命周期</td><td>拆出只含解析所需字段的受控目录，或引入受审计平台查询入口</td><td>无 token、过期租户、跨租户切换与平台列表测试</td></tr><tr><td>ModuleStateAudit、Outbox/EventDelivery/Inbox</td><td>存在 <code>tenant_id IS NULL</code> 的全局状态，Worker 需要先 claim 再按事件租户处理</td><td>分离全局控制面与 tenant event stream；每个 tenant event 在 UoW 内执行</td><td>Worker claim、重试、死信与跨租户投递负向测试</td></tr><tr><td>CapabilityBinding</td><td>虽有 tenant_id，但通用 capability API 尚未强制接收 UoW</td><td>以 tenant-aware repository/public API 取代裸 Session 调用</td><td>Provider bind/close 的 runtime 读写与 bulk DML 测试</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-eplatform-内部拆分">阶段 E：Platform 内部拆分<a href="#阶段-eplatform-内部拆分" class="hash-link" aria-label="阶段 E：Platform 内部拆分的直接链接" title="阶段 E：Platform 内部拆分的直接链接" translate="no">​</a></h3>
+<p>任务：</p>
+<ul>
+<li class="">第一批迁移文件、存储、短信、邮件、日志到 <code>infra</code>。</li>
+<li class="">将相关模型、Router、服务和菜单按所有权移动；历史 Alembic revision 保持原位且不可改写。</li>
+<li class="">通过 capability 向业务模块提供文件和消息能力。</li>
+<li class="">分解集中式 <code>models.py</code> 和 <code>core/db.py</code>。</li>
+<li class="">Platform 后续迁移仍使用同一 Alembic 链，但在迁移元数据中标注内部上下文 Owner。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li class="">Edition 仍只声明一个 <code>platform</code>，不出现 <code>kernel/system/infra</code>。</li>
+<li class="">Platform 内核不导入 Infra 实现。</li>
+<li class="">Infra 不直接访问用户 ORM，通过平台公开接口解析用户信息。</li>
+<li class="">Alembic metadata 聚合只用于迁移，不成为业务 import 入口。</li>
+</ul>
+<p>当前实现证据：</p>
+<ul>
+<li class=""><code>backend/tests/architecture/test_import_boundaries.py</code> 在 CI 级别检查 Items 不导入 <code>app.models</code>、平台内部实现或 Router；Platform 核心不导入 Items；<code>public_api</code> 不反向导入实现层。</li>
+<li class="">Items 已通过 <code>platform.web_api</code> 获取 Web 集成能力，ReferenceGuard 也已改为 <code>ModuleDefinition</code> 声明而非模块导入副作用。</li>
+<li class="">文件 Router 和持久化模型已迁入 <code>platform.infra.files_router</code>、<code>platform.infra.file_models</code>，并通过 <code>platform.infra.storage</code> 使用存储能力，底层实现在 <code>platform.infra.storage_impl</code>；旧 <code>app.api.routes.files</code> 与 <code>app.storage</code> 保留兼容转发入口。</li>
+<li class="">邮件 Router 和发送适配器已迁入 <code>platform.infra.mail_router</code>、<code>platform.infra.mail</code>；旧 <code>app.api.routes.mail</code> 与 <code>app.mail</code> 保留兼容转发入口。审计写入适配器、日志 Router 和模型已迁入 <code>platform.infra.audit</code>、<code>platform.infra.logs_router</code>、<code>platform.infra.audit_models</code>；<code>app.audit</code> 保留兼容转发入口。</li>
+<li class="">审计日志和短信 Router 已迁入 <code>platform.infra.logs_router</code>、<code>platform.infra.sms_router</code>；旧 <code>app.api.routes.logs</code>、<code>app.api.routes.sms</code> 仅保留兼容转发，Platform 组合根直接挂载新 Router。</li>
+<li class="">文件、短信、邮件和审计 ORM 模型已物理迁入对应 <code>platform.infra.*_models</code>；模块运行时、配置、授权、租户和身份模型分别迁入 <code>platform.core.runtime_models</code>、<code>configuration_models</code>、<code>authorization_models</code>、<code>tenancy_models</code> 和 <code>identity_models</code>。<code>app.models</code> 仅保留兼容导出与尚未按业务上下文归类的通用 API DTO，不再定义 Platform ORM 表。</li>
+<li class=""><code>platform.migration_metadata</code> 为五个 Core 上下文和四个 Infra 上下文声明物理模型模块、表和唯一 Owner；模块权益表归属 <code>core.module-runtime</code>，不再错误归属租户上下文。Platform Alembic 环境先装配所有物理模型组，再加载兼容入口；架构测试验证表注册、兼容类型同一性和装配顺序。</li>
+<li class=""><code>core.module-runtime</code>、<code>core.configuration</code>、<code>core.authorization</code>、<code>core.tenancy</code> 和 <code>core.identity</code> 的全部生产消费者均已直接依赖物理模型；AST 架构测试扫描整个 <code>app</code> 目录，禁止从聚合模型重新导入已迁移类型，并禁止 <code>platform/core</code> 反向导入 <code>app.models</code>、Infra、Router 或业务模块。历史从 <code>app.models</code> 间接导入时钟的路径也已清除。Platform 与 Items 的 Alembic drift 检查均无新增操作。</li>
+<li class="">数据库连接已迁入 <code>core.database</code>，默认租户、菜单、权限、配置和基础设施播种迁入 <code>platform.bootstrap</code>；所有生产代码已离开旧 <code>core.db</code>，该文件只保留兼容转发。架构测试会拒绝新的生产导入重新使用该 facade。</li>
+<li class="">字典、设置、文件存储、短信、邮件和站内消息模板的默认数据播种已进一步迁入 <code>platform.bootstrap_configuration</code>；<code>platform.bootstrap</code> 仅作为租户/RBAC/菜单与子 bootstrap 的组合根。架构测试禁止组合根重新直接导入配置或基础设施 ORM。</li>
+<li class=""><code>platform_table_owners()</code> 为每张 <code>public</code> schema 的 Platform 表声明唯一内部 Owner，并由架构测试拒绝遗漏或重复归属；<code>items.item</code> 由 Items namespace 管理，不参与 Platform 所有权清单。</li>
+<li class="">本地完整后端回归已执行 <code>226 passed</code>（含 Items 迁移、RLS、访问、事件与 Platform API）；Items migration 测试和 Edition CI 均比较脚本目录的实际 head，不再硬编码过期 revision。</li>
+<li class="">数据库 fixture 已取消全局 <code>autouse</code>，API client 和数据库测试显式声明依赖；架构与模块边界测试已在不提供 PostgreSQL 主机变量的环境下独立通过。</li>
+<li class=""><code>core.configuration</code> 拆分后，架构/模块边界测试在无数据库主机变量时执行 <code>20 passed</code>；配置、公告、站内消息、文件、登录和租户相关接口回归执行 <code>62 passed</code>，Platform 与 Items Alembic drift 均未检测到新操作。</li>
+<li class=""><code>core.authorization</code> 拆分后，架构/模块边界测试在无数据库主机变量时执行 <code>21 passed</code>，RBAC、用户、组织主数据、登录和租户重点回归执行 <code>89 passed</code>；随后完整后端回归执行 <code>223 passed</code>，Platform 与 Items Alembic drift 均未检测到新操作。</li>
+<li class=""><code>core.tenancy</code> 拆分后，架构/模块边界测试在无数据库主机变量时执行 <code>22 passed</code>，租户、登录、用户、模块权益、通知和社交重点回归执行 <code>96 passed</code>；<code>core.identity</code> 拆分后边界测试执行 <code>23 passed</code>，登录、OAuth2、社交、用户、租户、文件和审计重点回归执行 <code>93 passed</code>。该阶段完整后端回归执行 <code>225 passed</code>，两套 Alembic drift 均未检测到新操作。</li>
+<li class=""><code>core.database</code>/<code>platform.bootstrap</code> 拆分后，架构/模块边界测试在无数据库主机变量时执行 <code>24 passed</code>，完整后端回归执行 <code>226 passed</code>；Platform 与 Items Alembic drift 均未检测到新操作。</li>
+<li class=""><code>platform.bootstrap</code> 已进一步拆为 <code>bootstrap_configuration</code>、<code>bootstrap_navigation</code> 和 <code>bootstrap_rbac</code>；组合根只编排默认租户与播种顺序，<code>core.db</code> 仅保留直接转发的兼容 facade。AST 架构测试验证组合根不再依赖配置、授权或基础设施实体，当前架构测试 <code>19 passed</code>、完整后端回归 <code>229 passed</code>。</li>
+<li class="">本地已顺序完成 <code>base</code>、<code>items</code>、<code>suite</code> 的前端生产构建；三个 Build Manifest 分别包含预期模块集合，最终工作区生成态为 <code>suite</code>。镜像、SBOM、签名和远端供应链扫描仍由受保护分支 CI 执行。</li>
+<li class="">架构测试同时锁定 Platform 组合根必须挂载 <code>files_router</code>、<code>logs_router</code>、<code>mail_router</code>、<code>sms_router</code>，并验证四个旧 Router 路径只作为兼容 facade 存在。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="阶段-fitems-样板封板">阶段 F：Items 样板封板<a href="#阶段-fitems-样板封板" class="hash-link" aria-label="阶段 F：Items 样板封板的直接链接" title="阶段 F：Items 样板封板的直接链接" translate="no">​</a></h3>
+<p>Items 必须具备：</p>
+<ul>
+<li class="">完整目标目录结构。</li>
+<li class="">模块自有模型、Repository、路由、菜单、权限和迁移。</li>
+<li class="">模块公开 DTO 与事件。</li>
+<li class="">前端模块入口、API、页面和国际化。</li>
+<li class="">多租户、RBAC、数据权限、导入导出测试。</li>
+<li class="">Base/Items/Suite 独立构建和启动测试。</li>
+</ul>
+<p>Items 封板后创建模块模板和检查清单，IOA、ERP 只能从该模板开始。</p>
+<p>当前实现证据：</p>
+<ul>
+<li class="">Items 已拥有独立 Schema、Alembic namespace、Repository、TenantUnitOfWork、RLS policy、公开 DTO 与 <code>ItemChangedV1</code> 版本化事件 schema。</li>
+<li class="">ModuleDefinition 声明 Items 的路由、权限、ReferenceGuard 和 <code>items.item.changed@1</code> 发布契约；业务事件尚未发布，因为当前 Edition 不存在声明的下游业务消费者，避免以 <code>allow_zero_subscribers</code> 伪装必需业务效果。</li>
+<li class="">前端 Items API、页面和静态注册表由 Edition 构建生成；Base 构建不注册 Items 页面，Items/Suite 构建注册该模块。</li>
+<li class=""><code>backend/tests/api/routes/test_items.py</code> 覆盖导入导出、租户隔离、RBAC 与数据权限范围及多角色并集；<code>backend/tests/modules/items/test_tenant_uow.py</code> 覆盖 RLS、写入校验和 bulk DML 失败关闭。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="15-definition-of-done">15. Definition of Done<a href="#15-definition-of-done" class="hash-link" aria-label="15. Definition of Done的直接链接" title="15. Definition of Done的直接链接" translate="no">​</a></h2>
+<p>一个模块只有同时满足以下条件，才能标记为“可交付”：</p>
+<ul>
+<li class="">Edition 显式包含该模块，Manifest 可重现。</li>
+<li class="">后端只通过 ModuleDefinition 装配模块。</li>
+<li class="">前端只通过生成注册表装配模块。</li>
+<li class="">Manifest v2 固化 source revision、模块 migration heads 和 OpenAPI 摘要。</li>
+<li class="">业务模块拥有独立 Schema、迁移和真实 revision。</li>
+<li class="">模块 API 全部执行安装、状态、权益、偏好和 RBAC 检查。</li>
+<li class="">请求鉴权不写数据库。</li>
+<li class="">新模块权益默认关闭。</li>
+<li class="">模块没有非法跨边界 import 或跨模块数据库外键。</li>
+<li class="">租户模型通过 TenantUnitOfWork、自动过滤、写入校验、RLS 和负向测试保护。</li>
+<li class="">发布事件具有声明、版本化 DTO、Delivery target、租约、可靠投递和幂等 Inbox。</li>
+<li class="">菜单、权限码、组件和 API 路径通过构建校验。</li>
+<li class="">当前 Edition 的后端、前端、数据库和镜像测试全部通过。</li>
+<li class="">制品包含 Manifest、SBOM、OCI 元数据和 CI 签名。</li>
+<li class="">SLO、健康指标、失败告警、迁移说明、发布步骤和回退方案均有自动化证据。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="16-明确不做">16. 明确不做<a href="#16-明确不做" class="hash-link" aria-label="16. 明确不做的直接链接" title="16. 明确不做的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">不在模块边界稳定前拆微服务。</li>
+<li class="">不引入运行时扫描任意 Python 包的插件系统。</li>
+<li class="">不通过复制仓库或长期分支制作客户版本。</li>
+<li class="">不只隐藏菜单而保留可访问的后端接口。</li>
+<li class="">不用全局 <code>common</code> 包承载无归属的业务模型和 Service。</li>
+<li class="">不为追求目录完整而给简单 CRUD 强行增加空的领域层。</li>
+<li class="">不照搬 LZ-litchi 的全部 Starter 和模块依赖关系。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="17-架构演进治理">17. 架构演进治理<a href="#17-架构演进治理" class="hash-link" aria-label="17. 架构演进治理的直接链接" title="17. 架构演进治理的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">ADR-0003 至 ADR-0009 在相应阶段验收通过后才能从 <code>Proposed</code> 改为 <code>Accepted</code>。</li>
+<li class="">ADR-0010 至 ADR-0014 是本基线的强制细化决策；实现和验收测试合入后由 Architecture Owner 与对应 Reviewer 共同改为 <code>Accepted</code>。</li>
+<li class="">修改事实源、依赖方向、租户隔离、事件语义或 Edition 协议时必须新增 ADR。</li>
+<li class="">每个架构阶段使用独立 PR，PR 描述引用本文阶段和验收项。</li>
+<li class="">暂时偏离本文的代码必须记录负责人、原因、清理条件和截止阶段。</li>
+<li class="">每完成一个阶段，同步更新本文的基线提交、状态和实际命令。</li>
+</ul>
+<p>本基线进入正式 <code>Accepted</code> 必须同时满足：</p>
+<ol>
+<li class="">ADR-0010 至 ADR-0014 完成团队评审，无未关闭的 P0/P1 意见。</li>
+<li class="">阶段 A-D 的自动化验收进入受保护分支 CI。</li>
+<li class="">Base、Items、Suite 在临时环境完成一次从 N-1 升级、部署和应用回退演练。</li>
+<li class="">Items 通过租户隔离、事件崩溃恢复和 Edition 错配测试。</li>
+<li class="">Architecture Owner、Backend Lead、Frontend Lead、DevOps Lead 和 Security Reviewer 留下批准记录。</li>
+</ol>
+<p>实施完成的判断不以目录、类或配置已经创建为准，只以对应验收测试和可重现制品通过为准。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="knowledge-模块第一版实现2026-10-01">Knowledge 模块第一版实现（2026-10-01）<a href="#knowledge-模块第一版实现2026-10-01" class="hash-link" aria-label="Knowledge 模块第一版实现（2026-10-01）的直接链接" title="Knowledge 模块第一版实现（2026-10-01）的直接链接" translate="no">​</a></h3>
+<p>Suite 组合新增 <code>knowledge</code>，以自身 <code>ModuleDefinition</code> 的 <code>navigation</code> 和 <code>default_user_permissions</code> 维护菜单和默认角色权限；组合根只消费声明，不拥有知识业务数据。模块拥有 <code>knowledge</code> schema/独立 Alembic 链，以及 tenant-owned 的 base/grant/document 和独立平台公共 system_base/system_document。普通租户 UoW 没有跨租户私有查询旁路；全局系统写入要求显式系统维护授权，RLS 只向普通读者开放已发布全局目录。已发布跨租户系统资料不是个人资料共享。同步使用既有 Outbox/Schedule Worker，Agent 接入使用固定版本化 HTTP Facade。源码与本地验证入口见<a class="" href="/chein-doc-site/product/features/knowledge/management/">知识管理说明</a>；生产部署状态由部署验证决定。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/modular-architecture-implementation.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/product/features/knowledge/management/">系统与个人知识库管理</a></li><li><a href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/">ADR-0011：Edition 制品策略与 Build Manifest v2</a></li><li><a href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/">ADR-0012：Outbox Delivery 与 Inbox 状态机</a></li><li><a href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</a></li><li><a href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/">ADR-0014：部署门禁、Readiness 与运行期降级</a></li><li><a href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/">ADR-0015：HermiT 隔离计算部署边界</a></li><li><a href="/chein-doc-site/reference/decisions/README/">架构决策记录</a></li><li><a href="/chein-doc-site/reference/designs/platform/modular-product/">模块化产品架构规划</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/architecture/overview/">系统架构导读</a></li><li><a href="/chein-doc-site/reference/architecture/views/">Chein 当前系统架构视图与证据</a></li><li><a href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/">ADR-0010：Platform 交付边界与内部限界上下文</a></li><li><a href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/">ADR-0011：Edition 制品策略与 Build Manifest v2</a></li><li><a href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/">ADR-0012：Outbox Delivery 与 Inbox 状态机</a></li><li><a href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</a></li><li><a href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/">ADR-0014：部署门禁、Readiness 与运行期降级</a></li><li><a href="/chein-doc-site/reference/designs/agent/sql-analytics-design/">Agent SQL 分析与图表收藏设计</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Farchitecture%2Fplatform%2Fimplementation%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/category/管理平台-1/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">管理平台</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/architecture/views/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Chein 当前系统架构视图与证据</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-实施结论" class="table-of-contents__link toc-highlight">1. 实施结论</a></li><li><a href="#2-当前基线与目标差距" class="table-of-contents__link toc-highlight">2. 当前基线与目标差距</a></li><li><a href="#3-架构事实源" class="table-of-contents__link toc-highlight">3. 架构事实源</a></li><li><a href="#4-目标模块边界" class="table-of-contents__link toc-highlight">4. 目标模块边界</a><ul><li><a href="#41-模块分层" class="table-of-contents__link toc-highlight">4.1 模块分层</a></li><li><a href="#42-允许的依赖方向" class="table-of-contents__link toc-highlight">4.2 允许的依赖方向</a></li></ul></li><li><a href="#5-目标目录" class="table-of-contents__link toc-highlight">5. 目标目录</a><ul><li><a href="#51-后端" class="table-of-contents__link toc-highlight">5.1 后端</a></li><li><a href="#52-前端" class="table-of-contents__link toc-highlight">5.2 前端</a></li></ul></li><li><a href="#6-moduledefinition-落地契约" class="table-of-contents__link toc-highlight">6. ModuleDefinition 落地契约</a></li><li><a href="#7-请求访问链路" class="table-of-contents__link toc-highlight">7. 请求访问链路</a></li><li><a href="#8-多租户隔离" class="table-of-contents__link toc-highlight">8. 多租户隔离</a><ul><li><a href="#81-模型分类" class="table-of-contents__link toc-highlight">8.1 模型分类</a></li><li><a href="#82-unit-of-work" class="table-of-contents__link toc-highlight">8.2 Unit of Work</a></li><li><a href="#83-orm-与数据库防护" class="table-of-contents__link toc-highlight">8.3 ORM 与数据库防护</a></li><li><a href="#84-自动检查" class="table-of-contents__link toc-highlight">8.4 自动检查</a></li></ul></li><li><a href="#9-事件与-outbox" class="table-of-contents__link toc-highlight">9. 事件与 Outbox</a><ul><li><a href="#91-事件信封" class="table-of-contents__link toc-highlight">9.1 事件信封</a></li><li><a href="#92-投递语义" class="table-of-contents__link toc-highlight">9.2 投递语义</a></li><li><a href="#93-契约检查" class="table-of-contents__link toc-highlight">9.3 契约检查</a></li></ul></li><li><a href="#10-数据与迁移" class="table-of-contents__link toc-highlight">10. 数据与迁移</a><ul><li><a href="#101-发布与回退" class="table-of-contents__link toc-highlight">10.1 发布与回退</a></li></ul></li><li><a href="#11-edition-构建协议" class="table-of-contents__link toc-highlight">11. Edition 构建协议</a><ul><li><a href="#111-manifest-v2" class="table-of-contents__link toc-highlight">11.1 Manifest v2</a></li><li><a href="#112-唯一入口" class="table-of-contents__link toc-highlight">11.2 唯一入口</a></li><li><a href="#113-制品要求" class="table-of-contents__link toc-highlight">11.3 制品要求</a></li></ul></li><li><a href="#12-可观测性与运维" class="table-of-contents__link toc-highlight">12. 可观测性与运维</a><ul><li><a href="#121-工程-slo" class="table-of-contents__link toc-highlight">12.1 工程 SLO</a></li><li><a href="#122-模块指标与健康" class="table-of-contents__link toc-highlight">12.2 模块指标与健康</a></li><li><a href="#123-安全与供应链" class="table-of-contents__link toc-highlight">12.3 安全与供应链</a></li></ul></li><li><a href="#13-ci-质量门禁" class="table-of-contents__link toc-highlight">13. CI 质量门禁</a><ul><li><a href="#131-edition-矩阵" class="table-of-contents__link toc-highlight">13.1 Edition 矩阵</a></li><li><a href="#132-分层测试" class="table-of-contents__link toc-highlight">13.2 分层测试</a></li><li><a href="#133-契约门禁" class="table-of-contents__link toc-highlight">13.3 契约门禁</a></li></ul></li><li><a href="#14-分阶段实施计划" class="table-of-contents__link toc-highlight">14. 分阶段实施计划</a><ul><li><a href="#阶段-a访问控制纯化" class="table-of-contents__link toc-highlight">阶段 A：访问控制纯化</a></li><li><a href="#阶段-b可靠事件基础设施" class="table-of-contents__link toc-highlight">阶段 B：可靠事件基础设施</a></li><li><a href="#阶段-cedition-构建闭环" class="table-of-contents__link toc-highlight">阶段 C：Edition 构建闭环</a></li><li><a href="#阶段-d租户隔离纵深防御" class="table-of-contents__link toc-highlight">阶段 D：租户隔离纵深防御</a></li><li><a href="#阶段-eplatform-内部拆分" class="table-of-contents__link toc-highlight">阶段 E：Platform 内部拆分</a></li><li><a href="#阶段-fitems-样板封板" class="table-of-contents__link toc-highlight">阶段 F：Items 样板封板</a></li></ul></li><li><a href="#15-definition-of-done" class="table-of-contents__link toc-highlight">15. Definition of Done</a></li><li><a href="#16-明确不做" class="table-of-contents__link toc-highlight">16. 明确不做</a></li><li><a href="#17-架构演进治理" class="table-of-contents__link toc-highlight">17. 架构演进治理</a><ul><li><a href="#knowledge-模块第一版实现2026-10-01" class="table-of-contents__link toc-highlight">Knowledge 模块第一版实现（2026-10-01）</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-designs/agent/langsmith-observability" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Agent LangSmith 观测接入设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/langsmith-observability/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Agent LangSmith 观测接入设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Agent LangSmith 观测接入设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Agent LangSmith 观测接入设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/langsmith-observability/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/langsmith-observability/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/langsmith-observability/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Agent 系统","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/agent-系统-2"},{"@type":"ListItem","position":2,"name":"Agent LangSmith 观测接入设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/designs/agent/langsmith-observability"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/overview/"><span class="linkLabel_gJOC">系统架构导读</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/README/"><span class="linkLabel_gJOC">架构专题</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-1/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/agent-automations/"><span class="linkLabel_gJOC">Agent 自动化任务</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据架构/"><span class="categoryLinkLabel_adV2">数据架构</span></a><button aria-label="展开侧边栏分类 &#x27;数据架构&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-1/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/architecture/views/"><span class="linkLabel_gJOC">Chein 当前系统架构视图与证据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0001-oauth2-authorization-server/"><span class="linkLabel_gJOC">ADR-0001: OAuth2 授权服务器角色与首期范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0002-multi-tenancy-shared-schema/"><span class="linkLabel_gJOC">ADR-0002：多租户隔离与请求上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0003-edition-module-source-of-truth/"><span class="linkLabel_gJOC">ADR-0003：Edition 与模块状态的唯一事实源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0004-module-access-control/"><span class="linkLabel_gJOC">ADR-0004：模块开通与后端访问控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0005-module-migration-orchestration/"><span class="linkLabel_gJOC">ADR-0005：多模块数据库迁移编排</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0006-module-lifecycle-and-events/"><span class="linkLabel_gJOC">ADR-0006：模块生命周期与跨模块事件可靠性</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0007-platform-master-data-lifecycle/"><span class="linkLabel_gJOC">ADR-0007：平台主数据生命周期与跨模块引用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0008-module-openapi-client-generation/"><span class="linkLabel_gJOC">ADR-0008：模块级 OpenAPI 与前端客户端生成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0009-module-public-contracts-and-dependency-boundaries/"><span class="linkLabel_gJOC">ADR-0009：模块公开契约与依赖边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0010-platform-deployment-boundary/"><span class="linkLabel_gJOC">ADR-0010：Platform 交付边界与内部限界上下文</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0011-edition-artifact-and-manifest-v2/"><span class="linkLabel_gJOC">ADR-0011：Edition 制品策略与 Build Manifest v2</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0012-outbox-delivery-inbox-state-machine/"><span class="linkLabel_gJOC">ADR-0012：Outbox Delivery 与 Inbox 状态机</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0013-tenant-unit-of-work-and-rls/"><span class="linkLabel_gJOC">ADR-0013：TenantUnitOfWork 与 PostgreSQL RLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0014-deployment-readiness-and-runtime-degradation/"><span class="linkLabel_gJOC">ADR-0014：部署门禁、Readiness 与运行期降级</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0015-hermit-compute-boundary/"><span class="linkLabel_gJOC">ADR-0015：HermiT 隔离计算部署边界</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0016-ontology-logic-pack/"><span class="linkLabel_gJOC">ADR-0016：本体 Logic Pack 与可重放推导轨迹</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/0017-logic-pack-analysis-and-actions/"><span class="linkLabel_gJOC">ADR-0017：Logic Pack 假设分析、外部绑定与人工业务动作</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/decisions/README/"><span class="linkLabel_gJOC">架构决策记录</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/agent-系统-2/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="折叠侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/abuse-and-execution-security/"><span class="linkLabel_gJOC">Agent 滥用防护与执行安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/caching/"><span class="linkLabel_gJOC">Agent 对话与工具结果缓存设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/data-architecture/"><span class="linkLabel_gJOC">Agent 数据与业务契约设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/human-in-loop/"><span class="linkLabel_gJOC">人工介入与审批设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/integrations/"><span class="linkLabel_gJOC">Agent 技术栈与外部集成设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/designs/agent/langsmith-observability/"><span class="linkLabel_gJOC">Agent LangSmith 观测接入设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/reliability/"><span class="linkLabel_gJOC">Agent 可靠性与终端恢复设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/security/"><span class="linkLabel_gJOC">Agent 安全设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/sql-analytics-design/"><span class="linkLabel_gJOC">Agent SQL 分析与图表收藏设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/system-architecture/"><span class="linkLabel_gJOC">Agent 总体系统架构</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/designs/agent/tool-governance/"><span class="linkLabel_gJOC">Tool、MCP 与 Skill 治理设计</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp-1/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台-2/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/租户运营/"><span class="categoryLinkLabel_adV2">租户运营</span></a><button aria-label="展开侧边栏分类 &#x27;租户运营&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统-3/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发-1/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体-1/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/agent-系统-2/"><span>Agent 系统</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Agent LangSmith 观测接入设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Agent LangSmith 观测接入设计</h1></header>
+<blockquote>
+<p>状态：Proposed（设计已确定，配置与代码尚未接入）</p>
+<p>适用范围：顶层 <code>agent/</code> 独立运行时、模型调用、Deep Agents/LangGraph 执行链路</p>
+</blockquote>
+<p>本文是 LangSmith 接入的唯一设计事实源。LangSmith 是辅助观测链路，不是
+<code>AgentRun</code>、<code>RunEvent</code> 或 Checkpoint 的事实源；关闭 LangSmith 不能改变 Run
+的执行语义。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-结论">1. 结论<a href="#1-结论" class="hash-link" aria-label="1. 结论的直接链接" title="1. 结论的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">首期使用 LangSmith Cloud 的 APAC SaaS 区域，端点为
+<code>https://apac.api.smith.langchain.com</code>，控制台为
+<code>https://apac.smith.langchain.com</code>。</li>
+<li class="">只修改顶层 <code>agent/</code> 运行时的配置和 LangGraph 调用参数。<code>backend/</code>、
+<code>frontend/</code>、Agent API 契约、PostgreSQL schema 和迁移都不变。</li>
+<li class="">首期默认记录“元数据级 trace”：模型、工具、耗时、状态、Token、错误和
+<code>run_id</code>/<code>thread_id</code>，默认隐藏 Prompt、消息、工具参数、工具结果和模型输出。</li>
+<li class="">生产环境不能通过请求 Body、Browser 或模型输出开启内容级调试。内容级
+调试只按环境显式配置，并在启用前完成数据分级和脱敏评审。</li>
+<li class="">LangSmith 故障或网络中断不能使 Agent Run 失败，也不能进入 readiness 判定。</li>
+<li class="">如果后续合规要求数据留在境内，只需把 <code>LANGSMITH_ENDPOINT</code> 切到
+Enterprise 自托管实例；业务契约和调用点不变。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-当前实现与接入点">2. 当前实现与接入点<a href="#2-当前实现与接入点" class="hash-link" aria-label="2. 当前实现与接入点的直接链接" title="2. 当前实现与接入点的直接链接" translate="no">​</a></h2>
+<p>当前 <code>agent/</code> 的执行路径已经具备 LangSmith 所需边界：</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">Backend delegated context</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; agent API /internal/agent/v1/ag-ui</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; QwenModelProvider（ChatOpenAI compatible mode）</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; create_data_analysis_agent（Deep Agents + LangGraph）</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; agent.astream</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; 当前 `/internal/agent/v1/ag-ui` 的 AG-UI 事件流</span><br></div></code></pre></div></div>
+<p>关键代码位置：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>位置</th><th>当前职责</th><th>LangSmith 接入关系</th></tr></thead><tbody><tr><td><code>agent/src/chein_agent/settings.py</code></td><td>从根目录 <code>.env</code> 读取 Nacos bootstrap，再把 Nacos YAML 注入 <code>os.environ</code>，最后构造 <code>Settings</code></td><td>增加 LangSmith 配置字段和启动校验</td></tr><tr><td><code>agent/src/chein_agent/model_provider.py</code></td><td>构造 Qwen <code>ChatOpenAI</code></td><td>LangChain 自动产生 LLM spans</td></tr><tr><td><code>agent/src/chein_agent/harness.py</code></td><td>创建 Deep Agents/LangGraph Agent</td><td>自动产生 graph、chain 和 tool spans</td></tr><tr><td><code>agent/src/chein_agent/api.py</code></td><td><code>run_ag_ui</code> 领取 Run，并调用 <code>agent.astream</code></td><td>在现有 <code>config</code> 中注入 <code>run_name</code>、<code>tags</code>、<code>metadata</code></td></tr><tr><td><code>agent/uv.lock</code></td><td>已通过 <code>langchain-core</code> 引入 <code>langsmith</code></td><td>仅使用环境变量自动装配时，不需要新增直接依赖</td></tr></tbody></table>
+<p>当前代码没有 <code>LANGSMITH_*</code> 配置，也没有直接导入 <code>langsmith</code>。现有
+<code>_load_nacos_config()</code> 在 <code>Settings</code> 初始化前把 Nacos 配置写入
+<code>os.environ</code>，因此 LangSmith SDK 可以直接读取 Nacos 中的配置。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-数据流与所有权">3. 数据流与所有权<a href="#3-数据流与所有权" class="hash-link" aria-label="3. 数据流与所有权的直接链接" title="3. 数据流与所有权的直接链接" translate="no">​</a></h2>
+<!-- -->
+<p>边界规则：</p>
+<ol>
+<li class="">LangSmith 只接收 tracing，不参与 Run 领取、权限校验、取消、恢复和最终结果。</li>
+<li class="">LangSmith 中的 trace 不向最终用户直接开放；首期只供平台运维和研发排障。</li>
+<li class=""><code>agent_runs</code>、<code>agent_run_events</code>、PostgreSQL checkpoint 仍是状态和审计事实源。</li>
+<li class="">LangSmith 项目按环境隔离，不按每个租户创建 Project 和 API Key。</li>
+<li class="">backend 和 frontend 不持有 LangSmith API Key，不代理 LangSmith API。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-配置设计">4. 配置设计<a href="#4-配置设计" class="hash-link" aria-label="4. 配置设计的直接链接" title="4. 配置设计的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-nacos-chein-agent-runtimeyaml">4.1 Nacos <code>chein-agent-runtime.yaml</code><a href="#41-nacos-chein-agent-runtimeyaml" class="hash-link" aria-label="41-nacos-chein-agent-runtimeyaml的直接链接" title="41-nacos-chein-agent-runtimeyaml的直接链接" translate="no">​</a></h3>
+<div class="language-yaml codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-yaml codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">LANGSMITH_TRACING</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;true&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_ENDPOINT</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;https://apac.api.smith.langchain.com&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_API_KEY</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;&lt;Nacos secret&gt;&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_PROJECT</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;chein-agent-dev&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_WORKSPACE_ID</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;&lt;optional workspace id&gt;&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_TRACING_SAMPLING_RATE</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;1.0&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">AGENT_ENVIRONMENT</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;dev&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">AGENT_VERSION</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;local&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 生产默认不记录内容；staging 只有在数据已脱敏/获批时才可设为 false。</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_HIDE_INPUTS</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;true&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">LANGSMITH_HIDE_OUTPUTS</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;true&quot;</span><br></div></code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置</th><th>必需</th><th>说明</th></tr></thead><tbody><tr><td><code>LANGSMITH_TRACING</code></td><td>是</td><td>总开关。生产、预发、开发分别配置，默认必须为 <code>false</code></td></tr><tr><td><code>LANGSMITH_ENDPOINT</code></td><td>是</td><td>APAC 为 <code>https://apac.api.smith.langchain.com</code>；自托管为 <code>&lt;host&gt;/api</code></td></tr><tr><td><code>LANGSMITH_API_KEY</code></td><td>是</td><td>使用 workspace service key；不得提交 Git，不得下发到 Browser 或 Backend</td></tr><tr><td><code>LANGSMITH_PROJECT</code></td><td>是</td><td>建议 <code>chein-agent-dev</code>、<code>chein-agent-staging</code>、<code>chein-agent-prod</code></td></tr><tr><td><code>LANGSMITH_WORKSPACE_ID</code></td><td>否</td><td>只有 service key 覆盖多个 workspace 时需要</td></tr><tr><td><code>LANGSMITH_TRACING_SAMPLING_RATE</code></td><td>否</td><td><code>0.0-1.0</code>；首期低流量保持 <code>1.0</code>，采样率调整必须先评估错误覆盖</td></tr><tr><td><code>LANGSMITH_HIDE_INPUTS</code></td><td>是</td><td>生产默认 <code>true</code>，隐藏模型/链/工具的输入</td></tr><tr><td><code>LANGSMITH_HIDE_OUTPUTS</code></td><td>是</td><td>生产默认 <code>true</code>，隐藏模型/链/工具的输出</td></tr><tr><td><code>AGENT_ENVIRONMENT</code></td><td>是</td><td><code>dev</code>、<code>staging</code> 或 <code>prod</code>；用于 trace tag 和排障筛选</td></tr><tr><td><code>AGENT_VERSION</code></td><td>是</td><td>发布版本或 Git commit；由 CI/CD 注入，不能依赖本地默认值</td></tr></tbody></table>
+<p><code>LANGSMITH_ENDPOINT</code> 不能带结尾 <code>/</code>。使用 APAC Project 的 service key 时不能
+连接美国默认 endpoint；区域和 API Key 必须一致。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-配置注入顺序">4.2 配置注入顺序<a href="#42-配置注入顺序" class="hash-link" aria-label="4.2 配置注入顺序的直接链接" title="4.2 配置注入顺序的直接链接" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">部署环境 .env / Secret</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Nacos bootstrap 参数</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; chein-agent-runtime.yaml</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; settings.py 注入 os.environ</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; LangSmith SDK / LangChain tracer 读取</span><br></div></code></pre></div></div>
+<p>Nacos 中只保存运行配置引用和密钥值；Git 中只提交
+<code>deploy/nacos/*.yaml.example</code> 占位文件，不提交真实 Key。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-trace-关联字段">5. Trace 关联字段<a href="#5-trace-关联字段" class="hash-link" aria-label="5. Trace 关联字段的直接链接" title="5. Trace 关联字段的直接链接" translate="no">​</a></h2>
+<p>在现有 <code>agent.astream</code> 的 <code>RunnableConfig</code> 中增加以下字段：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>字段</th><th>值</th><th>用途</th></tr></thead><tbody><tr><td><code>run_name</code></td><td><code>chein-data-analysis</code></td><td>统一根 trace 名称</td></tr><tr><td><code>tags</code></td><td><code>env:&lt;environment&gt;</code>、<code>agent:chein-data-analysis</code>、<code>engine:deepagents</code>、<code>model:qwen</code></td><td>低基数筛选</td></tr><tr><td><code>metadata.run_id</code></td><td>当前 <code>AgentRun.id</code></td><td>与 Agent 控制面精确关联</td></tr><tr><td><code>metadata.thread_id</code></td><td>当前业务 <code>thread_id</code></td><td>会话级串线</td></tr><tr><td><code>metadata.environment</code></td><td><code>dev</code>/<code>staging</code>/<code>prod</code></td><td>环境筛选</td></tr><tr><td><code>metadata.agent_version</code></td><td>Agent 发布版本</td><td>回归定位</td></tr><tr><td><code>metadata.contract_version</code></td><td><code>analysis.v1</code></td><td>契约版本</td></tr><tr><td><code>metadata.engine</code></td><td><code>deepagents</code></td><td>引擎定位</td></tr><tr><td><code>metadata.model</code></td><td>实际 Qwen 模型名</td><td>模型对比</td></tr></tbody></table>
+<p>默认不把 <code>tenant_id</code>、<code>user_id</code>、delegated JWT、Qwen API Key、数据库连接串或
+ERP 原始数据写入 LangSmith。需要按租户筛选时，先用内部 <code>run_id</code> 关联
+<code>agent_runs</code>，后续如需在 SaaS 侧直接筛选，再单独评审加盐的 <code>tenant_ref</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-默认数据策略">6. 默认数据策略<a href="#6-默认数据策略" class="hash-link" aria-label="6. 默认数据策略的直接链接" title="6. 默认数据策略的直接链接" translate="no">​</a></h2>
+<p>LangSmith 默认会记录 LangChain/LangGraph 的输入和输出。该行为与
+<a class="" href="/chein-doc-site/reference/architecture/agent/runtime/#12-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7%E4%B8%8E%E8%B4%A8%E9%87%8F">Agent 架构第 12 节</a> 的默认
+“只记录元数据”原则冲突，因此必须使用以下策略：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>环境</th><th><code>HIDE_INPUTS</code></th><th><code>HIDE_OUTPUTS</code></th><th>允许内容</th></tr></thead><tbody><tr><td>dev</td><td><code>true</code> 默认</td><td><code>true</code> 默认</td><td>只做链路和性能调试</td></tr><tr><td>staging</td><td>仅在数据脱敏/批准后 <code>false</code></td><td>仅在数据脱敏/批准后 <code>false</code></td><td>合成数据、脱敏样本</td></tr><tr><td>prod</td><td><code>true</code></td><td><code>true</code></td><td>只记录元数据、状态、Token 和耗时</td></tr></tbody></table>
+<p>内容级调试必须满足：</p>
+<ul>
+<li class="">不接收真实用户 Prompt、ERP 明细、JWT、凭据和原始工具结果。</li>
+<li class="">需要时先实现 callback/anonymizer 脱敏，显式开启、限时并审计。</li>
+<li class="">不接受行内请求参数控制，不能由前端、模型或普通业务用户打开。</li>
+<li class="">开启前单独记录数据分类、保留期限、责任人和关闭时间。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-失败与降级语义">7. 失败与降级语义<a href="#7-失败与降级语义" class="hash-link" aria-label="7. 失败与降级语义的直接链接" title="7. 失败与降级语义的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">LangSmith 报送采用后台异步发送；网络失败、429 或服务不可用只记录脱敏日志
+和指标，不改变 Run 成功的终态。</li>
+<li class="">readiness 不检查 LangSmith。数据库、checkpoint 和关键模型依赖的检查逻辑
+保持现状。</li>
+<li class="">进程退出前尽可能 flush；flush 失败只记录，不阻塞 Run 结束。</li>
+<li class="">关闭观测使用 <code>LANGSMITH_TRACING=false</code> 并重启进程；不需要数据库回滚。</li>
+<li class="">不把 LangSmith trace 当作重放来源。恢复和取消继续使用 checkpoint、
+<code>AgentRun</code> 和 <code>RunEvent</code>。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-实现改动清单">8. 实现改动清单<a href="#8-实现改动清单" class="hash-link" aria-label="8. 实现改动清单的直接链接" title="8. 实现改动清单的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="81-配置层">8.1 配置层<a href="#81-配置层" class="hash-link" aria-label="8.1 配置层的直接链接" title="8.1 配置层的直接链接" translate="no">​</a></h3>
+<p>在 <code>agent/src/chein_agent/settings.py</code> 增加：</p>
+<ul>
+<li class=""><code>LANGSMITH_TRACING: bool = False</code></li>
+<li class=""><code>LANGSMITH_ENDPOINT: str = &quot;https://apac.api.smith.langchain.com&quot;</code></li>
+<li class=""><code>LANGSMITH_API_KEY: str | None = Field(default=None, repr=False)</code></li>
+<li class=""><code>LANGSMITH_PROJECT: str = &quot;chein-agent&quot;</code></li>
+<li class=""><code>LANGSMITH_WORKSPACE_ID: str | None = None</code></li>
+<li class=""><code>LANGSMITH_TRACING_SAMPLING_RATE: float = Field(default=1.0, ge=0, le=1)</code></li>
+<li class=""><code>LANGSMITH_HIDE_INPUTS: bool = True</code></li>
+<li class=""><code>LANGSMITH_HIDE_OUTPUTS: bool = True</code></li>
+<li class=""><code>AGENT_ENVIRONMENT: Literal[&quot;dev&quot;, &quot;staging&quot;, &quot;prod&quot;] = &quot;dev&quot;</code></li>
+<li class=""><code>AGENT_VERSION: str = &quot;0.1.0&quot;</code></li>
+</ul>
+<p>当 <code>LANGSMITH_TRACING=true</code> 时校验 endpoint、API Key 和
+<code>LANGSMITH_PROJECT</code>；缺失或格式错误时启动失败关闭，不静默产生无认证 trace。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="82-调用层">8.2 调用层<a href="#82-调用层" class="hash-link" aria-label="8.2 调用层的直接链接" title="8.2 调用层的直接链接" translate="no">​</a></h3>
+<p>在 <code>agent/src/chein_agent/api.py</code> 的现有 <code>agent.astream</code> 调用处，扩展现有
+<code>config</code>：</p>
+<div class="language-python codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-python codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">config </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&quot;configurable&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;thread_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> checkpoint_thread_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&quot;recursion_limit&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> settings</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">AGENT_MAX_GRAPH_STEPS</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&quot;run_name&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;chein-data-analysis&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&quot;tags&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string-interpolation string" style="color:#e3116c">f&quot;env:</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">settings</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">AGENT_ENVIRONMENT</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;agent:chein-data-analysis&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;engine:deepagents&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;model:qwen&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&quot;metadata&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;run_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> input_data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">run_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;thread_id&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> input_data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">thread_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;environment&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> settings</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">AGENT_ENVIRONMENT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;agent_version&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> settings</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">AGENT_VERSION</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;contract_version&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;analysis.v1&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;engine&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;deepagents&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token string" style="color:#e3116c">&quot;model&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> settings</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">QWEN_MODEL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p><code>checkpoint_thread_id</code> 继续使用现有
+<code>tenant_id:user_id:thread_id</code> 拼接值，LangSmith metadata 中不复制该拼接值。</p>
+<p>只有在第二个执行入口需要相同的 tracing 配置时，才把这段配置提取为小型
+helper；不要提前建立自定义 tracing 框架。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="83-依赖层">8.3 依赖层<a href="#83-依赖层" class="hash-link" aria-label="8.3 依赖层的直接链接" title="8.3 依赖层的直接链接" translate="no">​</a></h3>
+<p>首期通过 LangChain 的环境变量自动装配，不直接导入 LangSmith SDK，因此不需要
+新增直接运行时依赖。若实现中需要 <code>langsmith.Client</code>、<code>traceable</code> 或
+<code>tracing_context</code>，必须在同一次变更中把 <code>langsmith</code> 加入
+<code>agent/pyproject.toml</code>、更新 <code>uv.lock</code>，并通过依赖审计。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="84-测试层">8.4 测试层<a href="#84-测试层" class="hash-link" aria-label="8.4 测试层的直接链接" title="8.4 测试层的直接链接" translate="no">​</a></h3>
+<p>本地自动化必须覆盖：</p>
+<ul>
+<li class=""><code>LANGSMITH_TRACING=false</code> 时 Agent 正常执行且不发 trace。</li>
+<li class="">开启 tracing 时 <code>RunnableConfig</code> 包含 <code>run_id</code>、<code>thread_id</code>、环境和 tag。</li>
+<li class="">API Key、delegated token、Qwen Key 不出现在构造出的 metadata/tags 中。</li>
+<li class="">LangSmith 网络异常不把 Run 置为 failed。</li>
+</ul>
+<p>真实 LangSmith 发送与 UI 可见性属于显式手工冒烟，不在默认 CI 中依赖外部
+服务和真实业务数据。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-前置工作">9. 前置工作<a href="#9-前置工作" class="hash-link" aria-label="9. 前置工作的直接链接" title="9. 前置工作的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">创建并确认 LangSmith APAC Organization、Workspace 和
+<code>chein-agent-*</code> Project。</li>
+<li class="">创建 workspace-scoped service key，并通过 Nacos 或部署 Secret 注入。</li>
+<li class="">完成数据出境和 trace 保留评审，确认 APAC（GCP Sydney）是否满足业务要求；
+若不允许，改走 Enterprise 自托管。</li>
+<li class="">确认 Agent 运行环境可以访问 <code>https://apac.api.smith.langchain.com</code>，并完成
+防火墙、DNS、代理和出站白名单配置。</li>
+<li class="">准备 Nacos 配置项、命名空间 ACL 和 production/dev/staging 三套 Project。</li>
+<li class="">确认生产默认 <code>HIDE_INPUTS=true</code>、<code>HIDE_OUTPUTS=true</code>，并指定内容级调试的
+审批人、脱敏方案、保留期限和关闭流程。</li>
+<li class="">确认配额、采样率和告警责任人；trace 中断或超额不能影响 Agent 执行。</li>
+<li class="">在 dev/staging 用合成数据完成一条端到端冒烟，再以 <code>LANGSMITH_TRACING=false</code>
+作为回滚开关演练一次。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-分阶段实施">10. 分阶段实施<a href="#10-分阶段实施" class="hash-link" aria-label="10. 分阶段实施的直接链接" title="10. 分阶段实施的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="phase-a元数据观测">Phase A：元数据观测<a href="#phase-a元数据观测" class="hash-link" aria-label="Phase A：元数据观测的直接链接" title="Phase A：元数据观测的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">配置层、<code>RunnableConfig</code>、关闭开关和本地测试。</li>
+<li class="">APAC Project 仅接收元数据、状态、耗时、Token 和错误。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="phase-b生产灰度">Phase B：生产灰度<a href="#phase-b生产灰度" class="hash-link" aria-label="Phase B：生产灰度的直接链接" title="Phase B：生产灰度的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">在 <code>chein-agent-staging</code> 验证模型、工具、取消和失败 trace。</li>
+<li class="">生产以 100% 低流量开始，按证据调整采样率，不先开启内容捕获。</li>
+<li class="">建立按 <code>env</code>、<code>model</code>、<code>run_id</code>、<code>thread_id</code> 的排障手册。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="phase-c受控内容调试">Phase C：受控内容调试<a href="#phase-c受控内容调试" class="hash-link" aria-label="Phase C：受控内容调试的直接链接" title="Phase C：受控内容调试的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">仅在确有需要且完成脱敏评审后，对 dev/staging 的选定 Project 临时关闭
+<code>HIDE_INPUTS</code>/<code>HIDE_OUTPUTS</code>。</li>
+<li class="">生产内容级 trace 必须单独设计和审批，不能把本阶段默认配置直接复制到生产。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="11-验收标准">11. 验收标准<a href="#11-验收标准" class="hash-link" aria-label="11. 验收标准的直接链接" title="11. 验收标准的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">一次真实 Agent Run 在 LangSmith 中产生一条根 trace，并包含 LLM 和 tool 子 span。</li>
+<li class="">trace 能通过 <code>run_id</code> 与 <code>agent_runs</code> 对应，通过 <code>thread_id</code> 关联会话。</li>
+<li class="">trace 中不存在 API Key、delegated JWT、数据库连接串、Qwen Key 或未批准的
+原始业务数据。</li>
+<li class="">LangSmith 停止或断网时，Agent Run 仍能成功、失败或取消，状态不被 trace 改变。</li>
+<li class=""><code>LANGSMITH_TRACING=false</code> 可立即关闭上报，不需要数据库变更。</li>
+<li class="">生产默认不记录内容；内容级调试的开启和关闭可审计。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="12-待决项">12. 待决项<a href="#12-待决项" class="hash-link" aria-label="12. 待决项的直接链接" title="12. 待决项的直接链接" translate="no">​</a></h2>
+<ol>
+<li class="">APAC SaaS 是否被法务和数据责任人接受；不接受时切换自托管的时间点。</li>
+<li class="">生产 trace 的保留期限、费用上限和采样策略。</li>
+<li class="">是否需要将加盐 <code>tenant_ref</code> 纳入 LangSmith metadata 以支持 tenant 级筛选。</li>
+<li class="">是否在后续阶段引入 OpenTelemetry/统一观测网关；当前不在首期范围内。</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent/langsmith-observability.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/development/agent/index/">Agent 设计文档</a></li><li><a href="/chein-doc-site/reference/development/entrypoints/agent-README/">Chein Agent 运行时</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-audit/">Chein Agent 现有架构与可观测性审计</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdesigns%2Fagent%2Flangsmith-observability%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/designs/agent/integrations/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Agent 技术栈与外部集成设计</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/designs/agent/reliability/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Agent 可靠性与终端恢复设计</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-结论" class="table-of-contents__link toc-highlight">1. 结论</a></li><li><a href="#2-当前实现与接入点" class="table-of-contents__link toc-highlight">2. 当前实现与接入点</a></li><li><a href="#3-数据流与所有权" class="table-of-contents__link toc-highlight">3. 数据流与所有权</a></li><li><a href="#4-配置设计" class="table-of-contents__link toc-highlight">4. 配置设计</a><ul><li><a href="#41-nacos-chein-agent-runtimeyaml" class="table-of-contents__link toc-highlight">4.1 Nacos <code>chein-agent-runtime.yaml</code></a></li><li><a href="#42-配置注入顺序" class="table-of-contents__link toc-highlight">4.2 配置注入顺序</a></li></ul></li><li><a href="#5-trace-关联字段" class="table-of-contents__link toc-highlight">5. Trace 关联字段</a></li><li><a href="#6-默认数据策略" class="table-of-contents__link toc-highlight">6. 默认数据策略</a></li><li><a href="#7-失败与降级语义" class="table-of-contents__link toc-highlight">7. 失败与降级语义</a></li><li><a href="#8-实现改动清单" class="table-of-contents__link toc-highlight">8. 实现改动清单</a><ul><li><a href="#81-配置层" class="table-of-contents__link toc-highlight">8.1 配置层</a></li><li><a href="#82-调用层" class="table-of-contents__link toc-highlight">8.2 调用层</a></li><li><a href="#83-依赖层" class="table-of-contents__link toc-highlight">8.3 依赖层</a></li><li><a href="#84-测试层" class="table-of-contents__link toc-highlight">8.4 测试层</a></li></ul></li><li><a href="#9-前置工作" class="table-of-contents__link toc-highlight">9. 前置工作</a></li><li><a href="#10-分阶段实施" class="table-of-contents__link toc-highlight">10. 分阶段实施</a><ul><li><a href="#phase-a元数据观测" class="table-of-contents__link toc-highlight">Phase A：元数据观测</a></li><li><a href="#phase-b生产灰度" class="table-of-contents__link toc-highlight">Phase B：生产灰度</a></li><li><a href="#phase-c受控内容调试" class="table-of-contents__link toc-highlight">Phase C：受控内容调试</a></li></ul></li><li><a href="#11-验收标准" class="table-of-contents__link toc-highlight">11. 验收标准</a></li><li><a href="#12-待决项" class="table-of-contents__link toc-highlight">12. 待决项</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

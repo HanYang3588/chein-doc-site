@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/ontology/openbkn-alignment" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">OpenBKN 核心本体能力对齐：审查与实施设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/openbkn-alignment/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="OpenBKN 核心本体能力对齐：审查与实施设计 | Chein 文档中心"><meta data-rh="true" name="description" content="OpenBKN 核心本体能力对齐：审查与实施设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="OpenBKN 核心本体能力对齐：审查与实施设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/openbkn-alignment/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/openbkn-alignment/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/openbkn-alignment/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"业务本体","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/业务本体"},{"@type":"ListItem","position":2,"name":"OpenBKN 核心本体能力对齐：审查与实施设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/ontology/openbkn-alignment"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="展开侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="折叠侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/README/"><span class="linkLabel_gJOC">企业业务本体</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/bkn-interchange/"><span class="linkLabel_gJOC">BKN 文件互操作支持范围</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/delivery/"><span class="linkLabel_gJOC">本体交付记录</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/design/"><span class="linkLabel_gJOC">Chein 原生本体设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/inference-traceability-design/"><span class="linkLabel_gJOC">本体规则、状态与可溯源推导设计（Logic Pack）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/neo4j-design/"><span class="linkLabel_gJOC">Neo4j 与 Legacy 双 Provider</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/ontology/openbkn-alignment/"><span class="linkLabel_gJOC">OpenBKN 核心本体能力对齐：审查与实施设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/owl-builder/"><span class="linkLabel_gJOC">OWL 画布构建器</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/owl-推理服务/"><span class="categoryLinkLabel_adV2">OWL 推理服务</span></a><button aria-label="展开侧边栏分类 &#x27;OWL 推理服务&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/semantic-workspaces-delivery/"><span class="linkLabel_gJOC">双本体工作区与十一阶段交付</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/ontology/setup/"><span class="linkLabel_gJOC">OWL / Logic Pack / Agent 启用操作单</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/业务本体/"><span>业务本体</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">OpenBKN 核心本体能力对齐：审查与实施设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>OpenBKN 核心本体能力对齐：审查与实施设计</h1></header>
+<p>状态：P0–P3 代码已实施；按本设计的受控只读范围验证，最终验证记录见第 8 节。不是 OpenBKN 全产品等价或生产上线声明。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-结论与证据范围">1. 结论与证据范围<a href="#1-结论与证据范围" class="hash-link" aria-label="1. 结论与证据范围的直接链接" title="1. 结论与证据范围的直接链接" translate="no">​</a></h2>
+<p><strong>当前 Chein 与 OpenBKN 的本体管理并不等价。</strong> Chein 已有可治理的业务模型、版本审核、固定 ERP 数据映射和受控查询；OpenBKN 的模型组织、数据源绑定、实例探索、行动执行与开发集成范围更广。不能将“都有对象、关系和行动标签”视为功能等价。</p>
+<p>本设计将核心目标定义为：网络管理 → 对象/属性/关系/行动/概念分组建模 → 数据映射 → 实例查询与关系探索 → 导入导出与 Agent 消费。遵守用户要求，身份、RBAC、数据权限与审核沿用 Chein；既有草稿、历史版本、固定 capability 和权限契约继续兼容。</p>
+<p>审查包含本地真实页面（<code>http://localhost:5174/ontology</code>）以及两份官方源码快照。未部署 OpenBKN 的完整服务，因此上游页面交互结论是源码对比，不是对上游运行环境的可用性或性能认证。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>证据</th><th>固定版本 / 入口</th></tr></thead><tbody><tr><td>OpenBKN Studio</td><td><code>e4e867c994369e33025f01f04f37469b45aac4f3</code>，<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/contracts/scenes.ts" target="_blank" rel="noopener noreferrer" class="">工作区章节定义</a>、<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/scenes/KnowledgeNetworkListScene.tsx" target="_blank" rel="noopener noreferrer" class="">网络列表</a></td></tr><tr><td>OpenBKN Foundry</td><td><code>ae360982966863d16cda359ef902ce457c8d1b89</code>，<a href="https://github.com/openbkn-ai/bkn-foundry/blob/ae360982966863d16cda359ef902ce457c8d1b89/help/zh/manual/bkn.md" target="_blank" rel="noopener noreferrer" class="">BKN 使用手册</a></td></tr><tr><td>Chein 领域与约束</td><td><code>backend/app/modules/ontology/public_api/dto.py</code>、<code>application/schema.py</code>、<code>application/service.py</code>、<code>application/runtime.py</code>、<code>routes.py</code></td></tr><tr><td>Chein 页面</td><td><code>frontend/apps/web-pro/src/modules/ontology/pages/{Studio,SchemaEditor}.tsx</code> 及 <code>Studio.test.tsx</code></td></tr><tr><td>Chein 架构事实源</td><td><a class="" href="/chein-doc-site/reference/development/ontology/design/">现有设计</a>、<a class="" href="/chein-doc-site/reference/development/ontology/delivery/">交付边界</a>、<a class="" href="/chein-doc-site/reference/architecture/agent/runtime/">Agent 架构</a></td></tr></tbody></table>
+<p>上游源码只下载到系统临时目录做核对，不复制实现、不安装 SDK、不引入第三方运行服务。许可差异见<a class="" href="/chein-doc-site/reference/history/ontology/research/">技术调研</a>；独立实现产品行为，不复制品牌、素材或受限代码。版本快照中的入口不表示所有商业权益、部署或外部依赖均已可用。例如 Foundry 手册明确指出 <code>create-from-csv</code> 依赖已下线通道，不能将它计为当前可直接使用的能力。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-功能差异清单">2. 功能差异清单<a href="#2-功能差异清单" class="hash-link" aria-label="2. 功能差异清单的直接链接" title="2. 功能差异清单的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>能力</th><th>OpenBKN 核对结果</th><th>Chein 审查时状态</th><th>对齐设计 / 验收标准</th></tr></thead><tbody><tr><td>网络列表</td><td>名称检索、标签筛选、排序、分页、网络卡片、导入导出入口</td><td>表格、创建、游标分页；没有服务端搜索/标签/排序</td><td>服务端在授权集合内筛选与分页；URL 保存查询状态；不把单页过滤当全量搜索</td></tr><tr><td>工作区导航</td><td>总览、对象类、关系类、行动类、概念分组、指标及体验/集成分区</td><td>Drawer 内两层 Tabs，没有总览与资源计数</td><td>先增加总览与模型分类计数；后续独立可定位工作区，保留原入口</td></tr><tr><td>对象与属性</td><td>独立列表、详情、编辑，主键/展示字段与数据源映射</td><td>表单和属性表已有；属性更细约束仅 JSON 可编辑</td><td>保留稳定 code；补充别名、约束与映射反馈；编辑已有条目不丢未编辑字段</td></tr><tr><td>概念分组</td><td>独立分组 CRUD 与对象成员管理</td><td>DTO/校验已支持 groups，UI 没有入口</td><td>复用原 groups 契约做列表、创建、编辑、删除和成员选择；不新增表</td></tr><tr><td>关系与映射</td><td>独立详情/映射编辑场景</td><td>固定 ERP 关系 binding、方向、基数、图预览</td><td>映射仍由数据所有者维护白名单；补清晰详情与依赖处理。通用映射规则需单独扩展 capability</td></tr><tr><td>类型图与实例图</td><td>模型预览、对象图探索、Cypher 结果图/表</td><td>原生 SVG 类型关系图；遍历仅原始 JSON</td><td>明确区分“类型图”和“实例图”；实例表/详情/逐跳展开/来源及截断提示；不伪称现有类型图为实例图</td></tr><tr><td>实例查询</td><td>对象实例查询、条件、分页，相关图探索</td><td>UUID 查询和 keyset 分页 API；页面不暴露继续分页</td><td>先复用 query/traverse 接口结构化展示，再扩展数据所有者允许的类型化条件；翻页保留已发布版本</td></tr><tr><td>数据接入</td><td>VEGA Catalog/资源、字段映射、检索索引构建</td><td>仅 Supplier/Product/PurchaseOrder/PurchaseOrderItem 四类固定资源</td><td>按模块注册更多 ontology.data Provider；UI 只列当前授权目录。任意外部数据源接入是额外项目范围</td></tr><tr><td>行动</td><td>tool/MCP 来源、参数配置、触发/执行页面</td><td>仅固定只读 object_query_v1，无任意工具调用</td><td>先展示当前执行器/输入/结果；增加新的只读注册能力。写行动涉及事务、幂等、审计与风险控制，另行设计并验收</td></tr><tr><td>指标</td><td>独立指标详情/编辑及表达式配置组件</td><td>仅固定已审核采购金额口径</td><td>扩展代码注册的类型化指标，展示口径、维度、时间；不将用户描述当执行公式</td></tr><tr><td>文件互操作</td><td>.bkn：YAML frontmatter + Markdown，多文件目录，按 ID upsert</td><td>仅 chein.ontology/v1 JSON</td><td>增加明确标注子集的 .bkn 适配器、导入预检和差异预览；不支持的来源/执行器/风险必须报错，不得静默丢弃</td></tr><tr><td>语义检索/Agent</td><td>BKN 语义搜索、Agent/MCP/Cypher 体验与能力集成分区</td><td>发布模型名称/描述/别名匹配，六个只读 MCP 工具；已有候选辅助</td><td>复用现有 Agent/MCP；增加模型与实例来源可追踪的体验入口。关键词匹配不能标为向量语义搜索</td></tr><tr><td>治理</td><td>上游记录操作/授权入口与自身身份系统</td><td>Platform RBAC、本人/租户范围、双人审核、不可变版本、RLS</td><td>按用户要求保留 Chein；不引入上游 ACL/用户系统，不以页面同款为由绕过审核</td></tr><tr><td>BKN Safe/Trace/执行工厂/模型工厂</td><td>独立产品与扩展域</td><td>已有 Platform/Agent 观测、工具与模型配置</td><td>属于集成参考，不复制另一套基础设施或宣称全产品覆盖</td></tr></tbody></table>
+<p>上游细分证据：<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/scenes/workspace/WorkspaceOverviewSection.tsx" target="_blank" rel="noopener noreferrer" class="">总览</a>、<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/scenes/RelationTypeMappingScene.tsx" target="_blank" rel="noopener noreferrer" class="">关系映射</a>、<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/scenes/ActionTypeFormScene.tsx" target="_blank" rel="noopener noreferrer" class="">行动编辑</a>、<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/scenes/ActionTypeExecutionScene.tsx" target="_blank" rel="noopener noreferrer" class="">行动执行</a>、<a href="https://github.com/openbkn-ai/bkn-studio/blob/e4e867c994369e33025f01f04f37469b45aac4f3/src/modules/knowledge-network/components/concept-group/ConceptGroupListPanel.tsx" target="_blank" rel="noopener noreferrer" class="">概念分组</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-当前交互-review">3. 当前交互 Review<a href="#3-当前交互-review" class="hash-link" aria-label="3. 当前交互 Review的直接链接" title="3. 当前交互 Review的直接链接" translate="no">​</a></h2>
+<p>审查视口为 1280×720。列表与建模 Drawer 已实际打开并截图；查询权限、字段保留和分页定位问题通过调用链核对，不能混称均已在真实数据库重现。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>严重度</th><th>位置与触发</th><th>问题与影响</th><th>修改方向</th></tr></thead><tbody><tr><td>P1</td><td>修改网络名称后点 Drawer 顶部“重试”</td><td>直接调用 open/selectNetwork，清空 dirty，未保存内容被替换</td><td>刷新、关闭共用丢弃确认；取消保留全部输入</td></tr><tr><td>P1</td><td>对象/属性/关系等表格第二页编辑/删除</td><td>操作使用 render 的当前页索引索引完整数组；操作定位应以稳定 code 为准</td><td>所有分类统一使用条目 code 定位；过滤后也正确</td></tr><tr><td>P1</td><td>编辑 JSON 导入过的属性约束或对象别名</td><td>save 重建条目，仅提交已注册表单字段，容易丢失未编辑约束</td><td>先合并原条目再覆盖已验证字段；明确新增/现有字段行为</td></tr><tr><td>P2</td><td>删除对象、主键属性、被反向引用的关系</td><td>普通删除确认不说明引用；保存/验证后才暴露悬空关系</td><td>删除前列出关系、行动、指标、分组、属性引用/主键依赖，禁止确认；不自动级联删除</td></tr><tr><td>P2</td><td>切换查询操作为行动</td><td>运行按钮用非订阅 getFieldValue 判断权限，可能保持上次操作状态</td><td>订阅 operation；执行入口再次检查当前权限；后端仍为最终安全边界</td></tr><tr><td>P2</td><td>打开网络后的默认页面</td><td>双层 Tabs、无总览、按钮密集且大多禁用；读者难判断模型规模与状态</td><td>默认总览，分类计数、描述、映射能力与状态；保留业务编辑入口</td></tr><tr><td>P2</td><td>概念分组、对象别名</td><td>模型支持但表单不可达，用户被迫手写 JSON</td><td>使用原契约补齐可视化操作，复用当前 edit 权限</td></tr><tr><td>P2</td><td>已发布数据调试</td><td>原始 JSON 难判断实例、分页、图节点及证据</td><td>后续结构化实例表/图、下一页、实例详情，技术 JSON 收进折叠项</td></tr><tr><td>P3</td><td>列表、Drawer 与小屏幕</td><td>列表缺少说明性信息；大 Drawer 对上下文和深链支持有限</td><td>描述摘要、清晰刷新文案、模型内搜索；后续 URL 工作区与 375px 验收</td></tr></tbody></table>
+<p>删除依赖提示只提升编辑体验；JSON 导入、并发更新与恶意客户端仍必须通过既有后端 schema/授权/发布验证。稳定 code 已在原编辑表单禁止修改，本阶段不新增“自动重命名引用”的旁路。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-目标页面与主要流程">4. 目标页面与主要流程<a href="#4-目标页面与主要流程" class="hash-link" aria-label="4. 目标页面与主要流程的直接链接" title="4. 目标页面与主要流程的直接链接" translate="no">​</a></h2>
+<p>网络列表保留管理平台布局、模块入口与权限。点击网络进入工作区，标题包含名称、范围、当前查看版本/状态；常用操作按当前权限与状态可用。修改会产生未保存标记。刷新、关闭、切换网络以及未来的路由离开均不得静默丢弃内容。</p>
+<p>工作区分为：</p>
+<ol>
+<li class=""><strong>总览</strong>：网络说明、对象/关系/行动/指标/分组数量、可选择的类型图、发布及映射状态。不把 Schema 数量当业务实例数量。</li>
+<li class=""><strong>模型管理</strong>：对象与属性、关系与类型图、行动、指标、概念分组、数据映射。按 code/名称查找；详情编辑与删除按稳定标识定位；明确搜索仅覆盖当前完整模型。</li>
+<li class=""><strong>实例探索</strong>：绑定当前发布版本；对象实例表 → 实例详情与来源 → 有界邻居展开；可返回列表继续分页，失败与截断明确展示。查看历史模型时仍标明执行使用当前发布版本，避免误读。</li>
+<li class=""><strong>发布管理</strong>：校验问题、差异、破坏性变更确认、提交、他人审核、发布、废弃/恢复、审计。不允许管理员前端自批越过既有后端约束。</li>
+<li class=""><strong>候选与导入</strong>：文档辅助、来源、候选对比与明确采纳；JSON/.bkn 预检 → 差异 → 当前草稿 → 保存/重新审核。导入文件不能指定权限或执行身份。</li>
+<li class=""><strong>集成体验</strong>：复用已有 Agent 与 MCP 工具，展示所选已发布网络及真实调用证据；不另建工具执行或模型配置系统。</li>
+</ol>
+<p>空状态提供对应创建入口；无读权限不请求业务数据；无查询权限仍可看授权模型但不能执行。数据 Provider 不可用时保留草稿编辑，并将数据执行标为不可用。所有列表、表单、查询都有加载、防重复提交、稳定错误和重试路径。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-权限与后端边界">5. 权限与后端边界<a href="#5-权限与后端边界" class="hash-link" aria-label="5. 权限与后端边界的直接链接" title="5. 权限与后端边界的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>操作</th><th>继续使用的 Chein 权限与附加约束</th></tr></thead><tbody><tr><td>网络/模型读取</td><td>ontology:read；当前成员、Edition/模块权益；private 仅 owner；Tenant UoW + RLS</td></tr><tr><td>建模、分组、映射草稿、导入</td><td>ontology:edit；expected_revision；已有来源复验，不改变数据所有权</td></tr><tr><td>审核/发布/废弃</td><td>ontology:publish；审核人与最后编辑者分离；已发布正文不可变；目录指纹一致</td></tr><tr><td>实例查询/遍历/指标</td><td>ontology:query；实际发布版本；数据所有者逐次复验源权限与记录范围</td></tr><tr><td>行动执行</td><td>ontology:query + ontology:action:execute；executor 白名单；原数据权限继续适用</td></tr></tbody></table>
+<p>新增 Provider 仍通过 ModuleDefinition/capability 装配。跨模块只能公开 DTO/稳定接口；不从 ontology 导入 ERP ORM，不引入任意 SQL/URL/脚本、上游 ACL 或上游 runtime。新数据源、写行动、Cypher 执行、全局语义索引不能用 UI 实现掩盖架构扩展；需要单独设计、能力约束、负向测试与交付证据。若需改变现有架构/Accepted ADR，先提出替代 ADR，不能在本功能中静默改写。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-分阶段实施与验收">6. 分阶段实施与验收<a href="#6-分阶段实施与验收" class="hash-link" aria-label="6. 分阶段实施与验收的直接链接" title="6. 分阶段实施与验收的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p0现有契约可达与编辑可靠性已实施">P0：现有契约可达与编辑可靠性（已实施）<a href="#p0现有契约可达与编辑可靠性已实施" class="hash-link" aria-label="P0：现有契约可达与编辑可靠性（已实施）的直接链接" title="P0：现有契约可达与编辑可靠性（已实施）的直接链接" translate="no">​</a></h3>
+<ul class="contains-task-list containsTaskList_npDD">
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 总览与模型分类数量；模型内搜索。</li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 概念分组 CRUD 与成员选择；对象别名编辑。</li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 编辑/删除按 code 定位，跨页与过滤后不操作错对象。</li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 编辑保留未展示约束；删除前列出依赖并阻止悬空引用。</li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 刷新与关闭保护未保存修改；查询行动权限随操作即时更新。</li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> 组件回归、前端类型检查、Suite 前端构建、真实页面核对。</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> RustFS 截图归档：首次上传与 <code>pnpm dev:artifact --retry</code> 均失败，六张截图已保存在项目外待发缓存 <code>~/.cache/chein/dev-artifacts/</code>。</li>
+</ul>
+<p>不修改 API/数据库/模块装配，不增加依赖，因此无迁移和客户端再生成。保留原 JSON、历史快照与版本发布流程。本阶段完成后也不能称全量 OpenBKN 核心对齐。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p1工作区列表与实例体验已实施">P1：工作区、列表与实例体验（已实施）<a href="#p1工作区列表与实例体验已实施" class="hash-link" aria-label="P1：工作区、列表与实例体验（已实施）的直接链接" title="P1：工作区、列表与实例体验（已实施）的直接链接" translate="no">​</a></h3>
+<p>后端在授权网络集合内支持 q/scope/排序及稳定游标，不用全表加载后前端筛选。前端工作区 URL 携带 network/version/section，兼容原 Studio 入口与未保存保护。基于现有 query/traverse/metric/action 做实例表、详情、下一页、有限图展开、业务指标表、来源与截断提示；网络/版本/操作变化清空旧结果，迟到响应不能覆盖新上下文。敏感字段继续由运行时裁剪。</p>
+<p>验收：只读/编辑/发布/执行四类权限；无已发布版本；源权限撤回；无效 UUID；分页边界；网络/版本切换；Provider 503/漂移 409；三跳及预算截断；小屏幕与键盘操作。服务端测试使用一次性数据库串行运行。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p2bkn-互操作与更完整的建模已实施">P2：.bkn 互操作与更完整的建模（已实施）<a href="#p2bkn-互操作与更完整的建模已实施" class="hash-link" aria-label="P2：.bkn 互操作与更完整的建模（已实施）的直接链接" title="P2：.bkn 互操作与更完整的建模（已实施）的直接链接" translate="no">​</a></h3>
+<p>先定义 <code>.bkn</code> 支持子集与能力映射表，再实现导入解析、严格 DTO 转换、引用校验、差异预览和导出。主键/展示属性、属性约束、关系反向语义等先复用已有 DTO，新增字段才版本化升级契约。多文件导入校验路径穿越、文件数/字节/压缩预算；拒绝执行内容、未注册来源或行动。旧 JSON 与已发布版本继续可读，不能无损转换时明确诊断。</p>
+<p>验收：支持子集 round-trip；跨文件引用；重复 ID；错误类型/不支持执行器；超预算/路径穿越；导入不能提升权限；失败不改变草稿。需要 API 改动时重新生成客户端，不手写生成类型。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p3数据与能力扩展受控只读范围已实施">P3：数据与能力扩展（受控只读范围已实施）<a href="#p3数据与能力扩展受控只读范围已实施" class="hash-link" aria-label="P3：数据与能力扩展（受控只读范围已实施）的直接链接" title="P3：数据与能力扩展（受控只读范围已实施）的直接链接" translate="no">​</a></h3>
+<p>按实际业务注册更多数据资源、关系与指标；源模块拥有查询与权限，ontology 拥有语义。先交付更多受控只读行动，再单独评估写行动。语义检索和高级图查询采用现有安全能力或单独 ADR，不把字符串表达式直接落为 SQL/Cypher。保留现有 Agent/Knowledge/MCP 边界。</p>
+<p>验收：每种新 Provider 的当前权限、跨租户/owner/部门负向测试、指纹变化、来源墓碑、超时、幂等与恢复；写行动另加事务/审批/审计门禁。此阶段未实现前，对外文案必须保留功能范围说明。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-验证记录">7. 验证记录<a href="#7-验证记录" class="hash-link" aria-label="7. 验证记录的直接链接" title="7. 验证记录的直接链接" translate="no">​</a></h2>
+<p>2026-10-23 本次实际执行：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验证</th><th>结果与边界</th></tr></thead><tbody><tr><td><code>pnpm frontend:typecheck</code></td><td>通过，整应用 TypeScript 检查</td></tr><tr><td><code>pnpm frontend:pro:test</code></td><td>34 个测试文件、303 项测试通过；其中本体页面 11 项，覆盖分页编辑、过滤后移除、字段保留、分组 CRUD、依赖删除、未保存保护、行动权限和原有审核/冲突保护</td></tr><tr><td><code>pnpm frontend:build</code></td><td>当前 Suite Manifest 的 Umi 生产前端构建通过；Browserslist 数据过期提示保留，未顺带升级依赖</td></tr><tr><td>模块文件 <code>biome check</code></td><td>Studio、SchemaEditor、页面测试、两种 locale 共 5 个文件通过；SVG 节点使用键盘与 pressed 语义，保留 SVG 必需的 ARIA button</td></tr><tr><td>真实浏览器</td><td>1280×720，读取已有网络；总览数量、分组本地创建/成员选择、未保存标记、刷新确认、取消后保留草稿、对象依赖列表与禁止确认均通过；验证结束放弃本次浏览器临时草稿，没有保存/审核/发布用户模型</td></tr><tr><td>截图</td><td><code>ontology-audit-before-list</code>、<code>ontology-audit-before-workspace</code>、<code>ontology-p0-overview</code>、<code>ontology-p0-groups</code>、<code>ontology-p0-unsaved</code>、<code>ontology-p0-dependencies</code>；使用开发归档入口，六张首次上传与全队列重试均失败，项目外缓存保留</td></tr></tbody></table>
+<p>关键修改文件：<code>Studio.tsx</code>（总览/刷新保护/操作权限订阅），<code>SchemaEditor.tsx</code>（分组/别名/搜索/稳定定位/字段保留/依赖），<code>Studio.test.tsx</code>、两种 locale 和文档索引。指标表单不再提交 DTO 未定义的通用 description 字段。没有修改后端、数据库、生成客户端、Edition 或权限定义；原 JSON 与历史版本兼容，无数据迁移。</p>
+<p>未执行：后端/RLS/迁移矩阵（本阶段无后端变更）、Base/Items Edition 重构建（无装配变更）、独立移动设备/375px 浏览器、真实分组写库与双人发布端到端、远端 CI、生产部署、OpenBKN 完整服务部署对照、真实写行动、多数据源和外部模型验收。以上是 P0 当时的验证边界；P1–P3 后续实施见下一节，不能用该历史记录覆盖当前事实。</p>
+<p>React 组件审查：沿用本模块状态与 Ant Design，不新增依赖或全局 Store；Form.useWatch 订阅查询操作；模型/版本切换通过组件 key 重置编辑器状态；图节点保留键盘与 aria-pressed；禁用状态同时约束编辑入口和确认按钮。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-p1p3-实施与交付范围">8. P1–P3 实施与交付范围<a href="#8-p1p3-实施与交付范围" class="hash-link" aria-label="8. P1–P3 实施与交付范围的直接链接" title="8. P1–P3 实施与交付范围的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p1-实际实现">P1 实际实现<a href="#p1-实际实现" class="hash-link" aria-label="P1 实际实现的直接链接" title="P1 实际实现的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">服务端网络名称/标识/描述搜索、scope 筛选、id/name/updated 排序、升降序与稳定 keyset 游标；过滤先进入原 Tenant/owner scope。旧 UUID after 游标默认按 id 继续兼容，新的排序游标绑定筛选参数，不能跨筛选复用。</li>
+<li class="">工作区从遮挡主界面的 Drawer 改为原生管理页；同一路由的 network/version/section 参数支持定位与刷新恢复。保留列表筛选与游标；浏览器离开和工作区关闭/刷新保护未保存内容，身份/租户变化清空工作区。</li>
+<li class="">网络信息默认折叠。实例表、属性与来源详情、下一页、类型化条件、有限实例图、邻居展开、业务指标表和截断提示均有界；技术 JSON 收入折叠项。执行仍使用当前发布版本，并明确显示版本。</li>
+<li class="">网络/版本/操作/筛选/权限变化使结果失效，迟到响应不能覆盖新上下文。浏览器 DOM 不需要保存未授权敏感列，数据源仍在服务端逐次裁剪与授权。</li>
+<li class="">集成页列出既有六个 MCP 工具、权限和当前发布标识，可复制上下文后进入已有 Agent；不会自动调用模型或执行发布。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p2-实际实现">P2 实际实现<a href="#p2-实际实现" class="hash-link" aria-label="P2 实际实现的直接链接" title="P2 实际实现的直接链接" translate="no">​</a></h3>
+<ul>
+<li class="">JSON、BKN 多文件、ZIP 使用统一预检 → 差异 → 明确采纳 → 保存/审核流程；实现按标识合并和整体替换。</li>
+<li class="">支持展示属性、属性/分组描述、默认值、精度、范围、枚举、反向关系和执行器选择。隐藏字段编辑保留、稳定 code 与后端严格校验继续生效。</li>
+<li class="">支持子集、原生结构/Chein 扩展、容量及失败关闭行为见 <a class="" href="/chein-doc-site/reference/development/ontology/bkn-interchange/">BKN 互操作契约</a>。不将不支持的外部行动悄悄转换成已授权执行器。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="p3-实际实现">P3 实际实现<a href="#p3-实际实现" class="hash-link" aria-label="P3 实际实现的直接链接" title="P3 实际实现的直接链接" translate="no">​</a></h3>
+<p>ERP 继续作为数据所有者，增加 Customer、ProductCategory、ProductUnit，共七类固定资源；仅声明业务所需的非敏感字段，不暴露客户联系方式或银行信息。增加商品—分类、商品—单位、分类父级及受控反向关系；共十二个固定方向关系，遍历仍有三跳/100 节点/200 边/30 调用/15 秒预算。</p>
+<p>指标由一个扩展为三种：已审核采购金额、税额、订单数，均按供应商和原时间口径、当前 owner/部门范围执行。金额保持 Decimal 字符串。行动扩展为 object_query_v1、object_detail_v1、object_neighbors_v1；详情/邻居必须提供实例 UUID；拒绝与契约不符的筛选/游标参数。新目录模板仅由当前授权目录生成，不给用户补授权。</p>
+<p>新增源能力复用已有 customer/product-category/product-unit 的 list 权限，声明到现有工具 delegation 上限；数据所有者每次重验当前 RBAC。关键词搜索增加业务名称/别名匹配，并在相关性相同时保留网络更新时间顺序；这不是向量语义搜索。</p>
+<p>写行动评估结论：本次不注册。当前本体没有通用写操作事务/幂等/补偿协议，且现行边界明确仅允许只读。任意数据源接入、通用 Cypher、全局向量索引、写行动和 OpenBKN Safe/Trace 全产品仍需单独设计/ADR；这是原 P3 的评估项，不计作已交付执行功能。身份、RLS、审核与权限体系没有替换。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="兼容与运行影响">兼容与运行影响<a href="#兼容与运行影响" class="hash-link" aria-label="兼容与运行影响的直接链接" title="兼容与运行影响的直接链接" translate="no">​</a></h3>
+<p>没有新增运行时依赖、数据表或迁移；API/DTO 增量扩展后使用仓库生成器生成客户端及 Manifest。旧 JSON/历史正文保持可读。目录指纹变化会阻止旧发布模型继续执行，应保存为新草稿并重新校验、双人审核发布。不会自动修改用户模型、业务数据、角色授权或已发布 MCP 服务版本。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="最终验证">最终验证<a href="#最终验证" class="hash-link" aria-label="最终验证的直接链接" title="最终验证的直接链接" translate="no">​</a></h3>
+<p>本轮实际执行（前面的 P0 数量不计为本轮证明）：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>命令 / 检查</th><th>结果</th></tr></thead><tbody><tr><td><code>cd backend &amp;&amp; uv run ruff check app tests</code></td><td>通过；受影响 Python 文件 <code>ruff format --check</code> 通过</td></tr><tr><td><code>cd backend &amp;&amp; uv run python scripts/test_creation_isolated.py tests/modules/ontology tests/modules/test_module_boundaries.py tests/modules/test_agent_tools.py tests/modules/test_manifest.py tests/modules/test_migrations.py -q --tb=short</code></td><td>62 passed；包括真实 PostgreSQL、双人发布、HTTP JWT/session/RBAC、app_runtime 无 scope/跨租户负向、Provider、迁移与边界检查；末次格式加固另跑下面的 8 项纯格式检查，不将重复用例累加</td></tr><tr><td><code>cd backend &amp;&amp; uv run pytest tests/modules/ontology/test_alignment.py -k &#x27;bkn or frontmatter&#x27; -q --tb=short</code></td><td>8 passed（纯格式检查，不使用 db fixture）；覆盖原生表格、逻辑属性名到源字段映射、ZIP 往返、特殊字符及前言预算</td></tr><tr><td><code>pnpm frontend:pro:test</code></td><td>34 个文件、311 项通过；本体页面 19 项，覆盖实例分页、迟到响应、指标表、图节点键盘详情/来源、权限、导入采纳和身份切换</td></tr><tr><td><code>pnpm frontend:typecheck</code></td><td>通过</td></tr><tr><td><code>pnpm build:edition -- --edition base</code>、<code>items</code>、<code>suite</code></td><td>三个 Edition 均通过；按顺序生成各自客户端/Manifest，最终恢复 Suite</td></tr><tr><td><code>pnpm frontend:build</code></td><td>最后界面/弹框/文案调整后的 Suite 生产前端构建通过</td></tr><tr><td>模块前端 <code>biome check</code></td><td>7 个页面/测试/locale 文件通过；未引入新依赖</td></tr><tr><td>真实浏览器 1280×720</td><td>列表搜索与 URL 参数、独立工作区、深链接刷新恢复、浏览器返回后保留筛选、导入服务端预检/差异、未发布执行门禁、MCP 集成及弹框确认区核对通过；没有采纳/保存/发布用户模型</td></tr><tr><td>开发截图归档</td><td>本轮 workspace/import/integration 三图通过规定入口保存；上传和一次全队列重试仍失败，待发文件保留在 <code>~/.cache/chein/dev-artifacts/</code></td></tr></tbody></table>
+<p>浏览器当前已有网络尚未发布，因此没有借用该网络做实例写库或发布。实例查询/图/指标/行动的真实数据与权限由一次性数据库回归验证，浏览器展示与交互由组件回归验证；不把这两类证据宣称为已有业务网络的完整浏览器发布 E2E。375px 真机/浏览器、真实外部 Agent/RAGFlow/模型、生产负载/故障演练、远端 CI、镜像扫描/签名、N-1 演练、团队签署与实际部署未执行。</p>
+<p>旧的 Alembic/SQLModel 与 Nacos/Pydantic 弃用提示、Browserslist 数据过期提示未通过框架升级处理，不影响上述通过结果。</p>
+<p>关键实施文件：<code>backend/app/modules/ontology/application/{service,runtime,interchange,schema}.py</code>、<code>public_api/dto.py</code>、<code>routes.py</code>，ERP 的 <code>application/ontology.py</code>；前端 <code>pages/{Studio,SchemaEditor,InstanceExplorer,ModelImport}.tsx</code>，以及对应测试、locale 与生成客户端。最后一轮仅对格式编码/前言预算做了加固，纯格式回归 8 项通过；没有再扩展业务权限或数据执行范围。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/ontology/openbkn-alignment.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/development/ontology/bkn-interchange/">BKN 文件互操作支持范围</a></li><li><a href="/chein-doc-site/reference/development/ontology/delivery/">本体交付记录</a></li><li><a href="/chein-doc-site/reference/development/ontology/design/">Chein 原生本体设计</a></li><li><a href="/chein-doc-site/reference/history/ontology/research/">本体技术审查</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/ontology/delivery/">本体交付记录</a></li><li><a href="/chein-doc-site/reference/development/ontology/design/">Chein 原生本体设计</a></li><li><a href="/chein-doc-site/reference/development/ontology/README/">企业业务本体</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fontology%2Fopenbkn-alignment%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/ontology/neo4j-design/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Neo4j 与 Legacy 双 Provider</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/ontology/owl-builder/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">OWL 画布构建器</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-结论与证据范围" class="table-of-contents__link toc-highlight">1. 结论与证据范围</a></li><li><a href="#2-功能差异清单" class="table-of-contents__link toc-highlight">2. 功能差异清单</a></li><li><a href="#3-当前交互-review" class="table-of-contents__link toc-highlight">3. 当前交互 Review</a></li><li><a href="#4-目标页面与主要流程" class="table-of-contents__link toc-highlight">4. 目标页面与主要流程</a></li><li><a href="#5-权限与后端边界" class="table-of-contents__link toc-highlight">5. 权限与后端边界</a></li><li><a href="#6-分阶段实施与验收" class="table-of-contents__link toc-highlight">6. 分阶段实施与验收</a><ul><li><a href="#p0现有契约可达与编辑可靠性已实施" class="table-of-contents__link toc-highlight">P0：现有契约可达与编辑可靠性（已实施）</a></li><li><a href="#p1工作区列表与实例体验已实施" class="table-of-contents__link toc-highlight">P1：工作区、列表与实例体验（已实施）</a></li><li><a href="#p2bkn-互操作与更完整的建模已实施" class="table-of-contents__link toc-highlight">P2：.bkn 互操作与更完整的建模（已实施）</a></li><li><a href="#p3数据与能力扩展受控只读范围已实施" class="table-of-contents__link toc-highlight">P3：数据与能力扩展（受控只读范围已实施）</a></li></ul></li><li><a href="#7-验证记录" class="table-of-contents__link toc-highlight">7. 验证记录</a></li><li><a href="#8-p1p3-实施与交付范围" class="table-of-contents__link toc-highlight">8. P1–P3 实施与交付范围</a><ul><li><a href="#p1-实际实现" class="table-of-contents__link toc-highlight">P1 实际实现</a></li><li><a href="#p2-实际实现" class="table-of-contents__link toc-highlight">P2 实际实现</a></li><li><a href="#p3-实际实现" class="table-of-contents__link toc-highlight">P3 实际实现</a></li><li><a href="#兼容与运行影响" class="table-of-contents__link toc-highlight">兼容与运行影响</a></li><li><a href="#最终验证" class="table-of-contents__link toc-highlight">最终验证</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

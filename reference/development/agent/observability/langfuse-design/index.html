@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-reference docs-version-current docs-doc-page docs-doc-id-development/agent/observability/langfuse-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Chein Agent 可观测性与持续优化总体设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-design/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Chein Agent 可观测性与持续优化总体设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Chein Agent 可观测性与持续优化总体设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Chein Agent 可观测性与持续优化总体设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-design/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-design/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-design/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Agent 系统","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/agent-系统"},{"@type":"ListItem","position":2,"name":"观测与质量","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/观测与质量"},{"@type":"ListItem","position":3,"name":"Chein Agent 可观测性与持续优化总体设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/agent/observability/langfuse-design"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
+<script src="/chein-doc-site/assets/js/runtime~main.793368ab.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/chein-doc-site/img/chein.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_jtwi" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/chein-doc-site/"><div class="navbar__logo"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--light_Gnvh"><img src="/chein-doc-site/img/chein.svg" alt="Chein" class="themedComponent_kpNN themedComponent--dark_cd_2"></div><b class="navbar__title text--truncate">Chein 文档中心</b></a><a class="navbar__item navbar__link" href="/chein-doc-site/product/overview/">产品文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/product/features/ontology/">本体与业务</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/development/start/">开发文档</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/architecture/overview/">架构设计</a><a class="navbar__item navbar__link" href="/chein-doc-site/reference/operations/start/">部署运维</a><a class="navbar__item navbar__link" href="/chein-doc-site/graph/">知识图谱</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/chein-doc-site/product/profile/index/">个人简介</a><div class="toggle_Z8Kk colorModeToggle_suF6"><button class="clean-btn toggleButton_O9A8 toggleButtonDisabled_Gecc" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b lightToggleIcon_j8FP"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b darkToggleIcon_xCj4"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_VR9b systemToggleIcon_mSK_"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_weWD"><div class="navbar__search searchBarContainer_iTsK" dir="ltr"><svg aria-hidden="true" class="searchIcon_fnuR" focusable="false" viewBox="0 0 16 16"><path fill="currentColor" d="M6.02945 10.20327a4.17382 4.17382 0 1 1 4.17382-4.17382 4.15609 4.15609 0 0 1-4.17382 4.17382Zm9.69195 4.2199-4.8225-4.82338A5.88021 5.88021 0 0 0 12.058 6.02856 6.00467 6.00467 0 1 0 9.59979 10.8989l4.82338 4.82338a.89729.89729 0 0 0 1.29912 0 .89749.89749 0 0 0-.00087-1.29909Z"></path></svg><input placeholder="搜索" aria-label="Search" class="navbar__search-input searchInput_sRF7" value=""><div class="loadingRing_iRd3 searchBarLoadingRing_W8DW"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_YnCS"><div class="docsWrapper_hYoh"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_ba22" type="button"></button><div class="docRoot_Oyu_"><aside class="theme-doc-sidebar-container docSidebarContainer_Qlrs"><div class="sidebarViewport_DKb8"><div class="sidebar_Rfby"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Vrp4"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/start/"><span class="linkLabel_gJOC">开发入口</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" href="/chein-doc-site/reference/category/agent-系统/"><span class="categoryLinkLabel_adV2">Agent 系统</span></a><button aria-label="折叠侧边栏分类 &#x27;Agent 系统&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/index/"><span class="linkLabel_gJOC">Agent 设计文档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/chat-execution-controls/"><span class="linkLabel_gJOC">对话本体与决策控制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/jev-integration/"><span class="linkLabel_gJOC">Chein 阿里云 Decision Model 接入与能力路由</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/knowledge-retrieval-delivery/"><span class="linkLabel_gJOC">Chein Knowledge Platform：实施与验收</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/长期记忆/"><span class="categoryLinkLabel_adV2">长期记忆</span></a><button aria-label="展开侧边栏分类 &#x27;长期记忆&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/多模态与语音/"><span class="categoryLinkLabel_adV2">多模态与语音</span></a><button aria-label="展开侧边栏分类 &#x27;多模态与语音&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist menu__link--active" tabindex="0" href="/chein-doc-site/reference/category/观测与质量/"><span class="categoryLinkLabel_adV2">观测与质量</span></a><button aria-label="折叠侧边栏分类 &#x27;观测与质量&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/"><span class="linkLabel_gJOC">Langfuse 分阶段实施、性能实验与验收计划</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/"><span class="linkLabel_gJOC">Langfuse P1–P5 实施与启用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-design/"><span class="linkLabel_gJOC">Chein Agent 可观测性与持续优化总体设计</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/"><span class="linkLabel_gJOC">Langfuse 可读链路与脱敏问答设计</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/phase-1-delivery/"><span class="linkLabel_gJOC">Agent Phase 1 运行控制与只读数据工具</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/ragflow-native-tool-integration/"><span class="linkLabel_gJOC">RAGFlow 原生 Tool 集成</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/sql-analytics-delivery/"><span class="linkLabel_gJOC">SQL 分析与图表收藏交付</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/chein-doc-site/reference/development/agent/tool-management-implementation/"><span class="linkLabel_gJOC">Agent 工具管理实施设计</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" tabindex="0" href="/chein-doc-site/reference/category/token-与额度/"><span class="categoryLinkLabel_adV2">Token 与额度</span></a><button aria-label="展开侧边栏分类 &#x27;Token 与额度&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/api-参考/"><span class="categoryLinkLabel_adV2">API 参考</span></a><button aria-label="展开侧边栏分类 &#x27;API 参考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/后端开发/"><span class="categoryLinkLabel_adV2">后端开发</span></a><button aria-label="展开侧边栏分类 &#x27;后端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/数据源/"><span class="categoryLinkLabel_adV2">数据源</span></a><button aria-label="展开侧边栏分类 &#x27;数据源&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/chein-doc-site/reference/development/documentation/"><span class="linkLabel_gJOC">维护与发布文档中心</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/工程入口/"><span class="categoryLinkLabel_adV2">工程入口</span></a><button aria-label="展开侧边栏分类 &#x27;工程入口&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/erp/"><span class="categoryLinkLabel_adV2">ERP</span></a><button aria-label="展开侧边栏分类 &#x27;ERP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/前端开发/"><span class="categoryLinkLabel_adV2">前端开发</span></a><button aria-label="展开侧边栏分类 &#x27;前端开发&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/业务本体/"><span class="categoryLinkLabel_adV2">业务本体</span></a><button aria-label="展开侧边栏分类 &#x27;业务本体&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/管理平台/"><span class="categoryLinkLabel_adV2">管理平台</span></a><button aria-label="展开侧边栏分类 &#x27;管理平台&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_0uKO menu__link menu__link--sublist" href="/chein-doc-site/reference/category/开发规范/"><span class="categoryLinkLabel_adV2">开发规范</span></a><button aria-label="展开侧边栏分类 &#x27;开发规范&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_F3tT"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_ihGx"><div class="docItemContainer_iRhN"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ws5f" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/chein-doc-site/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_df4f"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/agent-系统/"><span>Agent 系统</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/chein-doc-site/reference/category/观测与质量/"><span>观测与质量</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Chein Agent 可观测性与持续优化总体设计</span></li></ul></nav><div class="tocCollapsible_b1iK theme-doc-toc-mobile tocMobile_fA9w"><button type="button" class="clean-btn tocCollapsibleButton_Y_I6">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>Chein Agent 可观测性与持续优化总体设计</h1></header>
+<blockquote>
+<p>状态：<strong>Proposed；P1–P5 本地实现已接线，目标环境及完整验收待完成</strong>。当前事实见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">实施与启用</a>。
+前置阅读：<a class="" href="/chein-doc-site/reference/history/agent/langfuse-audit/">代码审计</a>、<a class="" href="/chein-doc-site/reference/history/agent/langfuse-research/">官方调研</a>；实施和验收以<a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/">阶段计划</a>为准。</p>
+</blockquote>
+<p>本文维护拟议的 Trace 模型、性能、安全及质量闭环；运行时边界仍以<a class="" href="/chein-doc-site/reference/architecture/agent/runtime/">Agent 架构</a>为事实源，部署参数仍以<a class="" href="/chein-doc-site/reference/operations/deployment/langfuse/">Langfuse 部署</a>为事实源。接入前设计结论保留；当前实施证据及配置见 <a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">P1–P5 实施</a>，不以设计要求代替已上线事实。</p>
+<p>2026-10-14 增补：<a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/">可读链路与脱敏问答设计</a> 根据运行证据增加显式 opt-in 的选取问答模式与控制面连接复用；以下默认 metadata-only 要求仍适用，新增模式的采集例外以该专题契约为准。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="1-决策与证据等级">1. 决策与证据等级<a href="#1-决策与证据等级" class="hash-link" aria-label="1. 决策与证据等级的直接链接" title="1. 决策与证据等级的直接链接" translate="no">​</a></h2>
+<p>正文“建议”“应”“目标”均为设计要求，不代表已经实现。四种证据标记含义：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>标记</th><th>含义</th></tr></thead><tbody><tr><td>已通过代码验证</td><td>静态读当前实现、lock 或官方固定 SDK 源码；不是运行验收</td></tr><tr><td>已通过官方文档验证</td><td>已查官方页面，其能力/限制仍须适配部署版本</td></tr><tr><td>待实验验证</td><td>需真实依赖、端点、故障/并发/性能测试</td></tr><tr><td>待业务决策</td><td>涉及成本、隐私、保留期、管理员和产品范围，须 Owner 决定</td></tr></tbody></table>
+<p>拟议决策：</p>
+<ol>
+<li class=""><strong>B + D</strong>：官方 LangChain Callback + 少量业务 Span + 原有元数据日志。只在顶层 <code>agent/</code> 引入 Langfuse/框架依赖；Backend 不导入 Agent 或 Langfuse 框架 Callback。</li>
+<li class=""><strong>默认关闭、metadata-only、观测可丢弃</strong>。观测不可用不影响 Run、checkpoint、审批、安全审计、健康/就绪。</li>
+<li class=""><strong>一个请求执行一个 Trace</strong>。多轮/恢复按 Session、Run 和 execution 关系聚合，不维持等待人工数小时的常驻根 Span。</li>
+<li class=""><strong>每次模型调用一个成本所有者</strong>。Callback generation 与手工 System One/image 调用互斥计量；Langfuse 与 Higress 只核对，不相加。</li>
+<li class=""><strong>Nacos 继续是 Prompt 正文和发布版本唯一来源</strong>。Langfuse 用于观测、评分、数据集和实验，不新增独立 Prompt 发布入口。</li>
+<li class=""><strong>先内部运维访问，后按需求提供 Chein 受控 API</strong>。不直接把 Langfuse 项目角色等同于租户/部门权限，不建设完整控制台副本。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="2-总体架构所有权和基础设施分工">2. 总体架构、所有权和基础设施分工<a href="#2-总体架构所有权和基础设施分工" class="hash-link" aria-label="2. 总体架构、所有权和基础设施分工的直接链接" title="2. 总体架构、所有权和基础设施分工的直接链接" translate="no">​</a></h2>
+<!-- -->
+<p>Langfuse 不参与授权、执行计划、业务结果读取、checkpoint 恢复或 Provider 选择；任何观测建议都不能增加 scopes。组件失败时模型/工具调用继续沿当前安全边界执行。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>系统</th><th>保持的职责</th><th>与 Langfuse 的关联/边界</th></tr></thead><tbody><tr><td>Agent PostgreSQL</td><td>Run 终态、lease、事件、checkpoint、受限快照</td><td>业务事实源；Langfuse 只保存投影，不反向恢复 checkpoint</td></tr><tr><td>Knowledge/ERP PostgreSQL</td><td>ACL、业务检索记录、只读分析审计、数据范围</td><td>业务审计不能采样，不能因遥测故障被跳过；不得直接扫 ORM 上传</td></tr><tr><td>ES/ECS</td><td>HTTP/进程/错误堆栈、安全拒绝元数据、已验证 request/run 标识</td><td>增加真实 trace/span 关联，不再复制全树、Prompt、SQL rows</td></tr><tr><td>通用 APM/OTel</td><td>将来 HTTP→Agent→Tool→DB 延迟/服务依赖</td><td>单 Provider，多 exporter 按目的筛选；Langfuse 保留 AI 语义和 Score</td></tr><tr><td>Higress</td><td>如已接入：模型路由、网关 HTTP 错误、用量、cache、upstream</td><td>用 provider_request_id/model_call_id 对账；供应商账单才是实际费用依据</td></tr><tr><td>Nacos</td><td>runtime 配置启动加载、Prompt 正文 latest、MCP 工具版本/撤销</td><td>新采样/观测参数经同一配置；Prompt 身份/版本摘要附 Trace</td></tr><tr><td>RustFS</td><td>Langfuse 私有 event/media bucket；业务模块各自对象生命周期</td><td>不导出业务对象 Key/预签名 URL；trace 存储与业务文件分开删除</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="21-未来跨服务-otel-与-skywalking">2.1 未来跨服务 OTel 与 SkyWalking<a href="#21-未来跨服务-otel-与-skywalking" class="hash-link" aria-label="2.1 未来跨服务 OTel 与 SkyWalking的直接链接" title="2.1 未来跨服务 OTel 与 SkyWalking的直接链接" translate="no">​</a></h3>
+<p>P1 只在 Agent generator 内建立根，BFF 的认证/Prompt 耗时继续看 request_id 日志。这不是完整 HTTP 端到端 Trace；P2 才连接 BFF 根、授权工具服务和 ERP 查询阶段。</p>
+<p>P2 由每进程组合根初始化唯一 OTel Provider。BFF 生成可信 server span，把 traceparent 经现有内部 HTTP/MCP transport 注入；Agent <strong>仅在委托 JWT 验证成功后</strong>接收关联。浏览器提交的 traceparent/baggage 不决定租户、用户、采样优先级或父 Trace，不向模型供应商透传身份 baggage。Span ID 是 16 hex、Trace ID 是 32 hex，均不得全零。</p>
+<p>Backend 只增加通用 OTel 接线，不引入 LangChain/Langfuse 业务框架；P2 BFF 的少量安全根 Span 可经标准 OTLP 出口或后续 Collector 发往 Langfuse。端点/密钥由服务端组合根持有。通用 DB SQL 文本与 bind parameters 默认不采集。Langfuse exporter 默认不接所有 APM scopes，按目的筛选；被过滤的外部父 Span 可以存在，但需要明确文档/界面语义，若要求完整树则导出对应安全父节点。</p>
+<p>ASGI 入口 <code>call_next</code> 返回不是 SSE 结束。BFF/Agent Span 的结束应挂在 stream generator <code>finally</code>，并测试客户端断开；禁止只在 HTTP middleware 包一层就宣称覆盖全流。<code>asyncio.create_task</code>、<code>to_thread</code>、线程池、MCP SDK 各自传播方式要验证；手工线程必要时 <code>copy_context</code>/OTel inject，且每并行任务独立 context，禁止共享 attach token。SkyWalking 仅作为未来接收端选项，先验证实际部署版本的 OTLP/W3C 支持。<a href="https://opentelemetry.io/docs/languages/python/propagation/" target="_blank" rel="noopener noreferrer" class="">OTel Python propagation</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="3-标识映射与执行恢复">3. 标识映射与执行恢复<a href="#3-标识映射与执行恢复" class="hash-link" aria-label="3. 标识映射与执行恢复的直接链接" title="3. 标识映射与执行恢复的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="31-id-契约">3.1 ID 契约<a href="#31-id-契约" class="hash-link" aria-label="3.1 ID 契约的直接链接" title="3.1 ID 契约的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>标识</th><th>来源及复用方式</th><th>Langfuse 映射</th><th>安全/生命周期</th></tr></thead><tbody><tr><td>tenant/user</td><td>已验证 JWT/委托上下文</td><td><code>tenant_ref</code>、<code>user_id</code> = 环境域隔离 HMAC 引用</td><td>不发姓名/邮箱/真实组织 ID；HMAC Key 仅服务端</td></tr><tr><td>Conversation / AgentThread</td><td>现有业务 thread_id</td><td><code>session_id</code> = HMAC(env, tenant, user, thread)</td><td>Conversation 与 Thread 同义，无新增 Conversation 表</td></tr><tr><td>LangGraph thread_id</td><td><code>tenant:user:thread</code> checkpoint key</td><td>只做内部恢复；外发 metadata 中删除或替换为 session 引用</td><td><strong>不能直接写 Langfuse session_id</strong></td></tr><tr><td>run_id</td><td>BFF 生成，恢复保留、编辑/replay 新建</td><td><code>run_ref</code> 可复用随机业务 ID或 HMAC；用于同 Run 聚合</td><td>当前 tenant/user 范围验证仍由 Agent 完成</td></tr><tr><td>request_id</td><td>Backend 服务端生成，可信转发</td><td>metadata.request_id</td><td>每次 chat/decide/resume/cancel 不同；不等同 Trace/Run</td></tr><tr><td>execution_id</td><td><strong>拟新增语义引用</strong> = Run + 成功 claim 的 lease_epoch</td><td>metadata.execution_id；不先建实体表</td><td>一次领取执行唯一；跨 worker 重领变化</td></tr><tr><td>trace_id</td><td>P1 用 <code>Langfuse.create_trace_id(seed=env:run:lease_epoch)</code>；P2 优先可信 BFF OTel ID</td><td>OTel Trace ID</td><td>seed 经可信 Run 获取；不能用 UUID 直接填；不泄露原 checkpoint key</td></tr><tr><td>observation_id</td><td>OTel Span ID / handler 生成</td><td>Observation 引用</td><td>由 SDK 管理，不复用 toolCallId</td></tr><tr><td>message_id</td><td>AG-UI assistant ID、输入/历史 checkpoint message ID</td><td>本地 message→run/execution 映射；外发仅安全引用</td><td>已有不同 ID 的路径必须建立对应关系，不能猜测</td></tr><tr><td>tool_call_id / query_id</td><td>已有 ToolCall / ERP query UUID</td><td>可安全化的调用关联</td><td>不等于 LangChain callback 的 invocation run UUID</td></tr><tr><td>retrieval_id</td><td>现有 KnowledgeRetrievalTrace UUID</td><td>metadata.retrieval_ref</td><td>独立业务 ID；禁止覆盖 OTel trace_id</td></tr></tbody></table>
+<p>HMAC 采用版本化 key，环境隔离；轮换会打断聚合，应保留 key-version 和受控映射窗口。普通 hash 不能防低熵身份枚举。日志现有可信用户/租户字段仍按当前内网 RBAC 查询，Langfuse 采用更严格的外发引用，不需要全仓改写日志身份。</p>
+<p>P1 在已有 RunEvent 中增添 <strong>有界、无正文</strong> <code>observability.execution</code> 摘要：schema_version、execution_id、trace_id、sampled、lease_epoch、message 引用、release、采集策略版本。它是可重建观测引用，不是新的执行事实源；落库失败不能吞业务持久化错误，也不能为了这个可选事件把观测服务写入业务事务。若事件保存失败，核心业务继续，记脱敏本地错误；后续反馈不猜测 Trace 关联。P4 feedback 独立持久化再决定是否需要正式索引/迁移。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="32-单请求与长-run-的关系">3.2 单请求与长 Run 的关系<a href="#32-单请求与长-run-的关系" class="hash-link" aria-label="3.2 单请求与长 Run 的关系的直接链接" title="3.2 单请求与长 Run 的关系的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>Trace/Session 策略</th><th>计量口径</th></tr></thead><tbody><tr><td>正常新消息</td><td>一个 execution Trace；会话共享 session_id</td><td>本执行独立延迟/用量</td></tr><tr><td>续问</td><td>新 Run、新 execution/new Trace、同 Session</td><td>不把历史 Token/工具结果再记成本</td></tr><tr><td>HITL/paused</td><td>当前 execution 在等待状态结束 Span；resume 新请求/new Trace、同 Run</td><td>active_execution_duration 与等待时长分开</td></tr><tr><td>进程重领</td><td>lease_epoch 增加，新 execution/Trace，前执行可能 incomplete</td><td>业务 Run 唯一终态；已发生重复模型调用仍有费用</td></tr><tr><td>编辑/replay</td><td>新 Run/Trace；metadata 可存 parent_run_ref</td><td>不复写旧 Trace、不假装重跑免费</td></tr><tr><td>重复请求未 claim</td><td>不创建新的模型执行 Trace；在 BFF/日志记录冲突</td><td>不算第二次 Agent 执行</td></tr><tr><td>显式取消</td><td>cancel HTTP 控制请求独立日志/Span，当前 execution 标 cancelled</td><td>不等同失败；usage 缺失仍明确</td></tr><tr><td>页面重连/历史读取</td><td>读请求不新增推理 Trace；若触发 resume 则按新 execution</td><td>不重新统计已持久化结果</td></tr></tbody></table>
+<p>跨 execution 用 Run/Session 和 previous_execution/trace 引用关系，而不是跨进程缓存 handler。无需先为“一个 Run 一条超长 Trace”增加常驻 span 存储。若业务以后明确需要整个 Run 图，可在受控页面按 execution 组成 Run 视图，不改变推理时长口径。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="4-trace--observation--generation--event-模型">4. Trace / Observation / Generation / Event 模型<a href="#4-trace--observation--generation--event-模型" class="hash-link" aria-label="4. Trace / Observation / Generation / Event 模型的直接链接" title="4. Trace / Observation / Generation / Event 模型的直接链接" translate="no">​</a></h2>
+<p>下图是<strong>业务语义目标树</strong>，框架自动节点名和数量由实际 Callback 决定，不能为匹配示意图重复造节点。P1 没有 BFF 父根，直接从 <code>agent.execution</code> 开始。</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">Trace: 一次可信 HTTP 执行请求</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└─ request.agent-chat                        [P2 server/span]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ├─ authz.preflight / prompt.resolve       [仅类别/版本，不含身份与正文]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   └─ agent.execution                       [P1 span，执行终态/时长]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      ├─ checkpoint.load / toolset.bind     [手动必要阶段]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      ├─ framework.agent / graph nodes      [官方 Callback]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  ├─ decision.route                  [手工 System One generation]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  ├─ model.chat                      [Callback generation，唯一调用所有者]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  ├─ tool.search_business_knowledge  [Callback tool]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  ├─ retrieval.plan               [业务 span，可包含 Callback generation]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  ├─ retrieval.fetch.attempt-N    [HTTP/业务 span]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  │  └─ knowledge.authorize-fetch [P2 远端；rerank 为不可拆的内部阶段]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  ├─ evidence.judge               [阶段 span + 实际模型 generation]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  └─ retrieval.feedback           [授权回写 span]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  ├─ tool.analyze_data               [Callback tool]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  ├─ mcp.analyze_data_v1           [传输/远端节点，不重复算业务 Tool 次数]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  │  ├─ analysis.authorize        [ERP 所有者]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  │  └─ analysis.execute         [只读查询，唯一执行耗时]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  │  └─ analysis.snapshot            [Agent 所有者]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      │  └─ model.answer                    [Callback generation]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      ├─ stream.summary                     [单个汇总节点或根 metadata，不逐 Token]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      └─ execution.persist                  [状态保存，不能复制 checkpoint 正文]</span><br></div></code></pre></div></div>
+<p>使用 SDK 当前 <code>span/agent/chain/tool/retriever/generation/event</code> 类型时以 v4.17.0 支持的 <code>as_type</code> 为准。无需把所有业务节点都强制映射新类型；普通 span 足够。Event 只在状态转折有排障价值时使用，不能将每 SSE chunk 当事件。Langfuse Event 不是 Chein <code>RunEvent</code> 的可靠审计替代。层级依据 <a href="https://langfuse.com/docs/observability/features/observation-types" target="_blank" rel="noopener noreferrer" class="">Observation types</a>；框架父子传播仍待实验验证。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="41-通用数据字段">4.1 通用数据字段<a href="#41-通用数据字段" class="hash-link" aria-label="4.1 通用数据字段的直接链接" title="4.1 通用数据字段的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围</th><th>允许字段</th><th>上限/规则</th></tr></thead><tbody><tr><td>所有 observation</td><td><code>schema_version</code>、<code>environment</code>、<code>release</code>、<code>agent_type</code>、<code>business_module</code>、<code>source</code>、<code>policy_version</code></td><td>字段值用固定枚举/发布版本，静态 span name</td></tr><tr><td>execution</td><td>run/execution/request/session 安全引用、start/end、lease_epoch、terminal_status、resume_kind、sample_probability</td><td>metadata 目标 ≤4KiB；字符串 ≤128，release/hash 可明确例外</td></tr><tr><td>用户/组织</td><td>user/tenant HMAC 引用；如确有分组需求再加 dept_ref / organization_ref / scope_kind</td><td>当前委托无完整组织目录；由 Platform 公开 DTO 获取，不导入组织 ORM，不采全角色表</td></tr><tr><td>状态/异常</td><td>succeeded/failed/cancelled/paused/waiting_input/waiting_approval/incomplete；稳定 error_code/error_type</td><td>禁止自由文本异常/供应商 body；fallback/no_result/denied 单独维度</td></tr><tr><td>时序</td><td>monotonic duration、UTC timestamp、model_ttft、server/browser_ttft、first/last_chunk、chunk_count/bytes</td><td>不记录文本；浏览器时钟不与服务器时钟直接相减</td></tr><tr><td>版本</td><td>engine/framework lock 指纹、prompt source/hash/version、toolset digest、decision questions hash、retrieval profile hash、schema hash</td><td>hash 只是内容标识，不能替代真实发布版本；不带 Prompt/工具 schema 正文</td></tr><tr><td>金额/Usage</td><td>来源、单位、币种、pricing version、token 分项、usage coverage</td><td>generation 唯一记录；不得在父 Tool/Run 再附可相加成本</td></tr></tbody></table>
+<p>metadata 使用白名单，未知字段删除；数组最多 20 项，业务候选列表优先 count + HMAC refs。完整 API headers/body、<code>configurable</code>、历史 messages、GraphState、模型序列化配置不得直接投入 SDK。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="42-模型用量延迟重试和成本">4.2 模型用量、延迟、重试和成本<a href="#42-模型用量延迟重试和成本" class="hash-link" aria-label="4.2 模型用量、延迟、重试和成本的直接链接" title="4.2 模型用量、延迟、重试和成本的直接链接" translate="no">​</a></h3>
+<p><strong>实际代码缺口</strong>已见<a class="" href="/chein-doc-site/reference/history/agent/langfuse-audit/">审计</a>：ChatOpenAI 自定义 base_url 没启用 stream_usage，已有 Callback 只读一种 LLMResult 用量；辅助 Judge 只留下部分 input token，路由 classify 丢弃 usage。</p>
+<p>后续统一提取顺序：原始 AIMessage/最终聚合 Chunk 的 <code>usage_metadata</code> → <code>response_metadata.token_usage</code> / <code>LLMResult.llm_output.token_usage</code> → 供应商协议字段。只选择一份可信原始结果，不相加同一累计 usage；非负整数校验，拒绝 bool/负数/NaN，partial 单独标记。Provider/request_id 来自校验后的响应；Higress requested_model、resolved_model、route alias、cache hit 仅在真实可获得时填写，缺失不猜。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>状态</th><th>定义</th><th>使用方式</th></tr></thead><tbody><tr><td>actual</td><td>供应商响应或明确经过网关透传的真实计量</td><td>写 generation usage_details；注明 source 与 complete/partial</td></tr><tr><td>estimated</td><td>明确 tokenizer/版本和输入定义的本地估算</td><td>仅独立 <code>estimated_*</code> metadata；禁止混入 actual Usage 汇总</td></tr><tr><td>missing</td><td>上游未返回、被取消、网关不支持或错误响应无法确认</td><td>空值 + reason；不能填零或伪造完整 total</td></tr></tbody></table>
+<p>P1 对 Qwen/Higress 合成请求验证显式 <code>stream_usage=True</code>/include_usage；可用才改源模型设置。比较非流式原始计量和流式最终聚合，验证思考/缓存 token details 的定义。缺失时不靠获取用户正文再做后台 tokenization 补“真实用量”。官方 Callback 已产生的 generation 不外层再建一条 generation；补字段应更新原 observation 或按业务调用引用的安全元数据，无法可靠更新时保留缺失。</p>
+<p>成本分四类：供应商实际费用（需要账单/明确返回）、<strong>实际 Usage × 已审核价格的计算成本</strong>、估算 Usage 的估算成本、缺失。价格需模型真实映射、币种、输入/输出/缓存/思考/图片单位、生效时间、合同折扣来源；无价格时 cost=null。即使 Langfuse UI 自行推断 token/cost，也不得计入 Chein 的实际口径。metadata-only 无正文可以减少推断，但仍要测试自动价格推导；禁止把 unknown cost 填 0。<a href="https://langfuse.com/docs/observability/features/token-and-cost-tracking" target="_blank" rel="noopener noreferrer" class="">官方 Token/cost</a>。</p>
+<p>统一主键 <code>(environment, model_call_ref/provider_request_id, invocation_attempt)</code> 对账。同一次调用的 Langfuse/Higress 记录只选一个用量来源；网关计数包含流量重试/缓存时，要分别显示 logical invocation 和 physical attempts。SDK 内部 HTTP retry 没有独立 Callback generation 时记 attempts=unknown，不能以 graph 重试次数替代。已实际重做的独立模型 invocation 保留所有费用；重复 trace 上传按 Span ID 去重。采样 Trace 不作为全量账单/预算扣减依据。</p>
+<p>延迟定义：model_ttft=调用开始→第一个模型 chunk；server_ttft=执行开始→第一个可见文本 yield；browser_ttft=点击发送→第一个文本进入 UI；generation_duration=首请求→最后响应，包括工具参数/思考的时间另标。输出 tokens/s 只用 actual output_tokens/定义的生成窗口，不能拿 chunk 数冒充 Token 输出速率。取消导致 usage 不全时吞吐 null。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="43-ragflow重排和引用">4.3 RAGFlow、重排和引用<a href="#43-ragflow重排和引用" class="hash-link" aria-label="4.3 RAGFlow、重排和引用的直接链接" title="4.3 RAGFlow、重排和引用的直接链接" translate="no">​</a></h3>
+<p>在既有 <code>search_knowledge</code> 分解 plan/catalog/route/fetch/judge/feedback 阶段；Callback Tool 是总外壳。每 fetch 标 <code>attempt_index</code>、reason（initial/rewrite/expand）、authorized/selected base count、profile hash、candidate_count、context_count/char_count、truncated、evidence_status、no_result_reason、citation_count、反馈复验结果。仅对 ACL 内 ID 做 HMAC，不记录 query、rewrite、chunk 原文、目录描述/文档标题。</p>
+<p>需要区分三个来源：主模型本已把对话改写成 Tool query；辅助 QueryPlan 可拆查询；EvidenceJudgment 在有界循环中可要求重写/扩库。记录触发方式与次数即可，不复造第二路由器。</p>
+<p>RAGFlow 当前返回最终 similarity/term/vector 分数，重排在远端内部。只有 fetch 总耗时和可获得最终排名，<strong>没有独立 rerank 耗时或完整 pre-rerank 列表</strong>。这两项字段置 unavailable，不从总耗时拆分或编造前排名；将来供应商提供阶段 DTO/Span 才增补。部署 RAGFlow MCP 只作为可选适配，不重复提供第二知识检索 Tool。</p>
+<p>既有 KnowledgeRetrievalTrace 保存原/改写查询及候选目录，仍属 Chein 受 ACL 控制的业务记录；不能直接整条同步。业务 retrieval UUID 留在 retrieval_ref；未来日志中的 OTel trace_id 保持真正链路 ID。回写证据反馈时重验文档状态的失败不能因 Langfuse fail-open 而绕过。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="44-toolerpsqlskills-与图片">4.4 Tool、ERP、SQL、Skills 与图片<a href="#44-toolerpsqlskills-与图片" class="hash-link" aria-label="4.4 Tool、ERP、SQL、Skills 与图片的直接链接" title="4.4 Tool、ERP、SQL、Skills 与图片的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>观测字段</th><th>结果/安全语义</th></tr></thead><tbody><tr><td>所有 Tool</td><td>name/version/module/type、callback invocation ref、tool_call_ref、duration、status/error_category、attempt、authorization_outcome</td><td>成功=实际业务契约成功，不只是函数未抛异常；ToolMessage error 必须算失败</td></tr><tr><td>MCP</td><td>server 安全 alias、toolset digest、transport、revocation_check、remote_call_ref</td><td>Tool 外壳与远端子调用分别统计；不以两个 span 算两次业务 Tool</td></tr><tr><td>ERP</td><td>scope_kind、current_permission_result、dataset/schema hash、return_count/bytes、result_kind</td><td>字段值/汇总金额均不上传，summary 仅数量、口径版本与状态</td></tr><tr><td>SQL 分析</td><td>query_ref、AST policy version、SQL fingerprint、read_only_verified、scope hash/ref、exec_duration、row_count、bytes、limit_hit、audit_status</td><td>按当前 QuerySpec→ERP SQL；不记 SQL 文本、params、rows、数据库 URL/角色明细</td></tr><tr><td>决策辅助</td><td>scenario、model、questions hash、decision_result、confidence、elapsed/provider_latency、failure/fallback_reason</td><td>不替代 permissions/RLS；SQL decision_review 当前设 not_applicable</td></tr><tr><td>Skills/SubAgent/FS</td><td>当前 unavailable/disabled；将来启用才加安全 skill_id/version/task ref</td><td>不能把 Prompt 文本命中 Skills 当成真实执行；文件内容禁止采集</td></tr><tr><td>Image</td><td>provider/model、operation、requested_count、completed_count、status、usage_unit、calculated_cost_source</td><td>原生 HTTP 手工 Span；不含图片、供应商 URL、RustFS key；Prompt 优化仍是 Callback generation</td></tr></tbody></table>
+<p>ERP 的授权、AST/语义校验、专用只读 <code>chein_analytics</code>、事务/RLS、超时/行数/bytes/cancel 和强制安全审计保持原行为。它们的安全失败不得按“观测失败可忽略”处理。模型提出 QuerySpec 成功≠SQL 执行成功≠数值正确。决策模型审核 SQL 是未来能力，本方案不为观测引入它。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="45-decision-model-preview">4.5 decision-model-preview<a href="#45-decision-model-preview" class="hash-link" aria-label="4.5 decision-model-preview的直接链接" title="4.5 decision-model-preview的直接链接" translate="no">​</a></h3>
+<p>共享入口 <code>decide</code> 每真实 HTTP 请求创建一个 generation（用于模型计量），调用方标 scenario：capability_route / knowledge_route / evidence_sufficiency / offline_quality。规则命中、existing_context skip、cooldown/input_budget 不产生虚构 generation，使用业务事件/Span 状态。记录 typed 结果、问题集版本、模式 off/shadow/active、confidence、provider request_id、服务端 latency 和本地 wall time。</p>
+<p>供应商目前只定义 <code>usage.input_tokens</code>；output/total 字段不伪造，即使协议“不生成文本”也不拿字符串大小当 Token。<code>classify</code> 返回 answers 丢弃 payload 的问题应在 <code>decide</code> 统一计量解决，避免每调用者重复补埋点。decision malformed/timeout/cooldown 记录 fallback，按现有策略执行，Langfuse 不能改变 fail-open/安全拒绝边界。风险等级若当前协议/业务规则没给，标 not_applicable，不让观测器自行生成。<a href="https://help.aliyun.com/zh/model-studio/decision-model-api" target="_blank" rel="noopener noreferrer" class="">官方 System One</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="5-性能采样队列与故障隔离">5. 性能、采样、队列与故障隔离<a href="#5-性能采样队列与故障隔离" class="hash-link" aria-label="5. 性能、采样、队列与故障隔离的直接链接" title="5. 性能、采样、队列与故障隔离的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="51-主路径的真实开销">5.1 主路径的真实开销<a href="#51-主路径的真实开销" class="hash-link" aria-label="5.1 主路径的真实开销的直接链接" title="5.1 主路径的真实开销的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>开销</th><th>风险来源</th><th>限制方式及测量</th></tr></thead><tbody><tr><td>Callback/context/span</td><td>每节点/模型/工具 hook、同步时间戳、context attach、锁与线程调度</td><td>单 handler/execution；不建 chunk spans；profile CPU、event-loop lag</td></tr><tr><td>内容格式化/JSON</td><td>Callback 会先转换 messages/tool outputs，export-only masking 未必减少前置大对象成本</td><td>白名单采集前 mask + export mask；合成 512KiB Tool 结果/32KiB Prompt 对照</td></tr><tr><td>脱敏</td><td>无界递归、正则、网络式 DLP</td><td>固定字段/深度/bytes，O(允许字段) 优先；不在 mask 请求外部服务</td></tr><tr><td>后台发送</td><td>每 worker 线程、连接池、序列化、压缩、重试、GIL、网络</td><td>批次/timeout/队列有界；分别测 100%/10%/down</td></tr><tr><td>对象留存</td><td>活跃 handler <code>_runs</code>、未结束 Span、批量队列、大 payload</td><td>测长期多工具与取消后 RSS；避免整个结果复制</td></tr><tr><td>shutdown</td><td>force_flush + queue.join + consumer.join/atexit</td><td>独立停机窗口验证，不每请求 flush，不承诺 wait_for 能停止线程</td></tr></tbody></table>
+<p>默认不新增 Redis/MQ 转运所有 trace；官方 BSP 足够时停在它。仅发生可测的丢失/尾采样需求时讨论 Collector。现有日志 queue 和 Langfuse queue 相互独立，不共享可靠性承诺。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="52-流式执行与取消">5.2 流式执行与取消<a href="#52-流式执行与取消" class="hash-link" aria-label="5.2 流式执行与取消的直接链接" title="5.2 流式执行与取消的直接链接" translate="no">​</a></h3>
+<p>根观测从 <code>events()</code> 内建立，在 graph、事件/状态完成或取消/异常退出的 <code>finally</code> 中结束。不能仅装饰返回 <code>StreamingResponse</code> 的函数：那会在 generator 真正执行前结束根。generator 内明确绑定安全 request/run/trace 上下文，避免只依赖 middleware context 在响应头返回后的生命周期。</p>
+<p>对 <code>messages/updates/custom</code> 原有分支保持原顺序，常态只记录首 chunk 时间和末尾汇总，不为 Chunk 调用远程 API、不在 yield 前 flush、auth_check 或在线 Judge。BFF 继续逐字节透传。记录 <code>CancelledError</code>/GeneratorExit/lease_lost 时必须保留原控制流，不转换为观测错误；停止后禁止新模型/工具调用，已发生的费用/外部效果不能删除。</p>
+<p>不可用观测按以下区分处理：SDK import/init、Span/属性更新、mask/export 异常→禁用本次/进程观测并记限频本地事件；业务 await/HTTP/DB/checkpoint 抛出的异常→按现有业务逻辑处理。<strong>禁止一层 try/except 包围整个 Agent，把业务异常吞掉后重跑</strong>。SDK root context 若会自动记录异常 event/status.description，生产接线要显式管理 Span 生命周期、只导出错误码，并确保业务异常仍向原路径传播；不能只依赖 mask hook 擦除不可修改的事件。</p>
+<p>关闭开关应跳过 SDK 初始化/handler 注入；只写 <code>tracing_enabled=false</code> 而仍启动 score/media 线程不算完整关闭。P1 采集/脱敏无法保证时禁用 Langfuse，不能降低业务隐私门禁。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="53-采样策略">5.3 采样策略<a href="#53-采样策略" class="hash-link" aria-label="5.3 采样策略的直接链接" title="5.3 采样策略的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>策略</th><th>初期选择</th><th>限制</th></tr></thead><tbody><tr><td>全量</td><td>dev 合成和 staging，1.0</td><td>实际性能/容量合格才能生产采用</td></tr><tr><td>固定比例</td><td>production 候选 0.1，按环境/project 配置</td><td>Head sampling trace 级；不是每 Tool 独立抽样</td></tr><tr><td>按 Agent/业务重要性</td><td>先用入口预知类别/独立环境做实验；必要时统一 sampler</td><td>SDK 单 sample_rate 不等同原生规则引擎，不每请求改全局 client</td></tr><tr><td>异常/慢请求必保留</td><td>P1 用全量 Run 状态、ECS 错误与低基数指标；未采样仅保留摘要</td><td>不能在完成后“打开采样”补回已丢 Span</td></tr><tr><td>Tail sampling</td><td><strong>不默认引入</strong>；有经批准的全链路保留需求再用 Collector POC</td><td>应先采集完整 head 数据，按 trace 分流到同 Collector，有容量/等待/长任务处理成本</td></tr></tbody></table>
+<p>采样由唯一进程 Provider/sampler 或已验证的入口策略决定。未来 APM Provider 已存在时，Langfuse 参数不能覆盖其 sampler；两个采样层叠加会降低实际比例。采样概率/策略版本写 execution metadata，采样统计不能伪装全量成功率/账单。使用 10% 时业务 task completion、permission denial、error/latency counters 必须有独立全量来源。异常/慢请求摘要不是完整 Trace。<a href="https://langfuse.com/docs/observability/features/sampling" target="_blank" rel="noopener noreferrer" class="">Langfuse sampling</a>、<a href="https://opentelemetry.io/docs/concepts/sampling/" target="_blank" rel="noopener noreferrer" class="">OTel sampling</a>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="54-建议启动参数与生命周期">5.4 建议启动参数与生命周期<a href="#54-建议启动参数与生命周期" class="hash-link" aria-label="5.4 建议启动参数与生命周期的直接链接" title="5.4 建议启动参数与生命周期的直接链接" translate="no">​</a></h3>
+<p>默认候选：span queue 2048、batch 128、flush interval 5s、export timeout 2s、media false。它们是<strong>待压测验证的起步值</strong>；queue count 不保证 bytes 内存有界，必须限制 payload。100 个已结束 Span/s 时，完全断网下 2048 队列理论缓冲约 20s；大 burst 或 score queue 是不同口径。已结束 Span 才进入 BSP；长活跃 Span 的对象还在内存。</p>
+<p>每 ASGI worker 在 lifespan 初始化一个客户端；自检 auth/写入作为运维合成检查，不作为业务 readiness 和请求步骤。fork 后重新初始化，不用 preload 前创建的线程作为运行保证。退出先停接新请求，待在途业务到自身正常上限，再执行 best-effort shutdown；候选观测宽限 5s、容器终止宽限 15s，<strong>不是 SDK 提供的总体超时 API</strong>。同步 join/atexit 可超过宽限，必须子进程故障测试；硬退出允许丢尾部遥测。若 SDK 导致超过编排总期限的可用性问题，发布前调整接线/退出策略，而不是加无限等待。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="55-故障矩阵">5.5 故障矩阵<a href="#55-故障矩阵" class="hash-link" aria-label="5.5 故障矩阵的直接链接" title="5.5 故障矩阵的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>故障</th><th>Agent 核心行为</th><th>观测损失/告警</th><th>恢复及门禁</th></tr></thead><tbody><tr><td>Langfuse 停止 / 网络拒绝</td><td>模型/工具/状态照常</td><td>exporter 失败，队列耗尽后丢 Span；限频记录失败</td><td>服务恢复后只发送仍在队列的数据，不保证历史补回</td></tr><tr><td>DNS/TLS/网络 timeout</td><td>不在 SSE await 上传</td><td>后台 timeout/retry 消耗线程和内存</td><td>短 deadline、压测线程/RSS/CPU，超阈值关闭采集</td></tr><tr><td>HTTP 500/429</td><td>业务终态不改变</td><td>官方 exporter 有界 retry；Trace 延迟或丢失</td><td>无额外业务重试；看 ingestion lag/drop</td></tr><tr><td>API Key 失效 401/403</td><td>禁用/失败遥测不拒绝 Agent</td><td>auth/config 告警，无限 retry 禁止</td><td>轮换私有配置、受控重启后合成验收</td></tr><tr><td>queue backlog/full</td><td>核心请求继续，观测可丢弃</td><td>独立队列压力/drop 计数，不能装无限内存缓存</td><td>减采样/缩字段/扩 worker；无稳定公开 queue API 时用 exporter/test 计数，不读取私有字段作为产品契约</td></tr><tr><td>ClickHouse 不可用</td><td>Chein 不直连 Langfuse CH，业务继续</td><td>Web/Worker 消费延迟；Redis/S3/磁盘增长</td><td>运维告警 CH/队列，限制入口速率；Web 200 不代表可查询</td></tr><tr><td>Agent SIGTERM</td><td>业务自身停机策略先执行</td><td>尽力 flush，按总停机上限允许丢尾部</td><td>独立进程测试停机 deadline、atexit</td></tr><tr><td>Agent SIGKILL/崩溃</td><td>checkpoint/lease 按既有路径恢复</td><td>活跃 Span 未结束，内存队列丢失，Trace incomplete</td><td>新 execution 关联前 Run；不能保证遥测 exactly-once</td></tr><tr><td>mask/SDK bug</td><td>安全策略失败关闭观测，业务继续</td><td>sanitized telemetry error/drop</td><td>不回退原始正文，发布关闭开关即可回滚</td></tr><tr><td>共享 Redis/PG/RustFS 被观测压满</td><td>可能影响 Chein 业务，这是基础设施共同故障</td><td>资源争用与业务健康告警</td><td>容量配额/隔离实例；不能把 SDK fail-open 等同全系统无影响</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="56-压测和验收">5.6 压测和验收<a href="#56-压测和验收" class="hash-link" aria-label="5.6 压测和验收的直接链接" title="5.6 压测和验收的直接链接" translate="no">​</a></h3>
+<p>完整矩阵和可执行步骤见<a class="" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/#3-%E6%80%A7%E8%83%BD%E5%AE%9E%E9%AA%8C%E5%8D%8F%E8%AE%AE">实施计划</a>。必须同时测试 Fake 模型的确定性串流与真实合成 Qwen/Higress；仅做真实模型对比易把供应商抖动误当 Callback 开销。验收覆盖 P50/P95/P99、三层 TTFT、Token rate、event-loop lag、CPU/RSS、network、queue/export lag、Agent 错误率、Trace 完整性/丢失率及停机上限；门槛均为候选目标。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="6-安全隐私与权限">6. 安全、隐私与权限<a href="#6-安全隐私与权限" class="hash-link" aria-label="6. 安全、隐私与权限的直接链接" title="6. 安全、隐私与权限的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="61-采集策略与保护顺序">6.1 采集策略与保护顺序<a href="#61-采集策略与保护顺序" class="hash-link" aria-label="6.1 采集策略与保护顺序的直接链接" title="6.1 采集策略与保护顺序的直接链接" translate="no">​</a></h3>
+<p><strong>生产默认没有任何正文采集</strong>；测试默认也如此。只有专门合成数据 fixture 才允许内容实验；真实开发用户数据不因 environment=dev 自动解除限制。采用采集前结构白名单/源 API mask → 固定 name、safe error code → media 禁用 → export batch 属性白名单；多 exporter 各自保护。</p>
+<p><code>mask_otel_spans</code> 可删除/替换属性，但不能更改 span name/resource/events/links，并且在媒体处理之后运行；仅用它无法阻止完整媒体外发。<code>mask</code> 在源属性创建时同步执行，有成本；它也不能自动保证所有第三方 OTel 数据安全。白名单必须覆盖 callback 自动生成的 input/output、metadata（包括 configurable 的 thread/query）、model parameters/serialized、status_message、event attributes 及 SDK debug 日志。内容/凭据出现在不可清理区域时，丢弃对应 Span/关闭采集，不能先发再在 UI 隐藏。<a href="https://langfuse.com/docs/observability/features/masking" target="_blank" rel="noopener noreferrer" class="">官方 masking</a>。</p>
+<p>固定SDK源码还确认：<code>span._set_otel_span_status</code>会将Callback错误的原始<code>status_message</code>写入OTel <code>status.description</code>，不能只擦同名attribute。P1必须用官方<code>should_export_span</code>过滤检查name、status.description、events和resource：非静态白名单名称、非稳定安全错误码、含未经批准event内容的Span拒绝导出。错误归类保留在安全execution根和既有ES；被丢的错误子Span/Usage计入drop/missing，不宣称完整覆盖。若拒绝导致不可接受的树缺口，再评估窄exporter转换或Callback错误适配；在安全证明前保持关闭，而不是默认复制raw exception。<a href="https://github.com/langfuse/langfuse-python/blob/v4.17.0/langfuse/_client/span.py" target="_blank" rel="noopener noreferrer" class="">固定Span源码</a>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据</th><th>生产允许</th><th>合成实验允许</th><th>处理</th></tr></thead><tbody><tr><td>API Key/JWT/Cookie/password/DSN</td><td>无</td><td>无</td><td>不传 SDK；headers 不采；日志脱敏；测试用 canary 秘密确认各出口均无</td></tr><tr><td>用户/部门/组织</td><td>HMAC 引用、必要 scope_kind</td><td>虚构身份</td><td>真实姓名/邮箱/列表不上传；HMAC 可重识别，仍按敏感数据管理</td></tr><tr><td>Prompt/用户消息/回答/内部思考</td><td>hash/source/version/长度摘要</td><td>已审核完全合成文本</td><td>不发 system/personal Prompt 和 reasoning；不要全量 recorder</td></tr><tr><td>SQL/params/results、ERP 明细</td><td>fingerprint、数量、bytes、状态、policy/schema version</td><td>虚构 QuerySpec/表数据</td><td>参数值与业务统计金额也禁止；异常栈留现有受控 ES</td></tr><tr><td>RAG 原文/query/标题/目录</td><td>检索原因、数量、profile hash、证据级别、HMAC 引用</td><td>合成文档/检索用例</td><td>文档内容保留在 Chein 授权域；撤销后访问同样受限</td></tr><tr><td>Tool args/output、Skills/文件</td><td>static tool name/version/status/size</td><td>明确白名单 fixture</td><td>file/media/url 默认不采；automatic media upload=false</td></tr><tr><td>反馈自由文本/人工纠正</td><td>分类和 Score；正文留授权业务存储</td><td>审批脱敏用例</td><td>评论不能任意直发 Langfuse</td></tr><tr><td>错误</td><td>类别、稳定错误码</td><td>合成异常</td><td>status.description、exception events 也要测；禁止 raw str(exc)</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="62-安全风险矩阵">6.2 安全风险矩阵<a href="#62-安全风险矩阵" class="hash-link" aria-label="6.2 安全风险矩阵的直接链接" title="6.2 安全风险矩阵的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>风险</th><th>严重性</th><th>控制/负向测试</th><th>未解决时行为</th></tr></thead><tbody><tr><td>Callback 自动采集历史 Prompt/Tool output</td><td>高</td><td>嵌套 messages/metadata/canary，全量抓 OTLP payload；源和 export 双层保护</td><td>不启用</td></tr><tr><td>媒体处理早于 masking</td><td>高</td><td>关闭 LANGFUSE_MEDIA_UPLOAD_ENABLED；mock media endpoint 必须零访问</td><td>不启用多媒体采集</td></tr><tr><td>租户 Trace 查询穿透</td><td>高</td><td>可信映射 tenant/owner→execution；跨 tenant/user ID、过期授权/部门撤销负向用例</td><td>404/403，无上游查询</td></tr><tr><td>traceparent/baggage 伪造身份/采样</td><td>高</td><td>委托认证先于 extract；重建服务端身份及优先级；外部 header fuzz</td><td>拒绝关联/新 trace；业务按认证结果</td></tr><tr><td>error name/event/resource 泄密</td><td>高</td><td>静态名称、禁止自动 raw exception、检查所有 exporter/log/debug</td><td>drop/disable telemetry</td></tr><tr><td>评测把真实文档送第三方模型</td><td>高</td><td>人工审核、隔离项目/模型、权限复验/预算；不自动导入生产 raw Trace</td><td>仅输出 rules/metadata Score</td></tr><tr><td>超大结果/无界队列压垮服务</td><td>高</td><td>bytes/深度/数组限额、导出压力测试、共享存储容量告警</td><td>丢遥测/降采样，不改业务限额</td></tr><tr><td>HMAC/版本可关联身份/枚举</td><td>中</td><td>环境域隔离密钥、轮换、限制可见角色；版本明确</td><td>不增加可选组织维度</td></tr><tr><td>自动保留期不存在/备份存敏感数据</td><td>高</td><td>核实许可、独立清理和删除/恢复演练、备份访问与保留期</td><td>生产启用前明确 Owner/可执行清理</td></tr><tr><td>feedback 伪造/重复评分</td><td>中</td><td>Backend owner 校验、稳定 score id、限速、服务端时间/类型</td><td>拒绝写入，不信任浏览器 user/trace</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="63-权限与产品访问">6.3 权限与产品访问<a href="#63-权限与产品访问" class="hash-link" aria-label="6.3 权限与产品访问的直接链接" title="6.3 权限与产品访问的直接链接" translate="no">​</a></h3>
+<p>P1–P4：只对获批运维/Agent 调试人员开放 Langfuse，VPN/HTTPS，环境独立项目和密钥。细粒度项目角色和 SSO/审计功能受实际版本/许可约束；若没有所需限制，使用更小人员范围/独立项目，不能冒充 Chein RBAC。浏览器不含 secret key，也不需要 public key 直写反馈。</p>
+<p>P5 如真实需求需要业务化查询：拟新增 <code>agent:observability:view</code>（本人/授权范围）、<code>agent:observability:admin</code>（受审计的显式管理查询）、<code>agent:feedback:create</code> 权限设计；这些<strong>尚未注册</strong>，须沿模块权限事实源接线，不手工菜单授权。Platform 管理入口/模块适配器仅处理授权和 DTO；Agent 拥有 execution 关联，Knowledge/ERP 决定自己的敏感内容授权。不能让 Agent 信任浏览器 body 的 tenant_id。</p>
+<p>受控查询必须先验证当前 tenant/member/owner/role/数据范围→读取本地 execution mapping→固定时间范围/fields 调 Langfuse API→字段白名单响应；禁止提供任意 query DSL 或直接 trace_id 代理。Trace 聚合只对已经授权的 execution 做，不能拿共享项目的全量 Metrics API 聚合后再过滤。Langfuse 查询不可用返回明确的观测 503，不影响聊天；不会回退为直接访问其 ClickHouse。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>页面方案</th><th>成本/体验</th><th>权限问题</th><th>推荐</th></tr></thead><tbody><tr><td>A 运维跳转 Langfuse</td><td>开发最少，调试能力完整</td><td>全项目可见风险，必须只给受控人员</td><td>初期采用</td></tr><tr><td>B iframe 嵌入</td><td>维护会话/CSP/SSO，视觉一致但故障多</td><td>iframe 不提供租户/部门过滤</td><td>不采用</td></tr><tr><td>C Chein API + 业务摘要页</td><td>需要限权查询/聚合/短缓存，维护适中</td><td>可以明确本人/租户范围，需负向测试</td><td>P5 仅做有真实需求的 Run 摘要/反馈，保留原调试 UI</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="7-agent-质量评估与持续优化">7. Agent 质量评估与持续优化<a href="#7-agent-质量评估与持续优化" class="hash-link" aria-label="7. Agent 质量评估与持续优化的直接链接" title="7. Agent 质量评估与持续优化的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="71-指标定义来源及统计">7.1 指标定义、来源及统计<a href="#71-指标定义来源及统计" class="hash-link" aria-label="7.1 指标定义、来源及统计的直接链接" title="7.1 指标定义、来源及统计的直接链接" translate="no">​</a></h3>
+<p>按环境、release、prompt/tool/profile/model 版本和场景分层；同时报告 N、覆盖率、unknown/excluded、时间范围。交互质量与技术终态分开：Run succeeded 不是任务成功，Tool 不抛异常不是结果正确，用户没有点踩不是满意。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>指标</th><th>定义/分母</th><th>数据来源/统计</th></tr></thead><tbody><tr><td>技术完成率</td><td>succeeded / 已结束 execution；cancel/waiting 单列</td><td>全量 Run 状态；按逻辑 Run 最终状态另报一次，不靠采样 Trace</td></tr><tr><td>任务完成率</td><td>人工/用户确认达到需求的逻辑任务 / 已判定任务</td><td>task_success Score；未标注为 unknown，记录标注覆盖率</td></tr><tr><td>Tool 成功率</td><td>业务契约 success / 实际 logical Tool invocation</td><td>ToolMessage/DTO status + 错误类别；MCP 传输子 span 不重复分母</td></tr><tr><td>回答准确率</td><td>gold/人工认可正确的回答 / 已标注回答</td><td>规则检查数值/单位/日期；人工 gold；Judge 估计单列，不称实际准确率</td></tr><tr><td>满意度</td><td>正反馈 / 正负反馈总数；反馈覆盖=反馈任务/可反馈任务</td><td>服务端 feedback；展示参与偏差/重复纠正，不给沉默用户打正分</td></tr><tr><td>Retrieval Relevance</td><td>相关候选片段数 / 已人工判定候选片段数</td><td>对 query/证据的 gold/人工，按 profile/KB 分组，不用 similarity 代替相关性</td></tr><tr><td>Context Precision</td><td>提供给回答的相关片段 / 提供片段</td><td>已标注 selected context；空上下文值 null，非自动 1</td></tr><tr><td>Context Recall</td><td>已覆盖的 gold 证据点 / 全部 gold 证据点</td><td>要有完整 reference；没有 gold 时 unavailable；现有 Recall@K 只是 chunk 命中代理</td></tr><tr><td>Answer Faithfulness</td><td>由授权证据支持的可核查 claims / 全部可核查 claims</td><td>内容在受控域，claim 人工/Judge；无 claims 则不适用，不计满分</td></tr><tr><td>Citation Correctness</td><td>引用确实支持对应 claim 且引用目标有效 / 已判定引用</td><td>先规则核验真 ID/授权/存在，再人工/Judge 语义支持；不以“有链接”算正确</td></tr><tr><td>QuerySpec/SQL 成功率</td><td>分开：schema valid、AST accepted、执行成功 / 各自实际尝试</td><td>Agent/ERP 安全 DTO/审计；当前不称自由 SQL 生成准确率；数值正确率需要 gold 数据</td></tr><tr><td>权限判断正确率</td><td>与权威 RBAC/ACL/RLS gold 一致的判定 / 已覆盖授权样本</td><td>确定性跨租户/撤销/部门/仓库测试，安全漏放单独计数</td></tr><tr><td>决策误拒绝率 FPR</td><td>安全/可用 gold 样本被拒绝或错误分流 / 全部安全 gold</td><td>人工确认 confusion matrix；路由阈值/问题集版本固定</td></tr><tr><td>决策漏判率 FNR</td><td>不安全/不可用 gold 样本未识别 / 全部该类 gold</td><td>固定反例集；真实业务授权仍不可绕过，不能用 Judge 自评 gold</td></tr><tr><td>耗时/成本</td><td>active 执行 P50/P95/P99；actual token 分项/逻辑任务；计算成本/可计费覆盖</td><td>全量 metadata 指标/账单；sample Trace 只作诊断，缺失 usage/cost 不平均为 0</td></tr></tbody></table>
+<p>既有 <code>evaluation.evaluate</code> 继续计算 Recall@K/MRR/Hit/route/evidence accuracy，新增 evaluator 复用其唯一算法。Context Recall 和 Recall@K 不等价，指标名称必须保留区别。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="72-用户反馈与-scores">7.2 用户反馈与 Scores<a href="#72-用户反馈与-scores" class="hash-link" aria-label="7.2 用户反馈与 Scores的直接链接" title="7.2 用户反馈与 Scores的直接链接" translate="no">​</a></h3>
+<p>拟议流程：assistant-ui 动作（赞/踩/分类错误/人工纠正/成功确认）→已认证 Chein API→当前会话/Run/消息归属校验→Agent-owned feedback 持久化→后台/受控发送到 Langfuse <code>create_score</code>。前端只提交业务 message/run 引用，trace_id/user/tenant 由服务端映射；历史消息需要从持久化消息映射，不依赖当前页面 <code>runRef</code>。</p>
+<p>反馈记录至少 tenant/owner/run/execution/message、kind/value/category、server timestamp、revision、score schema/evaluator version；纠正正文留 Chein 受控存储。Score 类型采用 numeric/boolean/categorical 的稳定 v1 口径，<code>user_vote</code> 与 <code>task_success</code> 分离。每用户/消息/维度稳定 Score ID，改赞踩更新同一 Score；人工更改保留本地 revision 审计。模型 Judge Score 与用户 Score 不覆盖彼此。</p>
+<p>SDK <code>create_score(trace_id=..., name=..., value=..., data_type=..., score_id=...)</code> 具体参数在 P4 对固定版本确认；跨服务发送用受控 API/SDK，不直连生产业务数据库。未采样 Trace/未导出时反馈仍保存 Chein，外发可标 unlinked，不能制造一条空 Trace冒充已观测执行。同步请求不等 Langfuse，发送失败允许重试；长期自动队列若届时确有需求，遵循现有可靠任务/Outbox 契约，别新建 Redis 旁路。新 feedback 存储/异步任务必须另走 migration/tenant 隔离测试。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="73-规则人工llm-judge-和决策模型复用">7.3 规则、人工、LLM Judge 和决策模型复用<a href="#73-规则人工llm-judge-和决策模型复用" class="hash-link" aria-label="7.3 规则、人工、LLM Judge 和决策模型复用的直接链接" title="7.3 规则、人工、LLM Judge 和决策模型复用的直接链接" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>优先用途</th><th>限制/成本</th></tr></thead><tbody><tr><td>确定性规则</td><td>QuerySpec、AST、schema、引用 ID、gold 数值、权限反例</td><td>不能自动评价自然语言语义完整性；复用测试/evaluator</td></tr><tr><td>人工标注</td><td>金额/制度/权限关键样本、gold、争议裁决</td><td>需要授权查看受控内容，记录 reviewer、版本和分歧</td></tr><tr><td>System One</td><td>知识充分性/是否满足指定要求/有限类别的离线 Judge</td><td>当前适配只校验 choice/noul；score 类型须另行扩展，不能假定已支持；不可作授权器</td></tr><tr><td>生成式 Judge</td><td>faithfulness、citation entailment、回答语义</td><td>在合成/审核脱敏证据上评估；额外 Tokens；不可靠自评，需要 gold 校准</td></tr><tr><td>Langfuse 在线/批量 evaluator</td><td>内容已获批外发时按 observation/rule 评估</td><td>v4 为 observation 模型；实例/许可/模型 endpoint/供应商协议须核实，不能沿旧 trace-level 设计</td></tr></tbody></table>
+<p>生产 metadata-only 不能在 Langfuse 端凭空评价回答准确性/忠实性。默认由 Chein 受控离线 evaluator 读经批准内容并复验授权、调用已批准模型，<strong>只外发 typed Score</strong>。先少量人工/规则，Judge 独立预算、并发、timeout、失败状态和项目；不能在 SSE 关键路径增加 token 请求。</p>
+<p>System One 复用现有 <code>decide</code> HTTP 协议，但评测运行在独立进程/配置，避免评测过载触发线上路由的共享冷却。它可以做有限判定，不自动等于 Langfuse UI 的某个预置 evaluator 协议兼容。随机排列候选、盲化模型身份、注入反例/文档指令、明确证据上限；不要求输出隐藏思考。</p>
+<p>建议首批 100–200 个<strong>合成或已审查</strong>用例，跨普通聊天、ERP、知识、组合、拒绝、无结果、取消/恢复分层；数值是设计规模。Judge 先与双人 gold 核对 confusion matrix、agreement、分歧；候选目标 agreement≥0.85、安全关键漏放=0，仍需团队确认且有限用例不证明全部安全。confidence 需观察校准，不当作正确率。关停/评测失败产生 unknown，不填低分/满分混进质量平均。</p>
+<p>每日额外成本估算：<code>N_evaluated × avg_judge_input/output_tokens × 审核价格</code>，System One 按真实 input-only 计量。候选在线比例 1%、每 Run 最多一次/规定维度、日预算≤业务计算模型成本5%（业务待决）；先绝对预算上限，模型 cost 缺失时禁止用比例预算推导无限额度。</p>
+<h3 class="anchor anchorTargetStickyNavbar_m272" id="74-数据集实验与发布闭环">7.4 数据集、实验与发布闭环<a href="#74-数据集实验与发布闭环" class="hash-link" aria-label="7.4 数据集、实验与发布闭环的直接链接" title="7.4 数据集、实验与发布闭环的直接链接" translate="no">​</a></h3>
+<!-- -->
+<p>不能自动把生产 raw Trace 一键升级为 Dataset。metadata-only Trace 只有定位能力：内容需从 Chein 授权域受控取出；租户撤销、数据删除、许可失效则拒绝导入。Dataset 保存合成/脱敏 input、expected_output、gold evidence、allowed capabilities、scenario、rubric/version、reviewer_ref、source_trace_ref、retention/deletion policy；dataset item 不是原 Trace 的镜像。</p>
+<p>Experiment 在隔离 tenant/合成 ERP/KB 上运行<strong>同一应用授权路径</strong>，不能绕过 MCP/RLS 直接调用业务 ORM或允许生产写入。固定 checkpoint 起点、数据快照/日期、时区、检索 profile、toolset/model/prompt/schema 与 Git/lock 指纹；相同病例成对比较，随机分组、每变体多次重复。设置最大并发/调用数/Token/运行时长，失败/timeout/拒绝计入统计，报告 N 与置信区间；共享数据库试验串行执行。</p>
+<p>每次只改一个主要变量（prompt/model/tool strategy/retrieval profile；Skills 有真实执行版本后才比较）。安全负向零失败是门禁；质量提升同时比较延迟、拒绝率和成本，不能只优化平均 Score。评测 Prompt 不允许修改生产 Nacos latest；审核后走既有发布和回滚。</p>
+<p>Nacos 当前 <code>resolve_prompts</code> 仅返回合成正文，Agent <code>prompt.applied</code> 只有 hash/source，<strong>不是完整可重放发布快照</strong>。后续在已有读取中捕获实际 Prompt 版本/模板 digest，传安全 provenance DTO；组合提示词还需记进度/分析附加说明版本。版本不能在 latest 读取后另请求一次并假定同一版。运行恢复若按既有行为重新解析 Prompt，则不同 execution 分别记录实际版本；不要悄悄改成固定 Prompt 恢复。</p>
+<p>默认不启用 Langfuse Prompt Management。若以后需要 UI Prompt 对比，可把<strong>已批准非敏感发布产物</strong>单向镜像为只读实验资料；不能反向运行/发布回 Chein。迁移唯一事实源需要独立 ADR、全调用者审计、兼容/回滚设计和人工签署，不能本次顺带完成。<a href="https://langfuse.com/docs/prompt-management/features/link-to-traces" target="_blank" rel="noopener noreferrer" class="">官方 Prompt link</a>、<a href="https://langfuse.com/docs/evaluation/experiments/experiments-via-sdk" target="_blank" rel="noopener noreferrer" class="">Experiments</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="8-配置变量设计与生效规则">8. 配置变量设计与生效规则<a href="#8-配置变量设计与生效规则" class="hash-link" aria-label="8. 配置变量设计与生效规则的直接链接" title="8. 配置变量设计与生效规则的直接链接" translate="no">​</a></h2>
+<p>以下全为<strong>未来接入参数</strong>，当前 Agent Settings 尚无这些字段。建议加入 <code>chein-agent-runtime.yaml</code> 的单一启动配置；密钥仍私有，不给浏览器、不写示例真实值。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变量</th><th>默认/候选</th><th>Owner / 行为</th></tr></thead><tbody><tr><td>LANGFUSE_TRACING_ENABLED</td><td>false</td><td>Agent；false 跳过初始化及 Callback 注入</td></tr><tr><td>LANGFUSE_BASE_URL</td><td>无</td><td>自托管根 URL；默认 HTTPS，禁止 credentials/query/fragment；不能默认落云</td></tr><tr><td>LANGFUSE_ALLOW_HTTP</td><td>false</td><td>用户要求的可信内网 HTTP 显式开关；不放宽脱敏或地址结构校验</td></tr><tr><td>LANGFUSE_PUBLIC_KEY / SECRET_KEY</td><td>无</td><td>每环境项目密钥；enabled 但缺失则禁观测、报配置类别，不阻止 Agent</td></tr><tr><td>LANGFUSE_TRACING_ENVIRONMENT</td><td>当前 ENVIRONMENT</td><td>固定 env 枚举，避免跨项目混流</td></tr><tr><td>LANGFUSE_RELEASE</td><td>LOG_GIT_COMMIT_SHA / 发行版本</td><td>与日志发布版本一致</td></tr><tr><td>LANGFUSE_SAMPLE_RATE</td><td>dev 1.0 / prod 候选0.1</td><td>0..1；现有 Provider sampler 优先，不能双重抽样</td></tr><tr><td>LANGFUSE_FLUSH_AT</td><td>候选128</td><td>最大 batch；不得大于 OTel queue</td></tr><tr><td>LANGFUSE_FLUSH_INTERVAL</td><td>候选5，秒</td><td>不逐 chunk flush</td></tr><tr><td>LANGFUSE_TIMEOUT</td><td>候选2，秒；SDK默认5</td><td>v4.17.0源码已核对的SDK环境参数；不是总请求/停机预算</td></tr><tr><td>OTEL_BSP_MAX_QUEUE_SIZE</td><td>候选2048</td><td>进程级 OTel 参数；共享 Provider 时需统一 APM 配置，非 Langfuse 专用 queue</td></tr><tr><td>OTEL_BSP_MAX_EXPORT_BATCH_SIZE / SCHEDULE_DELAY</td><td>如有显式配置，与128/5000ms一致</td><td>constructor 与 env 优先级核对；不维护冲突数值</td></tr><tr><td>LANGFUSE_MEDIA_UPLOAD_ENABLED</td><td>false</td><td>SDK 环境参数；生产必须关闭</td></tr><tr><td>LANGFUSE_DEBUG</td><td>false</td><td>生产禁止临时打开 raw debug 绕过采集策略</td></tr><tr><td>AGENT_OBSERVABILITY_DATA_POLICY</td><td>metadata-only-v1</td><td>Chein 拟议策略，非 SDK 参数；不提供生产 raw-content 模式</td></tr><tr><td>AGENT_OBSERVABILITY_ID_KEY / KEY_VERSION</td><td>无 / 版本标识</td><td>HMAC 私有密钥；缺失不能改发原身份，禁用户维度/观测</td></tr><tr><td>AGENT_OBSERVABILITY_SHUTDOWN_GRACE_SECONDS</td><td>候选5</td><td>Chein 编排预算；SDK 无对应总体 timeout，按停机实验落实</td></tr><tr><td>评测预算/比例/模型</td><td>P4 独立配置，默认关闭</td><td>不与在线 decision 配置/冷却共用，命名在实施时收敛</td></tr></tbody></table>
+<p>当前 <code>settings._load_nacos_config</code> <strong>启动时一次加载</strong>，环境变量优先，随后 Settings 实例固化；不是热更新。最小方案所有观测开关/采样/密钥/队列改变经受控滚动重启生效；标注 deployment/config digest，验证每 worker 同版。发生泄密风险时直接关闭采集并限流观测网络，不依赖“修改 Nacos 会立即生效”。若未来需要动态开关，再按 Run 边界原子快照、版本一致性、旧 client drain 和回滚专门设计，不本次先加 watcher。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="9-容量与运维成本模型">9. 容量与运维成本模型<a href="#9-容量与运维成本模型" class="hash-link" aria-label="9. 容量与运维成本模型的直接链接" title="9. 容量与运维成本模型的直接链接" translate="no">​</a></h2>
+<p><strong>服务器实际资源和流量未知</strong>，下面是假设驱动的预算模型，不是生产实测配置。官方单机 Compose 起点为 4 CPU/16GiB/100GiB SSD 的整套环境，不等于两个新增 Web/Worker 容器开销。<a href="https://langfuse.com/self-hosting/deployment/docker-compose" target="_blank" rel="noopener noreferrer" class="">官方 Compose 部署</a>。</p>
+<p>变量：日逻辑请求 <code>R</code>，平均 execution/request <code>E</code>（恢复/重领增加），采样概率 <code>p</code>，Observation/execution <code>O</code>（框架节点、辅助调用和业务 Span全部包含），平均脱敏编码字节 <code>B</code>，保留天 <code>D</code>，实测 CH 压缩系数 <code>c</code>，副本数 <code>r</code>，安全余量 <code>h</code>。</p>
+<div class="language-text codeBlockContainer_oK0S theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VTFX"><pre tabindex="0" class="prism-code language-text codeBlock_CEDq thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_I4kI"><div class="token-line" style="color:#393A34"><span class="token plain">trace/day = R × E × p</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">observation/day = trace/day × O</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">原始观测 bytes/day = observation/day × B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CH 基础数据量 ≈ 原始/day × D × c × r（另加索引/merge/日志/元数据）</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">S3 原始 event 量 ≈ 原始/day × event保留天（再按实际编码、压缩、版本测）</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">总磁盘预算 ≥ (CH + S3 + PG + logs + 临时 merge/备份) × h</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">峰值 observation/s ≈ 峰值 execution/s × p × O</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">各 worker queue 理论缓存秒 ≈ queue_count / 本 worker ended_span_rate</span><br></div></code></pre></div></div>
+<p>取<strong>假设</strong> E=1.1、O=25、B=2KiB、D=30、c=0.3、r=1、h=2、p=1。2KiB 是设计样本均值，不是 metadata 上限；活跃大 payload/评测成本需另算。1GiB=2^30 bytes。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>假设规模</th><th>R / 峰值 execution/s</th><th>Trace/日；Obs/日</th><th>原始GiB/日</th><th>30日CH压缩基础；S3原始事件</th><th>规划建议，待实验验证</th></tr></thead><tbody><tr><td>小</td><td>1000 / 1</td><td>1100；27500</td><td>0.052</td><td>0.47GiB；1.57GiB</td><td>单 Web/Worker 起步；按官方整套起点和共享实例余量核查，不据表承诺16GiB足够</td></tr><tr><td>中</td><td>10000 / 10</td><td>11000；275000</td><td>0.525</td><td>4.72GiB；15.74GiB</td><td>先测 Worker/CH写入和merge；为 Langfuse 独立资源配额；候选生产10%减少诊断数据</td></tr><tr><td>高并发</td><td>100000 / 100</td><td>110000；2750000</td><td>5.245</td><td>47.21GiB；157.36GiB</td><td>峰值2500 Obs/s；按需多 Worker/独立Redis/CH，评估SSD/写入带宽/备份；不能直接外推 CPU最低值</td></tr></tbody></table>
+<p>10% 采样下观测数据各量约十分之一，但全量错误/usage 汇总和评测数据不按它缩减。长任务若 O=200，则观测存储/队列压力是上表8倍；恢复次数 E 增加同样放大。CH+S3安全预算仅按两者总量×2：小约4.1、中约40.9、高约409.1GiB；<strong>尚不含 PG、副本/历史迁移、备份和基础镜像/日志</strong>，不能拿此数当完整服务器磁盘。</p>
+<p>每 execution 的 O 用 P1 合成 trace 实测，不假定 LangGraph 一个节点等于一个 observation。PG 主要项目/配置/评分/数据集与控制记录，需实测 schema增长；不能将所有 trace 总量都算为 PG表增长。Redis 内存估算用 pending ingestion jobs ×实测平均 job bytes 加索引/持久化开销；对象存储事件大小/生命周期与 CH留存分别测。Web关注并发查询/分页/大树；Worker关注摄取与评估并发。网络预算以上表 raw bytes 为基础，测协议和gzip，不把压缩后的 CH 体积当上传带宽。</p>
+<p>以下为隔离压测环境的<strong>预算起点假设</strong>，不是实测最低配置、服务器采购建议或容量承诺；先统计已有Chein/RAGFlow/数据库占用，再讨论可分配量。峰值和长任务可能迫使升档，10%采样也不能按比例缩减进程基础内存。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>假设规模</th><th>整套Langfuse及专用中间件测试预算</th><th>Web/Worker起步与扩展判据</th></tr></thead><tbody><tr><td>小</td><td>4vCPU / 16GiB / 至少100GiB SSD，沿用官方整套起点</td><td>Web1、Worker1；预留CH merge、PG/Redis和备份空间</td></tr><tr><td>中</td><td>候选8vCPU / 32GiB / 200GiB SSD；与业务共机时按增量分配而非覆盖其预算</td><td>Web1、Worker1；Worker CPU/queue持续积压才试2个Worker；测CH写入和查询争用</td></tr><tr><td>高并发</td><td>候选16–32vCPU / 64–128GiB / 1TiB SSD；副本/备份另计</td><td>Web1–2、Worker2–4作为压测候选；独立Redis/CH优先，按2500Obs/s和长任务8倍场景验证</td></tr></tbody></table>
+<p>预算由上表数据量和冗余余量提出；CPU/RAM还取决于评测并发、查询复杂度、压缩、CH merge、网络/磁盘速度，不能从request/day唯一推导。验收后用实测峰值核秒/Obs、RSS、队列drain rate重新估算并保留30%以上资源余量；这些配额未在本次部署设置。</p>
+<p>运维成本包括主机/磁盘/备份、跨机/VPN带宽、CH merge/Redis容量、人员/升级、可能的 EE许可和 Judge模型费用；没有报价/真实业务量，不能报货币成本。Tailscale仅是受控连通，不证明 TLS、吞吐或应用权限。</p>
+<p>建议保留期候选：prod metadata 30天、dev合成7天、经批准 gold Dataset 90天后复审；<strong>待业务决策</strong>。原生自托管自动 retention 属 EE；OSS 上上线前必须选定许可功能或已验证的公共删除API/运维清理方案，分批/限速且核对 v4数据模型，禁止直接改 CH内部表 TTL。清理要覆盖 CH、对象事件/media、Score、dataset/experiment/备份；dataset 不随 trace自动删除，不将 S3lifecycle 当全局清理。<a href="https://langfuse.com/docs/administration/data-retention" target="_blank" rel="noopener noreferrer" class="">官方保留期</a>。</p>
+<p>备份/恢复复用部署文档：PG+CH+事件bucket+私有配置和解密密钥的一致可恢复组合，Redis共享实例恢复不得覆盖业务队列。候选 RPO24h/RTO4h 为待业务决定的目标，恢复到隔离环境验收。Langfuse自身升级回滚涉及数据库/写入模式，不能只换旧镜像；Agent观测回滚不动任何 checkpoint/业务库。</p>
+<h2 class="anchor anchorTargetStickyNavbar_m272" id="10-限制待决项和扩展边界">10. 限制、待决项和扩展边界<a href="#10-限制待决项和扩展边界" class="hash-link" aria-label="10. 限制、待决项和扩展边界的直接链接" title="10. 限制、待决项和扩展边界的直接链接" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>当前选择/不确定性</th><th>下一证据与决策责任</th></tr></thead><tbody><tr><td>SDK兼容</td><td>4.17.0 候选，需要提升OTel依赖</td><td>Agent维护者：resolver、锁定依赖、并发 Callback/退出实验</td></tr><tr><td>流式Usage/网关route</td><td>不能保证实际Usage或Higress统计已可用</td><td>模型/网关维护者：合成端点对照及价格对账</td></tr><tr><td>完整RAG内部链路</td><td>只能观察客户端fetch，rerank timing/pre-rank缺失</td><td>Knowledge维护者：服务DTO/供应商可用能力，未提供则继续unavailable</td></tr><tr><td>数据/访问/保留</td><td>metadata-only，运维访问；30天候选</td><td>数据负责人/运维：HMAC政策、项目角色/许可、删除备份演练</td></tr><tr><td>故障性能</td><td>SDK后台不等于零成本；join/atexit有界待测</td><td>Agent/运维：压测报告和总停机deadline</td></tr><tr><td>质量自动化</td><td>先rules/人工，异步内部Judge输出Score</td><td>业务Owner：gold、成功定义、误拒绝/漏判代价、预算</td></tr><tr><td>Skills/SubAgent/写入</td><td>当前不新增、不为可观测性开放</td><td>能力真实实现与安全设计获批后增加实际Span契约</td></tr><tr><td>Tail/APM/UI</td><td>默认不用Collector/iframe/完整控制台；P5再评估</td><td>有真实尾保留/业务管理需求且容量/权限POC通过后另批</td></tr></tbody></table>
+<p>本设计不声称已达到任何延迟/成本/隔离性能目标，不修改 Accepted ADR，也不把 Proposed LangSmith 方案转成已实施或自动删除它。后续批准 Langfuse 作为 AI观测出口时，应同步基线/相关专题状态，默认避免双 exporter、双成本和两套Prompt事实源。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_jEgb"><a href="https://github.com/HanYang3588/chein/edit/main/docs/agent/langfuse-design.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_yhff" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_GVv_"></div></div></footer><section class="relations" aria-label="文档关系"><h2>引用与相关文档</h2><div class="relation-grid"><div><h3>本文引用</h3><ul><li><a href="/chein-doc-site/reference/architecture/agent/runtime/">Chein 数据分析 Agent 架构</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/">Langfuse P1–P5 实施与启用</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/">Langfuse 分阶段实施、性能实验与验收计划</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/">Langfuse 可读链路与脱敏问答设计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-audit/">Chein Agent 现有架构与可观测性审计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-research/">Langfuse v4 官方能力与 Chein 集成方案调研</a></li><li><a href="/chein-doc-site/reference/operations/deployment/langfuse/">Langfuse v4 部署、账户配置与故障复盘</a></li></ul></div><div><h3>引用本文</h3><ul><li><a href="/chein-doc-site/reference/development/agent/index/">Agent 设计文档</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery-plan/">Langfuse 分阶段实施、性能实验与验收计划</a></li><li><a href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/">Langfuse 可读链路与脱敏问答设计</a></li><li><a href="/chein-doc-site/reference/history/agent/langfuse-audit/">Chein Agent 现有架构与可观测性审计</a></li><li><a href="/chein-doc-site/reference/operations/deployment/langfuse/">Langfuse v4 部署、账户配置与故障复盘</a></li></ul></div></div><a href="/chein-doc-site/graph/?doc=reference%2Fdevelopment%2Fagent%2Fobservability%2Flangfuse-design%40current">在图谱中查看一跳关系 →</a></section></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/chein-doc-site/reference/development/agent/observability/langfuse-delivery/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Langfuse P1–P5 实施与启用</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/chein-doc-site/reference/development/agent/observability/langfuse-readable-tracing-design/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Langfuse 可读链路与脱敏问答设计</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_K54j thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-决策与证据等级" class="table-of-contents__link toc-highlight">1. 决策与证据等级</a></li><li><a href="#2-总体架构所有权和基础设施分工" class="table-of-contents__link toc-highlight">2. 总体架构、所有权和基础设施分工</a><ul><li><a href="#21-未来跨服务-otel-与-skywalking" class="table-of-contents__link toc-highlight">2.1 未来跨服务 OTel 与 SkyWalking</a></li></ul></li><li><a href="#3-标识映射与执行恢复" class="table-of-contents__link toc-highlight">3. 标识映射与执行恢复</a><ul><li><a href="#31-id-契约" class="table-of-contents__link toc-highlight">3.1 ID 契约</a></li><li><a href="#32-单请求与长-run-的关系" class="table-of-contents__link toc-highlight">3.2 单请求与长 Run 的关系</a></li></ul></li><li><a href="#4-trace--observation--generation--event-模型" class="table-of-contents__link toc-highlight">4. Trace / Observation / Generation / Event 模型</a><ul><li><a href="#41-通用数据字段" class="table-of-contents__link toc-highlight">4.1 通用数据字段</a></li><li><a href="#42-模型用量延迟重试和成本" class="table-of-contents__link toc-highlight">4.2 模型用量、延迟、重试和成本</a></li><li><a href="#43-ragflow重排和引用" class="table-of-contents__link toc-highlight">4.3 RAGFlow、重排和引用</a></li><li><a href="#44-toolerpsqlskills-与图片" class="table-of-contents__link toc-highlight">4.4 Tool、ERP、SQL、Skills 与图片</a></li><li><a href="#45-decision-model-preview" class="table-of-contents__link toc-highlight">4.5 decision-model-preview</a></li></ul></li><li><a href="#5-性能采样队列与故障隔离" class="table-of-contents__link toc-highlight">5. 性能、采样、队列与故障隔离</a><ul><li><a href="#51-主路径的真实开销" class="table-of-contents__link toc-highlight">5.1 主路径的真实开销</a></li><li><a href="#52-流式执行与取消" class="table-of-contents__link toc-highlight">5.2 流式执行与取消</a></li><li><a href="#53-采样策略" class="table-of-contents__link toc-highlight">5.3 采样策略</a></li><li><a href="#54-建议启动参数与生命周期" class="table-of-contents__link toc-highlight">5.4 建议启动参数与生命周期</a></li><li><a href="#55-故障矩阵" class="table-of-contents__link toc-highlight">5.5 故障矩阵</a></li><li><a href="#56-压测和验收" class="table-of-contents__link toc-highlight">5.6 压测和验收</a></li></ul></li><li><a href="#6-安全隐私与权限" class="table-of-contents__link toc-highlight">6. 安全、隐私与权限</a><ul><li><a href="#61-采集策略与保护顺序" class="table-of-contents__link toc-highlight">6.1 采集策略与保护顺序</a></li><li><a href="#62-安全风险矩阵" class="table-of-contents__link toc-highlight">6.2 安全风险矩阵</a></li><li><a href="#63-权限与产品访问" class="table-of-contents__link toc-highlight">6.3 权限与产品访问</a></li></ul></li><li><a href="#7-agent-质量评估与持续优化" class="table-of-contents__link toc-highlight">7. Agent 质量评估与持续优化</a><ul><li><a href="#71-指标定义来源及统计" class="table-of-contents__link toc-highlight">7.1 指标定义、来源及统计</a></li><li><a href="#72-用户反馈与-scores" class="table-of-contents__link toc-highlight">7.2 用户反馈与 Scores</a></li><li><a href="#73-规则人工llm-judge-和决策模型复用" class="table-of-contents__link toc-highlight">7.3 规则、人工、LLM Judge 和决策模型复用</a></li><li><a href="#74-数据集实验与发布闭环" class="table-of-contents__link toc-highlight">7.4 数据集、实验与发布闭环</a></li></ul></li><li><a href="#8-配置变量设计与生效规则" class="table-of-contents__link toc-highlight">8. 配置变量设计与生效规则</a></li><li><a href="#9-容量与运维成本模型" class="table-of-contents__link toc-highlight">9. 容量与运维成本模型</a></li><li><a href="#10-限制待决项和扩展边界" class="table-of-contents__link toc-highlight">10. 限制、待决项和扩展边界</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">开始使用</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/quickstart/">快速开始</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/product/tasks/">操作手册</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">工程与维护</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/architecture/views/">架构视图</a></li><li class="footer__item"><a class="footer__link-item" href="/chein-doc-site/reference/development/documentation/">文档贡献</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Chein 文档中心</div></div></div></footer></div>
+</body>
+</html>

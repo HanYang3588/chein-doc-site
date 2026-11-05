@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1486" viewBox="0 0 1640 1486" role="img" aria-labelledby="title desc">
+  <title id="title">Chein 系统架构总览</title>
+  <desc id="desc">按用户体验、Higress 统一接入、业务与智能、服务集成、RocketMQ 异步削峰设计、数据存储和构建交付分层。Higress 负责系统与模型网关、提示词相关响应缓存及输入输出安全。RAGFlow 使用 Elasticsearch 存储向量与全文索引。管理后端是模块化单体，Agent 是独立运行时；后端继续执行业务授权和隔离。虚线框表示可选集成，紫色点线框表示RocketMQ 异步削峰设计。</desc>
+  <defs>
+    <style>
+      text { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #20344c; }
+      .title { font-size: 36px; font-weight: 700; }
+      .subtitle { font-size: 17px; fill: #566b82; }
+      .layer { font-size: 21px; font-weight: 700; }
+      .number { font-size: 15px; font-weight: 600; opacity: .6; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .label { font-size: 19px; font-weight: 600; }
+      .small { font-size: 15px; fill: #566b82; }
+      .tiny { font-size: 14px; fill: #566b82; }
+      .white { fill: #fff; }
+      .optional { stroke: #b47834; stroke-dasharray: 7 5; }
+      .planned { stroke: #8370ac; stroke-dasharray: 3 5; stroke-width: 1.5; }
+      .line { stroke: #9baec2; stroke-width: 1.5; fill: none; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#718aa3"/></marker>
+  </defs>
+  <rect width="1640" height="1486" fill="#fff"/>
+  <rect x="40" y="35" width="7" height="54" rx="3" fill="#247a9b"/>
+  <text x="64" y="66" class="title">Chein 系统架构总览</text>
+  <text x="65" y="97" class="subtitle">模块化管理平台 + 独立 Agent 运行时 · 按能力分层，按所有权划界</text>
+
+  <!-- 01: one frontend, several user experiences -->
+  <rect x="40" y="130" width="122" height="122" rx="8" fill="#e8f1fc"/>
+  <text x="59" y="158" class="number">01</text>
+  <text x="101" y="196" class="layer" text-anchor="middle">用户体验</text>
+  <rect x="178" y="130" width="1196" height="122" rx="8" fill="#f4f8fd" stroke="#cadcf0"/>
+  <text x="199" y="157" class="small">统一 Web 应用 · React / Umi Max / Ant Design Pro / assistant-ui</text>
+  <g fill="#fff" stroke="#b8d0ec">
+    <rect x="198" y="174" width="272" height="58" rx="5"/><rect x="492" y="174" width="272" height="58" rx="5"/>
+    <rect x="786" y="174" width="272" height="58" rx="5"/><rect x="1080" y="174" width="272" height="58" rx="5"/>
+  </g>
+  <text x="334" y="210" class="label" text-anchor="middle">平台管理与租户工作台</text>
+  <text x="628" y="210" class="label" text-anchor="middle">业务应用与创作中心</text>
+  <text x="922" y="210" class="label" text-anchor="middle">Agent 对话与分析图表</text>
+  <text x="1216" y="210" class="label" text-anchor="middle">OWL 画布与规则推导</text>
+
+  <!-- 02: all application entry paths remain behind backend authorization -->
+  <path d="M776 252V270" class="line" marker-end="url(#arrow)"/>
+  <rect x="40" y="276" width="122" height="112" rx="8" fill="#e7f3fa"/>
+  <text x="59" y="304" class="number">02</text>
+  <text x="101" y="343" class="layer" text-anchor="middle">统一接入</text>
+  <rect x="178" y="276" width="1196" height="112" rx="8" fill="#f1f9fc" stroke="#bcdce9"/>
+  <text x="198" y="304" class="small">Higress 统一入口 · 系统 API 路由 / 模型代理 / 提示词相关响应缓存 / 输入输出安全</text>
+  <g fill="#fff" stroke="#acd0e2">
+    <rect x="198" y="320" width="244" height="48" rx="5"/><rect x="472" y="320" width="244" height="48" rx="5"/>
+    <rect x="746" y="320" width="290" height="48" rx="5"/><rect x="1066" y="320" width="286" height="48" rx="5"/>
+  </g>
+  <text x="320" y="350" class="label" text-anchor="middle">Higress 系统网关</text>
+  <text x="594" y="350" class="label" text-anchor="middle">FastAPI 业务 HTTP API</text>
+  <text x="891" y="350" class="label" text-anchor="middle">Agent BFF · SSE / WebSocket</text>
+  <text x="1209" y="350" class="label" text-anchor="middle">可信身份 · 短期签名委托</text>
+
+  <!-- 03: the backend and agent boxes are distinct ownership/runtime boundaries -->
+  <path d="M559 388V408" class="line" marker-end="url(#arrow)"/>
+  <path d="M1150 388V408" class="line" marker-end="url(#arrow)"/>
+  <rect x="40" y="414" width="122" height="392" rx="8" fill="#e4f3ed"/>
+  <text x="59" y="442" class="number">03</text>
+  <text x="101" y="588" class="layer" text-anchor="middle">业务与智能</text>
+  <text x="101" y="618" class="small" text-anchor="middle">独立所有权</text>
+  <rect x="178" y="414" width="760" height="392" rx="8" fill="#f0f8f4" stroke="#95c7b3" stroke-width="2"/>
+  <rect x="178" y="414" width="760" height="48" rx="8" fill="#287d65"/>
+  <rect x="178" y="445" width="760" height="17" fill="#287d65"/>
+  <text x="198" y="445" class="heading white">管理后端 · 模块化单体</text>
+  <text x="916" y="444" class="small white" text-anchor="end">backend/ · FastAPI</text>
+  <text x="198" y="489" class="small">Platform 必选；业务模块按 Edition 装配，下列为 Suite 集合</text>
+  <g fill="#fff" stroke="#acd1c1">
+    <rect x="198" y="506" width="164" height="88" rx="5"/><rect x="383" y="506" width="164" height="88" rx="5"/>
+    <rect x="568" y="506" width="164" height="88" rx="5"/><rect x="753" y="506" width="164" height="88" rx="5"/>
+    <rect x="198" y="610" width="164" height="88" rx="5"/><rect x="383" y="610" width="164" height="88" rx="5"/>
+    <rect x="568" y="610" width="164" height="88" rx="5"/><rect x="753" y="610" width="164" height="88" rx="5"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="280" y="539" class="label">Platform 平台</text><text x="280" y="567" class="small">身份 / 组织 / RBAC</text>
+    <text x="465" y="539" class="label">ERP 业务</text><text x="465" y="567" class="small">采购 / 销售 / 库存</text>
+    <text x="650" y="539" class="label">Knowledge 知识</text><text x="650" y="567" class="small">资源 / ACL / 检索</text>
+    <text x="835" y="539" class="label">Analytics 分析</text><text x="835" y="567" class="small">查询契约 / 图表收藏</text>
+    <text x="280" y="644" class="label">Ontology 本体</text><text x="280" y="672" class="small">OWL / 发布 / 证明</text>
+    <text x="465" y="644" class="label" style="font-size:17px">Datasource 数据源</text><text x="465" y="672" class="small">连接 / 目录 / 采集</text>
+    <text x="650" y="644" class="label">Creation 创作</text><text x="650" y="672" class="small">图片 / 视频任务资产</text>
+    <text x="835" y="644" class="label">Items 样板</text><text x="835" y="672" class="small">统一模块接入模式</text>
+  </g>
+  <rect x="198" y="716" width="719" height="68" rx="5" fill="#dfeee7"/>
+  <text x="214" y="742" class="label">统一模块契约与受控协作</text>
+  <text x="214" y="768" class="small">ModuleDefinition · public_api / capability · 事务 Outbox · 只读 MCP 工具</text>
+
+  <rect x="964" y="414" width="410" height="392" rx="8" fill="#f3f0fb" stroke="#b7a9d7" stroke-width="2"/>
+  <rect x="964" y="414" width="410" height="48" rx="8" fill="#706099"/>
+  <rect x="964" y="445" width="410" height="17" fill="#706099"/>
+  <text x="985" y="445" class="heading white">独立 Agent 运行时</text>
+  <text x="1353" y="444" class="small white" text-anchor="end">agent/</text>
+  <text x="984" y="489" class="small">Deep Agents / LangGraph / LangChain</text>
+  <g fill="#fff" stroke="#d0c5e4">
+    <rect x="984" y="506" width="175" height="56" rx="5"/><rect x="1178" y="506" width="175" height="56" rx="5"/>
+    <rect x="984" y="574" width="175" height="56" rx="5"/><rect x="1178" y="574" width="175" height="56" rx="5"/>
+    <rect x="984" y="642" width="175" height="56" rx="5"/><rect x="1178" y="642" width="175" height="56" rx="5"/>
+  </g>
+  <g text-anchor="middle" class="label">
+    <text x="1071" y="541">规划与工具编排</text><text x="1265" y="541">Run / 检查点恢复</text>
+    <text x="1071" y="609">检索与分析快照</text><text x="1265" y="609">图片 / 视频 / 语音</text>
+    <text x="1071" y="677">私有记忆与自动化</text><text x="1265" y="677">Token 计量与额度</text>
+  </g>
+  <rect x="984" y="716" width="369" height="68" rx="5" fill="#e8e1f3"/>
+  <text x="1000" y="741" class="small">仅经授权 HTTP / MCP 调用业务能力</text>
+  <text x="1000" y="767" class="small">独立 Scheduler；不直读业务库、不复制 RBAC</text>
+
+  <!-- 04: configured services are not automatically deployed or authorized -->
+  <rect x="40" y="830" width="122" height="152" rx="8" fill="#fff0db"/>
+  <text x="59" y="858" class="number">04</text>
+  <text x="101" y="913" class="layer" text-anchor="middle">服务集成</text>
+  <rect x="178" y="830" width="1196" height="152" rx="8" fill="#fffbf4" stroke="#e5d0ad"/>
+  <text x="198" y="858" class="small">由所属模块 / Agent Adapter 接入 · 统一配置与授权</text>
+  <g fill="#fff" stroke-width="1.5">
+    <rect x="198" y="878" width="214" height="84" rx="5" stroke="#dfc6a0"/>
+    <rect x="433" y="878" width="232" height="84" rx="5" stroke="#dfc6a0"/>
+    <rect x="686" y="878" width="208" height="84" rx="5" class="optional"/>
+    <rect x="915" y="878" width="208" height="84" rx="5" class="optional"/>
+    <rect x="1144" y="878" width="208" height="84" rx="5" class="optional"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="305" y="909" class="label">RAGFlow</text><text x="305" y="937" class="small">知识检索 / Native Memory</text>
+    <text x="549" y="909" class="label">Higress AI 模型网关</text><text x="549" y="937" class="tiny">Agent → 缓存 / 安全 → 模型</text>
+    <text x="790" y="909" class="label">HermiT 计算服务</text><text x="790" y="937" class="small">隔离 OWL 校验 / 推理</text>
+    <text x="1019" y="909" class="label">Neo4j 语义读取</text><text x="1019" y="937" class="small">显式投影 / 可选 Provider</text>
+    <text x="1248" y="909" class="label">Nacos</text><text x="1248" y="937" class="small">运行配置 / 提示词正文</text>
+  </g>
+
+  <!-- 05: proposed queue integration; no producer/consumer wiring in current source -->
+  <rect x="40" y="1006" width="122" height="142" rx="8" fill="#ede8f7"/>
+  <text x="59" y="1034" class="number">05</text>
+  <text x="101" y="1081" class="layer" text-anchor="middle">异步削峰</text>
+  <rect x="178" y="1006" width="1196" height="142" rx="8" fill="#f8f5fc" class="planned"/>
+  <text x="198" y="1034" class="small">RocketMQ 异步削峰设计 · 消息积压缓冲 / 限并发消费 / 幂等处理</text>
+  <g fill="#fff" stroke="#c7bddc">
+    <rect x="198" y="1054" width="280" height="72" rx="5"/>
+    <rect x="572" y="1054" width="330" height="72" rx="5"/>
+    <rect x="996" y="1054" width="356" height="72" rx="5"/>
+  </g>
+  <path d="M483 1090H563" class="line" marker-end="url(#arrow)"/>
+  <path d="M907 1090H987" class="line" marker-end="url(#arrow)"/>
+  <g text-anchor="middle">
+    <text x="338" y="1081" class="label">生产侧 · 持久任务 / Outbox</text><text x="338" y="1108" class="small">仅投递受控路由引用与任务 ID</text>
+    <text x="737" y="1081" class="label">RocketMQ 消息队列</text><text x="737" y="1108" class="small">积压缓冲 / 削峰填谷 / 异步解耦</text>
+    <text x="1174" y="1081" class="label">消费侧 · 所属业务 Worker</text><text x="1174" y="1108" class="small">限并发 / 授权复验 / 幂等 / 完成后确认</text>
+  </g>
+
+  <!-- 06: logical data owners, not a claim about physical server count -->
+  <rect x="40" y="1172" width="122" height="134" rx="8" fill="#e6f2f4"/>
+  <text x="59" y="1200" class="number">06</text>
+  <text x="101" y="1247" class="layer" text-anchor="middle">数据存储</text>
+  <rect x="178" y="1172" width="1196" height="134" rx="8" fill="#f1f8f9" stroke="#bad7dd"/>
+  <text x="198" y="1200" class="small">按逻辑所有权分区 · RAGFlow → Elasticsearch 向量 / 全文索引 · 不新增 Agent 自有向量库</text>
+  <g fill="#fff" stroke="#a8ccd4">
+    <rect x="198" y="1220" width="214" height="66" rx="5"/><rect x="433" y="1220" width="214" height="66" rx="5"/>
+    <rect x="668" y="1220" width="214" height="66" rx="5"/><rect x="903" y="1220" width="214" height="66" rx="5"/>
+    <rect x="1138" y="1220" width="214" height="66" rx="5"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="305" y="1246" class="label">业务 PostgreSQL</text><text x="305" y="1272" class="small">平台 / 业务 / 发布 / ACL</text>
+    <text x="540" y="1246" class="label">Agent PostgreSQL</text><text x="540" y="1272" class="small">Run / Checkpoint / 快照</text>
+    <text x="775" y="1246" class="label">Redis</text><text x="775" y="1272" class="small">Higress 缓存 / 基础设施缓存</text>
+    <text x="1010" y="1246" class="label">Elasticsearch</text><text x="1010" y="1272" class="small">RAGFlow 向量 / 全文索引</text>
+    <text x="1245" y="1246" class="label">RustFS / S3</text><text x="1245" y="1272" class="small">授权文件 / 图片 / 视频</text>
+  </g>
+
+  <!-- side rail: security is enforced at backend/data owner, not a frontend feature -->
+  <rect x="1398" y="130" width="202" height="1176" rx="8" fill="#f5f7fa" stroke="#c8d2df"/>
+  <rect x="1398" y="130" width="202" height="53" rx="8" fill="#354b66"/>
+  <rect x="1398" y="166" width="202" height="17" fill="#354b66"/>
+  <text x="1499" y="164" class="heading white" text-anchor="middle">安全与治理</text>
+  <text x="1499" y="215" class="small" text-anchor="middle">贯穿所有层级</text>
+  <g fill="#fff" stroke="#d5dce6">
+    <rect x="1414" y="241" width="170" height="128" rx="6"/><rect x="1414" y="389" width="170" height="146" rx="6"/>
+    <rect x="1414" y="555" width="170" height="146" rx="6"/><rect x="1414" y="721" width="170" height="146" rx="6"/>
+    <rect x="1414" y="887" width="170" height="122" rx="6" class="optional"/>
+    <rect x="1414" y="1040" width="170" height="122" rx="6"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="1499" y="274" class="label">可信身份</text><text x="1499" y="306" class="small">JWT / 租户成员</text><text x="1499" y="334" class="small">短期签名委托</text>
+    <text x="1499" y="422" class="label">当前授权</text><text x="1499" y="454" class="small">RBAC / 模块权益</text><text x="1499" y="482" class="small">资源 ACL / owner</text><text x="1499" y="510" class="small">工具逐次复验</text>
+    <text x="1499" y="588" class="label">数据隔离</text><text x="1499" y="620" class="small">Tenant UoW</text><text x="1499" y="648" class="small">适用表的 RLS 策略</text><text x="1499" y="676" class="small">最小权限运行角色</text>
+    <text x="1499" y="754" class="label">执行与审计</text><text x="1499" y="786" class="small">租约 / 幂等 / 恢复</text><text x="1499" y="814" class="small">审批 / 事件 / Outbox</text><text x="1499" y="842" class="small">配额与使用记录</text>
+    <text x="1499" y="920" class="label">可选观测</text><text x="1499" y="951" class="small">OTLP / Langfuse</text><text x="1499" y="979" class="small">按配置脱敏与接线</text>
+    <text x="1499" y="1073" class="label">Higress 网关安全</text><text x="1499" y="1104" class="small">提示词 / 输入输出防护</text><text x="1499" y="1132" class="small">业务授权仍在后端</text>
+    <text x="1499" y="1221" class="small">前端隐藏不替代授权</text><text x="1499" y="1249" class="small">可选能力不授予权限</text>
+  </g>
+
+  <rect x="40" y="1330" width="122" height="72" rx="8" fill="#eef0f5"/>
+  <text x="101" y="1372" class="layer" text-anchor="middle">构建交付</text>
+  <rect x="178" y="1330" width="1422" height="72" rx="8" fill="#f5f6f9" stroke="#d1d7e1"/>
+  <text x="203" y="1360" class="label">Edition YAML → Build Manifest → 模块装配 → 独立迁移与镜像</text>
+  <text x="203" y="1386" class="small">base / items / suite · 边界与权限测试 · Docker Compose · 不引入业务微服务或运行时微前端</text>
+
+  <line x1="40" y1="1422" x2="1600" y2="1422" stroke="#e0e6ed"/>
+  <rect x="41" y="1440" width="26" height="16" rx="2" fill="#fff" class="optional"/>
+  <text x="77" y="1453" class="tiny">虚线框：可选集成</text>
+  <rect x="235" y="1440" width="26" height="16" rx="2" fill="#fff" class="planned"/>
+  <text x="271" y="1453" class="tiny">点线框：异步削峰设计</text>
+</svg>

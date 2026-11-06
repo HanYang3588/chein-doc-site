@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Agent 交互前端设计 | Chein 文档中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-reference-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-reference-current"><meta data-rh="true" property="og:title" content="Agent 交互前端设计 | Chein 文档中心"><meta data-rh="true" name="description" content="Agent 交互前端设计 · Chein 技术文档"><meta data-rh="true" property="og:description" content="Agent 交互前端设计 · Chein 技术文档"><link data-rh="true" rel="icon" href="/chein-doc-site/img/chein.svg"><link data-rh="true" rel="canonical" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"前端开发","item":"https://hanyang3588.github.io/chein-doc-site/reference/category/前端开发"},{"@type":"ListItem","position":2,"name":"Agent 交互前端设计","item":"https://hanyang3588.github.io/chein-doc-site/reference/development/frontend/agent-ui"}]}</script><link rel="stylesheet" href="/chein-doc-site/assets/css/styles.8e7bf3f6.css">
-<script src="/chein-doc-site/assets/js/runtime~main.0fdd96ce.js" defer="defer"></script>
-<script src="/chein-doc-site/assets/js/main.9bb8d6b5.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/runtime~main.c5c03517.js" defer="defer"></script>
+<script src="/chein-doc-site/assets/js/main.bbdfbb10.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -36,10 +36,10 @@
 项目和会话目录 BFF 只签发 <code>agent:chat</code> 委托，继续经过当前入口权限和 Agent tenant/owner 校验；执行、历史授权与审批请求仍计算各自所需的完整权限。目录读取不再逐项查询工具、Memory 等执行权限，也不读取对应模块权益缓存。
 2026-10-20 本地只读测量：同一有效成员身份各重复 5 次，委托生成的中位耗时在超级用户路径由约 655ms 降至 0.22ms；模拟普通 RBAC 路径由约 2120ms 降至 3.24ms，每次额外权限 SQL 由 17 条降至 0 条。这仅衡量委托生成，未涵盖 HTTP、入口认证或 Agent SQL，不能作为生产接口时延。
 同日本地验证通过：<code>pnpm frontend:typecheck</code>、<code>pnpm frontend:pro:build</code>、前端全量 273 项测试、Backend Ruff 及目录 BFF/委托 20 项测试。已登录浏览器确认项目行转圈、会话返回后展示且控制台无错误；截图已按开发归档入口上传 RustFS。无接口结构或数据库迁移；生产时延、生产 SQL 执行计划和远端 CI 未验证。</p>
-<p>根列表中的项目与独立会话可以混合拖动排序，项目内会话可单独排序；按住 Alt 使用上下方向键也可调整顺序。
+<p>根列表固定项目在上，未归类会话按“今天→昨天→更早→其他会话”分组，每个日期标题仅展示一次；组内默认按最近活动时间倒序，手动排序后保留同组偏好。项目之间、同一日期组内及项目内会话可拖动排序；按住 Alt 使用上下方向键也仅在对应组内调整顺序。
 会话拖到项目行中间归入项目，拖到项目边缘用于排序；拖到根列表空白区域可移出项目。插入线/项目高亮区分排序与归类。
 归类复用现有授权 API，失败保留原归属；排序只作为按当前租户/用户隔离的浏览器偏好保存，不改变数据库分页顺序，也不跨设备同步。
-分页只排序已加载会话，不为拖动拉取全部历史；日期标题始终按会话自身的活动时间显示，手工跨区排序时可出现多个同名日期区段。
+分页只排序已加载会话，不为拖动拉取全部历史。日期组优先于浏览器保存的手动顺序，旧混排偏好仅在同组内继续生效，不清除偏好或改写活动时间；跨日期组拖动不改变排序。
 新建/重命名项目时，名称输入框左侧可选择 8 个 Lucide 图标；图标随项目存储在 Agent，旧项目默认文件夹，旧调用省略 icon 时保留原图标。</p>
 <p>2026-10-18 后续拖拽/图标验证：全量前端 31 个文件、253 项通过；最后补充 API 图标断言及拖拽指示后，受影响的 70 项回归通过。
 类型检查、Agent 受影响 Ruff、Backend 全量 Ruff、BFF 12 项测试与 Base/Items/Suite Edition 构建通过，OpenAPI 客户端由命令重新生成。
